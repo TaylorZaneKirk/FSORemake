@@ -16,7 +16,7 @@ eurecaServer.attach(server);
 
 var PlayerState =
 {
-    pos = {x, y},
+    pos: {x, y},
     playerFacing,
     playerName,
     WorldX,
