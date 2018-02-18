@@ -14,35 +14,27 @@ var eurecaServer = new Eureca.Server();
 //attach eureca.io to our http server
 eurecaServer.attach(server);
 
-var PlayerState =
+class PlayerState
 {
-    pos: {x, y},
-    playerFacing,
-    playerName,
-    WorldX,
-    WorldY,
-    lastUpdated,
-    readyToUpdate,
-
     constructor(idString){
-        pos = {x: 0, y: 0};
-        playerFacing = 'S';
-        playerName = idString;
-        WorldX = 0;
-        WorldY = 0;
-        lastUpdated = null;
-        readyToUpdate = false;
-    },
+        this.pos = {x: 0, y: 0};
+        this.playerFacing = 'S';
+        this.playerName = idString;
+        this.WorldX = 0;
+        this.WorldY = 0;
+        this.lastUpdated = null;
+        this.readyToUpdate = false;
+    }
     
     constructor(other)
     {
-        pos = other.pos;
-        playerFacing = other.playerFacing;
-        playerName = other.playerName;
-        WorldX = other.WorldX;
-        WorldY = other.WorldY;
-        lastUpdated = other.lastUpdated;
-        readyToUpdate = other.readyToUpdate;
+        this.pos = other.pos;
+        this.playerFacing = other.playerFacing;
+        this.playerName = other.playerName;
+        this.WorldX = other.WorldX;
+        this.WorldY = other.WorldY;
+        this.lastUpdated = other.lastUpdated;
+        this.readyToUpdate = other.readyToUpdate;
     }
 };
 
