@@ -124,3 +124,20 @@ function initMultiPlayer(game, globals){
 
     }
 }
+
+function update() {
+    if (!game.global.player)
+        return; //Stuff isn't ready; hold on...
+
+    /* game.global.player.update();    //update player
+
+    for (var c in game.global.npcList){ //update NPCs
+        game.global.npcList[c].update();
+    } */
+}
+
+function render() {
+    /*for (var c in game.global.npcList){ //update NPCs
+        game.global.npcList[c].render();
+    }*/
+}
