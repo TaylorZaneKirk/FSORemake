@@ -88,7 +88,7 @@ eurecaServer.onDisconnect(function (conn) {
 * Player logs itself into the array of players (handshake still needs to be called
 * to do the update. That's done on the client right after).
 */
-eurecaServer.exports.initPlayer(function (id) {
+eurecaServer.exports.initPlayer = function (id) {
 
     players[id].state.readyToUpdate = true;
-});
+}
