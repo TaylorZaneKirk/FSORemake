@@ -26,7 +26,7 @@ class PlayerState
         this.readyToUpdate = false;
     }
     
-    constructor(other)
+    copy(other)
     {
         this.pos = other.pos;
         this.playerFacing = other.playerFacing;
