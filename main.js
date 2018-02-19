@@ -139,6 +139,7 @@ function update() {
     if(!game.global.player){
         if(game.global.ready && game.global.myId != 0 && game.global.playerList[game.global.myId] != undefined){
             game.global.player = game.global.playerList[game.global.myId];
+            console.log("only here once");
             eurecaProxy.requestUpdate(game.global.myId);
         }
         else{
