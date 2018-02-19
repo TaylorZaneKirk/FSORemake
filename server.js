@@ -120,7 +120,7 @@ eurecaServer.exports.initPlayer = function (id) {
     //var remote = eurecaServer.getClient(id);
 
     players[id].state.readyToUpdate = true;
-    players[id].state.lastUpdated = new Date.getTime();
+    players[id].state.lastUpdated = new Date().getTime();
     //remote.recieveStateFromServer(players[id].state);
     eurecaServer.updateClientsAboutNewPlayer(id);
 
