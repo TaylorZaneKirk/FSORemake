@@ -137,11 +137,13 @@ function initMultiPlayer(game, globals){
 function update() {
     if (!game.global.ready)
         return; //Stuff isn't ready; hold on...
+
+    if(!game.global.player){
+        game.global.player = game.global.playerList[game.global.myId];
+    }
     
     //TO_DO if last updated = false don't request update
     eurecaProxy.requestUpdate(game.global.myId);
-
-    game.global.player = globals.playerList[state.playerName]
 
 //Rename this to playerSprites
     /* game.global.player.update();    //update player
