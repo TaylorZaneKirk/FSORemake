@@ -84,19 +84,6 @@ eurecaServer.onDisconnect(function (conn) {
     }
 });
 
-/**
-* Player logs itself into the array of players (handshake still needs to be called
-* to do the update. That's done on the client right after).
-*/
-eurecaServer.exports.initPlayer = function (id) {
-
-    var remote = eurecaServer.getClient(id);
-
-    players[id].state.readyToUpdate = true;
-    remote.recieveStateFromServer(players[id].state);
-
-}
-
 app.get('/', function (req, res, next) {
     res.sendFile(__dirname+'/index.html');
 });
@@ -121,3 +108,26 @@ server.listen(process.env.PORT || 55555, function () {
     //worldMap.push.npcs
     npcs = generateNPCs(0); */
 });
+
+/**
+* Player logs itself into the array of players (handshake still needs to be called
+* to do the update. That's done on the client right after).
+*/
+eurecaServer.exports.initPlayer = function (id) {
+
+    //var remote = eurecaServer.getClient(id);
+
+    players[id].state.readyToUpdate = true;
+    //remote.recieveStateFromServer(players[id].state);
+    this.updateClients();
+
+}
+
+eurecaServer.updateClients = function () {
+    for(var player in players) {
+        var remote = players[c].remote;
+        for(var player in players) {
+            remote.recieveStateFromServer(player.state);
+        }
+    }
+}
