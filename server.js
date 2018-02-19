@@ -125,7 +125,7 @@ eurecaServer.exports.initPlayer = function (id) {
 
 eurecaServer.updateClients = function () {
     for(var player in players) {
-        var remote = players[c].remote;
+        var remote = player.remote;
         for(var player in players) {
             remote.recieveStateFromServer(player.state);
         }
