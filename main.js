@@ -138,6 +138,7 @@ function update() {
     if (!game.global.ready)
         return; //Stuff isn't ready; hold on...
     
+    //TO_DO if last updated = false don't request update
     eurecaProxy.requestUpdate(game.global.myId);
 
     /* game.global.player.update();    //update player
