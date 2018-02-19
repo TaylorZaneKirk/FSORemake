@@ -142,10 +142,13 @@ function update() {
     
     //TO_DO if last updated = false don't request update 
     //TODO!!!!!! BELOW LINES DO NOT WORK
-    /* eurecaProxy.requestUpdate(game.global.myId);
+    
+    if (game.global.player.lastUpdated + 1250 < new Date().getTime() ){
+        eurecaProxy.requestUpdate(game.global.myId);
+    }
 
     game.global.player = global.playerList[state.playerName]
- */
+
 //Rename this to playerSprites
     /* game.global.player.update();    //update player
 
