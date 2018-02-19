@@ -53,7 +53,7 @@ function init() {
 //THIS NEXT!!!
 function preload() {
     //game.load.image('tileset', 'assets/tileset.png');
-    game.load.image('player', 'assets/PlayerShit.png');
+    game.load.image('player', 'assets/PlayerSheet.png');
     //game.load.image('clown', 'assets/images/clown.png');
     //game.load.image('portal', 'assets/images/portal.png');
     //game.global.easystar = new EasyStar.js();   //start the pathfinder
