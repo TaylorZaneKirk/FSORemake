@@ -152,8 +152,8 @@ function update() {
     //TODO!!!!!! BELOW LINES DO NOT WORK
     
     console.log(game.global.player);
-    if (game.global.player.lastUpdated + 1250 < new Date().getTime() ){
-        console.log(game.global.player.lastUpdated + 1250 + " " + new Date().getTime())
+    if (game.global.player.lastUpdated + 12500 < new Date().getTime() ){
+        console.log(game.global.player.lastUpdated + 12500 + " " + new Date().getTime())
         console.log("Requesting new state");
         eurecaProxy.requestUpdate(game.global.myId);
     }
