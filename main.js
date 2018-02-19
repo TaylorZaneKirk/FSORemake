@@ -91,7 +91,7 @@ function initMultiPlayer(game, globals){
         eurecaProxy = serverProxy;
 
         // Send a handshake to say hello to other players.
-        eurecaProxy.handshake();
+        //eurecaProxy.handshake();
     });
 
     /**
