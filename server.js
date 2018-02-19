@@ -9,7 +9,7 @@ var Eureca = require('eureca.io');
 
 
 //create an instance of EurecaServer
-var eurecaServer = new Eureca.Server({allow:['setId']});
+var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer']});
 
 //attach eureca.io to our http server
 eurecaServer.attach(server);
