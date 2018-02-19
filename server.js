@@ -93,9 +93,9 @@ eurecaServer.exports.initPlayer = function (id) {
     players[id].state.readyToUpdate = true;
 }
 
-/* app.get('/', function (req, res, next) {
+app.get('/', function (req, res, next) {
     res.sendFile(__dirname+'/index.html');
-}); */
+});
 
 server.listen(process.env.PORT || 55898, function () {
     console.log('\033[96mlistening on localhost:55555 \033[39m');
