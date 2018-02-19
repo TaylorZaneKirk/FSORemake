@@ -97,7 +97,7 @@ app.get('/', function (req, res, next) {
     res.sendFile(__dirname+'/index.html');
 });
 
-server.listen(process.env.PORT || 55898, function () {
+server.listen(process.env.PORT || 55555, function () {
     console.log('\033[96mlistening on localhost:55555 \033[39m');
     console.log("Beginning Map-generation...");
     //mapData = generateMap();
