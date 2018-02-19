@@ -135,33 +135,13 @@ function initMultiPlayer(game, globals){
 
 
 function update() {
-
-    if(!game.global.player){
-        if(game.global.ready && game.global.myId != 0 && game.global.playerList[game.global.myId] != undefined){
-            game.global.player = game.global.playerList[game.global.myId];
-            console.log("only here once");
-            eurecaProxy.requestUpdate(game.global.myId);
-        }
-        else{
-            console.log("shouldn't be here");
-            return;
-        }
-    }
-
-    if (!game.global.player)
+    if (!game.global.ready)
         return; //Stuff isn't ready; hold on...
-
-    game.global.player = game.global.playerList[game.global.myId]; 
-
-    
     
     //TO_DO if last updated = false don't request update
-    console.log(game.global.player.lastUpdated);
-    if (game.global.player.lastUpdated + 600000 < Date.now()){
-        console.log("Requesting");
-        eurecaProxy.requestUpdate(game.global.myId);
-    }
-    
+    eurecaProxy.requestUpdate(game.global.myId);
+
+    game.global.player = globals.playerList[state.playerName]
 
 //Rename this to playerSprites
     /* game.global.player.update();    //update player
