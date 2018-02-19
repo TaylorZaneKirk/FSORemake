@@ -126,6 +126,7 @@ eurecaServer.exports.initPlayer = function (id) {
 }
 
 eurecaServer.exports.requestUpdate = function (id) {
+    console.log("Incoming update request: ", id)
 
     var remote = eurecaServer.getClient(id);
 
