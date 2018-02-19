@@ -137,7 +137,7 @@ function initMultiPlayer(game, globals){
 function update() {
 
     if(!game.global.player){
-        if(!game.global.ready && game.global.myId != 0 && game.global.playerList[game.global.myId] != undefined){
+        if(game.global.ready && game.global.myId != 0 && game.global.playerList[game.global.myId] != undefined){
             console.log("here");
             game.global.ready = true;
             game.global.player = game.global.playerList[game.global.myId];
@@ -147,7 +147,7 @@ function update() {
         }
     }
 
-    if (!game.global.ready)
+    if (!game.global.player)
         return; //Stuff isn't ready; hold on...
 
     
