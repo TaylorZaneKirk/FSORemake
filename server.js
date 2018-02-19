@@ -7,7 +7,7 @@ var express = require('express')
 app.use(express.static(__dirname));
  
  
-server.listen(8921);
+server.listen(8000);
 
 //get EurecaServer class
 var Eureca = require('eureca.io');
