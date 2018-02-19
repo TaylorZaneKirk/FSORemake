@@ -119,7 +119,7 @@ eurecaServer.exports.initPlayer = function (id) {
 
     players[id].state.readyToUpdate = true;
     //remote.recieveStateFromServer(players[id].state);
-    this.updateClients();
+    eurecaServer.updateClients();
 
 }
 
