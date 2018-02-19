@@ -12,6 +12,9 @@ var map;
 var layer;
 var layer2;
 
+// Reference to our eureca so we can call functions back on the server
+var eurecaProxy;
+
 // initialize phaser, call create() once done
 var game = new Phaser.Game(800, 600, Phaser.AUTO, null, {
     init: init,
@@ -45,6 +48,7 @@ function init() {
 
 }
 
+//THIS NEXT!!!
 function preload() {
     /* game.load.image('tileset', 'assets/tileset.png');
     game.load.image('player', 'assets/images/phaser-dude.png');
@@ -70,8 +74,7 @@ function create() {
 
 function initMultiPlayer(game, globals){
 
-    // Reference to our eureca so we can call functions back on the server
-    var eurecaProxy;
+    
 
     /**
         * Fires on initial connection
@@ -132,8 +135,10 @@ function initMultiPlayer(game, globals){
 
 
 function update() {
-    if (!game.global.player)
+    if (!game.global.ready)
         return; //Stuff isn't ready; hold on...
+    
+    
 
     /* game.global.player.update();    //update player
 
