@@ -1,6 +1,6 @@
-var express = require('./express')
+var express = require('express')
   , app = express(app)
-  , server = require('./http').createServer(app);
+  , server = require('http').createServer(app);
  
  
 // serve static files from the current directory
