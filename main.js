@@ -138,7 +138,7 @@ function initMultiPlayer(game, globals){
 
 
 function update() {
-    if (!game.global.ready || game.global.player == undefined){
+    if (!game.global.ready || game.global.player == undefined || game.global.player == false){
         return; //Stuff isn't ready; hold on...
     }
     
