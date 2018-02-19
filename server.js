@@ -138,7 +138,7 @@ eurecaServer.exports.requestUpdate = function (id) {
 eurecaServer.updateClients = function () {
     for(var i in players) {
         var remote = players[i].remote;
-        players[i].state.readyToUpdate = Date.now();
+        players[i].state.lastUpdated = Date.now();
         for(var j in players) {
             remote.recieveStateFromServer(players[j].state);
         }
