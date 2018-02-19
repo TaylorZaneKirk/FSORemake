@@ -3,7 +3,7 @@ var express = require('express')
     , server = require('http').createServer(app)
 
 // serve static files from the current directory
-app.use(express(__dirname));
+app.use(express.static(__dirname));
 
 var Eureca = require('eureca.io');
 
