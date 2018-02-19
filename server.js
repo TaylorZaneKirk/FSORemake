@@ -120,8 +120,9 @@ eurecaServer.exports.initPlayer = function (id) {
     //var remote = eurecaServer.getClient(id);
 
     players[id].state.readyToUpdate = true;
+    players[id].state.lastUpdated = Date.now();
     //remote.recieveStateFromServer(players[id].state);
-    eurecaServer.updateClients();
+    eurecaServer.updateClientsAboutNewPlayer(id);
 
 }
 
@@ -138,12 +139,9 @@ eurecaServer.exports.requestUpdate = function (id) {
     } 
 }
 
-eurecaServer.updateClients = function () {
+eurecaServer.updateClientsAboutNewPlayer = function (id) {
     for(var i in players) {
         var remote = players[i].remote;
-        players[i].state.lastUpdated = Date.now();
-        for(var j in players) {
-            remote.recieveStateFromServer(players[j].state);
-        }
+        remote.recieveStateFromServer(players[id].state);
     }
 }
