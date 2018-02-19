@@ -129,7 +129,7 @@ eurecaServer.exports.requestUpdate = function (id) {
 
     var remote = eurecaServer.getClient(id);
 
-    //players[id].state.readyToUpdate = true;
+    //Fetch users that are on the same page
     remote.recieveStateFromServer(players[id].state);
     //eurecaServer.updateClients();
 
