@@ -36,7 +36,8 @@ game.global = {
     map: null,
     walls: null,
     warps: [],
-    easystar: null
+    easystar: null,
+    sprites: []
 };
 
 function init() {
@@ -53,7 +54,8 @@ function init() {
 //THIS NEXT!!!
 function preload() {
     //game.load.image('tileset', 'assets/tileset.png');
-    game.load.image('player', 'assets/PlayerSheet.png');
+    var playerSprite = game.load.spritesheet('player', 'assets/PlayerSheet.png', 46, 45);
+    game.global.sprites.push(playerSprite);
     //game.load.image('clown', 'assets/images/clown.png');
     //game.load.image('portal', 'assets/images/portal.png');
     //game.global.easystar = new EasyStar.js();   //start the pathfinder
@@ -94,9 +96,6 @@ function initMultiPlayer(game, globals){
         // Local reference to the server proxy to be
         // used in other methods within this module.
         eurecaProxy = serverProxy;
-
-        // Send a handshake to say hello to other players.
-        //eurecaProxy.handshake();
     });
 
     /**

@@ -117,10 +117,10 @@ server.listen(process.env.PORT || 55555, function () {
 */
 eurecaServer.exports.initPlayer = function (id) {
 
-    //var remote = eurecaServer.getClient(id);
+    var currentTime = new Date().getTime()
 
     players[id].state.readyToUpdate = true;
-    players[id].state.lastUpdated = new Date().getTime();
+    players[id].state.lastUpdated = currentTime;
     //remote.recieveStateFromServer(players[id].state);
     eurecaServer.updateClientsAboutNewPlayer(id);
 
