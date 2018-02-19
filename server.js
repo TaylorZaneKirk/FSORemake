@@ -120,7 +120,7 @@ eurecaServer.exports.initPlayer = function (id) {
     //var remote = eurecaServer.getClient(id);
 
     players[id].state.readyToUpdate = true;
-    players[id].state.lastUpdated = Date.now().UTC;
+    players[id].state.lastUpdated = Date.now().UTC();
     //remote.recieveStateFromServer(players[id].state);
     eurecaServer.updateClientsAboutNewPlayer(id);
 
@@ -131,7 +131,7 @@ eurecaServer.exports.requestUpdate = function (id) {
 
     var currentServerTime = Date.now();
     if(players[id].state.lastUpdated + 1250 < currentServerTime){
-        players[id].state.lastUpdated = currentServerTime.UTC;
+        players[id].state.lastUpdated = currentServerTime.UTC();
         var remote = eurecaServer.getClient(id);
 
         //Fetch users that are on the same page
