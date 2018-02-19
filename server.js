@@ -80,7 +80,7 @@ eurecaServer.onDisconnect(function (conn) {
         var remote = players[c].remote;
 
         //here we call kill() method defined in the client side
-        remote.kill(conn.id);
+        //remote.kill(conn.id);
     }
 });
 
@@ -90,7 +90,11 @@ eurecaServer.onDisconnect(function (conn) {
 */
 eurecaServer.exports.initPlayer = function (id) {
 
+    var remote = eurecaServer.getClient(id);
+
     players[id].state.readyToUpdate = true;
+    remote.recieveStateFromServer(players[id].state);
+
 }
 
 app.get('/', function (req, res, next) {

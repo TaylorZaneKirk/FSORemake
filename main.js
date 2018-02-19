@@ -112,7 +112,7 @@ function initMultiPlayer(game, globals){
         //globals.playerList[id] = globals.player
 
         //Send state to server
-        //eurecaProxy.initPlayer(id, globals.player.state);
+        eurecaProxy.initPlayer(id);
 
         //console.log(globals.playerList);
 
@@ -122,7 +122,13 @@ function initMultiPlayer(game, globals){
         
 
     }
+
+    client.exports.recieveStateFromServer = function(state) {
+        console.log(state);
+    }
 }
+
+
 
 function update() {
     if (!game.global.player)
