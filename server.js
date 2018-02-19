@@ -10,10 +10,10 @@ app.use(express.static(__dirname));
 server.listen(8921);
 
 //get EurecaServer class
-var EurecaServer = require('eureca.io').EurecaServer;
+var EurecaServer = require('eureca.io');
  
 //create an instance of EurecaServer
-var eurecaServer = new EurecaServer();
+var eurecaServer = new Eureca.Server();
  
 //attach eureca.io to our http server
 eurecaServer.attach(server);
