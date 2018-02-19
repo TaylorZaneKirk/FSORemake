@@ -130,6 +130,11 @@ function initMultiPlayer(game, globals){
 
     client.exports.recieveStateFromServer = function(state) {
         console.log("Recieved State");
+
+        if(state.playerName == globals.myId){
+            console.log("Assigned Player State");
+            globals.player = globals.playerList[game.global.player.playerName]
+        }
         globals.playerList[state.playerName] = state;
     }
 
@@ -147,10 +152,11 @@ function update() {
     
     console.log(game.global.player);
     if (game.global.player.lastUpdated + 1250 < new Date().getTime() ){
+        console.log("Requesting new state");
         eurecaProxy.requestUpdate(game.global.myId);
     }
 
-    game.global.player = game.global.playerList[game.global.player.playerName]
+    
 
 //Rename this to playerSprites
     /* game.global.player.update();    //update player
