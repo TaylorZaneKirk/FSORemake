@@ -130,6 +130,7 @@ eurecaServer.exports.requestUpdate = function (id) {
 
     var currentServerTime = Date.now();
     if(players[id].state.lastUpdated + 1250 < currentServerTime){
+        console.log("incoming request");
         players[id].state.lastUpdated = currentServerTime;
         var remote = eurecaServer.getClient(id);
 
