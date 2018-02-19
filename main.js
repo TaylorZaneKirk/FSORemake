@@ -147,7 +147,7 @@ function update() {
         eurecaProxy.requestUpdate(game.global.myId);
     }
 
-    game.global.player = game.global.playerList[game.global.state.playerName]
+    game.global.player = game.global.playerList[game.global.player.playerName]
 
 //Rename this to playerSprites
     /* game.global.player.update();    //update player
