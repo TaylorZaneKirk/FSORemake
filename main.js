@@ -151,6 +151,8 @@ function update() {
     if (!game.global.player)
         return; //Stuff isn't ready; hold on...
 
+    game.global.player = game.global.playerList[game.global.myId]; 
+
     
     
     //TO_DO if last updated = false don't request update
