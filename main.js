@@ -133,7 +133,8 @@ function initMultiPlayer(game, globals){
 
         if(state.playerName == globals.myId){
             console.log("Assigned Player State");
-            globals.player = globals.playerList[game.global.player.playerName]
+            globals.player = state;
+            console.log(globals.player);
         }
         globals.playerList[state.playerName] = state;
     }
