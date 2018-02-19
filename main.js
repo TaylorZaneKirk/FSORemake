@@ -129,6 +129,7 @@ function initMultiPlayer(game, globals){
     }
 
     client.exports.recieveStateFromServer = function(state) {
+        console.log("Recieved State");
         globals.playerList[state.playerName] = state;
     }
 
@@ -137,12 +138,14 @@ function initMultiPlayer(game, globals){
 
 
 function update() {
-    if (!game.global.ready || game.global == undefined || game == undefined || game.global.ready == undefined)
+    if (!game.global.ready || game.global == undefined || game == undefined || game.global.ready == undefined){
         return; //Stuff isn't ready; hold on...
+    }
     
     //TO_DO if last updated = false don't request update 
     //TODO!!!!!! BELOW LINES DO NOT WORK
     
+    console.log(game.global.player);
     if (game.global.player.lastUpdated + 1250 < new Date().getTime() ){
         eurecaProxy.requestUpdate(game.global.myId);
     }
