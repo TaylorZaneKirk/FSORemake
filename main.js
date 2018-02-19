@@ -154,6 +154,7 @@ function update() {
     
     
     //TO_DO if last updated = false don't request update
+    console.log(game.global.player.lastUpdated);
     if (game.global.player.lastUpdated + 1000 < Date.now()){
         console.log("Requesting");
         eurecaProxy.requestUpdate(game.global.myId);
