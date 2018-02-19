@@ -138,12 +138,11 @@ function update() {
 
     if(!game.global.player){
         if(game.global.ready && game.global.myId != 0 && game.global.playerList[game.global.myId] != undefined){
-            console.log("here");
-            game.global.ready = true;
             game.global.player = game.global.playerList[game.global.myId];
         }
         else{
             console.log("shouldn't be here");
+            return;
         }
     }
 
@@ -153,7 +152,11 @@ function update() {
     
     
     //TO_DO if last updated = false don't request update
-    eurecaProxy.requestUpdate(game.global.myId);
+    if (game.globals.player.lastUpdated + 2500 < Date.now()){
+        console.log("Requesting");
+        eurecaProxy.requestUpdate(game.global.myId);
+    }
+    
 
 //Rename this to playerSprites
     /* game.global.player.update();    //update player
