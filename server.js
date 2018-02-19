@@ -92,3 +92,28 @@ eurecaServer.exports.initPlayer = function (id) {
 
     players[id].state.readyToUpdate = true;
 }
+
+app.get('/', function (req, res, next) {
+    res.sendFile(__dirname+'/index.html');
+});
+
+server.listen(process.env.PORT || 55555, function () {
+    console.log('\033[96mlistening on localhost:55555 \033[39m');
+    console.log("Beginning Map-generation...");
+    //mapData = generateMap();
+
+    /* mapData_1 = generateMap();
+    worldMap.floors.push(mapData_1);
+    mapWarps_1 = generateWarps(mapData_1, 0);
+    worldMap.warps.push(mapWarps_1);
+    worldMap.npcs.push(generateNPCs(0));
+
+    mapData_2 = generateMap();
+    worldMap.floors.push(mapData_2);
+    mapWarps_2 = generateWarps(mapData_2, 1);
+    worldMap.warps.push(mapWarps_2);
+    worldMap.npcs.push(generateNPCs(1));
+
+    //worldMap.push.npcs
+    npcs = generateNPCs(0); */
+});
