@@ -137,7 +137,7 @@ function initMultiPlayer(game, globals){
 
 
 function update() {
-    if (!game.global.ready || isNullOrUndefined(game.global) || isNullOrUndefined(game) || isNullOrUndefined(game.global.ready))
+    if (!game.global.ready || game.global == undefined || game == undefined || game.global.ready == undefined)
         return; //Stuff isn't ready; hold on...
     
     //TO_DO if last updated = false don't request update
