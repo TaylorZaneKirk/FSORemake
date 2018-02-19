@@ -130,6 +130,7 @@ function initMultiPlayer(game, globals){
 
     client.exports.recieveStateFromServer = function(state) {
         console.log("Recieved State");
+        state.lastUpdated = new Date().getTime();
 
         if(state.playerName == globals.myId){
             console.log("Assigned Player State");
@@ -154,7 +155,8 @@ function update() {
     //TODO!!!!!! BELOW LINES DO NOT WORK
     
     //console.log(game.global.player);
-    if (game.global.player.lastUpdated + 300000 < currentTime.getTime() ){
+    //Breaks at 400000
+    if (game.global.player.lastUpdated + 350000 < currentTime.getTime() ){
         console.log(game.global.player.lastUpdated + 300000 + " " + currentTime.getTime())
         console.log("Requesting new state");
         eurecaProxy.requestUpdate(game.global.myId);
