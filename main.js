@@ -156,8 +156,9 @@ function update() {
     
     //console.log(game.global.player);
     //Breaks at 400000
-    if (game.global.player.lastUpdated + 12500 < currentTime.getTime() ){
-        console.log(game.global.player.lastUpdated + 12500 + " " + currentTime.getTime())
+    if (game.global.player.lastUpdated + 5000 < currentTime.getTime() ){
+        state.lastUpdated = new Date().getTime();
+        console.log(game.global.player.lastUpdated + 5000 + " " + currentTime.getTime())
         console.log("Requesting new state");
         eurecaProxy.requestUpdate(game.global.myId);
     }
