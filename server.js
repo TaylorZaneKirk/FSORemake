@@ -5,12 +5,14 @@ var express = require('express')
  
 // serve static files from the current directory
 app.use(express.static(__dirname));
+
+app.use('/node_modules', express.static(__dirname + '/node_modules'));
  
  
 server.listen(8000);
 
 //get EurecaServer class
-var Eureca = require('./eureca.io');
+var Eureca = require('eureca.io');
  
 //create an instance of EurecaServer
 var eurecaServer = new Eureca.Server();
