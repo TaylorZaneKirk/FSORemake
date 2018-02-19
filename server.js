@@ -127,13 +127,14 @@ eurecaServer.exports.initPlayer = function (id) {
 
 eurecaServer.exports.requestUpdate = function (id) {
     console.log("Incoming update request: ", id)
+    var currentServerTime = Date.now();
+    if(players[id].lastUpdated + 1250 < currentServerTime){
+        var remote = eurecaServer.getClient(id);
 
-    var remote = eurecaServer.getClient(id);
-
-    //Fetch users that are on the same page
-    remote.recieveStateFromServer(players[id].state);
-    //eurecaServer.updateClients();
-
+        //Fetch users that are on the same page
+        remote.recieveStateFromServer(players[id].state);
+        //eurecaServer.updateClients();
+    } 
 }
 
 eurecaServer.updateClients = function () {
