@@ -140,11 +140,12 @@ function update() {
     if (!game.global.ready || game.global == undefined || game == undefined || game.global.ready == undefined)
         return; //Stuff isn't ready; hold on...
     
-    //TO_DO if last updated = false don't request update
-    eurecaProxy.requestUpdate(game.global.myId);
+    //TO_DO if last updated = false don't request update 
+    //TODO!!!!!! BELOW LINES DO NOT WORK
+    /* eurecaProxy.requestUpdate(game.global.myId);
 
     game.global.player = global.playerList[state.playerName]
-
+ */
 //Rename this to playerSprites
     /* game.global.player.update();    //update player
 
