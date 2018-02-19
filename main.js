@@ -126,6 +126,7 @@ function initMultiPlayer(game, globals){
     client.exports.recieveStateFromServer = function(state) {
         console.log(state);
     }
+
 }
 
 

@@ -24,6 +24,7 @@ class PlayerState
         this.WorldY = 0;
         this.lastUpdated = null;
         this.readyToUpdate = false;
+        this.playersVisible = [];
     }
     
     copy(other)
@@ -35,6 +36,7 @@ class PlayerState
         this.WorldY = other.WorldY;
         this.lastUpdated = other.lastUpdated;
         this.readyToUpdate = other.readyToUpdate;
+        this.playersVisible = other.playersVisible;
     }
 };
 
@@ -120,6 +122,16 @@ eurecaServer.exports.initPlayer = function (id) {
     players[id].state.readyToUpdate = true;
     //remote.recieveStateFromServer(players[id].state);
     eurecaServer.updateClients();
+
+}
+
+eurecaServer.exports.requestUpdate = function (id) {
+
+    var remote = eurecaServer.getClient(id);
+
+    //players[id].state.readyToUpdate = true;
+    remote.recieveStateFromServer(players[id].state);
+    //eurecaServer.updateClients();
 
 }
 
