@@ -1,6 +1,5 @@
 ///Main Game 'World' script//
 ////////////////////////////
-var Eureca = require('eureca.io');
 var client;
 
 // map dimensions
