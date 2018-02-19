@@ -61,7 +61,7 @@ eurecaServer.onConnect(function (conn) {
     //var spawnLoc = findSpawn(players[conn.id], 0);
 
     //here we call setId (defined in the client side)
-    remote.setId(conn.id);
+    //remote.setId(conn.id);
 
     //remote.setMap(worldMap.floors[0], spawnLoc, worldMap.npcs[0], worldMap.warps[0]);
     //remote.testMap(worldMap.floors[0], worldMap.warps[0]);
