@@ -108,7 +108,7 @@ function initMultiPlayer(game, globals){
         // Assign my new connection Id
         globals.myId = id;
 
-        // Create new player
+        //TODO!!!!!!!! Create new player
         //globals.player = new aPlayer(id, game, eurecaProxy);
 
         // Put instance of new player into list
@@ -127,7 +127,8 @@ function initMultiPlayer(game, globals){
     }
 
     client.exports.recieveStateFromServer = function(state) {
-        console.log(state);
+        globals.playerList[state.playerName] = state;
+        console.log(globals.playerList);
     }
 
 }
