@@ -148,11 +148,7 @@ function update() {
 
     var currentTime = new Date();
     
-    //TO_DO if last updated = false don't request update 
-    //TODO!!!!!! BELOW LINES DO NOT WORK
-    
-    //console.log(game.global.player);
-    //Breaks at 400000
+    //wait [5] seconds before requesting an update from the server
     if (game.global.player.lastUpdated + 5000 < currentTime.getTime() ){
         game.global.player.lastUpdated = new Date().getTime();
         console.log(game.global.player.lastUpdated + 5000 + " " + currentTime.getTime())
@@ -160,13 +156,11 @@ function update() {
         console.log(game.global.localPlayerObject);
         eurecaProxy.requestUpdate(game.global.myId);
     }
-
     
-
 //Rename this to playerSprites
-    /* game.global.player.update();    //update player
+    game.global.localPlayerObject.update();    //update player
 
-    for (var c in game.global.npcList){ //update NPCs
+    /* for (var c in game.global.npcList){ //update NPCs
         game.global.npcList[c].update();
     } */
 }

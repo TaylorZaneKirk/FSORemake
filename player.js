@@ -11,11 +11,16 @@ var PlayerObject = function(idRef, gameRef){
         playerState = game.global.player;
     }
 
-    console.log({
-        game: game,
-        id: id,
-        playerState: playerState
-    });
+    function update(){
+        if(playerState != game.global.player){
+            playerState = game.global.player;
+        }
+        else{
+            console.log("discarding");
+        }
+        
+
+    }
 
     init(idRef, gameRef);
     
