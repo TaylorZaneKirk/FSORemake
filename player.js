@@ -16,6 +16,12 @@ var PlayerObject = function(idRef, gameRef){
             playerState = game.global.player;
             console.log("replaced");
             console.log(playerState);
+            game.global.localPlayerObject = {
+                game: game,
+                id: id,
+                playerState: playerState,
+                update: update,
+            };
         }
         
 
