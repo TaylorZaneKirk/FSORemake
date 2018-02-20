@@ -142,6 +142,49 @@ eurecaServer.exports.requestUpdate = function (id) {
     } 
 }
 
+eurecaServer.exports.message = function(id, message){
+    //message represents the action, id is the sender of that action
+    //  message will contain info about what action to perform
+    //  as well as the target of the action, whether that be
+    //  self, another pc, an npc/enemy, or all users
+    //  message structure: message = {
+    //      action: {
+    //          type //move, attack, localBroadcast, globalBroadcast, whisper, etc...
+    //          payload //direction for move, what they're saying, etc...
+    //      },
+    //      target: //None, Self, OtherPC, NPC, ALL, Object
+    //  }
+    if(message == null || message == undefined ||
+        message.action == null || message.action == undefined ||
+        message.action.type == null || message.action.type == undefined ||
+        message.action.payload == null || message.action.payload == undefined ||
+        message.target == null || message.target == undefined){
+        console.log("ERROR: Recieved invalid message");
+        return;
+    }
+    
+    switch(message.action.type){
+        case 'move': {
+            //do move
+            console.log('Got move');
+            break;
+        }
+        case 'attack': {
+            //do attack
+            break;
+        }
+        case 'localBroadcast': 
+        case 'globalBroadcast': {
+            //do broadcast
+            break;
+        }
+        default: {
+            console.log("ERROR: Recieved invalid message");
+            return;
+        }
+    }
+}
+
 eurecaServer.updateClientsAboutNewPlayer = function (id) {
     for(var i in players) {
         var remote = players[i].remote;

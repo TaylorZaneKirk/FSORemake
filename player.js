@@ -10,11 +10,13 @@ var PlayerObject = function(idRef, gameRef){
     var downKey = null;
     var leftKey = null;
     var rightKey = null;
+    var ready = null;
 
     function init(idRef, gameRef){
         game = gameRef;
         id = idRef;
         playerState = game.global.player;
+        ready = false;
 
         upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
         downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
@@ -33,6 +35,14 @@ var PlayerObject = function(idRef, gameRef){
     }
 
     function update(){
+
+        //Change this to localPlayer pos checking against playerState.pos
+        if(!ready && playerSprite.x == playerState.pos.x && playerSprite.y == playerState.pos){
+            ready = true;
+        }
+
+        if(!ready) { return; }
+
         if(playerState != game.global.player){
             playerState = game.global.player;
 
@@ -43,6 +53,35 @@ var PlayerObject = function(idRef, gameRef){
                 playerState: playerState,
                 update: update,
             };
+        }
+
+        if (leftKey.isDown){
+            playerState.playerAction = 'walk';
+            playerState.playerFacing = 'W';
+            ready = false;
+            game.sendMessageToServer({type: 'move', payload: 'W'}, 'self');
+            //player.body.velocity.x -= 100;
+        }
+        else if (rightKey.isDown){
+            playerState.playerAction = 'walk';
+            playerState.playerFacing = 'E';
+            ready = false;
+            game.sendMessageToServer({type: 'move', payload: 'E'}, 'self');
+            //player.body.velocity.x += 100;
+        }
+        else if (upKey.isDown){
+            playerState.playerAction = 'walk';
+            playerState.playerFacing = 'N';
+            ready = false;
+            game.sendMessageToServer({type: 'move', payload: 'E'}, 'self');
+            //player.body.velocity.y -= 100;
+        }
+        else if (downKey.isDown){
+            playerState.playerAction = 'walk';
+            playerState.playerFacing = 'S';
+            ready = false;
+            game.sendMessageToServer({type: 'move', payload: 'E'}, 'self');
+            //player.body.velocity.y += 100;
         }
         
         playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);

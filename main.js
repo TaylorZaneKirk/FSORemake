@@ -153,10 +153,10 @@ function update() {
 
     var currentTime = new Date();
     
-    //wait [5] seconds before requesting an update from the server
-    if (game.global.player.lastUpdated + 5000 < currentTime.getTime() ){
+    //wait [1.25] seconds before requesting an update from the server
+    if (game.global.player.lastUpdated + 1250 < currentTime.getTime() ){
         game.global.player.lastUpdated = new Date().getTime();
-        console.log(game.global.player.lastUpdated + 5000 + " " + currentTime.getTime())
+        console.log(game.global.player.lastUpdated + 1250 + " " + currentTime.getTime())
         console.log("Requesting new state");
         console.log(game.global.localPlayerObject);
         eurecaProxy.requestUpdate(game.global.myId);
@@ -178,4 +178,16 @@ function render() {
     /*for (var c in game.global.npcList){ //update NPCs
         game.global.npcList[c].render();
     }*/
+}
+
+function sendMessageToServer(action, target) {
+    if(action == null || action == undefined ||
+        action.type == null || action.type == undefined ||
+        action.payload == null || action.payload == undefined ||
+        target == null || target == undefined){
+        console.log("ERROR: Attempted to send invalid message");
+        return;
+    }
+
+    eurecaServer.message({action: action, target: target});
 }
