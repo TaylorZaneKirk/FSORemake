@@ -188,5 +188,5 @@ sendMessageToServer = function(action, target) {
         return;
     }
 
-    eurecaServer.message({action: action, target: target});
+    eurecaProxy.message({action: action, target: target});
 }
