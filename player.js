@@ -19,7 +19,7 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite.animations.add('idle-W', [5], 1, true);
         playerSprite.animations.add('idle-N', [9], 1, true);
         playerSprite.animations.add('idle-S', [13], 1, true);
-        playerSprite.play('idle-S');
+        playerSprite.play('idle-' + game.global.player.playerFacing);
     }
 
     function update(){
