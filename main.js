@@ -188,5 +188,5 @@ sendMessageToServer = function(action, target) {
         return;
     }
 
-    eurecaProxy.message({action: action, target: target});
+    eurecaProxy.message(game.global.myId, {action: action, target: target});
 }
