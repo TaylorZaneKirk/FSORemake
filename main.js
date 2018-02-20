@@ -136,7 +136,7 @@ function initMultiPlayer(game, globals){
         }
 
         if(game.global.localPlayerObject == null || game.global.localPlayerObject == {}){
-            globals.localPlayerObject = new PlayerObject(id, game);
+            globals.localPlayerObject = new PlayerObject(state.playerName, game);
             game.global.ready = true;
         }
         globals.playerList[state.playerName] = state;
