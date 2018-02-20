@@ -169,16 +169,14 @@ eurecaServer.updateClientsAboutNewPlayer = function (id) {
 
 readMapFromFile = function(x, y){
     
-    var rawFile = new XMLHttpRequest();
+    var rawFile = new File('./maps/' + x + '-' + y + '.txt')
+    rawFile.open('r');
     var returnString = '';
-    rawFile.open("GET", './maps/' + x + '-' + y + '.txt', false);
-    rawFile.onreadystatechange = function() {
-        if(rawFile.readyState === 4){
-            if(rawFile.status === 200 || rawFile.status == 0){
-                returnString = rawFile.responseText;
-            }
-        }
+
+    while(!file.eof){
+        returnString += rawFile.readln() + '\n';
     }
-    rawFile.send(null);
+    file.close();
+
     return returnString;
 }
