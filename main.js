@@ -142,7 +142,7 @@ function initMultiPlayer(game, globals){
         globals.playerList[state.playerName] = state;
     }
 
-    client.sendMessageToServer = function(action, target) {
+    client.exports.sendMessageToServer = function(action, target) {
         if(action == null || action == undefined ||
             action.type == null || action.type == undefined ||
             action.payload == null || action.payload == undefined ||
