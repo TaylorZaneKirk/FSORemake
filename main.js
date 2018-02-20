@@ -10,7 +10,7 @@ var COLS = 40; //x
 
 // the structure of the map
 var mapData;
-var map;
+var map; //first layer tile objects
 var layer;
 var layer2;
 
@@ -33,7 +33,7 @@ game.global = {
     ready: false,
     myId: 0, //Id for server
     myMap: null, //Tiles for current screen
-    map: null,
+    //map: null, 
     walls: null, //Likely to be factored to 2nd or 3rd layer
     easystar: null,
     localPlayerObject: null,
@@ -52,7 +52,7 @@ function init() {
 
 //THIS NEXT!!!
 function preload() {
-    //game.load.image('tileset', 'assets/tileset.png');
+    game.load.image('tileset', 'assets/FSORemakeMapTileset.png');
     game.load.spritesheet('player', 'assets/PlayerSheet.png', 46, 45);
     //game.load.image('clown', 'assets/images/clown.png');
     //game.load.image('portal', 'assets/images/portal.png');
@@ -62,16 +62,15 @@ function preload() {
 function create() {
     initMultiPlayer(game, game.global);
 
-    /* game.physics.startSystem(Phaser.Physics.ARCADE);
+    //game.physics.startSystem(Phaser.Physics.ARCADE);
 
     //Maps and layers
     map = game.add.tilemap();
-    walls = game.add.group();
-    tiles = map.addTilesetImage('tileset', null, 20, 20);
-    layer = map.create('level1', COLS, ROWS, 20, 20);
-    layer2 = map.createBlankLayer('collisions', COLS, ROWS, 20, 20);
-    layer2.properties = {'collision' : true};
-    layer.resizeWorld(); */
+    map.addTilesetImage('tileset', null, 32, 32);
+    //layer = map.create('level1', COLS, ROWS, 20, 20);
+    //layer2 = map.createBlankLayer('collisions', COLS, ROWS, 20, 20);
+    //layer2.properties = {'collision' : true};
+    //layer.resizeWorld();
 }
 
 function initMultiPlayer(game, globals){
