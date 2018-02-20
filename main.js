@@ -5,13 +5,13 @@
 var client;
 
 // map dimensions
-var ROWS = 30; //y
-var COLS = 40; //x
+//var ROWS = 30; //y
+//var COLS = 40; //x
 
 // the structure of the map
 var mapData;
 var map; //first layer tile objects
-var layer;
+var layerFirst;
 var layer2;
 
 // Reference to our eureca so we can call functions back on the server
@@ -67,8 +67,8 @@ function create() {
     //Maps and layers
     map = game.add.tilemap();
     map.addTilesetImage('tileset', null, 32, 32);
-    layer = map.create('map', 20, 20, 32, 32);
-    map.putTile(1, 1, 1, layer);
+    layerFirst = map.create('map', 20, 20, 32, 32);
+    map.putTile(1, 1, 1, layerFirst);
     //layer2 = map.createBlankLayer('collisions', COLS, ROWS, 20, 20);
     //layer2.properties = {'collision' : true};
     //layer.resizeWorld();
