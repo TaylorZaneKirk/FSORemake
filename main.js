@@ -191,3 +191,7 @@ function render() {
         game.global.npcList[c].render();
     }*/
 }
+
+function test(){
+    console.log("hereEEEE");
+}
