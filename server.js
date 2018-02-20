@@ -164,7 +164,7 @@ eurecaServer.exports.message = function(id, message){
 
     var currentTime = new Date();
 
-    if(players[id].state.lastUpdated + 100 < currentTime.getTime()) { return; }
+    //if(players[id].state.lastUpdated + 100 < currentTime.getTime()) { return; }
     
     switch(message.action.type){
         case 'move': {
