@@ -15,10 +15,10 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite.animations.add('walk-W', [4,5,6], 6, false);
         playerSprite.animations.add('walk-N', [8,9,10], 6, false);
         playerSprite.animations.add('walk-S', [12,13,14], 6, false);
-        playerSprite.animations.add('idle-E', 1, 1, true);
-        playerSprite.animations.add('idle-W', 5, 1, true);
-        playerSprite.animations.add('idle-N', 9, 1, true);
-        playerSprite.animations.add('idle-S', 13, 1, true);
+        playerSprite.animations.add('idle-E', [1], 1, true);
+        playerSprite.animations.add('idle-W', [5], 1, true);
+        playerSprite.animations.add('idle-N', [9], 1, true);
+        playerSprite.animations.add('idle-S', [13], 1, true);
         playerSprite.play('idle-S');
     }
 
