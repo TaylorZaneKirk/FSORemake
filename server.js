@@ -26,6 +26,7 @@ class PlayerState
         this.lastUpdated = null;
         this.readyToUpdate = false;
         this.playersVisible = [];
+        this.mapData = readMapFromFile(this.pos.x, this.pos.y);
     }
     
     copy(other)
@@ -39,6 +40,7 @@ class PlayerState
         this.lastUpdated = other.lastUpdated;
         this.readyToUpdate = other.readyToUpdate;
         this.playersVisible = other.playersVisible;
+        this.mapData = other.mapData;
     }
 };
 
@@ -163,4 +165,20 @@ eurecaServer.updateClientsAboutNewPlayer = function (id) {
         var remote = players[i].remote;
         remote.recieveStateFromServer(players[id].state);
     }
+}
+
+readMapFromFile = function(x, y){
+    
+    var rawFile = new XMLHttpRequest();
+    var returnString = '';
+    rawFile.open("GET", './maps/' + x + '-' + y + '.txt', false);
+    rawFile.onreadystatechange = function() {
+        if(rawFile.readyState === 4){
+            if(rawFile.status === 200 || rawFile.status == 0){
+                returnString = rawFile.responseText;
+            }
+        }
+    }
+    rawFile.send(null);
+    return returnString;
 }
