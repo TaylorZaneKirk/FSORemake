@@ -142,6 +142,18 @@ function initMultiPlayer(game, globals){
         globals.playerList[state.playerName] = state;
     }
 
+    client.sendMessageToServer = function(action, target) {
+        if(action == null || action == undefined ||
+            action.type == null || action.type == undefined ||
+            action.payload == null || action.payload == undefined ||
+            target == null || target == undefined){
+            console.log("ERROR: Attempted to send invalid message");
+            return;
+        }
+    
+        eurecaServer.message({action: action, target: target});
+    }
+
 }
 
 
@@ -178,16 +190,4 @@ function render() {
     /*for (var c in game.global.npcList){ //update NPCs
         game.global.npcList[c].render();
     }*/
-}
-
-function sendMessageToServer(action, target) {
-    if(action == null || action == undefined ||
-        action.type == null || action.type == undefined ||
-        action.payload == null || action.payload == undefined ||
-        target == null || target == undefined){
-        console.log("ERROR: Attempted to send invalid message");
-        return;
-    }
-
-    eurecaServer.message({action: action, target: target});
 }
