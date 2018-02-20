@@ -27,17 +27,17 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, null, {
 });
 
 game.global = {
-    player: null,
-    playerList: {},
-    npcList: {},
+    player: null, //References for local player state
+    playerList: {}, //References for all visible player states
+    npcList: {}, //References for all visible NPC states
     ready: false,
-    myId: 0,
-    myMap: null,
+    myId: 0, //Id for server
+    myMap: null, //Tiles for current screen
     map: null,
-    walls: null,
-    warps: [],
+    walls: null, //Likely to be factored to 2nd or 3rd layer
     easystar: null,
-    sprites: []
+    localPlayerObject: null,
+    sprites: {} //Will contain references for Player and NPC sprites
 };
 
 function init() {
@@ -54,8 +54,8 @@ function init() {
 //THIS NEXT!!!
 function preload() {
     //game.load.image('tileset', 'assets/tileset.png');
-    var playerSprite = game.load.spritesheet('player', 'assets/PlayerSheet.png', 46, 45);
-    game.global.sprites.push(playerSprite);
+    game.load.spritesheet('player', 'assets/PlayerSheet.png', 46, 45);
+    game.global.sprites.playerSprite = playerSprite;
     //game.load.image('clown', 'assets/images/clown.png');
     //game.load.image('portal', 'assets/images/portal.png');
     //game.global.easystar = new EasyStar.js();   //start the pathfinder
@@ -110,7 +110,7 @@ function initMultiPlayer(game, globals){
         globals.myId = id;
 
         //TODO!!!!!!!! Create new player
-        //globals.player = new aPlayer(id, game, eurecaProxy);
+        globals.localPlayerObject = new PlayerObject(id, game);
 
         // Put instance of new player into list
         //globals.playerList[id] = globals.player
@@ -159,6 +159,7 @@ function update() {
         game.global.player.lastUpdated = new Date().getTime();
         console.log(game.global.player.lastUpdated + 5000 + " " + currentTime.getTime())
         console.log("Requesting new state");
+        console.log(game.global.PlayerObject);
         eurecaProxy.requestUpdate(game.global.myId);
     }
 
