@@ -108,7 +108,7 @@ function initMultiPlayer(game, globals){
         globals.myId = id;
 
         //TODO!!!!!!!! Create new player
-        globals.localPlayerObject = new PlayerObject(id, game);
+        //globals.localPlayerObject = new PlayerObject(id, game);
 
         // Put instance of new player into list
         //globals.playerList[id] = globals.player
@@ -133,6 +133,10 @@ function initMultiPlayer(game, globals){
             console.log("Assigned Player State");
             globals.player = state;
             console.log(globals.player);
+        }
+
+        if(game.global.localPlayerObject == null || game.global.localPlayerObject == {}){
+            globals.localPlayerObject = new PlayerObject(id, game);
         }
         globals.playerList[state.playerName] = state;
     }
