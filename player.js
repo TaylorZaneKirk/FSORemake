@@ -1,12 +1,13 @@
 var PlayerObject = PlayerObject || {};
 
-class PlayerObject{
-    game = null; //Reference to game object
-    id = null; //Local player's id
-    playerState = null; //player's current state
-    constructor(id, game){
-        this.game = game;
-        this.id = id;
-        this.playerState = game.global.player;
-    }
+function PlayerObject(id, game){
+    var game = game; //Reference to game object
+    var id = id; //Local player's id
+    var playerState = game.global.player; //player's current state
+    
+    return {
+        game: this.game,
+        id: this.id,
+        playerState: this.playerState
+    };
 }
