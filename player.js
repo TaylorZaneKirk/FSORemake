@@ -5,6 +5,7 @@ var PlayerObject = function(idRef, gameRef){
     var id = null; //Local player's id
     var playerState = null; //player's current state
     var playerSprite = null;
+    var currentAction = null;
 
     function init(idRef, gameRef){
         game = gameRef;
@@ -19,7 +20,7 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite.animations.add('idle-W', [5], 1, true);
         playerSprite.animations.add('idle-N', [9], 1, true);
         playerSprite.animations.add('idle-S', [13], 1, true);
-        playerSprite.play('idle-' + game.global.player.playerFacing);
+        playerSprite.play(game.global.player.playerAction + '-' + game.global.player.playerFacing);
     }
 
     function update(){

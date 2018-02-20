@@ -20,6 +20,7 @@ class PlayerState
         this.pos = {x: 0, y: 0};
         this.playerFacing = 'S';
         this.playerName = idString;
+        this.playerAction = 'idle';
         this.WorldX = 0;
         this.WorldY = 0;
         this.lastUpdated = null;
@@ -32,6 +33,7 @@ class PlayerState
         this.pos = other.pos;
         this.playerFacing = other.playerFacing;
         this.playerName = other.playerName;
+        this.playerAction = other.playerAction;
         this.WorldX = other.WorldX;
         this.WorldY = other.WorldY;
         this.lastUpdated = other.lastUpdated;
