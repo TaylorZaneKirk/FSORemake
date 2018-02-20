@@ -153,9 +153,9 @@ function update() {
     var currentTime = new Date();
     
     //wait [1.25] seconds before requesting an update from the server
-    if (game.global.player.lastUpdated + 1250 < currentTime.getTime() ){
+    if (game.global.player.lastUpdated + 250 < currentTime.getTime() ){
         game.global.player.lastUpdated = new Date().getTime();
-        console.log(game.global.player.lastUpdated + 1250 + " " + currentTime.getTime())
+        console.log(game.global.player.lastUpdated + 250 + " " + currentTime.getTime())
         console.log("Requesting new state");
         console.log(game.global.localPlayerObject);
         eurecaProxy.requestUpdate(game.global.myId);
