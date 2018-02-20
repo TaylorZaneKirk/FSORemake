@@ -161,11 +161,16 @@ eurecaServer.exports.message = function(id, message){
         console.log("ERROR: Recieved invalid message");
         return;
     }
+
+    var currentTime = new Date();
+
+    if(players[id].state.lastUpdated + 100 < currentTime.getTime()) { return; }
     
     switch(message.action.type){
         case 'move': {
             //do move
-            players[id].playerFacing = message.action.payload;
+            console.log("got move");
+            players[id].state.playerFacing = message.action.payload;
             break;
         }
         case 'attack': {

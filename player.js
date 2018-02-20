@@ -73,14 +73,14 @@ var PlayerObject = function(idRef, gameRef){
             playerState.playerAction = 'walk';
             playerState.playerFacing = 'N';
             ready = false;
-            sendMessageToServer({type: 'move', payload: 'E'}, 'self');
+            sendMessageToServer({type: 'move', payload: 'N'}, 'self');
             //player.body.velocity.y -= 100;
         }
         else if (downKey.isDown){
             playerState.playerAction = 'walk';
             playerState.playerFacing = 'S';
             ready = false;
-            sendMessageToServer({type: 'move', payload: 'E'}, 'self');
+            sendMessageToServer({type: 'move', payload: 'S'}, 'self');
             //player.body.velocity.y += 100;
         }
         else{
