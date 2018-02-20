@@ -171,9 +171,12 @@ eurecaServer.updateClientsAboutNewPlayer = function (id) {
 
 readMapFromFile = function(x, y){
     
-    returnString = '';
-    fs.readFile(__dirname + '/maps/' + x + '-' + y + '.txt', 'utf8', function(err, contents) {
+    var returnString = '';
+    var filePath = __dirname + '/maps/' + x + '-' + y + '.txt'
+    console.log(filePath);
+    fs.readFile(, 'utf8', function(err, contents) {
         returnString = contents;
+        console.log(contents);
     });
     return returnString;
 }
