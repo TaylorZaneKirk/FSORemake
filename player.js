@@ -11,7 +11,7 @@ var PlayerObject = function(idRef, gameRef){
         id = idRef;
         playerState = game.global.player;
         playerSprite = game.add.sprite(playerState.pos.x, playerState.pos.y, 'player');
-        playerSprite.frame = 2;
+        playerSprite.frame = 5;
     }
 
     function update(){
