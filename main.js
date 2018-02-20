@@ -37,7 +37,6 @@ game.global = {
     walls: null, //Likely to be factored to 2nd or 3rd layer
     easystar: null,
     localPlayerObject: null,
-    sprites: {} //Will contain references for Player and NPC sprites
 };
 
 function init() {
@@ -55,7 +54,6 @@ function init() {
 function preload() {
     //game.load.image('tileset', 'assets/tileset.png');
     game.load.spritesheet('player', 'assets/PlayerSheet.png', 46, 45);
-    game.global.sprites.playerSprite = playerSprite;
     //game.load.image('clown', 'assets/images/clown.png');
     //game.load.image('portal', 'assets/images/portal.png');
     //game.global.easystar = new EasyStar.js();   //start the pathfinder
