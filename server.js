@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 var express = require('express')
     , app = express()
     , server = require('http').createServer(app)
@@ -169,14 +171,9 @@ eurecaServer.updateClientsAboutNewPlayer = function (id) {
 
 readMapFromFile = function(x, y){
     
-    var rawFile = new File('./maps/' + x + '-' + y + '.txt')
-    rawFile.open('r');
-    var returnString = '';
-
-    while(!file.eof){
-        returnString += rawFile.readln() + '\n';
-    }
-    file.close();
-
+    returnString = '';
+    fs.readFile('./maps/' + x + '-' + y + '.txt', 'utf8', function(err, contents) {
+        returnString = contents;
+    });
     return returnString;
 }
