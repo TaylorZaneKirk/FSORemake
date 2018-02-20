@@ -14,9 +14,8 @@ var PlayerObject = function(idRef, gameRef){
     function update(){
         if(playerState != game.global.player){
             playerState = game.global.player;
-        }
-        else{
-            console.log("discarding");
+            console.log("replaced");
+            console.log(playerState);
         }
         
 
