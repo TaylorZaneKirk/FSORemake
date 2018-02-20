@@ -172,7 +172,7 @@ eurecaServer.updateClientsAboutNewPlayer = function (id) {
 readMapFromFile = function(x, y){
     
     returnString = '';
-    fs.readFile('./maps/' + x + '-' + y + '.txt', 'utf8', function(err, contents) {
+    fs.readFile(__dirname + '/maps/' + x + '-' + y + '.txt', 'utf8', function(err, contents) {
         returnString = contents;
     });
     return returnString;
