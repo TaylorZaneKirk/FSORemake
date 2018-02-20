@@ -67,7 +67,8 @@ function create() {
     //Maps and layers
     map = game.add.tilemap();
     map.addTilesetImage('tileset', null, 32, 32);
-    //layer = map.create('level1', COLS, ROWS, 20, 20);
+    layer = map.create('map', 20, 20, 32, 32);
+    map.putTile(1, 1, 1, 'map');
     //layer2 = map.createBlankLayer('collisions', COLS, ROWS, 20, 20);
     //layer2.properties = {'collision' : true};
     //layer.resizeWorld();
@@ -106,21 +107,11 @@ function initMultiPlayer(game, globals){
         // Assign my new connection Id
         globals.myId = id;
 
-        //TODO!!!!!!!! Create new player
-        //globals.localPlayerObject = new PlayerObject(id, game);
-
         // Put instance of new player into list
         //globals.playerList[id] = globals.player
 
-        //Send state to server
+        //tell server client is ready
         eurecaProxy.initPlayer(id);
-
-        //console.log(globals.playerList);
-
-        // Were ready to go
-        //globals.ready = true;
-
-        
 
     }
 
@@ -145,7 +136,7 @@ function initMultiPlayer(game, globals){
 
 
 function update() {
-    if (!game.global.ready || game.global.player == false || game.global.localPlayerObject == {}){
+    if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {}){
         return; //Stuff isn't ready; hold on...
     }
 
@@ -154,9 +145,6 @@ function update() {
     //wait [1.25] seconds before requesting an update from the server
     if (game.global.player.lastUpdated + 250 < currentTime.getTime() ){
         game.global.player.lastUpdated = new Date().getTime();
-        console.log(game.global.player.lastUpdated + 250 + " " + currentTime.getTime())
-        console.log("Requesting new state");
-        console.log(game.global.localPlayerObject);
         eurecaProxy.requestUpdate(game.global.myId);
     }
     
