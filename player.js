@@ -1,4 +1,4 @@
-class PlayerObject{
+export class PlayerObject{
     game = null; //Reference to game object
     id = null; //Local player's id
     playerState = null; //player's current state
