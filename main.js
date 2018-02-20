@@ -157,7 +157,7 @@ function update() {
         game.global.player.lastUpdated = new Date().getTime();
         console.log(game.global.player.lastUpdated + 5000 + " " + currentTime.getTime())
         console.log("Requesting new state");
-        console.log(game.global.PlayerObject);
+        console.log(game.global.localPlayerObject);
         eurecaProxy.requestUpdate(game.global.myId);
     }
 
