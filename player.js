@@ -59,30 +59,32 @@ var PlayerObject = function(idRef, gameRef){
             playerState.playerAction = 'walk';
             playerState.playerFacing = 'W';
             ready = false;
-            //game.sendMessageToServer({type: 'move', payload: 'W'}, 'self');
+            sendMessageToServer({type: 'move', payload: 'W'}, 'self');
             //player.body.velocity.x -= 100;
         }
         else if (rightKey.isDown){
             playerState.playerAction = 'walk';
             playerState.playerFacing = 'E';
             ready = false;
-            //game.sendMessageToServer({type: 'move', payload: 'E'}, 'self');
+            sendMessageToServer({type: 'move', payload: 'E'}, 'self');
             //player.body.velocity.x += 100;
         }
         else if (upKey.isDown){
             playerState.playerAction = 'walk';
             playerState.playerFacing = 'N';
             ready = false;
-            //game.sendMessageToServer({type: 'move', payload: 'E'}, 'self');
+            sendMessageToServer({type: 'move', payload: 'E'}, 'self');
             //player.body.velocity.y -= 100;
         }
         else if (downKey.isDown){
             playerState.playerAction = 'walk';
             playerState.playerFacing = 'S';
             ready = false;
-            //game.sendMessageToServer({type: 'move', payload: 'E'}, 'self');
-            test();
+            sendMessageToServer({type: 'move', payload: 'E'}, 'self');
             //player.body.velocity.y += 100;
+        }
+        else{
+            playerState.playerAction = 'idle';
         }
         
         playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);

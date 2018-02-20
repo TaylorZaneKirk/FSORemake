@@ -141,19 +141,6 @@ function initMultiPlayer(game, globals){
         }
         globals.playerList[state.playerName] = state;
     }
-
-    client.exports.sendMessageToServer = function(action, target) {
-        if(action == null || action == undefined ||
-            action.type == null || action.type == undefined ||
-            action.payload == null || action.payload == undefined ||
-            target == null || target == undefined){
-            console.log("ERROR: Attempted to send invalid message");
-            return;
-        }
-    
-        eurecaServer.message({action: action, target: target});
-    }
-
 }
 
 
@@ -192,6 +179,14 @@ function render() {
     }*/
 }
 
-function test(){
-    console.log("hereEEEE");
+sendMessageToServer = function(action, target) {
+    if(action == null || action == undefined ||
+        action.type == null || action.type == undefined ||
+        action.payload == null || action.payload == undefined ||
+        target == null || target == undefined){
+        console.log("ERROR: Attempted to send invalid message");
+        return;
+    }
+
+    eurecaServer.message({action: action, target: target});
 }
