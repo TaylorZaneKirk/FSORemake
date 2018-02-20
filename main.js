@@ -119,7 +119,7 @@ function initMultiPlayer(game, globals){
         //console.log(globals.playerList);
 
         // Were ready to go
-        globals.ready = true;
+        //globals.ready = true;
 
         
 
@@ -137,6 +137,7 @@ function initMultiPlayer(game, globals){
 
         if(game.global.localPlayerObject == null || game.global.localPlayerObject == {}){
             globals.localPlayerObject = new PlayerObject(id, game);
+            game.global.ready = true;
         }
         globals.playerList[state.playerName] = state;
     }
@@ -162,7 +163,11 @@ function update() {
     }
     
 //Rename this to playerSprites
-    game.global.localPlayerObject.update();    //update player
+
+    if(game.global.localPlayerObject != null || game.global.localPlayerObject != {}){
+        game.global.localPlayerObject.update();    //update player
+    }
+    
 
     /* for (var c in game.global.npcList){ //update NPCs
         game.global.npcList[c].update();
