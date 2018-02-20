@@ -6,11 +6,21 @@ var PlayerObject = function(idRef, gameRef){
     var playerState = null; //player's current state
     var playerSprite = null;
     var currentAction = null;
+    var upKey = null;
+    var downKey = null;
+    var leftKey = null;
+    var rightKey = null;
 
     function init(idRef, gameRef){
         game = gameRef;
         id = idRef;
         playerState = game.global.player;
+
+        upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
+        downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+        leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+        rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+
         playerSprite = game.add.sprite(playerState.pos.x, playerState.pos.y, 'player');
         playerSprite.animations.add('walk-E', [0,1,2], 6, false);
         playerSprite.animations.add('walk-W', [4,5,6], 6, false);
@@ -20,7 +30,6 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite.animations.add('idle-W', [5], 1, true);
         playerSprite.animations.add('idle-N', [9], 1, true);
         playerSprite.animations.add('idle-S', [13], 1, true);
-        playerSprite.play(game.global.player.playerAction + '-' + game.global.player.playerFacing);
     }
 
     function update(){
@@ -36,7 +45,7 @@ var PlayerObject = function(idRef, gameRef){
             };
         }
         
-
+        playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
     }
 
     init(idRef, gameRef);
