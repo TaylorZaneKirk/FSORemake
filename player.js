@@ -27,6 +27,7 @@ var PlayerObject = function(idRef, gameRef){
     return {
         game: game,
         id: id,
-        playerState: playerState
+        playerState: playerState,
+        update: update,
     };
 }
