@@ -12,7 +12,7 @@ var PlayerObject = function(idRef, gameRef){
         playerState = game.global.player;
         playerSprite = game.add.sprite(playerState.pos.x, playerState.pos.y, 'player');
         //playerSprite.frame = 5;
-        playerSprite.animations.add('walk-e', [0,1,2], 3, true);
+        playerSprite.animations.add('walk-e', [0,1,2], 6, true);
         playerSprite.play('walk-e');
     }
 
