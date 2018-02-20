@@ -68,7 +68,7 @@ function create() {
     map = game.add.tilemap();
     map.addTilesetImage('tileset', null, 32, 32);
     layer = map.create('map', 20, 20, 32, 32);
-    map.putTile(1, 1, 1, 'map');
+    map.putTile(1, 1, 1, layer);
     //layer2 = map.createBlankLayer('collisions', COLS, ROWS, 20, 20);
     //layer2.properties = {'collision' : true};
     //layer.resizeWorld();
