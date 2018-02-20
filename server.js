@@ -42,15 +42,7 @@ class PlayerState
     }
 };
 
-//var worldMap = {floors : [], npcs: []};
 var players = {};
-
-/* var npcs = {};
-var npcsPerMap = 3; */
-
-// map dimensions
-/* var ROWS = 30;
-var COLS = 40; */
 
 //detect client connection
 eurecaServer.onConnect(function (conn) {
@@ -62,13 +54,8 @@ eurecaServer.onConnect(function (conn) {
     //register the client
     players[conn.id] = {id:conn.id, remote:remote, state: new PlayerState(conn.id)}
 
-    //var spawnLoc = findSpawn(players[conn.id], 0);
-
     //here we call setId (defined in the client side)
     remote.setId(conn.id);
-
-    //remote.setMap(worldMap.floors[0], spawnLoc, worldMap.npcs[0], worldMap.warps[0]);
-    //remote.testMap(worldMap.floors[0], worldMap.warps[0]);
 });
 
 //detect client disconnection
@@ -95,22 +82,6 @@ app.get('/', function (req, res, next) {
 server.listen(process.env.PORT || 55555, function () {
     console.log('\033[96mlistening on localhost:55555 \033[39m');
     console.log("Beginning Map-generation...");
-    //mapData = generateMap();
-
-    /* mapData_1 = generateMap();
-    worldMap.floors.push(mapData_1);
-    mapWarps_1 = generateWarps(mapData_1, 0);
-    worldMap.warps.push(mapWarps_1);
-    worldMap.npcs.push(generateNPCs(0));
-
-    mapData_2 = generateMap();
-    worldMap.floors.push(mapData_2);
-    mapWarps_2 = generateWarps(mapData_2, 1);
-    worldMap.warps.push(mapWarps_2);
-    worldMap.npcs.push(generateNPCs(1));
-
-    //worldMap.push.npcs
-    npcs = generateNPCs(0); */
 });
 
 /**
@@ -123,7 +94,6 @@ eurecaServer.exports.initPlayer = function (id) {
 
     players[id].state.readyToUpdate = true;
     players[id].state.lastUpdated = currentTime;
-    //remote.recieveStateFromServer(players[id].state);
     eurecaServer.updateClientsAboutNewPlayer(id);
 
 }
@@ -137,7 +107,6 @@ eurecaServer.exports.requestUpdate = function (id) {
 
         //Fetch users that are on the same page
         remote.recieveStateFromServer(players[id].state);
-        //eurecaServer.updateClients();
     } 
 }
 
@@ -151,7 +120,7 @@ eurecaServer.exports.message = function(id, message){
     //          type //move, attack, localBroadcast, globalBroadcast, whisper, etc...
     //          payload //direction for move, what they're saying, etc...
     //      },
-    //      target: //None, Self, OtherPC, NPC, ALL, Object
+    //      target: //None, Self, OtherPC, NPC, ALL, Object, Visible
     //  }
     if(message == null || message == undefined ||
         message.action == null || message.action == undefined ||
@@ -169,7 +138,7 @@ eurecaServer.exports.message = function(id, message){
     switch(message.action.type){
         case 'move': {
             //do move
-            console.log("got move");
+            //Need to make Server Actions file to handle these
             players[id].state.playerFacing = message.action.payload;
             break;
         }
