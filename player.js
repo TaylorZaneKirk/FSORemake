@@ -15,7 +15,7 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite.animations.add('walk-w', [4,5,6], 6, true);
         playerSprite.animations.add('walk-s', [8,9,10], 6, true);
         playerSprite.animations.add('walk-n', [12,13,14], 6, true);
-        playerSprite.play('walk-w');
+        playerSprite.play('walk-s');
     }
 
     function update(){
