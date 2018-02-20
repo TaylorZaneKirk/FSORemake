@@ -13,8 +13,8 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite = game.add.sprite(playerState.pos.x, playerState.pos.y, 'player');
         playerSprite.animations.add('walk-e', [0,1,2], 6, true);
         playerSprite.animations.add('walk-w', [4,5,6], 6, true);
-        playerSprite.animations.add('walk-s', [8,9,10], 6, true);
-        playerSprite.animations.add('walk-n', [12,13,14], 6, true);
+        playerSprite.animations.add('walk-n', [8,9,10], 6, true);
+        playerSprite.animations.add('walk-s', [12,13,14], 6, true);
         playerSprite.play('walk-s');
     }
 
