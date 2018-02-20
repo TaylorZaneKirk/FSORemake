@@ -37,7 +37,7 @@ var PlayerObject = function(idRef, gameRef){
     function update(){
 
         //Change this to localPlayer pos checking against playerState.pos
-        if(!ready && playerSprite.x == playerState.pos.x && playerSprite.y == playerState.pos){
+        if(!ready){
             ready = true;
         }
 
