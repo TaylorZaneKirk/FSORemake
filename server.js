@@ -178,5 +178,6 @@ readMapFromFile = function(x, y){
         returnString = contents;
         console.log(contents);
     });
+    console.log(returnString)
     return returnString;
 }
