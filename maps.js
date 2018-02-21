@@ -11,7 +11,7 @@ var changeMap = function(myMap, map) {
                 y--;
             }
             var thisTile;
-            map.putTile(myMap[index], x, y, 'map');
+            map.putTile(myMap[index], x, y, 1);
         }
     //map.setCollision(1); //tile 0 = wall
     //game.global.map = map;

@@ -129,7 +129,7 @@ function initMultiPlayer(game, globals){
             console.log(globals.player);
         }
 
-        if(game.global.localPlayerObject == null || game.global.localPlayerObject == {}){
+        if(game.global.localPlayerObject == null){
             globals.localPlayerObject = new PlayerObject(state.playerName, game);
             game.global.ready = true;
             changeMap(state.mapData, map);
