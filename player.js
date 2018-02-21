@@ -36,6 +36,7 @@ var PlayerObject = function(idRef, gameRef){
             playerSprite.body.width * 0.2,
             playerSprite.body.height * 0.5
         );
+        playerSprite.inputEnabled = true;
         playerSprite.animations.add('walk-E', [0,1,2], 6, false);
         playerSprite.animations.add('walk-W', [4,5,6], 6, false);
         playerSprite.animations.add('walk-N', [8,9,10], 6, false);
@@ -72,32 +73,32 @@ var PlayerObject = function(idRef, gameRef){
             playerState.playerFacing = 'W';
             ready = false;
             sendMessageToServer({type: 'move', payload: 'W'}, 'self');
-            playerSprite.body.velocity.x -= 100;
+            //playerSprite.body.velocity.x -= 100;
         }
         else if (rightKey.isDown){
             playerState.playerAction = 'walk';
             playerState.playerFacing = 'E';
             ready = false;
             sendMessageToServer({type: 'move', payload: 'E'}, 'self');
-            playerSprite.body.velocity.x += 100;
+            //playerSprite.body.velocity.x += 100;
         }
         else if (upKey.isDown){
             playerState.playerAction = 'walk';
             playerState.playerFacing = 'N';
             ready = false;
             sendMessageToServer({type: 'move', payload: 'N'}, 'self');
-            playerSprite.body.velocity.y -= 100;
+            //playerSprite.body.velocity.y -= 100;
         }
         else if (downKey.isDown){
             playerState.playerAction = 'walk';
             playerState.playerFacing = 'S';
             ready = false;
             sendMessageToServer({type: 'move', payload: 'S'}, 'self');
-            playerSprite.body.velocity.y += 100;
+            //playerSprite.body.velocity.y += 100;
         }
         else{
             playerState.playerAction = 'idle';
-            playerSprite.body.velocity = 0;
+            //playerSprite.body.velocity = 0;
         }
         
         playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
