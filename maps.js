@@ -2,8 +2,8 @@
 var changeMap = function(myMap, map, layer) {
     //Based on final map configuration, draw the tiles
     var index = 0;
-    for (var x = 0; x < 16; x++){
-        for (var y = 0; y < 11; y++) {
+    for (var x = 0; x < 17; x++){
+        for (var y = 0; y < 12; y++) {
             if(myMap[index] == ';' || myMap[index] == '\n'){
                 //index++;
                 if(y > 0) { y--; }
