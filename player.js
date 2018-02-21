@@ -23,7 +23,7 @@ var PlayerObject = function(idRef, gameRef){
         leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
         rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
 
-        playerSprite = game.add.sprite(playerState.pos.x, playerState.pos.y, 'player');
+        playerSprite = gameRef.add.sprite(playerState.pos.x, playerState.pos.y, 'player');
         playerSprite.anchor.setTo(0.125,0);
         playerSprite.enableBody = true;
         //playerSprite.body.collideWorldBounds = true;
@@ -64,6 +64,7 @@ var PlayerObject = function(idRef, gameRef){
                 id: id,
                 playerState: playerState,
                 update: update,
+                playerSprite: playerSprite,
             };
         }
 
