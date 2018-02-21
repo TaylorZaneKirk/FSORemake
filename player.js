@@ -27,7 +27,6 @@ var PlayerObject = function(idRef, gameRef){
 
         playerSprite = game.add.sprite(playerState.pos.x, playerState.pos.y, 'player');
         playerSprite.anchor.setTo(0.125,0);
-        game.physics.arcade.enable(playerSprite);
         playerSprite.enableBody = true;
         playerSprite.body.collideWorldBounds = true;
         playerSprite.body.immovable = false;
@@ -75,32 +74,28 @@ var PlayerObject = function(idRef, gameRef){
             playerState.playerFacing = 'W';
             ready = false;
             sendMessageToServer({type: 'move', payload: 'W'}, 'self');
-            playerSprite.x -= 1;
+            playerSprite.body.velocity.x -= 1; //arcade physics required for body.velocity to work
         }
         else if (rightKey.isDown){
             playerState.playerAction = 'walk';
             playerState.playerFacing = 'E';
             ready = false;
             sendMessageToServer({type: 'move', payload: 'E'}, 'self');
-            playerSprite.x += 1;
+            playerSprite.body.velocity.x += 1;
         }
         else if (upKey.isDown){
             playerState.playerAction = 'walk';
             playerState.playerFacing = 'N';
             ready = false;
             sendMessageToServer({type: 'move', payload: 'N'}, 'self');
-            playerSprite.y -= 1;
+            playerSprite.body.velocity.y -= 1;
         }
         else if (downKey.isDown){
             playerState.playerAction = 'walk';
             playerState.playerFacing = 'S';
             ready = false;
             sendMessageToServer({type: 'move', payload: 'S'}, 'self');
-            playerSprite.y += 1;
-        }
-        else{
-            playerState.playerAction = 'idle';
-            playerSprite.body.velocity = 0;
+            playerSprite.body.velocity.y += 1;
         }
         
         
@@ -114,5 +109,6 @@ var PlayerObject = function(idRef, gameRef){
         id: id,
         playerState: playerState,
         update: update,
+        playerSprite: playerSprite,
     };
 }
