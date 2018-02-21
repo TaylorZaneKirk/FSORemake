@@ -55,6 +55,8 @@ var PlayerObject = function(idRef, gameRef){
             ready = true;
         }
 
+        if(playerSprite == null || playerSprite == undefined){ return; }
+
         if(!ready) { return; }
 
         if(playerState != game.global.player){
