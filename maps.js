@@ -4,15 +4,17 @@ var changeMap = function(myMap, map, layer) {
     console.log(map.layers);
     //Based on final map configuration, draw the tiles
     var index = 0;
-    for (var x = 0; x < 17; x++)
-        for (var y = 0; y < 12; y++, index++) {
+    for (var x = 0; x < 17; x++){
+        for (var y = 0; y < 12; y++) {
             /* if(myMap[index] == '\n'){
                 //x--;
                 y--;
             } */
             console.log(myMap[index]);
             map.putTile(myMap[index], x, y, layer);
+            index++;
         }
+    }
     //map.setCollision(1); //tile 0 = wall
     //game.global.map = map;
     //game.global.walls = layer2;
