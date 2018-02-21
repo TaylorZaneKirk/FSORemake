@@ -154,9 +154,9 @@ function update() {
 
     if(game.global.localPlayerObject != null || game.global.localPlayerObject != {}){
         game.global.localPlayerObject.update();    //update player
+        game.global.localPlayerObject.movePlayer();
     }
     
-
     /* for (var c in game.global.npcList){ //update NPCs
         game.global.npcList[c].update();
     } */

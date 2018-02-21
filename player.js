@@ -101,13 +101,14 @@ var PlayerObject = function(idRef, gameRef){
         
         
         playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
-
+        
     }
 
-    movePlayer = function(x, y){
-        if((playerState.pos.x == x && playerState.pos.y == y) || playerState.playerAction != 'idle'){
+    movePlayer = function(){
+        if((playerState.pos.x == playerSprite.x && playerState.pos.y == playerSprite.y) || playerState.playerAction != 'idle'){
             return;
         }
+        playerState.playerAction = 'move';
         gameRef.add.tween(playerSprite).to({x: playerState.pos.x * 32, y: playerState.pos.y * 32}, 250, Phaser.Easing.Quadratic.InOut, true);
     }
 
