@@ -30,20 +30,20 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite.body.collideWorldBounds = true;
         playerSprite.body.immovable = false;
         playerSprite.body.bounce.setTo(0, 0);
-        /* playerSprite.body.setSize(
+        playerSprite.body.setSize(
             playerSprite.body.width * 0.6,
             playerSprite.body.height * 0.5,
             playerSprite.body.width * 0.2,
             playerSprite.body.height * 0.5
-        ); */
+        );
         playerSprite.animations.add('walk-E', [0,1,2], 6, false);
         playerSprite.animations.add('walk-W', [4,5,6], 6, false);
         playerSprite.animations.add('walk-N', [8,9,10], 6, false);
         playerSprite.animations.add('walk-S', [12,13,14], 6, false);
-        playerSprite.animations.add('idle-E', [1], 1, true);
-        playerSprite.animations.add('idle-W', [5], 1, true);
-        playerSprite.animations.add('idle-N', [9], 1, true);
-        playerSprite.animations.add('idle-S', [13], 1, true);
+        playerSprite.animations.add('idle-E', [1], 1, false);
+        playerSprite.animations.add('idle-W', [5], 1, false);
+        playerSprite.animations.add('idle-N', [9], 1, false);
+        playerSprite.animations.add('idle-S', [13], 1, false);
     }
 
     function update(){
