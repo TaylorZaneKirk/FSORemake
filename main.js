@@ -117,7 +117,7 @@ function initMultiPlayer(game, globals){
         state.lastUpdated = new Date().getTime();
 
         if(globals.player != false && globals.player.worldX != state.worldX && globals.player.worldY != state.worldY){
-            changeMap(state.mapData, map, layerFirst);
+            MapEngine.changeMap(state.mapData, map, layerFirst);
         }
 
         if(state.playerName == globals.myId){
@@ -129,7 +129,7 @@ function initMultiPlayer(game, globals){
         if(game.global.localPlayerObject == null){
             globals.localPlayerObject = new PlayerObject(state.playerName, game);
             game.global.ready = true;
-            changeMap(state.mapData, map, layerFirst);
+            MapEngine.changeMap(state.mapData, map, layerFirst);
         }
         globals.playerList[state.playerName] = state;
     }
