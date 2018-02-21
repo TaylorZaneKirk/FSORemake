@@ -17,8 +17,6 @@ var PlayerObject = function(idRef, gameRef){
         id = idRef;
         playerState = game.global.player;
         ready = false;
-
-        game.physics.startSystem(Phaser.Physics.ARCADE);
         
         upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
         downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);

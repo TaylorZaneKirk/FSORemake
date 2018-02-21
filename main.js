@@ -53,6 +53,7 @@ function preload() {
     //game.load.image('clown', 'assets/images/clown.png');
     //game.load.image('portal', 'assets/images/portal.png');
     //game.global.easystar = new EasyStar.js();   //start the pathfinder
+    game.physics.startSystem(Phaser.Physics.ARCADE);
 }
 
 function create() {
