@@ -30,7 +30,7 @@ var PlayerObject = function(idRef, gameRef){
         game.physics.arcade.enable(playerSprite);
         playerSprite.enableBody = true;
         playerSprite.body.collideWorldBounds = true;
-        playerSprite.body.immovable = false;
+        playerSprite.body.immovable = true;
         playerSprite.body.bounce.setTo(0, 0);
         playerSprite.body.setSize(
             playerSprite.body.width * 0.6,
@@ -75,35 +75,35 @@ var PlayerObject = function(idRef, gameRef){
             playerState.playerFacing = 'W';
             ready = false;
             sendMessageToServer({type: 'move', payload: 'W'}, 'self');
-            playerSprite.x -= 100;
+            playerSprite.body.velocity.x -= 100;
         }
         else if (rightKey.isDown){
             playerState.playerAction = 'walk';
             playerState.playerFacing = 'E';
             ready = false;
             sendMessageToServer({type: 'move', payload: 'E'}, 'self');
-            playerSprite.velocity.x += 100;
+            playerSprite.body.velocity.x += 100;
         }
         else if (upKey.isDown){
             playerState.playerAction = 'walk';
             playerState.playerFacing = 'N';
             ready = false;
             sendMessageToServer({type: 'move', payload: 'N'}, 'self');
-            playerSprite.velocity.y -= 100;
+            playerSprite.body.velocity.y -= 100;
         }
         else if (downKey.isDown){
             playerState.playerAction = 'walk';
             playerState.playerFacing = 'S';
             ready = false;
             sendMessageToServer({type: 'move', payload: 'S'}, 'self');
-            playerSprite.velocity.y += 100;
+            playerSprite.body.velocity.y += 100;
         }
         else{
             playerState.playerAction = 'idle';
-            playerSprite.velocity = 0;
+            playerSprite.body.velocity = 0;
         }
         
-
+        
         playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
     }
 
