@@ -24,6 +24,7 @@ var PlayerObject = function(idRef, gameRef){
         rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
 
         playerSprite = game.add.sprite(playerState.pos.x, playerState.pos.y, 'player');
+        game.physics.arcade.enable(playerSprite);
         playerSprite.anchor.setTo(0.125,0);
         playerSprite.enableBody = true;
         playerSprite.body.enable = true;
