@@ -29,7 +29,7 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite.enableBody = true;
         //playerSprite.body.enable = true;
         //playerSprite.body.collideWorldBounds = true;
-        /* playerSprite.body.immovable = false;
+        playerSprite.body.immovable = false;
         playerSprite.body.bounce.setTo(0, 0);
         playerSprite.body.setSize(
             playerSprite.body.width * 0.6,
@@ -37,7 +37,7 @@ var PlayerObject = function(idRef, gameRef){
             playerSprite.body.width * 0.2,
             playerSprite.body.height * 0.5
         );
-        playerSprite.inputEnabled = true; */
+        //playerSprite.inputEnabled = true;
         playerSprite.animations.add('walk-E', [0,1,2], 6, false);
         playerSprite.animations.add('walk-W', [4,5,6], 6, false);
         playerSprite.animations.add('walk-N', [8,9,10], 6, false);
