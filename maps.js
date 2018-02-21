@@ -1,7 +1,5 @@
 //Convert boolean 2D array into tilemap
 var changeMap = function(myMap, map, layer) {
-    console.log(map.layer);
-    console.log(map.layers);
     //Based on final map configuration, draw the tiles
     var index = 0;
     for (var x = 0; x < 17; x++){
