@@ -3,10 +3,14 @@ var changeMap = function(myMap, map) {
 
     //Based on final map configuration, draw the tiles
     var index = 0;
-    for (var y = 0; x < 17; y++)
-        for (var x = 0; y < 12; x++, index++) {
+    for (var x = 0; x < 17; x++)
+        for (var y = 0; y < 12; y++, index++) {
+            if(myMap[index] == '\n'){
+                x--;
+                y--;
+            }
             var thisTile;
-            map.putTile(3, x, y, 'map');
+            map.putTile(myMap[index], x, y, 'map');
         }
     //map.setCollision(1); //tile 0 = wall
     //game.global.map = map;
