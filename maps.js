@@ -4,15 +4,15 @@ var changeMap = function(myMap, map, layer) {
     console.log(map.layers);
     //Based on final map configuration, draw the tiles
     var index = 0;
-    for (var x = 0; x < 12; x++){
-        for (var y = 0; y < 17; y++) {
-            console.log(myMap[index]);
+    for (var x = 0; x < 17; x++){
+        for (var y = 0; y < 12; y++) {
             if(myMap[index] == ';' || myMap[index] == '\n'){
                 index++;
                 y--;
                 console.log("here");
             }
             else{
+                console.log(myMap[index]);
                 map.putTile(myMap[index], x, y, layer);
                 index++;
             }
