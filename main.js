@@ -119,7 +119,7 @@ function initMultiPlayer(game, globals){
         console.log("Recieved State");
         state.lastUpdated = new Date().getTime();
 
-        if(globals.player.pos.x != state.pos.x && globals.player.pos.y != state.pos.y){
+        if(globals.player != false && globals.player.pos.x != state.pos.x && globals.player.pos.y != state.pos.y){
             changeMap(state.mapData, map, layerFirst);
         }
 
