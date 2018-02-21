@@ -6,12 +6,12 @@ var changeMap = function(myMap, map) {
     var index = 0;
     for (var x = 0; x < 17; x++)
         for (var y = 0; y < 12; y++, index++) {
-            if(myMap[index] == '\n'){
+            /* if(myMap[index] == '\n'){
                 //x--;
                 y--;
-            }
-            var thisTile;
-            map.putTile(myMap[index], x, y, 1);
+            } */
+            console.log(myMap[index]);
+            map.putTile(myMap[index], x, y, map.layer);
         }
     //map.setCollision(1); //tile 0 = wall
     //game.global.map = map;
