@@ -23,7 +23,7 @@ var PlayerObject = function(idRef, gameRef){
         leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
         rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
 
-        playerSprite = game.add.sprite(5, 5, 'player');
+        playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player');
         game.physics.arcade.enable(playerSprite);
         playerSprite.anchor.setTo(0.125,0);
         playerSprite.enableBody = true;
@@ -46,8 +46,6 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite.animations.add('idle-W', [5], 1, false);
         playerSprite.animations.add('idle-N', [9], 1, false);
         playerSprite.animations.add('idle-S', [13], 1, false);
-
-        console.log(playerState);
     }
 
     function update(){
