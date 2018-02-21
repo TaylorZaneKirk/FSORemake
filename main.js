@@ -127,8 +127,6 @@ function initMultiPlayer(game, globals){
 
         if(game.global.localPlayerObject == null){
             globals.localPlayerObject = new PlayerObject(state.playerName, game);
-            
-            game.physics.arcade.enable(globals.localPlayerObject);
             game.global.ready = true;
             changeMap(state.mapData, map, layerFirst);
         }
