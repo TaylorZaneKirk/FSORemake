@@ -13,7 +13,7 @@ var changeMap = function(myMap, map, layer) {
             else if(myMap[index] != '\n' && myMap[index] != ';'){
                 console.log(myMap[index]);
                 console.log(x + ' , ' + y);
-                map.putTile(myMap[index], x, y, layer);
+                map.putTile(myMap[index], y, x, layer);
             }
             index++;
         }
