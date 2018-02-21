@@ -4,10 +4,6 @@
 ////////////////////////////
 var client;
 
-// map dimensions
-//var ROWS = 30; //y
-//var COLS = 40; //x
-
 // the structure of the map
 var mapData;
 var map; //first layer tile objects
@@ -119,7 +115,7 @@ function initMultiPlayer(game, globals){
         console.log("Recieved State");
         state.lastUpdated = new Date().getTime();
 
-        if(globals.player != false && globals.player.pos.x != state.pos.x && globals.player.pos.y != state.pos.y){
+        if(globals.player != false && globals.player.worldX != state.worldX && globals.player.worldY != state.worldY){
             changeMap(state.mapData, map, layerFirst);
         }
 
