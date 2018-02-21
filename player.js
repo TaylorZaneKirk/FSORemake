@@ -47,7 +47,7 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite.animations.add('idle-N', [9], 1, false);
         playerSprite.animations.add('idle-S', [13], 1, false);
 
-        console.lof(playerState);
+        console.log(playerState);
     }
 
     function update(){
