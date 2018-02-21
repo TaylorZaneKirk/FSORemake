@@ -68,7 +68,7 @@ function create() {
     map = game.add.tilemap();
     map.addTilesetImage('tileset', null, 32, 32);
     layerFirst = map.create('map', 20, 20, 32, 32);
-    map.putTile(0, 1, 1, layerFirst);
+    //map.putTile(0, 1, 1, layerFirst);
     //layer2 = map.createBlankLayer('collisions', COLS, ROWS, 20, 20);
     //layer2.properties = {'collision' : true};
     //layer.resizeWorld();
@@ -119,6 +119,10 @@ function initMultiPlayer(game, globals){
         console.log("Recieved State");
         state.lastUpdated = new Date().getTime();
 
+        if(globals.player.pos != state.pos){
+            changeMap(state.mapData, map);
+        }
+
         if(state.playerName == globals.myId){
             console.log("Assigned Player State");
             globals.player = state;
@@ -128,6 +132,7 @@ function initMultiPlayer(game, globals){
         if(game.global.localPlayerObject == null || game.global.localPlayerObject == {}){
             globals.localPlayerObject = new PlayerObject(state.playerName, game);
             game.global.ready = true;
+            changeMap(state.mapData, map);
         }
         globals.playerList[state.playerName] = state;
     }
@@ -142,13 +147,13 @@ function update() {
 
     var currentTime = new Date();
     
-    //wait [1.25] seconds before requesting an update from the server
+    //wait [0.25] seconds before requesting an update from the server
     if (game.global.player.lastUpdated + 250 < currentTime.getTime() ){
         game.global.player.lastUpdated = new Date().getTime();
         eurecaProxy.requestUpdate(game.global.myId);
     }
     
-//Rename this to playerSprites
+
 
     if(game.global.localPlayerObject != null || game.global.localPlayerObject != {}){
         game.global.localPlayerObject.update();    //update player
