@@ -18,6 +18,8 @@ var PlayerObject = function(idRef, gameRef){
         playerState = game.global.player;
         ready = false;
 
+        game.physics.startSystem(Phaser.Physics.ARCADE);
+        
         upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
         downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
         leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
@@ -25,7 +27,7 @@ var PlayerObject = function(idRef, gameRef){
 
         playerSprite = game.add.sprite(playerState.pos.x, playerState.pos.y, 'player');
         playerSprite.anchor.setTo(0.125,0);
-        gameRef.physics.arcade.enable(playerSprite);
+        game.physics.arcade.enable(playerSprite);
         playerSprite.enableBody = true;
         playerSprite.body.collideWorldBounds = true;
         playerSprite.body.immovable = false;
