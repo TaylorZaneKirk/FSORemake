@@ -6,7 +6,10 @@ var changeMap = function(myMap, map, layer) {
     var index = 0;
     for (var x = 0; x < 17; x++){
         for (var y = 0; y < 12; y++) {
-            if(myMap[index] == ';' || myMap[index] == '\n'){
+            if(myMap[index] == '\n'){
+                index++;
+            }
+            if(myMap[index] == ';'){
                 index++;
                 y--;
                 console.log("here");
