@@ -1,5 +1,5 @@
 //Convert boolean 2D array into tilemap
-var drawMap = function(myMap, map) {
+var changeMap = function(myMap, map) {
 
     //Based on final map configuration, draw the tiles
     var index = 0;
