@@ -10,9 +10,11 @@ var changeMap = function(myMap, map, layer) {
                 //x--;
                 y--;
             }
-            console.log(myMap[index]);
-            map.putTile(myMap[index], x, y, layer);
-            index++;
+            else{
+                console.log(myMap[index]);
+                map.putTile(myMap[index], x, y, layer);
+                index++;
+            }
         }
     }
     //map.setCollision(1); //tile 0 = wall
