@@ -174,11 +174,10 @@ readMapFromFile = function(x, y){
     var returnString = '';
     var filePath = __dirname + '/maps/' + x + '-' + y + '.txt'
     console.log(filePath);
-    fs.readFile(filePath, 'utf8', function(err, contents) {
+    return fs.readFile(filePath, 'utf8', function(err, contents) {
         returnString = contents;
         console.log(contents);
+        return returnString;
     });
-    console.log('return string:');
-    console.log(returnString)
-    return returnString;
+    
 }
