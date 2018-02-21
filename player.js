@@ -75,7 +75,7 @@ var PlayerObject = function(idRef, gameRef){
             playerState.playerFacing = 'W';
             ready = false;
             sendMessageToServer({type: 'move', payload: 'W'}, 'self');
-            playerSprite.velocity.x -= 100;
+            playerSprite.x -= 100;
         }
         else if (rightKey.isDown){
             playerState.playerAction = 'walk';
