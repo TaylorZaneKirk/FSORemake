@@ -6,7 +6,7 @@ var changeMap = function(myMap, map) {
     for (var x = 0; x < 17; x++)
         for (var y = 0; y < 12; y++, index++) {
             if(myMap[index] == '\n'){
-                x--;
+                //x--;
                 y--;
             }
             var thisTile;
