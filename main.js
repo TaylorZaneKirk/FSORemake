@@ -49,7 +49,7 @@ function init() {
 //THIS NEXT!!!
 function preload() {
     game.load.image('tileset', 'assets/tiles/FSORemakeMapTileset.png');
-    game.load.spritesheet('player', 'assets/PlayerSheet.png', 46, 46);
+    game.load.spritesheet('player', 'assets/PlayerSheet.png', 46, 45);
     //game.load.image('clown', 'assets/images/clown.png');
     //game.load.image('portal', 'assets/images/portal.png');
     //game.global.easystar = new EasyStar.js();   //start the pathfinder
