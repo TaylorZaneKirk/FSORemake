@@ -9,6 +9,7 @@ var changeMap = function(myMap, map, layer) {
             if(myMap[index] == ';'){
                 //x--;
                 y--;
+                console.log("here");
             }
             else{
                 console.log(myMap[index]);
