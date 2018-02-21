@@ -5,8 +5,7 @@ var changeMap = function(myMap, map, layer) {
     for (var x = 0; x < 17; x++){
         for (var y = 0; y < 12; y++) {
             if(myMap[index] == '\n'){
-                //index++;
-                //if(y > 0) { y--; }
+                y--;
             }
             else if(myMap[index] == ';'){
                 y--;
