@@ -16,6 +16,7 @@ var changeMap = function(myMap, map, layer) {
                 map.putTile(myMap[index], x, y, layer);
             }
             index++;
+            console.log(x + ' , ' + y);
         }
     }
     //map.setCollision(1); //tile 0 = wall
