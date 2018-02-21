@@ -24,7 +24,7 @@ var PlayerObject = function(idRef, gameRef){
         rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
 
         playerSprite = game.add.sprite(playerState.pos.x, playerState.pos.y, 'player');
-        playerSprite.anchor.setTo(0.5, 0);
+        playerSprite.anchor.setTo(0.5, 1);
         playerSprite.animations.add('walk-E', [0,1,2], 6, false);
         playerSprite.animations.add('walk-W', [4,5,6], 6, false);
         playerSprite.animations.add('walk-N', [8,9,10], 6, false);
