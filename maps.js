@@ -4,15 +4,10 @@ var changeMap = function(myMap, map, layer) {
     var index = 0;
     for (var x = 0; x < 12; x++){
         for (var y = 0; y < 17; y++) {
-            if(myMap[index] == '\n'){
-                y--;
-            }
-            else if(myMap[index] == ';'){
+            if(myMap[index] == '\n' || myMap[index] == ';'){
                 y--;
             }
             else if(myMap[index] != '\n' && myMap[index] != ';'){
-                console.log(myMap[index]);
-                console.log(x + ' , ' + y);
                 map.putTile(myMap[index], y+1, x+1, layer);
             }
             index++;
