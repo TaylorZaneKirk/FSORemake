@@ -28,7 +28,8 @@ class PlayerState
         this.lastUpdated = null;
         this.readyToUpdate = false;
         this.playersVisible = [];
-        this.mapData = readMapFromFile(this.pos.x, this.pos.y);
+        this.mapData = null;
+        readMapFromFile(idString, this.pos.x, this.pos.y);
     }
     
     copy(other)
@@ -169,7 +170,7 @@ eurecaServer.updateClientsAboutNewPlayer = function (id) {
     }
 }
 
-readMapFromFile = function(x, y){
+readMapFromFile = function(id, x, y){
     
     var returnString = '';
     var filePath = __dirname + '/maps/' + x + '-' + y + '.txt'
@@ -177,7 +178,8 @@ readMapFromFile = function(x, y){
     fs.readFile(filePath, 'utf8', function(err, contents) {
         returnString = contents;
         console.log(contents);
-        return returnString;
+        
+        players[id].state.mapData = contents;
     });
     
 }
