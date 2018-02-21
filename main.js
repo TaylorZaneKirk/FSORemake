@@ -67,7 +67,7 @@ function create() {
     //Maps and layers
     map = game.add.tilemap();
     map.addTilesetImage('tileset', null, 32, 32);
-    layerFirst = map.create('map', 17, 13, 32, 32);
+    layerFirst = map.create('map', 17, 12, 32, 32);
     //map.putTile(0, 1, 1, layerFirst);
     //layer2 = map.createBlankLayer('collisions', COLS, ROWS, 20, 20);
     //layer2.properties = {'collision' : true};
