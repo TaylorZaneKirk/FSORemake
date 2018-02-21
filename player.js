@@ -27,7 +27,7 @@ var PlayerObject = function(idRef, gameRef){
         game.physics.arcade.enable(playerSprite);
         playerSprite.anchor.setTo(0.125,0);
         playerSprite.enableBody = true;
-        playerSprite.body.enable = true;
+        //playerSprite.body.enable = true;
         //playerSprite.body.collideWorldBounds = true;
         /* playerSprite.body.immovable = false;
         playerSprite.body.bounce.setTo(0, 0);
