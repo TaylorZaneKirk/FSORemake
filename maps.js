@@ -7,14 +7,13 @@ var changeMap = function(myMap, map, layer) {
             if(myMap[index] == ';' || myMap[index] == '\n'){
                 //index++;
                 if(y > 0) { y--; }
-                console.log("here");
             }
             else{
                 console.log(myMap[index]);
+                console.log(x + ' , ' + y);
                 map.putTile(myMap[index], x, y, layer);
             }
             index++;
-            console.log(x + ' , ' + y);
         }
     }
     //map.setCollision(1); //tile 0 = wall
