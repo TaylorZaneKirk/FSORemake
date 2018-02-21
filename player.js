@@ -26,7 +26,7 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite = game.add.sprite(playerState.pos.x, playerState.pos.y, 'player');
         playerSprite.anchor.setTo(0.125,0);
         playerSprite.enableBody = true;
-        playerSprite.body.collideWorldBounds = true;
+        //playerSprite.body.collideWorldBounds = true;
         playerSprite.body.immovable = false;
         playerSprite.body.bounce.setTo(0, 0);
         playerSprite.body.setSize(
