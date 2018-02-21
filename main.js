@@ -120,7 +120,7 @@ function initMultiPlayer(game, globals){
         state.lastUpdated = new Date().getTime();
 
         if(globals.player.pos != state.pos){
-            changeMap(state.mapData, map);
+            changeMap(state.mapData, map, layerFirst);
         }
 
         if(state.playerName == globals.myId){
@@ -132,7 +132,7 @@ function initMultiPlayer(game, globals){
         if(game.global.localPlayerObject == null){
             globals.localPlayerObject = new PlayerObject(state.playerName, game);
             game.global.ready = true;
-            changeMap(state.mapData, map);
+            changeMap(state.mapData, map, layerFirst);
         }
         globals.playerList[state.playerName] = state;
     }

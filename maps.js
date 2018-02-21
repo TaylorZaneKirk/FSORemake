@@ -1,5 +1,5 @@
 //Convert boolean 2D array into tilemap
-var changeMap = function(myMap, map) {
+var changeMap = function(myMap, map, layer) {
     console.log(map.layer);
     console.log(map.layers);
     //Based on final map configuration, draw the tiles
@@ -11,7 +11,7 @@ var changeMap = function(myMap, map) {
                 y--;
             } */
             console.log(myMap[index]);
-            map.putTile(myMap[index], x, y, map.layer);
+            map.putTile(myMap[index], x, y, layer);
         }
     //map.setCollision(1); //tile 0 = wall
     //game.global.map = map;
