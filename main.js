@@ -57,8 +57,6 @@ function preload() {
 }
 
 function create() {
-    initMultiPlayer(game, game.global);
-
     //game.physics.startSystem(Phaser.Physics.ARCADE);
 
     //Maps and layers
@@ -69,6 +67,7 @@ function create() {
     //layer2 = map.createBlankLayer('collisions', COLS, ROWS, 20, 20);
     //layer2.properties = {'collision' : true};
     //layer.resizeWorld();
+    initMultiPlayer(game, game.global);
 }
 
 function initMultiPlayer(game, globals){
