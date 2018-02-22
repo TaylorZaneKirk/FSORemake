@@ -126,7 +126,7 @@ var PlayerObject = function(idRef, gameRef){
         //playerState.playerAction = 'walk';
         //gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: (playerState.pos.y+1) * 32}, 250, null, true);
         //gameRef.add.tween(playerSprite).pause();
-        gameRef.tween(playerSprite).stop();
+        gameRef.tweens(playerSprite).stop();
         playerSprite.x = (playerState.pos.x+1)*32;
         playerSprite.y = (playerState.pos.y+1)*32;
         gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: (playerState.pos.y+1) * 32}, 250, null, true);
