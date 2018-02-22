@@ -55,9 +55,6 @@ var PlayerObject = function(idRef, gameRef){
             ready = true;
         } */
 
-        if(!playerState.readyToUpdate) { return; }
-        console.log("flood");
-
         if(playerState != game.global.player){
             playerState = game.global.player;
 
@@ -71,6 +68,9 @@ var PlayerObject = function(idRef, gameRef){
                 movePlayer: movePlayer,
             };
         }
+
+        if(!playerState.readyToUpdate) { return; }
+        console.log("flood");
 
         if(playerState.playerAction == 'idle'){
             if (leftKey.isDown){
