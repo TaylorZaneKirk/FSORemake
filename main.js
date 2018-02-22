@@ -46,7 +46,7 @@ function init() {
     game.global.player = false;
 
     
-    initMultiPlayer(game, game.global);
+    
 
 }
 
@@ -57,6 +57,7 @@ function preload() {
     //game.load.image('portal', 'assets/images/portal.png');
     //game.global.easystar = new EasyStar.js();   //start the pathfinder
     game.physics.startSystem(Phaser.Physics.ARCADE);
+    initMultiPlayer(game, game.global);
 }
 
 function create() {
@@ -104,7 +105,7 @@ function initMultiPlayer(game, globals){
 
         // Assign my new connection Id
         globals.myId = id;
-
+        globals.localPlayerObject = new PlayerObject(id, game);
         // Put instance of new player into list
         //globals.playerList[id] = globals.player
 
@@ -128,7 +129,7 @@ function initMultiPlayer(game, globals){
         }
 
         if(game.global.localPlayerObject == null){
-            globals.localPlayerObject = new PlayerObject(state.playerName, game);
+            
             game.global.ready = true;
             changeMap(state.mapData, map, layerFirst);
         }
