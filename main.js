@@ -130,7 +130,7 @@ function initMultiPlayer(game, globals){
         }
 
         if(game.global.localPlayerObject == null){
-            globals.localPlayerObject = new PlayerObject(id, game);
+            globals.localPlayerObject = new PlayerObject(globals.player.playerName, game);
             globals.localPlayerObject.renderSprite(state);
             game.global.ready = true;
             changeMap(state.mapData, map, layerFirst);
