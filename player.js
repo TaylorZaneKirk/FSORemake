@@ -71,12 +71,12 @@ var PlayerObject = function(idRef, gameRef){
 
         playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
 
-        if (((playerState.pos.x+1)*32 == (playerSprite.x | 0) && (playerState.pos.y+1)*32 == (playerSprite.y | 0)) && playerState.playerAction != 'idle'){
+        if (((playerState.pos.x+1)*32 == (playerSprite.x | 0) && (playerState.pos.y+1)*32 == (playerSprite.y | 0)) && playerState.playerAction != 'idle' && !playerState.readyToUpdate){
             playerState.playerAction = 'idle';
             playerState.readyToUpdate = true;
             sendMessageToServer({type: 'move', payload: 'I'}, 'self');
         }
-        
+
         if(!playerState.readyToUpdate) { return; }
         
 
