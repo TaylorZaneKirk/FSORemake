@@ -60,7 +60,10 @@ eurecaServer.onConnect(function (conn) {
     players[conn.id] = {id:conn.id, remote:remote, state: new PlayerState(conn.id)}
 
     //here we call setId (defined in the client side)
-    remote.setId(conn.id);
+    if(remote != undefined){
+        remote.setId(conn.id);
+    }
+    
 });
 
 //detect client disconnection
