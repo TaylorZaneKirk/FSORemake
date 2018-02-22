@@ -13,8 +13,6 @@ var layer2;
 // Reference to our eureca so we can call functions back on the server
 var eurecaProxy;
 
-
-
 // initialize phaser, call create() once done
 var game = new Phaser.Game(800, 600, Phaser.AUTO, null, {
     init: init,
@@ -35,7 +33,6 @@ game.global = {
     walls: null, //Likely to be factored to 2nd or 3rd layer
     easystar: null,
     localPlayerObject: null,
-    spriteSheet: null,
 };
 
 function init() {
@@ -52,17 +49,15 @@ function init() {
 //THIS NEXT!!!
 function preload() {
     game.load.image('tileset', 'assets/tiles/FSORemakeMapTileset.png');
-    game.global.spriteSheet = game.load.spritesheet('player', 'assets/PlayerSheet.png', 46, 45, 16);
-    console.log(game.global.spriteSheet);
+    game.load.spritesheet('player', 'assets/PlayerSheet.png', 46, 45, 16);
     //game.load.image('clown', 'assets/images/clown.png');
     //game.load.image('portal', 'assets/images/portal.png');
     //game.global.easystar = new EasyStar.js();   //start the pathfinder
     game.physics.startSystem(Phaser.Physics.ARCADE);
-    initMultiPlayer(game, game.global);
 }
 
 function create() {
-    
+    initMultiPlayer(game, game.global);
 
     //game.physics.startSystem(Phaser.Physics.ARCADE);
 
