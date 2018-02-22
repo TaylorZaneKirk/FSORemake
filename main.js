@@ -180,5 +180,5 @@ sendMessageToServer = function(action, target) {
     }
     game.global.player.readyToUpdate = false;
 
-    eurecaProxy.message(game.global.myId, {action: action, target: target});
+    client.eurecaProxy.message(game.global.myId, {action: action, target: target});
 }
