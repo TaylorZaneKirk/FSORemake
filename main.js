@@ -110,6 +110,7 @@ function initMultiPlayer(game, globals){
         // Local reference to the server proxy to be
         // used in other methods within this module.
         eurecaProxy = serverProxy;
+        eurecaProxy.handshake();
     });
 
     
