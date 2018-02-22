@@ -110,6 +110,9 @@ var PlayerObject = function(idRef, gameRef){
             playerState.playerAction = 'idle';
             sendMessageToServer({type: 'move', payload: null}, 'self');
         }
+        else{
+            console.log(((playerState.pos.x+1)*32 + "," + (playerSprite.x | 0) + " " + (playerState.pos.y+1)*32 + "," + (playerSprite.y | 0)))
+        }
         
     }
 
@@ -120,7 +123,7 @@ var PlayerObject = function(idRef, gameRef){
             return;
         } */
         //playerState.playerAction = 'walk';
-        gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: (playerState.pos.y+1) * 32}, 250, null, true);
+        //gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: (playerState.pos.y+1) * 32}, 250, null, true);
         /* playerSprite.x = (playerState.pos.x+1)*32;
         playerSprite.y = (playerState.pos.y+1)*32; */
     }
