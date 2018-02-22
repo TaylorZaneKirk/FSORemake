@@ -11,7 +11,7 @@ var layerFirst;
 var layer2;
 
 var isMultiInit;
-
+var loadTime;
 
 
 // initialize phaser, call create() once done
@@ -107,6 +107,7 @@ function initMultiPlayer(game, globals){
 
 function init() {
     //Add the server client for multiplayer
+    var currentTime = new Date();
     isMultiInit = false;
 
     client = new Eureca.Client();
@@ -114,6 +115,8 @@ function init() {
     game.global.ready = false;
 
     game.global.player = false;
+
+    loadTime = currentTime.getTime();
 
 }
 
@@ -147,16 +150,18 @@ function create() {
 
 
 function update() {
-    if(isMultiInit == false){
+    var currentTime = new Date();
+
+    if(isMultiInit == false && currentTime.getTime > loadTime + 5000){
         console.log("here's the big error i think");
-        return initMultiPlayer(game, game.global);
+        return this.game.state.restart();
     }
     if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {} || game.global.eurecaProxy == undefined){
         console.log(game.global.eurecaProxy);
         return; //Stuff isn't ready; hold on...
     }
 
-    var currentTime = new Date();
+    
     
     //wait [0.25] seconds before requesting an update from the server
     if (game.global.player.lastUpdated + 250 < currentTime.getTime() ){
