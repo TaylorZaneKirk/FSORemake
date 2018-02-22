@@ -132,6 +132,7 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite.x = (playerState.pos.x+1)*32;
         playerSprite.y = (playerState.pos.y+1)*32;
         playerTween.to({x: (playerState.pos.x+1) * 32, y: (playerState.pos.y+1) * 32}, 250, null, true);
+        playerTween.resume();
         //playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
         //gameRef.add.tween(playerSprite).resume();
     }
