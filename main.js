@@ -142,8 +142,8 @@ function create() {
 
 
 function update() {
-    if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {} || client.eurecaProxy == undefined){
-        console.log(client.eurecaProxy);
+    if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {} || initMultiPlayer.eurecaProxy == undefined){
+        console.log(initMultiPlayer.eurecaProxy);
         return; //Stuff isn't ready; hold on...
     }
 
@@ -152,7 +152,7 @@ function update() {
     //wait [0.25] seconds before requesting an update from the server
     if (game.global.player.lastUpdated + 250 < currentTime.getTime() ){
         game.global.player.lastUpdated = new Date().getTime();
-        client.eurecaProxy.requestUpdate(game.global.myId);
+        initMultiPlayer.eurecaProxy.requestUpdate(game.global.myId);
     }
     
 
