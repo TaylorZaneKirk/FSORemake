@@ -70,7 +70,7 @@ var PlayerObject = function(idRef, gameRef){
         }
 
         if(!playerState.readyToUpdate) { return; }
-        playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
+        
 
         if(playerState.playerAction == 'idle'){
             if (leftKey.isDown){
@@ -105,6 +105,7 @@ var PlayerObject = function(idRef, gameRef){
                 gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: ((playerState.pos.y+1)+1) * 32}, 250, null, true);
                 //playerSprite.body.velocity.y += 1;
             }
+            playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
         }
         else if (((playerState.pos.x+1)*32 == (playerSprite.x | 0) && (playerState.pos.y+1)*32 == (playerSprite.y | 0)) && playerState.playerAction != 'idle'){
             playerState.playerAction = 'idle';
@@ -127,6 +128,7 @@ var PlayerObject = function(idRef, gameRef){
         gameRef.add.tween(playerSprite).pause();
         playerSprite.x = (playerState.pos.x+1)*32;
         playerSprite.y = (playerState.pos.y+1)*32;
+        playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
         gameRef.add.tween(playerSprite).resume();
     }
 
