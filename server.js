@@ -60,7 +60,7 @@ eurecaServer.onConnect(function (conn) {
     players[conn.id] = {id:conn.id, remote:remote, state: new PlayerState(conn.id)}
 
     //here we call setId (defined in the client side)
-    if(remote != undefined){
+    if(remote.setId != undefined){
         remote.setId(conn.id);
     }
     
