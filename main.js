@@ -177,8 +177,7 @@ sendMessageToServer = function(action, target) {
         console.log(action);
         console.log(target);
         console.log(game.global.player.readyToUpdate);
-        console.log(action == undefined ||
-            action.type == null || action.type == undefined ||
+        console.log(action.type == null || action.type == undefined ||
             action.payload == undefined ||
             target == null || target == undefined);
         return;
