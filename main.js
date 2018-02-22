@@ -140,7 +140,7 @@ function create() {
 
 
 function update() {
-    if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {}){
+    if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {} || client.eurecaProxy == undefined){
         return; //Stuff isn't ready; hold on...
     }
 
