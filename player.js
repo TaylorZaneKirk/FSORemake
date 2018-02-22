@@ -71,7 +71,7 @@ var PlayerObject = function(idRef, gameRef){
             };
         }
 
-        if(playerState.playerAction != 'idle'){
+        if(playerState.playerAction == 'idle'){
             if (leftKey.isDown){
                 //playerState.playerAction = 'walk';
                 playerState.playerFacing = 'W';
