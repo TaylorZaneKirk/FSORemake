@@ -106,7 +106,7 @@ var PlayerObject = function(idRef, gameRef){
     }
 
     movePlayer = function(){
-        console.log(playerState.pos.x + " " + playerSprite.x)
+        console.log(playerState.pos.x + " " + playerSprite.world.x)
         if((playerState.pos.x*32 == playerSprite.x && playerState.pos.y*32 == playerSprite.y) || playerState.playerAction != 'idle'){
             //return;
         }
