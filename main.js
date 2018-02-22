@@ -106,13 +106,13 @@ function initMultiPlayer(game, globals){
 
         // Assign my new connection Id
         globals.myId = id;
-        globals.localPlayerObject = new PlayerObject(id, game);
+        globals.player = state;
+        
         // Put instance of new player into list
         //globals.playerList[id] = globals.player
 
         //tell server client is ready
         eurecaProxy.initPlayer(id);
-        globals.localPlayerObject.renderSprite(state);
     }
 
     client.exports.recieveStateFromServer = function(state) {
@@ -130,7 +130,8 @@ function initMultiPlayer(game, globals){
         }
 
         if(game.global.localPlayerObject == null){
-            
+            globals.localPlayerObject = new PlayerObject(id, game);
+            globals.localPlayerObject.renderSprite(state);
             game.global.ready = true;
             changeMap(state.mapData, map, layerFirst);
         }
