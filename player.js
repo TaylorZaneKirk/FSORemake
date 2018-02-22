@@ -115,7 +115,7 @@ var PlayerObject = function(idRef, gameRef){
             return;
         }
         playerState.playerAction = 'walk';
-        gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: (playerState.pos.y+1) * 32}, 250, Phaser.Easing.Quadratic.InOut, true);
+        gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: (playerState.pos.y+1) * 32}, 250, null, false, false);
     }
 
     init(idRef, gameRef);
