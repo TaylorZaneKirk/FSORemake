@@ -25,6 +25,7 @@ var PlayerObject = function(idRef, gameRef){
     }
 
     function renderSprite(state){
+        console.log(state);
         playerState = state;
         playerSprite = gameRef.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player');
         gameRef.physics.arcade.enable(playerSprite);
