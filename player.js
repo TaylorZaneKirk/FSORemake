@@ -106,9 +106,10 @@ var PlayerObject = function(idRef, gameRef){
     }
 
     movePlayer = function(){
-        //console.log(playerState.pos.x + " " + playerSprite.world.x)
-        if(((playerState.pos.x+1)*32 == playerSprite.x && (playerState.pos.y+1)*32 == playerSprite.y) || playerState.playerAction != 'idle'){
-            //return;
+        console.log((playerState.pos.x+1)*32 + " " + (playerSprite.x | 0))
+        if(((playerState.pos.x+1)*32 == (playerSprite.x | 0) && (playerState.pos.y+1)*32 == (playerSprite.y | 0))){
+            playerState.playerAction = 'idle';
+            return;
         }
         playerState.playerAction = 'walk';
         gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: (playerState.pos.y+2) * 32}, 250, Phaser.Easing.Quadratic.InOut, true);
