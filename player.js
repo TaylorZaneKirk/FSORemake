@@ -85,7 +85,7 @@ var PlayerObject = function(idRef, gameRef){
                 ready = false;
                 sendMessageToServer({type: 'move', payload: 'W'}, 'self');
                 playerTween.to({x: ((playerState.pos.x+1)-1) * 32, y: (playerState.pos.y+1) * 32}, 750, null, true);
-                playerTween.onComplete(function(target, tween){ playerState.pos.x--; });
+                playerTween.onCompleteCallback(function(target, tween){ playerState.pos.x--; });
                 //playerSprite.body.velocity.x -= 1; //arcade physics required for body.velocity to work
             }
             else if (rightKey.isDown){
@@ -94,7 +94,7 @@ var PlayerObject = function(idRef, gameRef){
                 ready = false;
                 sendMessageToServer({type: 'move', payload: 'E'}, 'self');
                 playerTween.to({x: ((playerState.pos.x+1)+1) * 32, y: (playerState.pos.y+1) * 32}, 750, null, true);
-                playerTween.onComplete(function(target, tween){ playerState.pos.x++; });
+                playerTween.onCompleteCallback(function(target, tween){ playerState.pos.x++; });
                 //playerSprite.body.velocity.x += 1;
             }
             else if (upKey.isDown){
@@ -103,7 +103,7 @@ var PlayerObject = function(idRef, gameRef){
                 ready = false;
                 sendMessageToServer({type: 'move', payload: 'N'}, 'self');
                 playerTween.to({x: (playerState.pos.x+1) * 32, y: ((playerState.pos.y+1)-1) * 32}, 750, null, true);
-                playerTween.onComplete(function(target, tween){ playerState.pos.y--; });
+                playerTween.onCompleteCallback(function(target, tween){ playerState.pos.y--; });
                 //playerSprite.body.velocity.y -= 1;
             }
             else if (downKey.isDown){
@@ -112,7 +112,7 @@ var PlayerObject = function(idRef, gameRef){
                 ready = false;
                 sendMessageToServer({type: 'move', payload: 'S'}, 'self');
                 playerTween.to({x: (playerState.pos.x+1) * 32, y: ((playerState.pos.y+1)+1) * 32}, 750, null, true);
-                playerTween.onComplete(function(target, tween){ playerState.pos.y++; });
+                playerTween.onCompleteCallback(function(target, tween){ playerState.pos.y++; });
                 //playerSprite.body.velocity.y += 1;
             }
             
