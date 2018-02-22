@@ -176,6 +176,7 @@ sendMessageToServer = function(action, target) {
         console.log("ERROR: Attempted to send invalid message");
         console.log(action);
         console.log(target);
+        console.log(game.global.player.readyToUpdate);
         return;
     }
     game.global.player.readyToUpdate = false;
