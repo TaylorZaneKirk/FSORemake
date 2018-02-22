@@ -147,6 +147,7 @@ eurecaServer.exports.message = function(id, message){
             players[id].state.playerFacing = message.action.payload;
             players[id].state.pos = {x: players[id].state.pos.x, y: players[id].state.pos.y + 1};
             players[id].state.readyToUpdate = true;
+            players[id].state.playerAction = 'walk'
             console.log(players[id].state.pos);
             break;
         }
