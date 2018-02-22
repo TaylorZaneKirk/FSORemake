@@ -68,7 +68,7 @@ var PlayerObject = function(idRef, gameRef){
                 movePlayer: movePlayer,
             };
         }
-        
+
         playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
         if(!playerState.readyToUpdate) { return; }
         
@@ -79,7 +79,7 @@ var PlayerObject = function(idRef, gameRef){
                 playerState.playerFacing = 'W';
                 ready = false;
                 sendMessageToServer({type: 'move', payload: 'W'}, 'self');
-                gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)-1) * 32, y: (playerState.pos.y+1) * 32}, 250, null, true);
+                gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)-1) * 32, y: (playerState.pos.y+1) * 32}, 500, null, true);
                 //playerSprite.body.velocity.x -= 1; //arcade physics required for body.velocity to work
             }
             else if (rightKey.isDown){
@@ -87,7 +87,7 @@ var PlayerObject = function(idRef, gameRef){
                 playerState.playerFacing = 'E';
                 ready = false;
                 sendMessageToServer({type: 'move', payload: 'E'}, 'self');
-                gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)+1) * 32, y: (playerState.pos.y+1) * 32}, 250, null, true);
+                gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)+1) * 32, y: (playerState.pos.y+1) * 32}, 500, null, true);
                 //playerSprite.body.velocity.x += 1;
             }
             else if (upKey.isDown){
@@ -95,7 +95,7 @@ var PlayerObject = function(idRef, gameRef){
                 playerState.playerFacing = 'N';
                 ready = false;
                 sendMessageToServer({type: 'move', payload: 'N'}, 'self');
-                gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: ((playerState.pos.y+1)-1) * 32}, 250, null, true);
+                gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: ((playerState.pos.y+1)-1) * 32}, 500, null, true);
                 //playerSprite.body.velocity.y -= 1;
             }
             else if (downKey.isDown){
