@@ -68,7 +68,8 @@ var PlayerObject = function(idRef, gameRef){
                 movePlayer: movePlayer,
             };
         }
-
+        
+        playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
         if(!playerState.readyToUpdate) { return; }
         
 
@@ -114,7 +115,7 @@ var PlayerObject = function(idRef, gameRef){
         else{
             console.log(((playerState.pos.x+1)*32 + "," + (playerSprite.x | 0) + " " + (playerState.pos.y+1)*32 + "," + (playerSprite.y | 0)))
         }
-        playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
+        
     }
 
     movePlayer = function(){
