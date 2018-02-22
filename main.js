@@ -156,6 +156,9 @@ function update() {
         console.log("here's the big error i think");
         return this.game.state.restart();
     }
+    console.log(isMultiInit);
+    console.log(loadTime);
+    console.log(currentTime.getTime());
     if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {} || game.global.eurecaProxy == undefined){
         console.log(game.global.eurecaProxy);
         return; //Stuff isn't ready; hold on...
