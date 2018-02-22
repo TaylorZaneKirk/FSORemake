@@ -128,11 +128,11 @@ var PlayerObject = function(idRef, gameRef){
         //playerState.playerAction = 'walk';
         //gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: (playerState.pos.y+1) * 32}, 250, null, true);
         //gameRef.add.tween(playerSprite).pause();
-        playerTween.stop();
+        //playerTween.stop();
         playerSprite.x = (playerState.pos.x+1)*32;
         playerSprite.y = (playerState.pos.y+1)*32;
         playerTween.to({x: (playerState.pos.x+1) * 32, y: (playerState.pos.y+1) * 32}, 250, null, true);
-        playerTween.resume();
+        //playerTween.resume();
         //playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
         //gameRef.add.tween(playerSprite).resume();
     }
