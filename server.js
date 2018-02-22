@@ -144,10 +144,38 @@ eurecaServer.exports.message = function(id, message){
         case 'move': {
             //do move
             //Need to make Server Actions file to handle these
+            var x = players[id].state.pos.x;
+            var y = players[id].state.pos.y;
+            var newAction = '';
+            switch(message.action.payload){
+                case 'E': {
+                    x = x + 1;
+                    newAction = 'walk'
+                    break;
+                }
+                case 'W': {
+                    x = x - 1;
+                    newAction = 'walk'
+                    break;
+                }
+                case 'N': {
+                    y = y - 1;
+                    newAction = 'walk'
+                    break;
+                }
+                case 'S': {
+                    y = y + 1;
+                    newAction = 'walk'
+                    break;
+                }
+                default: {
+                    newAction = 'idle';
+                }
+            }
             players[id].state.playerFacing = message.action.payload;
-            players[id].state.pos = {x: players[id].state.pos.x, y: players[id].state.pos.y + 1};
+            players[id].state.pos = {x: x, y: y};
             players[id].state.readyToUpdate = true;
-            players[id].state.playerAction = 'walk'
+            players[id].state.playerAction = newAction;
             console.log(players[id].state.pos);
             break;
         }

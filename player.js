@@ -108,6 +108,7 @@ var PlayerObject = function(idRef, gameRef){
         }
         else if (((playerState.pos.x+1)*32 == (playerSprite.x | 0) && (playerState.pos.y+1)*32 == (playerSprite.y | 0)) && playerState.playerAction != 'idle'){
             playerState.playerAction = 'idle';
+            sendMessageToServer({type: 'move', payload: null}, 'self');
         }
         
     }
