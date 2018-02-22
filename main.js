@@ -153,7 +153,7 @@ function update() {
     var currentTime = new Date();
 
     if(isMultiInit == false && currentTime.getTime() > loadTime + 2500){
-        console.log("here's the big error i think");
+        console.log("ERROR: Something did not load correctly, restarting game");
         return this.game.state.restart();
     }
 
@@ -165,7 +165,7 @@ function update() {
     
     //wait [0.25] seconds before requesting an update from the server
     if (game.global.player.lastUpdated + 250 < currentTime.getTime() ){
-        game.global.player.lastUpdated = new Date().getTime();
+        game.global.player.lastUpdated = currentTime.getTime();
         game.global.eurecaProxy.requestUpdate(game.global.myId);
     }
     
