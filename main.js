@@ -153,7 +153,7 @@ function update() {
     //wait [0.25] seconds before requesting an update from the server
     if (game.global.player.lastUpdated + 250 < currentTime.getTime() ){
         game.global.player.lastUpdated = new Date().getTime();
-        globals.eurecaProxy.requestUpdate(game.global.myId);
+        game.global.eurecaProxy.requestUpdate(game.global.myId);
     }
     
 
@@ -184,5 +184,5 @@ sendMessageToServer = function(action, target) {
     }
     game.global.player.readyToUpdate = false;
 
-    globals.eurecaProxy.message(game.global.myId, {action: action, target: target});
+    game.global.eurecaProxy.message(game.global.myId, {action: action, target: target});
 }
