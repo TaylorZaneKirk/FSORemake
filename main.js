@@ -43,7 +43,6 @@ function init() {
     game.global.ready = false;
 
     game.global.player = false;
-    initMultiPlayer(game, game.global);
 
 }
 
@@ -55,6 +54,7 @@ function preload() {
     //game.load.image('portal', 'assets/images/portal.png');
     //game.global.easystar = new EasyStar.js();   //start the pathfinder
     game.physics.startSystem(Phaser.Physics.ARCADE);
+    initMultiPlayer(game, game.global);
 }
 
 function create() {
