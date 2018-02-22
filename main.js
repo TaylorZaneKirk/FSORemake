@@ -149,7 +149,7 @@ function update() {
     //wait [0.25] seconds before requesting an update from the server
     if (game.global.player.lastUpdated + 250 < currentTime.getTime() ){
         game.global.player.lastUpdated = new Date().getTime();
-        eurecaProxy.requestUpdate(game.global.myId);
+        client.eurecaProxy.requestUpdate(game.global.myId);
     }
     
 
