@@ -35,42 +35,6 @@ game.global = {
     localPlayerObject: null,
 };
 
-function init() {
-    //Add the server client for multiplayer
-
-    client = new Eureca.Client();
-
-    game.global.ready = false;
-
-    game.global.player = false;
-
-}
-
-//THIS NEXT!!!
-function preload() {
-    game.load.image('tileset', 'assets/tiles/FSORemakeMapTileset.png');
-    game.load.spritesheet('player', 'assets/PlayerSheet.png', 46, 45, 16);
-    //game.load.image('clown', 'assets/images/clown.png');
-    //game.load.image('portal', 'assets/images/portal.png');
-    //game.global.easystar = new EasyStar.js();   //start the pathfinder
-    game.physics.startSystem(Phaser.Physics.ARCADE);
-}
-
-function create() {
-    initMultiPlayer(game, game.global);
-
-    //game.physics.startSystem(Phaser.Physics.ARCADE);
-
-    //Maps and layers
-    map = game.add.tilemap();
-    map.addTilesetImage('tileset', null, 32, 32);
-    layerFirst = map.create('map', 18, 13, 32, 32);
-    //map.putTile(0, 1, 1, layerFirst);
-    //layer2 = map.createBlankLayer('collisions', COLS, ROWS, 20, 20);
-    //layer2.properties = {'collision' : true};
-    //layer.resizeWorld();
-}
-
 function initMultiPlayer(game, globals){
 
     
@@ -134,6 +98,44 @@ function initMultiPlayer(game, globals){
         globals.playerList[state.playerName] = state;
     }
 }
+
+function init() {
+    //Add the server client for multiplayer
+
+    client = new Eureca.Client();
+
+    game.global.ready = false;
+
+    game.global.player = false;
+
+}
+
+//THIS NEXT!!!
+function preload() {
+    game.load.image('tileset', 'assets/tiles/FSORemakeMapTileset.png');
+    game.load.spritesheet('player', 'assets/PlayerSheet.png', 46, 45, 16);
+    //game.load.image('clown', 'assets/images/clown.png');
+    //game.load.image('portal', 'assets/images/portal.png');
+    //game.global.easystar = new EasyStar.js();   //start the pathfinder
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+}
+
+function create() {
+    initMultiPlayer(game, game.global);
+
+    //game.physics.startSystem(Phaser.Physics.ARCADE);
+
+    //Maps and layers
+    map = game.add.tilemap();
+    map.addTilesetImage('tileset', null, 32, 32);
+    layerFirst = map.create('map', 18, 13, 32, 32);
+    //map.putTile(0, 1, 1, layerFirst);
+    //layer2 = map.createBlankLayer('collisions', COLS, ROWS, 20, 20);
+    //layer2.properties = {'collision' : true};
+    //layer.resizeWorld();
+}
+
+
 
 
 
