@@ -32,12 +32,13 @@ game.global = {
     walls: null, //Likely to be factored to 2nd or 3rd layer
     easystar: null,
     localPlayerObject: null,
+    eurecaProxy: null,
 };
 
 function initMultiPlayer(game, globals){
 
     // Reference to our eureca so we can call functions back on the server
-    var eurecaProxy;
+    //var eurecaProxy;
 
     /**
         * Fires on initial connection
@@ -56,7 +57,7 @@ function initMultiPlayer(game, globals){
         // used in other methods within this module.
         console.log("CLIENT READY");
         console.log(serverProxy);
-        eurecaProxy = serverProxy;
+        globals.eurecaProxy = serverProxy;
     });
 
     /**
@@ -74,7 +75,7 @@ function initMultiPlayer(game, globals){
         //globals.playerList[id] = globals.player
 
         //tell server client is ready
-        eurecaProxy.initPlayer(id);
+        globals.eurecaProxy.initPlayer(id);
 
     }
 
@@ -142,8 +143,8 @@ function create() {
 
 
 function update() {
-    if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {} || initMultiPlayer.eurecaProxy == undefined){
-        console.log(initMultiPlayer.eurecaProxy);
+    if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {} || globals.eurecaProxy == undefined){
+        console.log(globals.eurecaProxy);
         return; //Stuff isn't ready; hold on...
     }
 
@@ -152,7 +153,7 @@ function update() {
     //wait [0.25] seconds before requesting an update from the server
     if (game.global.player.lastUpdated + 250 < currentTime.getTime() ){
         game.global.player.lastUpdated = new Date().getTime();
-        initMultiPlayer.eurecaProxy.requestUpdate(game.global.myId);
+        globals.eurecaProxy.requestUpdate(game.global.myId);
     }
     
 
@@ -183,5 +184,5 @@ sendMessageToServer = function(action, target) {
     }
     game.global.player.readyToUpdate = false;
 
-    client.eurecaProxy.message(game.global.myId, {action: action, target: target});
+    globals.eurecaProxy.message(game.global.myId, {action: action, target: target});
 }
