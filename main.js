@@ -54,7 +54,6 @@ function preload() {
     //game.load.image('portal', 'assets/images/portal.png');
     //game.global.easystar = new EasyStar.js();   //start the pathfinder
     game.physics.startSystem(Phaser.Physics.ARCADE);
-    initMultiPlayer(game, game.global);
 }
 
 function create() {
@@ -70,6 +69,7 @@ function create() {
     //layer2 = map.createBlankLayer('collisions', COLS, ROWS, 20, 20);
     //layer2.properties = {'collision' : true};
     //layer.resizeWorld();
+    initMultiPlayer(game, game.global);
 }
 
 function initMultiPlayer(game, globals){
