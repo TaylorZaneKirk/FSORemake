@@ -171,7 +171,7 @@ function render() {
 sendMessageToServer = function(action, target) {
     if(action == null || action == undefined ||
         action.type == null || action.type == undefined ||
-        action.payload == null || action.payload == undefined ||
+        action.payload == undefined ||
         target == null || target == undefined || !game.global.player.readyToUpdate){
         console.log("ERROR: Attempted to send invalid message");
         return;
