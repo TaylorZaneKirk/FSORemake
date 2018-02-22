@@ -48,7 +48,7 @@ function init() {
     
     //Maps and layers
     map = game.add.tilemap();
-    map.addTilesetImage('tileset', null, 32, 32);
+    map.addTilesetImage(tileset, null, 32, 32);
     layerFirst = map.create('map', 18, 13, 32, 32);
     
 
