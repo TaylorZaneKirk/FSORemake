@@ -10,8 +10,7 @@ var map; //first layer tile objects
 var layerFirst;
 var layer2;
 
-// Reference to our eureca so we can call functions back on the server
-var eurecaProxy;
+
 
 // initialize phaser, call create() once done
 var game = new Phaser.Game(800, 600, Phaser.AUTO, null, {
@@ -37,7 +36,8 @@ game.global = {
 
 function initMultiPlayer(game, globals){
 
-    
+    // Reference to our eureca so we can call functions back on the server
+    var eurecaProxy;
 
     /**
         * Fires on initial connection
