@@ -172,10 +172,11 @@ sendMessageToServer = function(action, target) {
     if(action == null || action == undefined ||
         action.type == null || action.type == undefined ||
         action.payload == null || action.payload == undefined ||
-        target == null || target == undefined){
+        target == null || target == undefined || !game.global.player.readyToUpdate){
         console.log("ERROR: Attempted to send invalid message");
         return;
     }
+    game.global.player.readyToUpdate = false;
 
     eurecaProxy.message(game.global.myId, {action: action, target: target});
 }
