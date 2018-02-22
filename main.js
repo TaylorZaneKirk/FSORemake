@@ -33,12 +33,13 @@ game.global = {
     walls: null, //Likely to be factored to 2nd or 3rd layer
     easystar: null,
     localPlayerObject: null,
+    charsprite: null,
 };
 
 function init() {
     //Add the server client for multiplayer
     tileset = game.load.image('tileset', 'assets/tiles/FSORemakeMapTileset.png');
-    game.load.spritesheet('player', 'assets/PlayerSheet.png', 46, 45, 16);
+    game.global.charsprite = game.load.spritesheet('player', 'assets/PlayerSheet.png', 46, 45, 16);
     client = new Eureca.Client();
 
     game.global.ready = false;
