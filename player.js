@@ -108,7 +108,7 @@ var PlayerObject = function(idRef, gameRef){
     movePlayer = function(){
         console.log(playerState.pos.x + " " + playerSprite.x)
         if((playerState.pos.x*32 == playerSprite.x && playerState.pos.y*32 == playerSprite.y) || playerState.playerAction != 'idle'){
-            return;
+            //return;
         }
         playerState.playerAction = 'move';
         gameRef.add.tween(playerSprite).to({x: playerState.pos.x * 32, y: playerState.pos.y * 32}, 250, Phaser.Easing.Quadratic.InOut, true);
