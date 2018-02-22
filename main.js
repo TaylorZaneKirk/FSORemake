@@ -55,6 +55,7 @@ function initMultiPlayer(game, globals){
         // Local reference to the server proxy to be
         // used in other methods within this module.
         console.log("CLIENT READY");
+        console.log(serverProxy);
         eurecaProxy = serverProxy;
     });
 
