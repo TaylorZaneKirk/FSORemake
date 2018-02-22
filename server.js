@@ -146,6 +146,7 @@ eurecaServer.exports.message = function(id, message){
             //Need to make Server Actions file to handle these
             players[id].state.playerFacing = message.action.payload;
             players[id].state.pos = {x: players[id].state.pos.x, y: players[id].state.pos.y++};
+            console.log(players[id].state.pos);
             break;
         }
         case 'attack': {
