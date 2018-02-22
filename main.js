@@ -142,6 +142,7 @@ function create() {
 
 function update() {
     if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {} || client.eurecaProxy == undefined){
+        console.log("gone wrong");
         return; //Stuff isn't ready; hold on...
     }
 
