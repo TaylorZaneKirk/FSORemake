@@ -147,9 +147,9 @@ function create() {
 
 
 function update() {
-    if(isMultiInit == undefined){
+    if(isMultiInit == false){
         console.log("here's the big error i think");
-        return init();
+        return initMultiPlayer(game, game.global);
     }
     if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {} || game.global.eurecaProxy == undefined){
         console.log(game.global.eurecaProxy);
