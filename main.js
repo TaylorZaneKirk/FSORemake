@@ -33,45 +33,41 @@ game.global = {
     walls: null, //Likely to be factored to 2nd or 3rd layer
     easystar: null,
     localPlayerObject: null,
-    charsprite: null,
 };
 
 function init() {
     //Add the server client for multiplayer
-    tileset = game.load.image('tileset', 'assets/tiles/FSORemakeMapTileset.png');
-    game.global.charsprite = game.load.spritesheet('player', 'assets/PlayerSheet.png', 46, 45, 16);
+
     client = new Eureca.Client();
 
     game.global.ready = false;
 
     game.global.player = false;
 
-    
-    //Maps and layers
-    map = game.add.tilemap();
-    map.addTilesetImage(tileset.key, null, 32, 32);
-    layerFirst = map.create('map', 18, 13, 32, 32);
-    
-
 }
 
 //THIS NEXT!!!
 function preload() {
-    
+    game.load.image('tileset', 'assets/tiles/FSORemakeMapTileset.png');
+    game.load.spritesheet('player', 'assets/PlayerSheet.png', 46, 45, 16);
     //game.load.image('clown', 'assets/images/clown.png');
     //game.load.image('portal', 'assets/images/portal.png');
     //game.global.easystar = new EasyStar.js();   //start the pathfinder
     game.physics.startSystem(Phaser.Physics.ARCADE);
-    initMultiPlayer(game, game.global);
 }
 
 function create() {
     //game.physics.startSystem(Phaser.Physics.ARCADE);
 
+    //Maps and layers
+    map = game.add.tilemap();
+    map.addTilesetImage('tileset', null, 32, 32);
+    layerFirst = map.create('map', 18, 13, 32, 32);
     //map.putTile(0, 1, 1, layerFirst);
     //layer2 = map.createBlankLayer('collisions', COLS, ROWS, 20, 20);
     //layer2.properties = {'collision' : true};
     //layer.resizeWorld();
+    initMultiPlayer(game, game.global);
 }
 
 function initMultiPlayer(game, globals){
@@ -101,18 +97,18 @@ function initMultiPlayer(game, globals){
         * It creates the instance of the player, and communicates
         * it's state information to the server.
         */
-    client.exports.setId = function(id, state){
+    client.exports.setId = function(id){
         console.log("Setting Id:" + id);
 
         // Assign my new connection Id
         globals.myId = id;
-        globals.player = state;
-        
+
         // Put instance of new player into list
         //globals.playerList[id] = globals.player
 
         //tell server client is ready
         eurecaProxy.initPlayer(id);
+
     }
 
     client.exports.recieveStateFromServer = function(state) {
@@ -130,8 +126,7 @@ function initMultiPlayer(game, globals){
         }
 
         if(game.global.localPlayerObject == null){
-            globals.localPlayerObject = new PlayerObject(globals.player.playerName, game);
-            globals.localPlayerObject.renderSprite(state);
+            globals.localPlayerObject = new PlayerObject(state.playerName, game);
             game.global.ready = true;
             changeMap(state.mapData, map, layerFirst);
         }
@@ -142,7 +137,7 @@ function initMultiPlayer(game, globals){
 
 
 function update() {
-    if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {} || game.global.localPlayerObject == undefined){
+    if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {}){
         return; //Stuff isn't ready; hold on...
     }
 

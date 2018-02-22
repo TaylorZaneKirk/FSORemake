@@ -60,14 +60,14 @@ eurecaServer.onConnect(function (conn) {
     players[conn.id] = {id:conn.id, remote:remote, state: new PlayerState(conn.id)}
 
     //here we call setId (defined in the client side)
-    remote.setId(conn.id, players[conn.id].state);
+    remote.setId(conn.id);
 });
 
 //detect client disconnection
 eurecaServer.onDisconnect(function (conn) {
     console.log('Client disconnected ', conn.id);
 
-    //var removeId = players[conn.id]
+    //var removeId = players[conn.id].id;
 
     delete players[conn.id];
 
@@ -99,9 +99,7 @@ eurecaServer.exports.initPlayer = function (id) {
 
     players[id].state.readyToUpdate = true;
     players[id].state.lastUpdated = currentTime;
-    //eurecaServer.updateClientsAboutNewPlayer(id);
-    var remote = eurecaServer.getClient(id);
-    remote.recieveStateFromServer(players[id].state);
+    eurecaServer.updateClientsAboutNewPlayer(id);
 
 }
 
