@@ -112,6 +112,7 @@ var PlayerObject = function(idRef, gameRef){
                 ready = false;
                 sendMessageToServer({type: 'move', payload: 'S'}, 'self');
                 playerTween.to({x: (playerState.pos.x+1) * 32, y: ((playerState.pos.y+1)+1) * 32}, 750, null, true);
+                console.log(playerTween);
                 playerTween._lastChild.onComplete.add(function(target, tween){ playerState.pos.y++; });
                 //playerSprite.body.velocity.y += 1;
             }
