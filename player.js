@@ -67,6 +67,7 @@ var PlayerObject = function(idRef, gameRef){
                 playerState: playerState,
                 update: update,
                 playerSprite: playerSprite,
+                movePlayer: movePlayer,
             };
         }
 
@@ -120,5 +121,6 @@ var PlayerObject = function(idRef, gameRef){
         playerState: playerState,
         update: update,
         playerSprite: playerSprite,
+        movePlayer: movePlayer,
     };
 }
