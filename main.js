@@ -152,7 +152,7 @@ function create() {
 function update() {
     var currentTime = new Date();
 
-    if(isMultiInit == false && currentTime.getTime > loadTime + 5000){
+    if(isMultiInit == false && currentTime.getTime() > loadTime + 5000){
         console.log("here's the big error i think");
         return this.game.state.restart();
     }
