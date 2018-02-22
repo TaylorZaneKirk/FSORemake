@@ -11,7 +11,6 @@ var PlayerObject = function(idRef, gameRef){
     var leftKey = null;
     var rightKey = null;
     var ready = null;
-    var playerTween = gameRef.add.tween(playerSprite);
 
     function init(idRef, gameRef){
         game = gameRef;
@@ -47,7 +46,6 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite.animations.add('idle-W', [5], 1, false);
         playerSprite.animations.add('idle-N', [9], 1, false);
         playerSprite.animations.add('idle-S', [13], 1, false);
-        
     }
 
     function update(){
@@ -78,14 +76,13 @@ var PlayerObject = function(idRef, gameRef){
         }
         
 
-        if(playerState.playerAction == 'idle' && playerState.readyToUpdate){
+        if(playerState.playerAction == 'idle'){
             if (leftKey.isDown){
                 playerState.playerAction = 'walk';
                 playerState.playerFacing = 'W';
                 ready = false;
                 sendMessageToServer({type: 'move', payload: 'W'}, 'self');
-                playerTween.to({x: ((playerState.pos.x+1)-1) * 32, y: (playerState.pos.y+1) * 32}, 750, null, true);
-                playerTween._lastChild.onComplete.add(function(target, tween){ playerState.pos.x--; });
+                gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)-1) * 32, y: (playerState.pos.y+1) * 32}, 750, null, true);
                 //playerSprite.body.velocity.x -= 1; //arcade physics required for body.velocity to work
             }
             else if (rightKey.isDown){
@@ -93,8 +90,7 @@ var PlayerObject = function(idRef, gameRef){
                 playerState.playerFacing = 'E';
                 ready = false;
                 sendMessageToServer({type: 'move', payload: 'E'}, 'self');
-                playerTween.to({x: ((playerState.pos.x+1)+1) * 32, y: (playerState.pos.y+1) * 32}, 750, null, true);
-                playerTween._lastChild.onComplete.add(function(target, tween){ playerState.pos.x++; });
+                gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)+1) * 32, y: (playerState.pos.y+1) * 32}, 750, null, true);
                 //playerSprite.body.velocity.x += 1;
             }
             else if (upKey.isDown){
@@ -102,8 +98,7 @@ var PlayerObject = function(idRef, gameRef){
                 playerState.playerFacing = 'N';
                 ready = false;
                 sendMessageToServer({type: 'move', payload: 'N'}, 'self');
-                playerTween.to({x: (playerState.pos.x+1) * 32, y: ((playerState.pos.y+1)-1) * 32}, 750, null, true);
-                playerTween._lastChild.onComplete.add(function(target, tween){ playerState.pos.y--; });
+                gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: ((playerState.pos.y+1)-1) * 32}, 750, null, true);
                 //playerSprite.body.velocity.y -= 1;
             }
             else if (downKey.isDown){
@@ -111,9 +106,7 @@ var PlayerObject = function(idRef, gameRef){
                 playerState.playerFacing = 'S';
                 ready = false;
                 sendMessageToServer({type: 'move', payload: 'S'}, 'self');
-                playerTween.to({x: (playerState.pos.x+1) * 32, y: ((playerState.pos.y+1)+1) * 32}, 750, null, true);
-                console.log(playerTween);
-                playerTween.onComplete = function(target, tween){ playerState.pos.y++; };
+                gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: ((playerState.pos.y+1)+1) * 32}, 750, null, true);
                 //playerSprite.body.velocity.y += 1;
             }
             
@@ -132,14 +125,11 @@ var PlayerObject = function(idRef, gameRef){
         } */
         //playerState.playerAction = 'walk';
         //gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: (playerState.pos.y+1) * 32}, 250, null, true);
-        //gameRef.add.tween(playerSprite).pause();
-        //playerTween.stop();
-        /* playerSprite.x = (playerState.pos.x+1)*32;
-        playerSprite.y = (playerState.pos.y+1)*32; */
-        playerTween.to({x: (playerState.pos.x+1) * 32, y: (playerState.pos.y+1) * 32}, 750, null, true);
-        //playerTween.resume();
-        //playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
-        //gameRef.add.tween(playerSprite).resume();
+        /* gameRef.add.tween(playerSprite).pause();
+        playerSprite.x = (playerState.pos.x+1)*32;
+        playerSprite.y = (playerState.pos.y+1)*32;
+        playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
+        gameRef.add.tween(playerSprite).resume(); */
     }
 
     init(idRef, gameRef);
