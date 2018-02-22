@@ -73,6 +73,24 @@ function create() {
 
 function initMultiPlayer(game, globals){
 
+    /**
+        * This sets the players id that we get from the server
+        * It creates the instance of the player, and communicates
+        * it's state information to the server.
+        */
+        client.exports.setId = function(id){
+            console.log("Setting Id:" + id);
+    
+            // Assign my new connection Id
+            globals.myId = id;
+    
+            // Put instance of new player into list
+            //globals.playerList[id] = globals.player
+    
+            //tell server client is ready
+            eurecaProxy.initPlayer(id);
+    
+        }
     
 
     /**
@@ -93,24 +111,7 @@ function initMultiPlayer(game, globals){
         eurecaProxy = serverProxy;
     });
 
-    /**
-        * This sets the players id that we get from the server
-        * It creates the instance of the player, and communicates
-        * it's state information to the server.
-        */
-    client.exports.setId = function(id){
-        console.log("Setting Id:" + id);
-
-        // Assign my new connection Id
-        globals.myId = id;
-
-        // Put instance of new player into list
-        //globals.playerList[id] = globals.player
-
-        //tell server client is ready
-        eurecaProxy.initPlayer(id);
-
-    }
+    
 
     client.exports.recieveStateFromServer = function(state) {
         console.log("Recieved State");
