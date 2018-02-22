@@ -35,7 +35,7 @@ game.global = {
     walls: null, //Likely to be factored to 2nd or 3rd layer
     easystar: null,
     localPlayerObject: null,
-    spriteSheet = null,
+    spriteSheet: null,
 };
 
 function init() {
