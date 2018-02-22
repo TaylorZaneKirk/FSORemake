@@ -43,6 +43,7 @@ function init() {
     game.global.ready = false;
 
     game.global.player = false;
+    initMultiPlayer(game, game.global);
 
 }
 
@@ -57,7 +58,7 @@ function preload() {
 }
 
 function create() {
-    initMultiPlayer(game, game.global);
+    
 
     //game.physics.startSystem(Phaser.Physics.ARCADE);
 
