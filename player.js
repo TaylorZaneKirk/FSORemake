@@ -51,11 +51,11 @@ var PlayerObject = function(idRef, gameRef){
     function update(){
 
         //Change this to localPlayer pos checking against playerState.pos
-        if(!ready){
+        /* if(!ready){
             ready = true;
-        }
+        } */
 
-        if(!ready) { return; }
+        if(!playerState.readyToUpdate) { return; }
 
         if(playerState != game.global.player){
             playerState = game.global.player;
@@ -73,31 +73,35 @@ var PlayerObject = function(idRef, gameRef){
 
         if(playerState.playerAction == 'idle'){
             if (leftKey.isDown){
-                //playerState.playerAction = 'walk';
+                playerState.playerAction = 'walk';
                 playerState.playerFacing = 'W';
                 ready = false;
                 sendMessageToServer({type: 'move', payload: 'W'}, 'self');
+                gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)-1) * 32, y: (playerState.pos.y+1) * 32}, 250, null, true);
                 //playerSprite.body.velocity.x -= 1; //arcade physics required for body.velocity to work
             }
             else if (rightKey.isDown){
-                //playerState.playerAction = 'walk';
+                playerState.playerAction = 'walk';
                 playerState.playerFacing = 'E';
                 ready = false;
                 sendMessageToServer({type: 'move', payload: 'E'}, 'self');
+                gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)+1) * 32, y: (playerState.pos.y+1) * 32}, 250, null, true);
                 //playerSprite.body.velocity.x += 1;
             }
             else if (upKey.isDown){
-                //playerState.playerAction = 'walk';
+                playerState.playerAction = 'walk';
                 playerState.playerFacing = 'N';
                 ready = false;
                 sendMessageToServer({type: 'move', payload: 'N'}, 'self');
+                gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: ((playerState.pos.y+1)-1) * 32}, 250, null, true);
                 //playerSprite.body.velocity.y -= 1;
             }
             else if (downKey.isDown){
-                //playerState.playerAction = 'walk';
+                playerState.playerAction = 'walk';
                 playerState.playerFacing = 'S';
                 ready = false;
                 sendMessageToServer({type: 'move', payload: 'S'}, 'self');
+                gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: ((playerState.pos.y+1)+1) * 32}, 250, null, true);
                 //playerSprite.body.velocity.y += 1;
             }
         }
@@ -112,13 +116,15 @@ var PlayerObject = function(idRef, gameRef){
     }
 
     movePlayer = function(){
-        console.log((playerState.pos.x+1)*32 + " " + (playerSprite.x | 0))
+        /* console.log((playerState.pos.x+1)*32 + " " + (playerSprite.x | 0))
         if(((playerState.pos.x+1)*32 == (playerSprite.x | 0) && (playerState.pos.y+1)*32 == (playerSprite.y | 0))){
             playerState.playerAction = 'idle';
             return;
-        }
-        playerState.playerAction = 'walk';
-        gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: (playerState.pos.y+1) * 32}, 250, null, true);
+        } */
+        //playerState.playerAction = 'walk';
+        //gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: (playerState.pos.y+1) * 32}, 250, null, true);
+        playerSprite.x = (playerState.pos.x+1)*32;
+        playerSprite.y = (playerState.pos.y+1)*32;
     }
 
     init(idRef, gameRef);
