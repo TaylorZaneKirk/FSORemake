@@ -71,34 +71,37 @@ var PlayerObject = function(idRef, gameRef){
             };
         }
 
-        if (leftKey.isDown){
-            //playerState.playerAction = 'walk';
-            playerState.playerFacing = 'W';
-            ready = false;
-            sendMessageToServer({type: 'move', payload: 'W'}, 'self');
-            //playerSprite.body.velocity.x -= 1; //arcade physics required for body.velocity to work
+        if(playerState.playerAction != 'idle'){
+            if (leftKey.isDown){
+                //playerState.playerAction = 'walk';
+                playerState.playerFacing = 'W';
+                ready = false;
+                sendMessageToServer({type: 'move', payload: 'W'}, 'self');
+                //playerSprite.body.velocity.x -= 1; //arcade physics required for body.velocity to work
+            }
+            else if (rightKey.isDown){
+                //playerState.playerAction = 'walk';
+                playerState.playerFacing = 'E';
+                ready = false;
+                sendMessageToServer({type: 'move', payload: 'E'}, 'self');
+                //playerSprite.body.velocity.x += 1;
+            }
+            else if (upKey.isDown){
+                //playerState.playerAction = 'walk';
+                playerState.playerFacing = 'N';
+                ready = false;
+                sendMessageToServer({type: 'move', payload: 'N'}, 'self');
+                //playerSprite.body.velocity.y -= 1;
+            }
+            else if (downKey.isDown){
+                //playerState.playerAction = 'walk';
+                playerState.playerFacing = 'S';
+                ready = false;
+                sendMessageToServer({type: 'move', payload: 'S'}, 'self');
+                //playerSprite.body.velocity.y += 1;
+            }
         }
-        else if (rightKey.isDown){
-            //playerState.playerAction = 'walk';
-            playerState.playerFacing = 'E';
-            ready = false;
-            sendMessageToServer({type: 'move', payload: 'E'}, 'self');
-            //playerSprite.body.velocity.x += 1;
-        }
-        else if (upKey.isDown){
-            //playerState.playerAction = 'walk';
-            playerState.playerFacing = 'N';
-            ready = false;
-            sendMessageToServer({type: 'move', payload: 'N'}, 'self');
-            //playerSprite.body.velocity.y -= 1;
-        }
-        else if (downKey.isDown){
-            //playerState.playerAction = 'walk';
-            playerState.playerFacing = 'S';
-            ready = false;
-            sendMessageToServer({type: 'move', payload: 'S'}, 'self');
-            //playerSprite.body.velocity.y += 1;
-        }
+        
         
         
         playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
