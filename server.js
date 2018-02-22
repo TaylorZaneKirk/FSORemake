@@ -67,7 +67,7 @@ eurecaServer.onConnect(function (conn) {
 eurecaServer.onDisconnect(function (conn) {
     console.log('Client disconnected ', conn.id);
 
-    var removeId = players[conn.id].id;
+    //var removeId = players[conn.id]
 
     delete players[conn.id];
 
@@ -99,7 +99,7 @@ eurecaServer.exports.initPlayer = function (id) {
 
     players[id].state.readyToUpdate = true;
     players[id].state.lastUpdated = currentTime;
-    eurecaServer.updateClientsAboutNewPlayer(id);
+    //eurecaServer.updateClientsAboutNewPlayer(id);
 
 }
 
