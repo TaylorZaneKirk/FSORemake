@@ -125,11 +125,11 @@ var PlayerObject = function(idRef, gameRef){
         } */
         //playerState.playerAction = 'walk';
         //gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: (playerState.pos.y+1) * 32}, 250, null, true);
-        /* gameRef.add.tween(playerSprite).pause();
+        gameRef.add.tween(playerSprite).pause();
         playerSprite.x = (playerState.pos.x+1)*32;
         playerSprite.y = (playerState.pos.y+1)*32;
         playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
-        gameRef.add.tween(playerSprite).resume(); */
+        gameRef.add.tween(playerSprite).resume();
     }
 
     init(idRef, gameRef);
