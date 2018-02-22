@@ -143,8 +143,8 @@ function create() {
 
 
 function update() {
-    if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {} || globals.eurecaProxy == undefined){
-        console.log(globals.eurecaProxy);
+    if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {} || game.global.eurecaProxy == undefined){
+        console.log(game.global.eurecaProxy);
         return; //Stuff isn't ready; hold on...
     }
 
