@@ -72,28 +72,28 @@ var PlayerObject = function(idRef, gameRef){
         }
 
         if (leftKey.isDown){
-            playerState.playerAction = 'walk';
+            //playerState.playerAction = 'walk';
             playerState.playerFacing = 'W';
             ready = false;
             sendMessageToServer({type: 'move', payload: 'W'}, 'self');
             //playerSprite.body.velocity.x -= 1; //arcade physics required for body.velocity to work
         }
         else if (rightKey.isDown){
-            playerState.playerAction = 'walk';
+            //playerState.playerAction = 'walk';
             playerState.playerFacing = 'E';
             ready = false;
             sendMessageToServer({type: 'move', payload: 'E'}, 'self');
             //playerSprite.body.velocity.x += 1;
         }
         else if (upKey.isDown){
-            playerState.playerAction = 'walk';
+            //playerState.playerAction = 'walk';
             playerState.playerFacing = 'N';
             ready = false;
             sendMessageToServer({type: 'move', payload: 'N'}, 'self');
             //playerSprite.body.velocity.y -= 1;
         }
         else if (downKey.isDown){
-            playerState.playerAction = 'walk';
+            //playerState.playerAction = 'walk';
             playerState.playerFacing = 'S';
             ready = false;
             sendMessageToServer({type: 'move', payload: 'S'}, 'self');
@@ -106,12 +106,12 @@ var PlayerObject = function(idRef, gameRef){
     }
 
     movePlayer = function(){
-        console.log(playerState.pos.x + " " + playerSprite.world.x)
-        if((playerState.pos.x*32 == playerSprite.x && playerState.pos.y*32 == playerSprite.y) || playerState.playerAction != 'idle'){
+        //console.log(playerState.pos.x + " " + playerSprite.world.x)
+        if(((playerState.pos.x+1)*32 == playerSprite.x && (playerState.pos.y+1)*32 == playerSprite.y) || playerState.playerAction != 'idle'){
             //return;
         }
-        playerState.playerAction = 'move';
-        gameRef.add.tween(playerSprite).to({x: playerState.pos.x * 32, y: playerState.pos.y * 32}, 250, Phaser.Easing.Quadratic.InOut, true);
+        playerState.playerAction = 'walk';
+        gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: (playerState.pos.y+1) * 32}, 250, Phaser.Easing.Quadratic.InOut, true);
     }
 
     init(idRef, gameRef);
