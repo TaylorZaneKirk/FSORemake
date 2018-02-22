@@ -22,9 +22,12 @@ var PlayerObject = function(idRef, gameRef){
         downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
         leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
         rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+    }
 
-        playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player');
-        game.physics.arcade.enable(playerSprite);
+    function renderSprite(state){
+        playerState = state;
+        playerSprite = gameRef.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player');
+        gameRef.physics.arcade.enable(playerSprite);
         playerSprite.anchor.setTo(0.1430,0.15);
         playerSprite.enableBody = true;
         //playerSprite.body.enable = true;
@@ -66,6 +69,7 @@ var PlayerObject = function(idRef, gameRef){
                 update: update,
                 playerSprite: playerSprite,
                 movePlayer: movePlayer,
+                rederSprite: renderSprite,
             };
         }
 
@@ -141,5 +145,6 @@ var PlayerObject = function(idRef, gameRef){
         update: update,
         playerSprite: playerSprite,
         movePlayer: movePlayer,
+        renderSprite: renderSprite,
     };
 }
