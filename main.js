@@ -10,6 +10,8 @@ var map; //first layer tile objects
 var layerFirst;
 var layer2;
 
+var isMultiInit;
+
 
 
 // initialize phaser, call create() once done
@@ -45,6 +47,7 @@ function initMultiPlayer(game, globals){
         */
     client.onConnect(function (connection) {
         console.log('Incoming connection', connection);
+        isMultiInit = true;
 
     });
     /**
@@ -104,6 +107,7 @@ function initMultiPlayer(game, globals){
 
 function init() {
     //Add the server client for multiplayer
+    isMultiInit = false;
 
     client = new Eureca.Client();
 
@@ -143,6 +147,10 @@ function create() {
 
 
 function update() {
+    if(isMultiInit == undefined){
+        console.log("here's the big error i think");
+        return init();
+    }
     if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {} || game.global.eurecaProxy == undefined){
         console.log(game.global.eurecaProxy);
         return; //Stuff isn't ready; hold on...
