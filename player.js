@@ -76,7 +76,7 @@ var PlayerObject = function(idRef, gameRef){
                 playerState.playerAction = 'walk';
                 playerState.playerFacing = 'W';
                 ready = false;
-                //sendMessageToServer({type: 'move', payload: 'W'}, 'self');
+                sendMessageToServer({type: 'move', payload: 'W'}, 'self');
                 gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)-1) * 32, y: (playerState.pos.y+1) * 32}, 250, null, true);
                 //playerSprite.body.velocity.x -= 1; //arcade physics required for body.velocity to work
             }
@@ -84,7 +84,7 @@ var PlayerObject = function(idRef, gameRef){
                 playerState.playerAction = 'walk';
                 playerState.playerFacing = 'E';
                 ready = false;
-                //sendMessageToServer({type: 'move', payload: 'E'}, 'self');
+                sendMessageToServer({type: 'move', payload: 'E'}, 'self');
                 gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)+1) * 32, y: (playerState.pos.y+1) * 32}, 250, null, true);
                 //playerSprite.body.velocity.x += 1;
             }
@@ -92,7 +92,7 @@ var PlayerObject = function(idRef, gameRef){
                 playerState.playerAction = 'walk';
                 playerState.playerFacing = 'N';
                 ready = false;
-                //sendMessageToServer({type: 'move', payload: 'N'}, 'self');
+                sendMessageToServer({type: 'move', payload: 'N'}, 'self');
                 gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: ((playerState.pos.y+1)-1) * 32}, 250, null, true);
                 //playerSprite.body.velocity.y -= 1;
             }
@@ -100,7 +100,7 @@ var PlayerObject = function(idRef, gameRef){
                 playerState.playerAction = 'walk';
                 playerState.playerFacing = 'S';
                 ready = false;
-                //sendMessageToServer({type: 'move', payload: 'S'}, 'self');
+                sendMessageToServer({type: 'move', payload: 'S'}, 'self');
                 gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: ((playerState.pos.y+1)+1) * 32}, 250, null, true);
                 //playerSprite.body.velocity.y += 1;
             }
