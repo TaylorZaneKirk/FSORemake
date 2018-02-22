@@ -1,17 +1,26 @@
 {
-    "name": "FSORemake",
-    "version": "1.0.0",
-    "description": "FSORemake",
-    "main": "server.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "Taylor Kirk",
-    "license": "ISC",
-    "dependencies": {
-      "engine.io": "^1.6.11",
-      "eureca.io": "^0.6.42",
-      "express": "^4.14.0"
-    }
-  }
-  
+  "name": "fsoremake",
+  "version": "1.0.0",
+  "description": "FSORemake",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Taylor Kirk",
+  "license": "ISC",
+  "dependencies": {
+    "engine.io": "^1.8.5",
+    "eureca.io": "^0.7.1",
+    "express": "^4.14.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TaylorZaneKirk/FSORemake.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TaylorZaneKirk/FSORemake/issues"
+  },
+  "homepage": "https://github.com/TaylorZaneKirk/FSORemake#readme"
+}
