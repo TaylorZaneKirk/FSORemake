@@ -37,7 +37,7 @@ game.global = {
 
 function init() {
     //Add the server client for multiplayer
-    game.load.image('tileset', 'assets/tiles/FSORemakeMapTileset.png');
+    tileset = game.load.image('tileset', 'assets/tiles/FSORemakeMapTileset.png');
     game.load.spritesheet('player', 'assets/PlayerSheet.png', 46, 45, 16);
     client = new Eureca.Client();
 
@@ -46,6 +46,10 @@ function init() {
     game.global.player = false;
 
     
+    //Maps and layers
+    map = game.add.tilemap();
+    map.addTilesetImage('tileset', null, 32, 32);
+    layerFirst = map.create('map', 18, 13, 32, 32);
     
 
 }
@@ -63,10 +67,6 @@ function preload() {
 function create() {
     //game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    //Maps and layers
-    map = game.add.tilemap();
-    map.addTilesetImage('tileset', null, 32, 32);
-    layerFirst = map.create('map', 18, 13, 32, 32);
     //map.putTile(0, 1, 1, layerFirst);
     //layer2 = map.createBlankLayer('collisions', COLS, ROWS, 20, 20);
     //layer2.properties = {'collision' : true};
