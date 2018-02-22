@@ -54,10 +54,11 @@ function preload() {
     //game.load.image('portal', 'assets/images/portal.png');
     //game.global.easystar = new EasyStar.js();   //start the pathfinder
     game.physics.startSystem(Phaser.Physics.ARCADE);
+    initMultiPlayer(game, game.global);
 }
 
 function create() {
-    initMultiPlayer(game, game.global);
+    
 
     //game.physics.startSystem(Phaser.Physics.ARCADE);
 
