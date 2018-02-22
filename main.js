@@ -44,6 +44,9 @@ function init() {
 
     game.global.player = false;
 
+    
+    initMultiPlayer(game, game.global);
+
 }
 
 //THIS NEXT!!!
@@ -67,7 +70,6 @@ function create() {
     //layer2 = map.createBlankLayer('collisions', COLS, ROWS, 20, 20);
     //layer2.properties = {'collision' : true};
     //layer.resizeWorld();
-    initMultiPlayer(game, game.global);
 }
 
 function initMultiPlayer(game, globals){
