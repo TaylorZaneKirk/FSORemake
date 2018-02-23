@@ -108,11 +108,11 @@ function initMultiPlayer(game, globals){
         * Called from server when another player "disconnects"
         */
     client.exports.kill = function(id){
-        if(globals.playerList[id]){
+        if(globals.playerList[id] != undefined){
             delete globals.playerList[id];
             console.log('killing ', id, globals.playerList[id]);
         }
-        if (globals.playerList[id]) {
+        if (globals.playerList[id] != undefined) {
             delete globals.playerList[id];
         }
     }
