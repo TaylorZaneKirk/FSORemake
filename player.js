@@ -15,7 +15,7 @@ var PlayerObject = function(idRef, gameRef){
     function init(idRef, gameRef){
         game = gameRef;
         id = idRef;
-        playerState = game.global.playerList[id];
+        playerState = game.global.playerList[id].player;
         ready = false;
         
         upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
