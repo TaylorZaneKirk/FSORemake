@@ -54,6 +54,9 @@ var PlayerObject = function(idRef, gameRef){
         /* if(!ready){
             ready = true;
         } */
+        if(game.global.playerList[id].player == undefined){
+            return;
+        }
 
         if(playerState != game.global.playerList[id].player && playerState.playerName == game.global.playerList[id].player.playerName){
             playerState = game.global.playerList[id].player;
