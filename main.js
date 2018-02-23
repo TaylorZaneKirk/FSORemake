@@ -119,6 +119,7 @@ function initMultiPlayer(game, globals){
 
     client.exports.disconnect = function() {
         client.disconnect();
+        isMultiInit = false;
     }
 }
 
