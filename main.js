@@ -108,17 +108,15 @@ function initMultiPlayer(game, globals){
         */
     client.exports.kill = function(id){
         if(globals.playerList[id]){
-            delete globals.playerList[id];
             console.log('killing ', id, globals.playerList[id]);
-        }
-        if (globals.player == id) {
-            initMultiPlayer = false;
+            delete globals.playerList[id];
         }
     }
 
     client.exports.disconnect = function() {
         client.disconnect();
-        //globals.localPlayerObject.playerSprite.kill()
+        globals.localPlayerObject.playerSprite.kill();
+        globals.ready = false;
         //isMultiInit = false;
     }
 }
