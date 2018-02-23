@@ -27,7 +27,7 @@ class PlayerState
         this.WorldY = 0;
         this.lastUpdated = null;
         this.readyToUpdate = false;
-        this.playersVisible = [];
+        this.playersVisible = {};
         this.mapData = null;
         readMapFromFile(idString, this.pos.x, this.pos.y);
     }
