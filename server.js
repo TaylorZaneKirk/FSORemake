@@ -108,10 +108,13 @@ eurecaServer.exports.requestUpdate = function (id) {
     var currentServerTime = new Date().getTime();
     if(players[id] && players[id].state.lastUpdated + 1250 < currentServerTime){
         players[id].state.lastUpdated = currentServerTime;
-        players[id].state.playersVisible = players;
+        //players[id].state.playersVisible = players;
 
         for(var i in players){
-            players[id].state.playersVisible[players[i].state.playerName] = players[i].state;
+            if(players[i].state.playerName != id){
+                players[id].state.playersVisible[players[i].state.playerName] = players[i].state;
+            }
+            
         }
 
         var remote = eurecaServer.getClient(id);
