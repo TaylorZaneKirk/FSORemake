@@ -105,6 +105,7 @@ function initMultiPlayer(game, globals){
             changeMap(state.mapData, map, layerFirst);
         }
         globals.playerList = state.playersVisible;
+        console.log(state);
         for(var i in globals.playerList){
             console.log("OTHER PLAYER:" + globals.playerList[i].playerName);
         }
