@@ -112,12 +112,15 @@ function initMultiPlayer(game, globals){
         if(globals.playerList[id]){
             console.log('killing ', id, globals.playerList[id]);
             delete globals.playerList[id];
+            //kill sprite here
         }
     }
 
     client.exports.disconnect = function(id) {
         if(globals.player.playerName = id){
             client.disconnect();
+            globals.localPlayerObject.playerSprite.kill();
+            game.state.restart();
         }
         
         //Display reconnection modal???
