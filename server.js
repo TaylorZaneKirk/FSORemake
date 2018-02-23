@@ -112,6 +112,7 @@ eurecaServer.exports.requestUpdate = function (id) {
 
         for(var i in players){
             if(players[i].state.playerName != id){
+                console.log("assigned other player");
                 players[id].state.playersVisible[players[i].state.playerName] = players[i].state;
             }
             
