@@ -123,6 +123,13 @@ function initMultiPlayer(game, globals){
     client.exports.disconnect = function() {
         client.disconnect();
         game.destroy();
+        game = new Phaser.Game(800, 600, Phaser.AUTO, null, {
+            init: init,
+            preload: preload,
+            create: create,
+            update: update,
+            render: render,
+        });
     }
 }
 
