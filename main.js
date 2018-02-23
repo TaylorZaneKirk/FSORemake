@@ -83,6 +83,9 @@ function initMultiPlayer(game, globals){
     }
 
     client.exports.recieveStateFromServer = function(state) {
+        if(state == undefined){
+            return; //wtf?
+        }
         console.log("Recieved State");
         state.lastUpdated = new Date().getTime();
 
