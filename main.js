@@ -116,6 +116,10 @@ function initMultiPlayer(game, globals){
             delete globals.playerList[id];
         }
     }
+
+    client.exports.disconnect = function() {
+        globals.eurecaProxy.disconnect();
+    }
 }
 
 function init() {

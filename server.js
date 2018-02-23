@@ -11,7 +11,7 @@ var Eureca = require('eureca.io');
 
 
 //create an instance of EurecaServer
-var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill']});
+var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill', 'disconnect']});
 
 //attach eureca.io to our http server
 eurecaServer.attach(server);
@@ -48,6 +48,8 @@ class PlayerState
 };
 
 var players = {};
+
+setTimeout(eurecaServer.removeOldConnections(), 60000);
 
 //detect client connection
 eurecaServer.onConnect(function (conn) {
@@ -109,6 +111,18 @@ eurecaServer.exports.initPlayer = function (id) {
     
     eurecaServer.updateClientsAboutNewPlayer(id);
 
+}
+
+eurecaServer.removeOldConnections = function() {
+    console.log("removing dead connections");
+    var currentServerTime = new Date().getTime();
+    var remote
+    for(var i in players){
+        if(players[i].state.lastUpdated + 60000 > currentServerTime){
+            remote = players[i].remote
+            remote.disconnect();
+        }
+    }
 }
 
 eurecaServer.exports.requestUpdate = function (id) {
