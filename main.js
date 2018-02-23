@@ -97,7 +97,7 @@ function initMultiPlayer(game, globals){
             globals.playerList[state.playerName].player = state;
             console.log(globals.player);
         }
-        else{
+        else if(state.playerName != globals.myId){
             //Add NPC-Style player sprites here within a list
             if(globals.playerList[state.playerName] == undefined){
                 globals.playerList[state.playerName] = {player: state, localPlayerObject: null};
