@@ -113,7 +113,7 @@ function initMultiPlayer(game, globals){
             console.log('killing ', id, globals.playerList[id]);
         }
         if (globals.player.playerName == id) {
-            delete globals.playerList[id];
+            globals.player = null;
             game.state.restart();
         }
     }
