@@ -114,7 +114,7 @@ function initMultiPlayer(game, globals){
         }
         if (globals.player.playerName == id) {
             delete globals.playerList[id];
-            this.game.state.restart();
+            game.state.restart();
         }
     }
 
