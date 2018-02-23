@@ -83,9 +83,6 @@ function initMultiPlayer(game, globals){
     }
 
     client.exports.recieveStateFromServer = function(state) {
-        if(state == undefined){
-            return; //wtf?
-        }
         console.log("Recieved State");
         state.lastUpdated = new Date().getTime();
 
@@ -104,16 +101,7 @@ function initMultiPlayer(game, globals){
             game.global.ready = true;
             changeMap(state.mapData, map, layerFirst);
         }
-        globals.playerList = state.playersVisible;
-        console.log(state);
-        for(var i in globals.playerList){
-            console.log("OTHER PLAYER:" + globals.playerList[i].playerName);
-        }
-
-    }
-
-    client.exports.disconnect = function() {
-        isMultiInit = false;
+        globals.playerList[state.playerName] = state;
     }
 }
 

@@ -11,7 +11,7 @@ var Eureca = require('eureca.io');
 
 
 //create an instance of EurecaServer
-var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'disconnect']});
+var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer']});
 
 //attach eureca.io to our http server
 eurecaServer.attach(server);
@@ -27,7 +27,7 @@ class PlayerState
         this.WorldY = 0;
         this.lastUpdated = null;
         this.readyToUpdate = false;
-        this.playersVisible = {};
+        this.playersVisible = [];
         this.mapData = null;
         readMapFromFile(idString, this.pos.x, this.pos.y);
     }
@@ -106,29 +106,9 @@ eurecaServer.exports.initPlayer = function (id) {
 eurecaServer.exports.requestUpdate = function (id) {
 
     var currentServerTime = new Date().getTime();
-    var remote = eurecaServer.getClient(id);
-
     if(players[id] && players[id].state.lastUpdated + 1250 < currentServerTime){
         players[id].state.lastUpdated = currentServerTime;
-        //players[id].state.playersVisible = players;
-
-        for(var i in players){
-            if(players[i].state.playerName != id){
-                if(players[i].state.lastUpdated + 60000 < currentServerTime){
-                    var removeRemote = players[i].remote;
-                    console.log("removing dead connection");
-                    removeRemote.disconnect();
-                    delete players[i]; //timeout
-
-                }
-                else{
-                    players[id].state.playersVisible[players[i].state.playerName] = players[i].state;
-                }
-                
-            }
-            
-        }
-        
+        var remote = eurecaServer.getClient(id);
 
         //Fetch users that are on the same page
         remote.recieveStateFromServer(players[id].state);
@@ -154,12 +134,6 @@ eurecaServer.exports.message = function(id, message){
         message.target == null || message.target == undefined){
         console.log("ERROR: Recieved invalid message");
         return;
-    }
-    
-    if(players[id] == undefined){
-        var remote = eurecaServer.getClient(id);
-        remote.disconnect();
-        //Restablish connection
     }
 
     var currentTime = new Date();
