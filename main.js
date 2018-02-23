@@ -108,13 +108,16 @@ function initMultiPlayer(game, globals){
         * Called from server when another player "disconnects"
         */
     client.exports.kill = function(id){
-        if(globals.playerList[id] != undefined){
-            delete globals.playerList[id];
-            console.log('killing ', id, globals.playerList[id]);
+        if(globals.player != undefined){
+            if(globals.playerList[id] != undefined){
+                delete globals.playerList[id];
+                console.log('killing ', id, globals.playerList[id]);
+            }
+            if (globals.player.playerName == id) {
+                globals.player = null;
+            }
         }
-        if (globals.player.playerName == id) {
-            globals.player = null;
-        }
+        
     }
 
     client.exports.disconnect = function() {
@@ -179,8 +182,8 @@ function update() {
     if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {} || game.global.eurecaProxy == undefined){
         if(currentTime.getTime() > loadTime + 5000){
             console.log("ERROR: Something did not load correctly, restarting game [B]");
-        
-            return this.game.state.restart();
+            isMultiInit = false;
+            return
         }
         return; //Stuff isn't ready; hold on...
     }
