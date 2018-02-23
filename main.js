@@ -94,15 +94,20 @@ function initMultiPlayer(game, globals){
             globals.player = state;
             console.log(globals.player);
         }
+        else{
+            //Add NPC-Style player sprites here within a list
+            globals.playerList[state.playerName].player = state;
+            globals.playerList[state.playerName].localPlayerObject = new PlayerObject(state.playerName, game);
+        }
 
-        if(game.global.localPlayerObject == null){
+        if(state.playerName == globals.myId && game.global.localPlayerObject == null){
             globals.localPlayerObject = new PlayerObject(state.playerName, game);
             game.global.ready = true;
             changeMap(state.mapData, map, layerFirst);
         }
-        globals.playerList[state.playerName] = state;
+        
 
-        //Add NPC-Style player sprites here within a list
+        
     }
 
     /**
@@ -116,15 +121,6 @@ function initMultiPlayer(game, globals){
         }
     }
 
-    client.exports.disconnect = function(id) {
-        if(globals.player.playerName = id){
-            client.disconnect();
-            //globals.localPlayerObject.playerSprite.kill();
-            //game.destroy(); //will eventually just go back to login page
-        }
-        
-        //Display reconnection modal???
-    }
 }
 
 function init() {

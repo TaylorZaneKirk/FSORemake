@@ -113,17 +113,6 @@ eurecaServer.exports.initPlayer = function (id) {
 
 }
 
-eurecaServer.removeOldConnections = function() {
-    console.log("removing dead connections");
-    var currentServerTime = new Date().getTime();
-    var remote
-    for(var i in players){
-        if(players[i].state.lastUpdated + 60000 < currentServerTime){
-            remote = players[i].remote
-            remote.disconnect(players[i].id);
-        }
-    }
-}
 
 eurecaServer.exports.requestUpdate = function (id) {
 
@@ -237,5 +226,3 @@ readMapFromFile = function(id, x, y){
     });
     
 }
-
-//setInterval(eurecaServer.removeOldConnections, 60000);
