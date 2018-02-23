@@ -92,6 +92,7 @@ function initMultiPlayer(game, globals){
         if(state.playerName == globals.myId){
             console.log("Assigned Player State");
             globals.player = state;
+            globals.playerList[state.playerName] = globals.myId;
             globals.playerList[state.playerName].player = state;
             console.log(globals.player);
         }
@@ -103,6 +104,7 @@ function initMultiPlayer(game, globals){
 
         if(state.playerName == globals.myId && game.global.localPlayerObject == null){
             globals.localPlayerObject = new PlayerObject(state.playerName, game);
+            
             globals.playerList[state.playerName].player = state;
             game.global.ready = true;
             changeMap(state.mapData, map, layerFirst);
