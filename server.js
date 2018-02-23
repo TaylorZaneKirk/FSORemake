@@ -112,12 +112,18 @@ eurecaServer.exports.requestUpdate = function (id) {
 
         for(var i in players){
             if(players[i].state.playerName != id){
-                console.log("assigned other player");
-                players[id].state.playersVisible[players[i].state.playerName] = players[i].state;
+                if(players[i].state.lastUpdated + 60000 < currentServerTime){
+                    console.log("removing dead connection");
+                    delete players[i]; //timeout
+
+                }
+                else{
+                    players[id].state.playersVisible[players[i].state.playerName] = players[i].state;
+                }
+                
             }
             
         }
-        console.log(players[id].state.playersVisible);
         var remote = eurecaServer.getClient(id);
 
         //Fetch users that are on the same page
