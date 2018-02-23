@@ -99,7 +99,12 @@ eurecaServer.exports.initPlayer = function (id) {
 
     players[id].state.readyToUpdate = true;
     players[id].state.lastUpdated = currentTime;
-    players[id].state.playersVisible = players;
+    for(var i in players){
+        if(players[i].state.playerName != id){
+            players[id].state.playersVisible[id] = players[i].state;
+        }
+    }
+    
     
     eurecaServer.updateClientsAboutNewPlayer(id);
 
