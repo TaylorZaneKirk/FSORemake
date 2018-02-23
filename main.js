@@ -106,9 +106,7 @@ function initMultiPlayer(game, globals){
         }
         globals.playerList = state.playersVisible;
         for(var i in globals.playerList){
-            if (globals.playerList[i].state.playerName != globals.player.playerName){
-                console.log("OTHER PLAYER:" + globals.playerList[i].state.playerName);
-            }
+            console.log("OTHER PLAYER:" + globals.playerList[i].playerName);
         }
 
     }
