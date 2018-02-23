@@ -11,7 +11,7 @@ var Eureca = require('eureca.io');
 
 
 //create an instance of EurecaServer
-var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer']});
+var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'disconnect']});
 
 //attach eureca.io to our http server
 eurecaServer.attach(server);
@@ -106,6 +106,8 @@ eurecaServer.exports.initPlayer = function (id) {
 eurecaServer.exports.requestUpdate = function (id) {
 
     var currentServerTime = new Date().getTime();
+    var remote = eurecaServer.getClient(id);
+
     if(players[id] && players[id].state.lastUpdated + 1250 < currentServerTime){
         players[id].state.lastUpdated = currentServerTime;
         //players[id].state.playersVisible = players;
@@ -115,6 +117,7 @@ eurecaServer.exports.requestUpdate = function (id) {
                 if(players[i].state.lastUpdated + 60000 < currentServerTime){
                     console.log("removing dead connection");
                     delete players[i]; //timeout
+                    remote.disconnect();
 
                 }
                 else{
@@ -124,7 +127,7 @@ eurecaServer.exports.requestUpdate = function (id) {
             }
             
         }
-        var remote = eurecaServer.getClient(id);
+        
 
         //Fetch users that are on the same page
         remote.recieveStateFromServer(players[id].state);
@@ -150,6 +153,12 @@ eurecaServer.exports.message = function(id, message){
         message.target == null || message.target == undefined){
         console.log("ERROR: Recieved invalid message");
         return;
+    }
+    
+    if(players[id] == undefined){
+        var remote = eurecaServer.getClient(id);
+        players[id] = {id:conn.id, remote:remote, state: new PlayerState(conn.id)}
+        //Restablish connection
     }
 
     var currentTime = new Date();
