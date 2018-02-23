@@ -49,7 +49,7 @@ class PlayerState
 
 var players = {};
 
-setTimeout(eurecaServer.removeOldConnections(), 60000);
+
 
 //detect client connection
 eurecaServer.onConnect(function (conn) {
@@ -237,3 +237,5 @@ readMapFromFile = function(id, x, y){
     });
     
 }
+
+setTimeout(eurecaServer.removeOldConnections(), 60000);
