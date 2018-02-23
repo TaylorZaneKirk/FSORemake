@@ -111,13 +111,14 @@ function initMultiPlayer(game, globals){
             delete globals.playerList[id];
             console.log('killing ', id, globals.playerList[id]);
         }
-        if (globals.playerList[id]) {
-            delete globals.playerList[id];
+        if (globals.player == id) {
+            globals.player = null;
         }
     }
 
     client.exports.disconnect = function() {
         client.disconnect();
+        globals.localPlayerObject.playerSprite.kill()
         isMultiInit = false;
     }
 }
