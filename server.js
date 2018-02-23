@@ -109,6 +109,11 @@ eurecaServer.exports.requestUpdate = function (id) {
     if(players[id] && players[id].state.lastUpdated + 1250 < currentServerTime){
         players[id].state.lastUpdated = currentServerTime;
         players[id].state.playersVisible = players;
+
+        for(var i in players){
+            players[id].state.playersVisible[players[i].state.playerName] = players[i].state;
+        }
+
         var remote = eurecaServer.getClient(id);
 
         //Fetch users that are on the same page
