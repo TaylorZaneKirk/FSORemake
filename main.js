@@ -119,6 +119,7 @@ function initMultiPlayer(game, globals){
     }
 
     client.exports.disconnect = function() {
+        client.disconnect();
         isMultiInit = false;
     }
 }
@@ -172,8 +173,8 @@ function update() {
 
     if(isMultiInit == false && currentTime.getTime() > loadTime + 1500){
         console.log("ERROR: Something did not load correctly, restarting game");
-        client.disconnect();
-        //return this.game.state.restart();
+        
+        return this.game.state.restart();
     }
 
     if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {} || game.global.eurecaProxy == undefined){
