@@ -118,7 +118,7 @@ eurecaServer.removeOldConnections = function() {
     var currentServerTime = new Date().getTime();
     var remote
     for(var i in players){
-        if(players[i].state.lastUpdated + 60000 > currentServerTime){
+        if(players[i].state.lastUpdated + 60000 < currentServerTime){
             remote = players[i].remote
             remote.disconnect(players[i].id);
         }

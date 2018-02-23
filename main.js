@@ -120,7 +120,6 @@ function initMultiPlayer(game, globals){
         if(globals.player.playerName = id){
             client.disconnect();
             globals.localPlayerObject.playerSprite.kill();
-            globals = null;
             game.destroy(); //will eventually just go back to login page
         }
         
