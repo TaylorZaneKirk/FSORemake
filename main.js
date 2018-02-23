@@ -101,6 +101,8 @@ function initMultiPlayer(game, globals){
             changeMap(state.mapData, map, layerFirst);
         }
         globals.playerList[state.playerName] = state;
+
+        //Add NPC-Style player sprites here within a list
     }
 
     /**
@@ -115,9 +117,9 @@ function initMultiPlayer(game, globals){
 
     client.exports.disconnect = function() {
         client.disconnect();
-        globals.localPlayerObject.playerSprite.kill();
-        globals.ready = false;
-        //isMultiInit = false;
+        //globals.localPlayerObject.playerSprite.kill();
+        //globals.ready = false;
+        //Display reconnection modal???
     }
 }
 
