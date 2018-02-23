@@ -74,7 +74,7 @@ var PlayerObject = function(idRef, gameRef){
         }
 
         if (((playerState.pos.x+1)*32 == (playerSprite.x | 0) && (playerState.pos.y+1)*32 == (playerSprite.y | 0)) && playerState.playerAction != 'idle' && !playerState.readyToUpdate){
-            //playerState.playerAction = 'idle';
+            playerState.playerAction = 'idle';
             playerState.readyToUpdate = true;
             sendMessageToServer({type: 'move', payload: 'I'}, 'self');
         }
@@ -118,7 +118,7 @@ var PlayerObject = function(idRef, gameRef){
         else{
             console.log(((playerState.pos.x+1)*32 + "," + (playerSprite.x | 0) + " " + (playerState.pos.y+1)*32 + "," + (playerSprite.y | 0)));
             var currentTime = new Date().getTime();
-            if(playerState.lastUpdated + 1500 < currentTime){
+            if(playerState.lastUpdated + 850 < currentTime){
                 playerSprite.x = (playerState.pos.x+1) * 32;
                 playerSprite.y = (playerState.pos.y+1) * 32;
             }
