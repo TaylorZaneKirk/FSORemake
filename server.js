@@ -115,11 +115,8 @@ eurecaServer.exports.requestUpdate = function (id) {
         for(var i in players){
             if(players[i].state.playerName != id){
                 if(players[i].state.lastUpdated + 60000 < currentServerTime){
-                    var remoteToDelete = eurecaServer.getClient(players[i].playerName);
                     console.log("removing dead connection");
                     delete players[i]; //timeout
-                    console.log(remoteToDelete);
-                    remoteToDelete.disconnect();
 
                 }
                 else{
