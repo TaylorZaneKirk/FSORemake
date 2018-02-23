@@ -178,7 +178,7 @@ function update() {
     }
 
     if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {} || game.global.eurecaProxy == undefined){
-        if(currentTime.getTime() > loadTime + 1500){
+        if(currentTime.getTime() > loadTime + 5000){
             console.log("ERROR: Something did not load correctly, restarting game [B]");
         
             return this.game.state.restart();
