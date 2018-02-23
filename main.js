@@ -109,7 +109,7 @@ function initMultiPlayer(game, globals){
         * Called from server when another player "disconnects"
         */
     client.exports.kill = function(id){
-        if(globals.playerList[id]){
+        if(globals.playerList[id] != undefined){
             console.log('killing ', id, globals.playerList[id]);
             delete globals.playerList[id];
             //kill sprite here
@@ -178,6 +178,8 @@ function update() {
         console.log("ERROR: Something did not load correctly, restarting game");
         return this.game.state.restart();
     }
+
+    if(currentTime.getTime() + 5000)
 
     if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {} || game.global.eurecaProxy == undefined){
         return; //Stuff isn't ready; hold on...
