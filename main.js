@@ -114,7 +114,7 @@ function initMultiPlayer(game, globals){
             globals.player = state;
             globals.playerList[state.playerName] = {player: state, localPlayerObject: null};
             globals.localPlayerObject = new PlayerObject(state.playerName, game);
-            globals.globals.playerList[state.playerName].localPlayerObject = globals.localPlayerObject;
+            globals.playerList[state.playerName].localPlayerObject = globals.localPlayerObject;
             game.global.ready = true;
             changeMap(state.mapData, map, layerFirst);
         }
