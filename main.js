@@ -1,5 +1,4 @@
 
-
 ///Main Game 'World' script//
 ////////////////////////////
 var client;
@@ -108,22 +107,18 @@ function initMultiPlayer(game, globals){
         * Called from server when another player "disconnects"
         */
     client.exports.kill = function(id){
-        if(globals.player != undefined){
-            if(globals.playerList[id] != undefined){
-                delete globals.playerList[id];
-                console.log('killing ', id, globals.playerList[id]);
-            }
-            if (globals.player.playerName == id) {
-                globals.player = null;
-            }
+        if(globals.playerList[id]){
+            delete globals.playerList[id];
+            console.log('killing ', id, globals.playerList[id]);
         }
-        
+        if (globals.playerList[id]) {
+            delete globals.playerList[id];
+        }
     }
 
     client.exports.disconnect = function() {
-        isMultiInit = false;
-        console.log("called")
         client.disconnect();
+        isMultiInit = false;
     }
 }
 
@@ -176,17 +171,10 @@ function update() {
 
     if(isMultiInit == false && currentTime.getTime() > loadTime + 1500){
         console.log("ERROR: Something did not load correctly, restarting game");
-        
-        client.disconnect();
         return this.game.state.restart();
     }
 
     if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {} || game.global.eurecaProxy == undefined){
-        if(currentTime.getTime() > loadTime + 5000){
-            console.log("ERROR: Something did not load correctly, restarting game [B]");
-            isMultiInit = false;
-            return
-        }
         return; //Stuff isn't ready; hold on...
     }
 
