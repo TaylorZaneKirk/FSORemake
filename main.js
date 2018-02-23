@@ -114,7 +114,6 @@ function initMultiPlayer(game, globals){
         }
         if (globals.player.playerName == id) {
             globals.player = null;
-            isMultiInit = false;
         }
     }
 
