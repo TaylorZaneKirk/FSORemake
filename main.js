@@ -83,6 +83,7 @@ function initMultiPlayer(game, globals){
 
     client.exports.recieveStateFromServer = function(state) {
         console.log("Recieved State");
+        console.log(state);
         //state.lastUpdated = new Date().getTime();
 
         if(globals.player != false && globals.player.worldX != state.worldX && globals.player.worldY != state.worldY){
@@ -110,7 +111,7 @@ function initMultiPlayer(game, globals){
         }
 
         if(state.playerName == globals.myId && globals.localPlayerObject == null){
-            
+
             globals.playerList[state.playerName] = {player: state, localPlayerObject: null};
             globals.player = state;
             globals.localPlayerObject = new PlayerObject(state.playerName, game);
