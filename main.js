@@ -112,7 +112,7 @@ function initMultiPlayer(game, globals){
             delete globals.playerList[id];
             console.log('killing ', id, globals.playerList[id]);
         }
-        if (globals.playerList[id] != undefined) {
+        if (globals.player.playerName == id) {
             delete globals.playerList[id];
             this.game.state.restart();
         }
@@ -173,7 +173,7 @@ function update() {
     if(isMultiInit == false && currentTime.getTime() > loadTime + 1500){
         console.log("ERROR: Something did not load correctly, restarting game");
         client.disconnect();
-        return;
+        //return this.game.state.restart();
     }
 
     if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {} || game.global.eurecaProxy == undefined){
