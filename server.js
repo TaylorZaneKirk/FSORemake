@@ -60,7 +60,6 @@ eurecaServer.onConnect(function (conn) {
     players[conn.id] = {id:conn.id, remote:remote, state: new PlayerState(conn.id)}
 
     //here we call setId (defined in the client side)
-    console.log(remote);
     remote.setId(conn.id);
 });
 
@@ -109,6 +108,7 @@ eurecaServer.exports.requestUpdate = function (id) {
     var currentServerTime = new Date().getTime();
     if(players[id] && players[id].state.lastUpdated + 1250 < currentServerTime){
         players[id].state.lastUpdated = currentServerTime;
+        players[id].state.playersVisible = players;
         var remote = eurecaServer.getClient(id);
 
         //Fetch users that are on the same page

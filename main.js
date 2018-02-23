@@ -101,7 +101,13 @@ function initMultiPlayer(game, globals){
             game.global.ready = true;
             changeMap(state.mapData, map, layerFirst);
         }
-        globals.playerList[state.playerName] = state;
+        globals.playerList = state.playersVisible;
+        for(var i in globals.playerList){
+            if (globals.playerList[i].state.playerName != globals.player.playerName){
+                console.log("OTHER PLAYER:" + globals.playerList[i].state.playerName);
+            }
+        }
+
     }
 }
 
@@ -152,7 +158,7 @@ function create() {
 function update() {
     var currentTime = new Date();
 
-    if(isMultiInit == false && currentTime.getTime() > loadTime + 2500){
+    if(isMultiInit == false && currentTime.getTime() > loadTime + 1500){
         console.log("ERROR: Something did not load correctly, restarting game");
         return this.game.state.restart();
     }
