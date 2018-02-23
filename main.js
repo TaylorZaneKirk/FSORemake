@@ -118,8 +118,8 @@ function initMultiPlayer(game, globals){
 
     client.exports.disconnect = function() {
         client.disconnect();
-        globals.localPlayerObject.playerSprite.kill()
-        isMultiInit = false;
+        //globals.localPlayerObject.playerSprite.kill()
+        //isMultiInit = false;
     }
 }
 
