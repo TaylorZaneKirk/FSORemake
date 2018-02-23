@@ -118,6 +118,7 @@ eurecaServer.exports.requestUpdate = function (id) {
                     var remoteToDelete = eurecaServer.getClient(players[i].playerName);
                     console.log("removing dead connection");
                     delete players[i]; //timeout
+                    console.log(remoteToDelete);
                     remoteToDelete.disconnect();
 
                 }
