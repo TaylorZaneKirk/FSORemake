@@ -120,7 +120,7 @@ eurecaServer.removeOldConnections = function() {
     for(var i in players){
         if(players[i].state.lastUpdated + 60000 > currentServerTime){
             remote = players[i].remote
-            remote.disconnect();
+            remote.disconnect(players[i].id);
         }
     }
 }
