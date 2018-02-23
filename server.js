@@ -117,7 +117,7 @@ eurecaServer.exports.requestUpdate = function (id) {
             }
             
         }
-
+        console.log(players[id].state.playersVisible);
         var remote = eurecaServer.getClient(id);
 
         //Fetch users that are on the same page

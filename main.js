@@ -25,7 +25,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, null, {
 
 game.global = {
     player: null, //References for local player state
-    playerList: {}, //References for all visible player states
+    playerList: [], //References for all visible player states
     npcList: {}, //References for all visible NPC states
     ready: false,
     myId: 0, //Id for server
