@@ -83,7 +83,7 @@ function initMultiPlayer(game, globals){
 
     client.exports.recieveStateFromServer = function(state) {
         console.log("Recieved State");
-        state.lastUpdated = new Date().getTime();
+        //state.lastUpdated = new Date().getTime();
 
         if(globals.player != false && globals.player.worldX != state.worldX && globals.player.worldY != state.worldY){
             changeMap(state.mapData, map, layerFirst);
@@ -103,6 +103,7 @@ function initMultiPlayer(game, globals){
 
         if(state.playerName == globals.myId && game.global.localPlayerObject == null){
             globals.localPlayerObject = new PlayerObject(state.playerName, game);
+            globals.playerList[state.playerName].player = state;
             game.global.ready = true;
             changeMap(state.mapData, map, layerFirst);
         }
