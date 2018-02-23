@@ -98,8 +98,9 @@ function initMultiPlayer(game, globals){
         }
         else{
             //Add NPC-Style player sprites here within a list
+            globals.playerList[state.playerName] = state.playerName;
             globals.playerList[state.playerName].player = state;
-            globals.playerList[state.playerName].localPlayerObject = new PlayerObject(state.playerName, game);
+            //globals.playerList[state.playerName].localPlayerObject = new PlayerObject(state.playerName, game);
         }
 
         if(state.playerName == globals.myId && game.global.localPlayerObject == null){
