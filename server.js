@@ -11,7 +11,7 @@ var Eureca = require('eureca.io');
 
 
 //create an instance of EurecaServer
-var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer']});
+var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill']});
 
 //attach eureca.io to our http server
 eurecaServer.attach(server);
@@ -76,7 +76,7 @@ eurecaServer.onDisconnect(function (conn) {
         var remote = players[c].remote;
 
         //here we call kill() method defined in the client side
-        //remote.kill(conn.id);
+        remote.kill(conn.id);
     }
 });
 

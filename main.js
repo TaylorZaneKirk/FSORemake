@@ -103,6 +103,16 @@ function initMultiPlayer(game, globals){
         }
         globals.playerList[state.playerName] = state;
     }
+
+    /**
+        * Called from server when another player "disconnects"
+        */
+    client.exports.kill = function(id){
+        if (globals.playerList[id]) {
+            delete globals.playerList[id];
+            console.log('killing ', id, globals.playerList[id]);
+        }
+    }
 }
 
 function init() {
