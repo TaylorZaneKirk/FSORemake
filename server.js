@@ -238,4 +238,4 @@ readMapFromFile = function(id, x, y){
     
 }
 
-setInterval(eurecaServer.removeOldConnections, 60000);
+//setInterval(eurecaServer.removeOldConnections, 60000);
