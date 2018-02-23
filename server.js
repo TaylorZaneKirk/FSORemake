@@ -156,7 +156,7 @@ eurecaServer.exports.message = function(id, message){
     
     if(players[id] == undefined){
         var remote = eurecaServer.getClient(id);
-        players[id] = {id:id, remote:remote, state: new PlayerState(conn.id)}
+        players[id] = {id:id, remote:remote, state: new PlayerState(id)}
         //Restablish connection
     }
 
