@@ -121,15 +121,8 @@ function initMultiPlayer(game, globals){
     }
 
     client.exports.disconnect = function() {
+        isMultiInit = false;
         client.disconnect();
-        game.destroy();
-        game = new Phaser.Game(800, 600, Phaser.AUTO, null, {
-            init: init,
-            preload: preload,
-            create: create,
-            update: update,
-            render: render,
-        });
     }
 }
 
@@ -183,6 +176,7 @@ function update() {
     if(isMultiInit == false && currentTime.getTime() > loadTime + 1500){
         console.log("ERROR: Something did not load correctly, restarting game");
         
+        client.disconnect();
         return this.game.state.restart();
     }
 
