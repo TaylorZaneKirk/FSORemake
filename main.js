@@ -118,7 +118,7 @@ function initMultiPlayer(game, globals){
     }
 
     client.exports.disconnect = function() {
-        globals.eurecaProxy.disconnect();
+        client.disconnect();
     }
 }
 
