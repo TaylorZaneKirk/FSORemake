@@ -15,7 +15,7 @@ var PlayerObject = function(idRef, gameRef){
     function init(idRef, gameRef){
         game = gameRef;
         id = idRef;
-        playerState = game.global.player;
+        playerState = game.global.playerList[id];
         ready = false;
         
         upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
@@ -55,11 +55,11 @@ var PlayerObject = function(idRef, gameRef){
             ready = true;
         } */
 
-        if(playerState != game.global.player){
-            playerState = game.global.player;
+        if(playerState != game.global.playerList[id].player){
+            playerState = game.global.playerList[id].player;
 
             //Update global reference
-            game.global.localPlayerObject = {
+            game.global.playerList[id].localPlayerObject = {
                 game: game,
                 id: id,
                 playerState: playerState,
