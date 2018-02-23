@@ -118,8 +118,6 @@ function initMultiPlayer(game, globals){
     client.exports.disconnect = function(id) {
         if(globals.player.playerName = id){
             client.disconnect();
-            globals.localPlayerObject.playerSprite.kill();
-            //lobals.ready = false;
         }
         
         //Display reconnection modal???
