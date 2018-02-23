@@ -102,7 +102,7 @@ eurecaServer.exports.initPlayer = function (id) {
     for(var i in players){
         if(players[i].state.playerName != id){
             console.log("assigned");
-            players[id].state.playersVisible[id] = players[i].state;
+            players[id].state.playersVisible[players[i].id] = players[i].state;
         }
     }
     
