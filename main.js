@@ -89,7 +89,7 @@ function initMultiPlayer(game, globals){
             changeMap(state.mapData, map, layerFirst);
         }
 
-        if(state.playerName == globals.myId){
+        if(state.playerName == globals.myId && globals.localPlayerObject != null){
             console.log("Assigned Player State");
             globals.player = state;
             globals.playerList[state.playerName] = globals.myId;
@@ -98,14 +98,19 @@ function initMultiPlayer(game, globals){
         }
         else{
             //Add NPC-Style player sprites here within a list
-            globals.playerList[state.playerName] = state.playerName;
-            globals.playerList[state.playerName].player = state;
+            if(globals.playerList[state.playerName] == undefined){
+                globals.playerList[state.playerName] = {player: state, localPlayerObject: new PlayerObject(state.playerName, game)};
+            }
+            else{
+                globals.playerList[state.playerName].player = state;
+            }
+             
             //globals.playerList[state.playerName].localPlayerObject = new PlayerObject(state.playerName, game);
         }
 
-        if(state.playerName == globals.myId && game.global.localPlayerObject == null){
+        if(state.playerName == globals.myId && globals.localPlayerObject == null){
             
-            globals.playerList[state.playerName].player = state;
+            globals.playerList[state.playerName] = {player: state};
             globals.localPlayerObject = new PlayerObject(state.playerName, game);
             game.global.ready = true;
             changeMap(state.mapData, map, layerFirst);
