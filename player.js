@@ -47,6 +47,7 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite.animations.add('idle-W', [5], 1, false);
         playerSprite.animations.add('idle-N', [9], 1, false);
         playerSprite.animations.add('idle-S', [13], 1, false);
+        playerSprite.play('idle-' + playerState.playerFacing);
 
         playerTween = game.add.tween(playerSprite);
     }
