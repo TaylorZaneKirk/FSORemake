@@ -187,9 +187,7 @@ eurecaServer.exports.message = function(id, message){
                     break;
                 }
                 default: {
-                    if(players[id].state.playerAction == 'idle'){
-                        return; //Don't do anything
-                    }
+                    
                     newAction = 'idle';
                 }
             }
