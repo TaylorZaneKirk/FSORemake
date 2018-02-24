@@ -82,7 +82,7 @@ var PlayerObject = function(idRef, gameRef){
         }
         
 
-        else if(playerState.playerAction == 'idle'){
+        else if(playerState.playerAction == 'idle' && playerState.readyToUpdate){
             if (leftKey.isDown){
                 playerState.playerAction = 'walk';
                 playerState.playerFacing = 'W';
@@ -121,7 +121,9 @@ var PlayerObject = function(idRef, gameRef){
             }
             
         }
-        else if(((playerState.pos.x+1) * 32) != playerSprite.x || ((playerState.pos.y+1) * 32) != playerSprite.y){
+        
+        if((((playerState.pos.x+1) * 32) != playerSprite.x || ((playerState.pos.y+1) * 32) != playerSprite.y) && !playerState.readyToUpdate ){
+            //Player is moving and we're waiting for a response from server
             console.log(((playerState.pos.x+1)*32 + "," + (playerSprite.x | 0) + " " + (playerState.pos.y+1)*32 + "," + (playerSprite.y | 0)));
             gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)) * 32, y: (playerState.pos.y+1) * 32}, 1000, null, true);
         }
