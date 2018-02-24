@@ -216,7 +216,7 @@ eurecaServer.updateClientsAboutNewPlayer = function (id) {
     }
 
     for(var i in allPlayerStates){
-        if(allPlayerStates[i] != id){
+        if(allPlayerStates[i].playerName != id){
             newRemote.recieveStateFromServer(allPlayerStates[i]);
         }
     }
