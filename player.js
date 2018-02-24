@@ -122,7 +122,7 @@ var PlayerObject = function(idRef, gameRef){
             
         }
         
-        if((((playerState.pos.x+1) * 32) != playerSprite.x || ((playerState.pos.y+1) * 32) != playerSprite.y) ){
+        if((((playerState.pos.x+1) * 32) != playerSprite.x|0 || ((playerState.pos.y+1) * 32) != playerSprite.y|0) ){
             //Player is moving and we're waiting for a response from server
             console.log(((playerState.pos.x+1)*32 + "," + (playerSprite.x | 0) + " " + (playerState.pos.y+1)*32 + "," + (playerSprite.y | 0)));
             if(playerState.readyToUpdate){
@@ -149,7 +149,7 @@ var PlayerObject = function(idRef, gameRef){
             console.log("trying to move other player");
             game.add.tween(otherSprite).to({x: (otherPlayer.pos.x+1) * 32, y: (otherPlayer.pos.y+1) * 32}, 750, null, true);
         }
-        else if(((otherPlayer.pos.x+1) * 32) != otherSprite.x || ((otherPlayer.pos.y+1) * 32) != otherSprite.y){
+        else if(((otherPlayer.pos.x+1) * 32) != otherSprite.x|0 || ((otherPlayer.pos.y+1) * 32) != otherSprite.y|0){
             /* otherSprite.x = ((otherPlayer.pos.x+1) * 32);
             otherSprite.y = ((otherPlayer.pos.y+1) * 32); */
             console.log("otherSprite pos mismatch");
