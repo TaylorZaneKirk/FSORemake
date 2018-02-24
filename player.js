@@ -75,7 +75,7 @@ var PlayerObject = function(idRef, gameRef){
             game.global.localPlayerObject = game.global.playerList[idLocal].localPlayerObject;
         }
 
-        if (((playerState.pos.x+1)*32 == (playerSprite.x | 0) && (playerState.pos.y+1)*32 == (playerSprite.y | 0)) && playerState.playerAction != 'idle' && playerState.readyToUpdate){
+        if (((playerState.pos.x+1)*32 == Math.ceil(playerSprite.x) && (playerState.pos.y+1)*32 == Math.ceil(playerSprite.y)) && playerState.playerAction != 'idle' && playerState.readyToUpdate){
             playerState.playerAction = 'idle';
             //playerState.readyToUpdate = true;
             sendMessageToServer({type: 'move', payload: 'I'}, 'self');
@@ -122,9 +122,9 @@ var PlayerObject = function(idRef, gameRef){
             
         }
         
-        if((((playerState.pos.x+1) * 32) != playerSprite.x|0 || ((playerState.pos.y+1) * 32) != playerSprite.y|0) ){
+        if((((playerState.pos.x+1) * 32) != Math.ceil(playerSprite.x) || ((playerState.pos.y+1) * 32) != Math.ceil(playerSprite.y)) ){
             //Player is moving and we're waiting for a response from server
-            console.log(((playerState.pos.x+1)*32 + "," + (playerSprite.x | 0) + " " + (playerState.pos.y+1)*32 + "," + (playerSprite.y | 0)));
+            console.log(((playerState.pos.x+1)*32 + "," + Math.ceil(playerSprite.x) + " " + (playerState.pos.y+1)*32 + "," + Math.ceil(playerSprite.x)));
             if(playerState.readyToUpdate){
                 playerSprite.x = (playerState.pos.x + 1) * 32;
                 playerSprite.y = (playerState.pos.x + 1) * 32;
@@ -149,10 +149,10 @@ var PlayerObject = function(idRef, gameRef){
             console.log("trying to move other player");
             game.add.tween(otherSprite).to({x: (otherPlayer.pos.x+1) * 32, y: (otherPlayer.pos.y+1) * 32}, 750, null, true);
         }
-        else if(((otherPlayer.pos.x+1) * 32) != otherSprite.x|0 || ((otherPlayer.pos.y+1) * 32) != otherSprite.y|0){
+        else if(((otherPlayer.pos.x+1) * 32) != Math.ceil(otherSprite.x) || ((otherPlayer.pos.y+1) * 32) != Math.ceil(otherSprite.y)){
             /* otherSprite.x = ((otherPlayer.pos.x+1) * 32);
             otherSprite.y = ((otherPlayer.pos.y+1) * 32); */
-            console.log(Math.ceil(otherSprite.x));
+            console.log("sprite pos mismatch");
             otherPlayer.playerAction = "walk";
             game.add.tween(otherSprite).to({x: (otherPlayer.pos.x+1) * 32, y: (otherPlayer.pos.y+1) * 32}, 1000, null, true);
         }
