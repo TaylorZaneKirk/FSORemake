@@ -23,6 +23,7 @@ var PlayerObject = function(idRef, gameRef){
         downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
         leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
         rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+        tabKey = game.input.keyboard.addKey(Phaser.Keyboard.TAB);
 
         playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player');
         game.physics.arcade.enable(playerSprite);
@@ -43,6 +44,10 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite.animations.add('walk-W', [4,5,6], 6, false);
         playerSprite.animations.add('walk-N', [8,9,10], 6, false);
         playerSprite.animations.add('walk-S', [12,13,14], 6, false);
+        playerSprite.animations.add('attack-E', [1,3,1], 6, false);
+        playerSprite.animations.add('attack-W', [5,7,5], 6, false);
+        playerSprite.animations.add('attack-N', [9,11,9], 6, false);
+        playerSprite.animations.add('attack-S', [13,15,13], 6, false);
         playerSprite.animations.add('idle-E', [1], 1, false);
         playerSprite.animations.add('idle-W', [5], 1, false);
         playerSprite.animations.add('idle-N', [9], 1, false);
@@ -84,6 +89,10 @@ var PlayerObject = function(idRef, gameRef){
             console.log("currently moving, no need to update");
             return;
         } */
+        if(tabKey.isDown){
+            playerState.playerAction = 'attack';
+            playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
+        }
 
         if (((playerState.pos.x+1)*32 == Math.ceil(playerSprite.x) && (playerState.pos.y+1)*32 == Math.ceil(playerSprite.y)) && playerState.playerAction != 'idle' && playerState.readyToUpdate){
             playerState.playerAction = 'idle';
