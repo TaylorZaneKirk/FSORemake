@@ -126,6 +126,7 @@ var PlayerObject = function(idRef, gameRef){
                 ready = false;
                 sendMessageToServer({type: 'move', payload: 'S'}, 'self');
                 playerState.pos.y++;
+                game.global.mapManager.isSpotAvailable(playerState.pos.x, playerState.pos.y);
                 //gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: ((playerState.pos.y+1)+1) * 32}, 1000, null, true);
                 //playerSprite.body.velocity.y += 1;
             }

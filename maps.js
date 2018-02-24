@@ -63,5 +63,13 @@ var MapManager = class MapManager {
             }
         }
     }
+
+    isSpotAvailable(x, y){
+        var thisTile = this.map.getTile(x, y, this.layers[0], true);
+        console.log(thisTile);
+        return true;
+    }
+
+
     
 }
