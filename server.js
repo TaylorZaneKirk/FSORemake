@@ -207,9 +207,18 @@ eurecaServer.exports.message = function(id, message){
 }
 
 eurecaServer.updateClientsAboutNewPlayer = function (id) {
+    var newRemote = players[id].remote;
+    var allPlayerStates = [];
     for(var i in players) {
         var remote = players[i].remote;
+        allPlayerStates.push(players[i].state);
         remote.recieveStateFromServer(players[id].state);
+    }
+
+    for(var i in allPlayerStates){
+        if(allPlayerStates[i] != id){
+            newRemote.recieveStateFromServer(allPlayerStates[i]);
+        }
     }
 }
 
