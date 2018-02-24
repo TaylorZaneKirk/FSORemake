@@ -212,7 +212,7 @@ function update() {
     for(var i in game.global.playerList){
         thisPlayer = game.global.playerList[i];
         if(thisPlayer.player != undefined && thisPlayer.localPlayerObject != undefined && thisPlayer.player != game.global.player){
-            if(((thisPlayer.player.pos.x + 1) * 32) != thisPlayer.localPlayerObject.playerSprite.x && ((thisPlayer.player.pos.y + 1) * 32) != thisPlayer.localPlayerObject.playerSprite.y){
+            if(((thisPlayer.player.pos.x + 1) * 32) != thisPlayer.localPlayerObject.playerSprite.x || ((thisPlayer.player.pos.y + 1) * 32) != thisPlayer.localPlayerObject.playerSprite.y){
                 thisPlayer.localPlayerObject.movePlayer(thisPlayer.player.playerName);
             }
         }
