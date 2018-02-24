@@ -162,28 +162,33 @@ eurecaServer.exports.message = function(id, message){
                 case 'E': {
                     x = x + 1;
                     newAction = 'walk'
+                    players[id].state.playerFacing = message.action.payload;
                     break;
                 }
                 case 'W': {
                     x = x - 1;
                     newAction = 'walk'
+                    players[id].state.playerFacing = message.action.payload;
                     break;
                 }
                 case 'N': {
                     y = y - 1;
                     newAction = 'walk'
+                    players[id].state.playerFacing = message.action.payload;
                     break;
                 }
                 case 'S': {
                     y = y + 1;
                     newAction = 'walk'
+                    players[id].state.playerFacing = message.action.payload;
                     break;
                 }
                 default: {
                     newAction = 'idle';
+                    players[id].state.playerFacing = message.action.payload;
                 }
             }
-            players[id].state.playerFacing = message.action.payload;
+            
             players[id].state.pos = {x: x, y: y};
             players[id].state.readyToUpdate = true;
             players[id].state.playerAction = newAction;
