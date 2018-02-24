@@ -123,21 +123,24 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
     }
 
-    movePlayer = function(){
+    movePlayer = function(id){
         /* console.log((playerState.pos.x+1)*32 + " " + (playerSprite.x | 0))
         if(((playerState.pos.x+1)*32 == (playerSprite.x | 0) && (playerState.pos.y+1)*32 == (playerSprite.y | 0))){
             playerState.playerAction = 'idle';
             return;
         } */
-        if(playerSprite.playerAction == 'walk'){
-            game.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: (playerState.pos.y+1) * 32}, 250, null, true);
+        var otherSprite = game.global.playerList[id].localPlayerObject.playerSprite;
+        if(otherSprite.playerAction == 'walk'){
+            game.add.tween(otherSprite).to({x: (otherSprite.pos.x+1) * 32, y: (otherSprite.pos.y+1) * 32}, 250, null, true);
         }
         var currentTime = new Date().getTime();
-        if(playerState.lastUpdated + 800 < currentTime){
-            playerSprite.x = (playerState.pos.x+1) * 32;
-            playerSprite.y = (playerState.pos.y+1) * 32;
+        if(otherSprite.lastUpdated + 800 < currentTime){
+            otherSprite.x = (otherSprite.pos.x+1) * 32;
+            otherSprite.y = (otherSprite.pos.y+1) * 32;
         }
-        playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
+        otherSprite.play(otherSprite.playerAction + '-' + otherSprite.playerFacing);
+
+        game.global.playerList[id].localPlayerObject = otherSprite;
     }
 
     init(idRef, gameRef);
