@@ -59,10 +59,6 @@ var PlayerObject = function(idRef, gameRef){
 
     function update(){
 
-        //Change this to localPlayer pos checking against playerState.pos
-        /* if(!ready){
-            ready = true;
-        } */
         if(game.global.playerList[idLocal].player == undefined){
             console.log(game.global.playerList);
             return;
@@ -85,70 +81,58 @@ var PlayerObject = function(idRef, gameRef){
             game.global.localPlayerObject = game.global.playerList[idLocal].localPlayerObject;
         }
 
-        /* if(playerTween.isRunning){
-            console.log("currently moving, no need to update");
-            return;
-        } */
-        if(altKey.isDown){
-            playerState.playerAction = 'attack';
-            playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
-        }
 
-        if (((playerState.pos.x+1)*32 == Math.ceil(playerSprite.x) && (playerState.pos.y+1)*32 == Math.ceil(playerSprite.y)) && playerState.playerAction != 'idle' && playerState.readyToUpdate){
+        if (((playerState.pos.x+1)*32 == Math.ceil(playerSprite.x) 
+            && (playerState.pos.y+1)*32 == Math.ceil(playerSprite.y)) 
+            && playerState.playerAction == 'walk' 
+            && playerState.readyToUpdate){
+            //Player reached their intended location. Set them to idle and update server
+            
             playerState.playerAction = 'idle';
-            //playerState.readyToUpdate = true;
             sendMessageToServer({type: 'move', payload: 'I'}, 'self');
         }
-        
-
         else if(playerState.playerAction == 'idle' && playerState.readyToUpdate){
-            if (leftKey.isDown){
+            //Detect key presses
+            
+            if(altKey.isDown){
+                playerState.playerAction = 'attack';
+                //sendMessageToServer({type: 'attack', payload: ''}, 'player');
+            }
+            else if (leftKey.isDown){
                 playerState.playerAction = 'walk';
                 playerState.playerFacing = 'W';
-                ready = false;
                 if(game.global.mapManager.isSpotAvailable(playerState.pos.x - 1, playerState.pos.y)){
                     playerState.pos.x--;
                     sendMessageToServer({type: 'move', payload: 'W'}, 'self');
                 }
                 
-                //gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)-1) * 32, y: (playerState.pos.y+1) * 32}, 1000, null, true);
-                //playerSprite.body.velocity.x -= 1; //arcade physics required for body.velocity to work
             }
             else if (rightKey.isDown){
                 playerState.playerAction = 'walk';
                 playerState.playerFacing = 'E';
-                ready = false;
                 if(game.global.mapManager.isSpotAvailable(playerState.pos.x + 1, playerState.pos.y)){
                     playerState.pos.x++;
                     sendMessageToServer({type: 'move', payload: 'E'}, 'self');
                 }
                 
-                //gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)+1) * 32, y: (playerState.pos.y+1) * 32}, 1000, null, true);
-                //playerSprite.body.velocity.x += 1;
             }
             else if (upKey.isDown){
                 playerState.playerAction = 'walk';
                 playerState.playerFacing = 'N';
-                ready = false;
                 if(game.global.mapManager.isSpotAvailable(playerState.pos.x, playerState.pos.y - 1)){
                     playerState.pos.y--;
                     sendMessageToServer({type: 'move', payload: 'N'}, 'self');
                 }
                 
-                //gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: ((playerState.pos.y+1)-1) * 32}, 1000, null, true);
-                //playerSprite.body.velocity.y -= 1;
             }
             else if (downKey.isDown){
                 playerState.playerAction = 'walk';
                 playerState.playerFacing = 'S';
-                ready = false;
                 if(game.global.mapManager.isSpotAvailable(playerState.pos.x, playerState.pos.y + 1)){
                     playerState.pos.y++;
                     sendMessageToServer({type: 'move', payload: 'S'}, 'self');
                 }
                 
-                //gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: ((playerState.pos.y+1)+1) * 32}, 1000, null, true);
-                //playerSprite.body.velocity.y += 1;
             }
             
         }
