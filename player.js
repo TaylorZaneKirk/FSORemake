@@ -2,7 +2,7 @@ var PlayerObject = PlayerObject || {};
 
 var PlayerObject = function(idRef, gameRef){
     var game = null; //Reference to game object
-    var id = null; //Local player's id
+    var idLocal = null; //Local player's id
     var playerState = null; //player's current state
     var playerSprite = null;
     var currentAction = null;
@@ -14,8 +14,8 @@ var PlayerObject = function(idRef, gameRef){
 
     function init(idRef, gameRef){
         game = gameRef;
-        id = idRef;
-        playerState = game.global.playerList[id].player;
+        idLocal = idRef;
+        playerState = game.global.playerList[idLocal].player;
         ready = false;
         
         upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
@@ -54,25 +54,25 @@ var PlayerObject = function(idRef, gameRef){
         /* if(!ready){
             ready = true;
         } */
-        if(game.global.playerList[id].player == undefined){
+        if(game.global.playerList[idLocal].player == undefined){
             console.log(game.global.playerList);
             return;
         }
 
-        if(playerState != game.global.playerList[id].player && playerState.playerName == game.global.playerList[id].player.playerName){
-            playerState = game.global.playerList[id].player;
+        if(playerState != game.global.playerList[idLocalid].player && playerState.playerName == game.global.playerList[idLocalid].player.playerName){
+            playerState = game.global.playerList[idLocalid].player;
 
             //Update global reference
-            game.global.playerList[id].localPlayerObject = {
+            game.global.playerList[idLocal].localPlayerObject = {
                 game: game,
-                id: id,
+                id: idLocal,
                 playerState: playerState,
                 update: update,
                 playerSprite: playerSprite,
                 movePlayer: movePlayer,
             };
 
-            game.global.localPlayerObject = game.global.playerList[id].localPlayerObject;
+            game.global.localPlayerObject = game.global.playerList[idLocal].localPlayerObject;
         }
 
         if (((playerState.pos.x+1)*32 == (playerSprite.x | 0) && (playerState.pos.y+1)*32 == (playerSprite.y | 0)) && playerState.playerAction != 'idle' && !playerState.readyToUpdate){
