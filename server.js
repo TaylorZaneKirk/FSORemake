@@ -158,6 +158,8 @@ eurecaServer.exports.message = function(id, message){
             var x = players[id].state.pos.x;
             var y = players[id].state.pos.y;
             var newAction = '';
+
+            
             switch(message.action.payload){
                 case 'E': {
                     x = x + 1;
@@ -184,8 +186,10 @@ eurecaServer.exports.message = function(id, message){
                     break;
                 }
                 default: {
+                    if(players[id].state.playerAction == 'idle'){
+                        return; //Don't do anything
+                    }
                     newAction = 'idle';
-                    players[id].state.playerFacing = message.action.payload;
                 }
             }
             
