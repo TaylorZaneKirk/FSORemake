@@ -57,7 +57,7 @@ var MapManager = class MapManager {
                     y--;
                 }
                 else if(this.mapData[index] != '\n' && this.mapData[index] != ';'){
-                    this.map.putTile(this.mapData[index], y+1, x+1, layers[0]);
+                    this.map.putTile(this.mapData[index], y+1, x+1, this.layers[0]);
                 }
                 index++;
             }
