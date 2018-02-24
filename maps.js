@@ -1,5 +1,5 @@
 //Convert boolean 2D array into tilemap
-var changeMap = function(myMap, map, layer) {
+/* var changeMap = function(myMap, map, layer) {
     //Based on final map configuration, draw the tiles
     var index = 0;
     for (var x = 0; x < 12; x++){
@@ -20,11 +20,11 @@ var changeMap = function(myMap, map, layer) {
     //EasyStar stuff; makes calculations using the raw
     //  2D boolean array to determine paths. This is then
     //  used to interact with tilemap
-    /* game.global.easystar.setGrid(myMap);
+    game.global.easystar.setGrid(myMap);
     game.global.easystar.setAcceptableTiles([false]);
     game.global.easystar.enableDiagonals();
-    game.global.easystar.enableCornerCutting(); */
-}
+    game.global.easystar.enableCornerCutting();
+} */
 
 var MapManager = class MapManager {
     constructor(game){
@@ -40,7 +40,7 @@ var MapManager = class MapManager {
         return this.map;
     }
 
-    get getLayer(index){
+    getLayer(index){
         return this.layers[index];
     }
 
