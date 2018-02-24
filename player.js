@@ -75,14 +75,14 @@ var PlayerObject = function(idRef, gameRef){
             game.global.localPlayerObject = game.global.playerList[idLocal].localPlayerObject;
         }
 
-        if (((playerState.pos.x+1)*32 == (playerSprite.x | 0) && (playerState.pos.y+1)*32 == (playerSprite.y | 0)) && playerState.playerAction != 'idle' && !playerState.readyToUpdate){
+        if (((playerState.pos.x+1)*32 == (playerSprite.x | 0) && (playerState.pos.y+1)*32 == (playerSprite.y | 0)) && playerState.playerAction != 'idle' && playerState.readyToUpdate){
             playerState.playerAction = 'idle';
-            playerState.readyToUpdate = true;
+            //playerState.readyToUpdate = true;
             sendMessageToServer({type: 'move', payload: 'I'}, 'self');
         }
         
 
-        if(playerState.playerAction == 'idle'){
+        else if(playerState.playerAction == 'idle'){
             if (leftKey.isDown){
                 playerState.playerAction = 'walk';
                 playerState.playerFacing = 'W';
