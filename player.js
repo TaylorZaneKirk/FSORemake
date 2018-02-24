@@ -133,6 +133,7 @@ var PlayerObject = function(idRef, gameRef){
         var otherSprite = game.global.playerList[id].localPlayerObject.playerSprite;
         //console.log(otherPlayer);
         if(otherPlayer.playerAction == 'walk'){
+            console.log("trying to move other player");
             game.add.tween(otherSprite).to({x: (otherPlayer.pos.x+1) * 32, y: (otherPlayer.pos.y+1) * 32}, 250, null, true);
         }
         else if(((otherPlayer.pos.x+1) * 32) != otherSprite.x && ((otherPlayer.pos.y+1) * 32) != otherSprite.y){
