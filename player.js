@@ -129,18 +129,19 @@ var PlayerObject = function(idRef, gameRef){
             playerState.playerAction = 'idle';
             return;
         } */
+        var otherPlayer = game.global.playerList[id].player;
         var otherSprite = game.global.playerList[id].localPlayerObject.playerSprite;
-        if(otherSprite.playerAction == 'walk'){
+        if(otherPlayer.playerAction == 'walk'){
             game.add.tween(otherSprite).to({x: (otherSprite.pos.x+1) * 32, y: (otherSprite.pos.y+1) * 32}, 250, null, true);
         }
         var currentTime = new Date().getTime();
-        if(otherSprite.lastUpdated + 800 < currentTime){
+        if(otherPlayer.lastUpdated + 800 < currentTime){
             otherSprite.x = (otherSprite.pos.x+1) * 32;
             otherSprite.y = (otherSprite.pos.y+1) * 32;
         }
         otherSprite.play(otherSprite.playerAction + '-' + otherSprite.playerFacing);
 
-        game.global.playerList[id].localPlayerObject = otherSprite;
+        game.global.playerList[id].localPlayerObject.playerSprite = otherSprite;
     }
 
     init(idRef, gameRef);
