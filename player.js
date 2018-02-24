@@ -132,7 +132,9 @@ var PlayerObject = function(idRef, gameRef){
             playerState.playerAction = 'idle';
             return;
         } */
-        game.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: (playerState.pos.y+1) * 32}, 250, null, true);
+        if(playerSprite.playerAction == 'walk'){
+            game.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: (playerState.pos.y+1) * 32}, 250, null, true);
+        }
         playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
     }
 

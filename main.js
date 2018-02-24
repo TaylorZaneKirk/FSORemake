@@ -211,7 +211,7 @@ function update() {
 
     for(var i in game.global.playerList){
         thisPlayer = game.global.playerList[i];
-        if(thisPlayer.player != undefined && thisPlayer.localPlayerObject != undefined){
+        if(thisPlayer.player != undefined && thisPlayer.localPlayerObject != undefined && thisPlayer.player != game.global.player){
             thisPlayer.localPlayerObject.movePlayer();
         }
     }
