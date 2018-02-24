@@ -88,7 +88,7 @@ var PlayerObject = function(idRef, gameRef){
                 playerState.playerFacing = 'W';
                 ready = false;
                 sendMessageToServer({type: 'move', payload: 'W'}, 'self');
-                gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)-1) * 32, y: (playerState.pos.y+1) * 32}, 850, null, true);
+                gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)-1) * 32, y: (playerState.pos.y+1) * 32}, 1000, null, true);
                 //playerSprite.body.velocity.x -= 1; //arcade physics required for body.velocity to work
             }
             else if (rightKey.isDown){
@@ -96,7 +96,7 @@ var PlayerObject = function(idRef, gameRef){
                 playerState.playerFacing = 'E';
                 ready = false;
                 sendMessageToServer({type: 'move', payload: 'E'}, 'self');
-                gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)+1) * 32, y: (playerState.pos.y+1) * 32}, 850, null, true);
+                gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)+1) * 32, y: (playerState.pos.y+1) * 32}, 1000, null, true);
                 //playerSprite.body.velocity.x += 1;
             }
             else if (upKey.isDown){
@@ -104,7 +104,7 @@ var PlayerObject = function(idRef, gameRef){
                 playerState.playerFacing = 'N';
                 ready = false;
                 sendMessageToServer({type: 'move', payload: 'N'}, 'self');
-                gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: ((playerState.pos.y+1)-1) * 32}, 850, null, true);
+                gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: ((playerState.pos.y+1)-1) * 32}, 1000, null, true);
                 //playerSprite.body.velocity.y -= 1;
             }
             else if (downKey.isDown){
@@ -112,7 +112,7 @@ var PlayerObject = function(idRef, gameRef){
                 playerState.playerFacing = 'S';
                 ready = false;
                 sendMessageToServer({type: 'move', payload: 'S'}, 'self');
-                gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: ((playerState.pos.y+1)+1) * 32}, 850, null, true);
+                gameRef.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: ((playerState.pos.y+1)+1) * 32}, 1000, null, true);
                 //playerSprite.body.velocity.y += 1;
             }
             
@@ -134,14 +134,14 @@ var PlayerObject = function(idRef, gameRef){
         //console.log(otherPlayer);
         if(otherPlayer.playerAction == 'walk'){
             console.log("trying to move other player");
-            game.add.tween(otherSprite).to({x: (otherPlayer.pos.x+1) * 32, y: (otherPlayer.pos.y+1) * 32}, 250, null, true);
+            game.add.tween(otherSprite).to({x: (otherPlayer.pos.x+1) * 32, y: (otherPlayer.pos.y+1) * 32}, 1000, null, true);
         }
         else if(((otherPlayer.pos.x+1) * 32) != otherSprite.x || ((otherPlayer.pos.y+1) * 32) != otherSprite.y){
             /* otherSprite.x = ((otherPlayer.pos.x+1) * 32);
             otherSprite.y = ((otherPlayer.pos.y+1) * 32); */
             console.log("trying to move other player");
             otherPlayer.playerAction = "walk";
-            game.add.tween(otherSprite).to({x: (otherPlayer.pos.x+1) * 32, y: (otherPlayer.pos.y+1) * 32}, 250, null, true);
+            game.add.tween(otherSprite).to({x: (otherPlayer.pos.x+1) * 32, y: (otherPlayer.pos.y+1) * 32}, 1000, null, true);
         }
         game.global.playerList[id].localPlayerObject.playerSprite = otherSprite;
         /* var currentTime = new Date().getTime();
