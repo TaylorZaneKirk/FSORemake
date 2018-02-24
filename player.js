@@ -29,7 +29,7 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite.anchor.setTo(0.1430,0.15);
         playerSprite.enableBody = true;
         //playerSprite.body.enable = true;
-        //playerSprite.body.collideWorldBounds = true;
+        playerSprite.body.collideWorldBounds = true;
         playerSprite.body.immovable = false;
         playerSprite.body.bounce.setTo(0, 0);
         playerSprite.body.setSize(
@@ -133,61 +133,50 @@ var PlayerObject = function(idRef, gameRef){
         
         if((((playerState.pos.x+1) * 32) != Math.ceil(playerSprite.x) || ((playerState.pos.y+1) * 32) != Math.ceil(playerSprite.y)) ){
             //Player is moving and we're waiting for a response from server
-            console.log(((playerState.pos.x+1)*32 + "," + Math.ceil(playerSprite.x) + " " + (playerState.pos.y+1)*32 + "," + Math.ceil(playerSprite.x)));
+
             if(playerState.readyToUpdate){
+                //Server says we're ready to update, but our sprite hasn't quite got there yet
                 playerSprite.x = (playerState.pos.x + 1) * 32;
                 playerSprite.y = (playerState.pos.x + 1) * 32;
             }
             else{
-                //gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)) * 32, y: (playerState.pos.y+1) * 32}, 750, null, true);
-                //playerTween.to({x: ((playerState.pos.x+1)) * 32, y: (playerState.pos.y+1) * 32}, 750, null, true);
+                //We're not ready to update, so lets animate
                 playerTween = moveSprite(playerTween, playerState.pos, playerSprite);
             }
         }
         playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
     }
 
+    //Function to handle moving the sprites, if the tween
+    //  is already running simply return it so that it can
+    //  complete. Otherwise, replace the old tween data with new tween
     moveSprite = function(tween, pos, sprite){
-        if(tween != undefined && tween.isRunning){
-            console.log("currently moving, no need to update");
-            //return tween;
-        }
-        else{
+        if(tween != undefined && !tween.isRunning){
             tween = game.add.tween(sprite).to({x: ((pos.x+1)) * 32, y: (pos.y+1) * 32}, 750, null, true);
         }
         return tween;
     }
 
     movePlayer = function(id){
-        /* console.log((playerState.pos.x+1)*32 + " " + (playerSprite.x | 0))
-        if(((playerState.pos.x+1)*32 == (playerSprite.x | 0) && (playerState.pos.y+1)*32 == (playerSprite.y | 0))){
-            playerState.playerAction = 'idle';
-            return;
-        } */
+        //Get references
         var otherPlayer = game.global.playerList[id].player;
         var otherSprite = game.global.playerList[id].localPlayerObject.playerSprite;
         var otherTween = game.global.playerList[id].localPlayerObject.playerTween;
-        //console.log(otherPlayer);
+
         if(otherPlayer.playerAction == 'walk'){
-            console.log("trying to move other player");
-            //game.add.tween(otherSprite).to({x: (otherPlayer.pos.x+1) * 32, y: (otherPlayer.pos.y+1) * 32}, 750, null, true);
+            //server told us the player is moving
             otherTween = moveSprite(otherTween, otherPlayer.pos, otherSprite);
         }
         else if(((otherPlayer.pos.x+1) * 32) != Math.ceil(otherSprite.x) || ((otherPlayer.pos.y+1) * 32) != Math.ceil(otherSprite.y)){
-            /* otherSprite.x = ((otherPlayer.pos.x+1) * 32);
-            otherSprite.y = ((otherPlayer.pos.y+1) * 32); */
-            console.log("sprite pos mismatch");
+            //Server says the player is idle, put their coordinates don't match ours,
+            //  so we'll "infer" the movement locally
             otherPlayer.playerAction = "walk";
-            otherTween = moveSprite(otherTween, otherPlayer.pos, otherSprite)
-            //game.add.tween(otherSprite).to({x: (otherPlayer.pos.x+1) * 32, y: (otherPlayer.pos.y+1) * 32}, 1000, null, true);
+            otherTween = moveSprite(otherTween, otherPlayer.pos, otherSprite);
         }
+
+        //Set references
         game.global.playerList[id].localPlayerObject.playerSprite = otherSprite;
         game.global.playerList[id].localPlayerObject.playerTween = otherTween;
-        /* var currentTime = new Date().getTime();
-        if(otherPlayer.lastUpdated + 800 < currentTime){
-            otherSprite.x = (otherPlayer.pos.x+1) * 32;
-            otherSprite.y = (otherPlayer.pos.y+1) * 32;
-        } */
         otherSprite.play(otherPlayer.playerAction + '-' + otherPlayer.playerFacing);
 
         
