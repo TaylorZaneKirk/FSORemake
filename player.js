@@ -148,7 +148,7 @@ var PlayerObject = function(idRef, gameRef){
     }
 
     moveSprite = function(tween, pos, sprite){
-        if(tween.isRunning){
+        if(tween != undefined && tween.isRunning){
             console.log("currently moving, no need to update");
             return tween;
         }
