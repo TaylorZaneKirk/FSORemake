@@ -23,7 +23,7 @@ var PlayerObject = function(idRef, gameRef){
         downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
         leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
         rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
-        tabKey = game.input.keyboard.addKey(Phaser.Keyboard.TAB);
+        altKey = game.input.keyboard.addKey(Phaser.Keyboard.ALT);
 
         playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player');
         game.physics.arcade.enable(playerSprite);
@@ -89,7 +89,7 @@ var PlayerObject = function(idRef, gameRef){
             console.log("currently moving, no need to update");
             return;
         } */
-        if(tabKey.isDown){
+        if(altKey.isDown){
             playerState.playerAction = 'attack';
             playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
         }
