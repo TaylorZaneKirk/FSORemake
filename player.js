@@ -122,9 +122,13 @@ var PlayerObject = function(idRef, gameRef){
             
         }
         
-        if((((playerState.pos.x+1) * 32) != playerSprite.x || ((playerState.pos.y+1) * 32) != playerSprite.y) && !playerState.readyToUpdate ){
+        if((((playerState.pos.x+1) * 32) != playerSprite.x || ((playerState.pos.y+1) * 32) != playerSprite.y) ){
             //Player is moving and we're waiting for a response from server
             console.log(((playerState.pos.x+1)*32 + "," + (playerSprite.x | 0) + " " + (playerState.pos.y+1)*32 + "," + (playerSprite.y | 0)));
+            if(playerState.readyToUpdate){
+                playerSprite.x = (playerState.pos.x + 1) * 32;
+                playerSprite.y = (playerState.pos.x + 1) * 32;
+            }
             gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)) * 32, y: (playerState.pos.y+1) * 32}, 1000, null, true);
         }
         playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
