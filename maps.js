@@ -44,7 +44,7 @@ var MapManager = class MapManager {
         return this.layers[index];
     }
 
-    set setMapData(mapData){
+    setMapData(mapData){
         this.mapData = mapData;
         this.changeMap();
     }
