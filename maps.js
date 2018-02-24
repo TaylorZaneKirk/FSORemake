@@ -67,7 +67,7 @@ var MapManager = class MapManager {
     isSpotAvailable(x, y){
         var tileX = (x+1)*32;
         var tileY = (y+1)*32;
-        var thisTile = this.map.getTile(tileX, tileY, this.layers[0], true);
+        var thisTile = this.map.getTile(tileX, tileY, this.layers[0].layer, true);
         console.log(thisTile);
         return true;
     }
