@@ -121,10 +121,10 @@ var PlayerObject = function(idRef, gameRef){
             }
             
         }
-        else{
+        else if(((playerState.pos.x+1) * 32) != playerSprite.x || ((playerState.pos.y+1) * 32) != playerSprite.y){
             console.log(((playerState.pos.x+1)*32 + "," + (playerSprite.x | 0) + " " + (playerState.pos.y+1)*32 + "," + (playerSprite.y | 0)));
+            gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)) * 32, y: (playerState.pos.y+1) * 32}, 1000, null, true);
         }
-        gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)) * 32, y: (playerState.pos.y+1) * 32}, 1000, null, true);
         playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
     }
 
