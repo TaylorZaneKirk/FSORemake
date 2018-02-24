@@ -26,7 +26,7 @@ var changeMap = function(myMap, map, layer) {
     game.global.easystar.enableCornerCutting(); */
 }
 
-class MapManager {
+var MapManager = class MapManager {
     constructor(game){
         this.game = game;
         this.map = this.game.add.tilemap();
