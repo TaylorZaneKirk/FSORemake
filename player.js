@@ -165,19 +165,23 @@ var PlayerObject = function(idRef, gameRef){
         } */
         var otherPlayer = game.global.playerList[id].player;
         var otherSprite = game.global.playerList[id].localPlayerObject.playerSprite;
+        var otherTween = game.global.playerList[id].localPlayerObject.playerTween;
         //console.log(otherPlayer);
         if(otherPlayer.playerAction == 'walk'){
             console.log("trying to move other player");
-            game.add.tween(otherSprite).to({x: (otherPlayer.pos.x+1) * 32, y: (otherPlayer.pos.y+1) * 32}, 750, null, true);
+            //game.add.tween(otherSprite).to({x: (otherPlayer.pos.x+1) * 32, y: (otherPlayer.pos.y+1) * 32}, 750, null, true);
+            otherTween = moveSprite(otherTween, otherPlayer.pos, otherSprite);
         }
         else if(((otherPlayer.pos.x+1) * 32) != Math.ceil(otherSprite.x) || ((otherPlayer.pos.y+1) * 32) != Math.ceil(otherSprite.y)){
             /* otherSprite.x = ((otherPlayer.pos.x+1) * 32);
             otherSprite.y = ((otherPlayer.pos.y+1) * 32); */
             console.log("sprite pos mismatch");
             otherPlayer.playerAction = "walk";
-            game.add.tween(otherSprite).to({x: (otherPlayer.pos.x+1) * 32, y: (otherPlayer.pos.y+1) * 32}, 1000, null, true);
+            otherTween = moveSprite(otherTween, otherPlayer.pos, otherSprite)
+            //game.add.tween(otherSprite).to({x: (otherPlayer.pos.x+1) * 32, y: (otherPlayer.pos.y+1) * 32}, 1000, null, true);
         }
         game.global.playerList[id].localPlayerObject.playerSprite = otherSprite;
+        game.global.playerList[id].localPlayerObject.playerTween = otherTween;
         /* var currentTime = new Date().getTime();
         if(otherPlayer.lastUpdated + 800 < currentTime){
             otherSprite.x = (otherPlayer.pos.x+1) * 32;
