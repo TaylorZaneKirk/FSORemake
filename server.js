@@ -123,7 +123,7 @@ eurecaServer.exports.requestUpdate = function (id) {
 
         //Fetch users that are on the same page
         remote.recieveStateFromServer(players[id].state); */
-        updateClientsAboutNewPlayer(id);
+        eurecaServer.updateClientsAboutNewPlayer(id);
     } 
 }
 
