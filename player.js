@@ -130,7 +130,7 @@ var PlayerObject = function(idRef, gameRef){
                 playerSprite.y = (playerState.pos.x + 1) * 32;
             }
             else{
-                gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)) * 32, y: (playerState.pos.y+1) * 32}, 1000, null, true);
+                gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)) * 32, y: (playerState.pos.y+1) * 32}, 750, null, true);
             }
         }
         playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
@@ -147,7 +147,7 @@ var PlayerObject = function(idRef, gameRef){
         //console.log(otherPlayer);
         if(otherPlayer.playerAction == 'walk'){
             console.log("trying to move other player");
-            game.add.tween(otherSprite).to({x: (otherPlayer.pos.x+1) * 32, y: (otherPlayer.pos.y+1) * 32}, 1000, null, true);
+            game.add.tween(otherSprite).to({x: (otherPlayer.pos.x+1) * 32, y: (otherPlayer.pos.y+1) * 32}, 750, null, true);
         }
         else if(((otherPlayer.pos.x+1) * 32) != otherSprite.x || ((otherPlayer.pos.y+1) * 32) != otherSprite.y){
             /* otherSprite.x = ((otherPlayer.pos.x+1) * 32);
