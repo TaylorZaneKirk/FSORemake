@@ -117,11 +117,11 @@ var PlayerObject = function(idRef, gameRef){
         }
         else{
             console.log(((playerState.pos.x+1)*32 + "," + (playerSprite.x | 0) + " " + (playerState.pos.y+1)*32 + "," + (playerSprite.y | 0)));
-            var currentTime = new Date().getTime();
+            /* var currentTime = new Date().getTime();
             if(playerState.lastUpdated + 850 < currentTime){
                 playerSprite.x = (playerState.pos.x+1) * 32;
                 playerSprite.y = (playerState.pos.y+1) * 32;
-            }
+            } */
         }
         playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
     }
