@@ -134,15 +134,7 @@ var PlayerObject = function(idRef, gameRef){
         if((((playerState.pos.x+1) * 32) != Math.ceil(playerSprite.x) || ((playerState.pos.y+1) * 32) != Math.ceil(playerSprite.y)) ){
             //Player is moving and we're waiting for a response from server
 
-            if(playerState.readyToUpdate){
-                //Server says we're ready to update, but our sprite hasn't quite got there yet
-                playerSprite.x = (playerState.pos.x + 1) * 32;
-                playerSprite.y = (playerState.pos.x + 1) * 32;
-            }
-            else{
-                //We're not ready to update, so lets animate
-                playerTween = moveSprite(playerTween, playerState.pos, playerSprite);
-            }
+            playerTween = moveSprite(playerTween, playerState.pos, playerSprite);
         }
         playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
     }
