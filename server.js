@@ -119,10 +119,11 @@ eurecaServer.exports.requestUpdate = function (id) {
     var currentServerTime = new Date().getTime();
     if(players[id] && players[id].state.lastUpdated + 1250 < currentServerTime){
         players[id].state.lastUpdated = currentServerTime;
-        var remote = eurecaServer.getClient(id);
+        /* var remote = eurecaServer.getClient(id);
 
         //Fetch users that are on the same page
-        remote.recieveStateFromServer(players[id].state);
+        remote.recieveStateFromServer(players[id].state); */
+        updateClientsAboutNewPlayer(id);
     } 
 }
 
