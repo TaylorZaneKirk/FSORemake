@@ -29,7 +29,7 @@ game.global = {
     ready: false,
     myId: 0, //Id for server
     myMap: null, //Tiles for current screen
-    //map: null, 
+    mapManager: null, 
     walls: null, //Likely to be factored to 2nd or 3rd layer
     easystar: null,
     localPlayerObject: null,
@@ -87,7 +87,8 @@ function initMultiPlayer(game, globals){
         //state.lastUpdated = new Date().getTime();
 
         if(globals.player != false && globals.player.worldX != state.worldX && globals.player.worldY != state.worldY){
-            changeMap(state.mapData, map, layerFirst);
+            //changeMap(state.mapData, map, layerFirst);
+            globals.mapManager.setMapData(state.mapData);
         }
 
         if(state.playerName == globals.myId && globals.localPlayerObject != null){
@@ -116,7 +117,8 @@ function initMultiPlayer(game, globals){
             globals.localPlayerObject = new PlayerObject(state.playerName, game);
             globals.playerList[state.playerName].localPlayerObject = globals.localPlayerObject;
             game.global.ready = true;
-            changeMap(state.mapData, map, layerFirst);
+            //changeMap(state.mapData, map, layerFirst);
+            globals.mapManager.setMapData(state.mapData);
         }
         
 
@@ -168,9 +170,12 @@ function create() {
     //game.physics.startSystem(Phaser.Physics.ARCADE);
 
     //Maps and layers
-    map = game.add.tilemap();
+    /* map = game.add.tilemap();
     map.addTilesetImage('tileset', null, 32, 32);
-    layerFirst = map.create('map', 18, 13, 32, 32);
+    layerFirst = map.create('map', 18, 13, 32, 32); */
+
+    game.global.mapManager = new MapManager(game);
+
     //map.putTile(0, 1, 1, layerFirst);
     //layer2 = map.createBlankLayer('collisions', COLS, ROWS, 20, 20);
     //layer2.properties = {'collision' : true};

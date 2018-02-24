@@ -25,3 +25,43 @@ var changeMap = function(myMap, map, layer) {
     game.global.easystar.enableDiagonals();
     game.global.easystar.enableCornerCutting(); */
 }
+
+class MapManager {
+    constructor(game){
+        this.game = game;
+        this.map = this.game.add.tilemap();
+        this.map.addTilesetImage('tileset', null, 32, 32);
+        this.layers = [];
+        this.layers.push(this.map.create('map', 18, 13, 32, 32));
+        this.mapData = null;
+    }
+
+    get getMap(){
+        return this.map;
+    }
+
+    get getLayer(index){
+        return this.layers[index];
+    }
+
+    set setMapData(mapData){
+        this.mapData = mapData;
+        this.changeMap();
+    }
+
+    changeMap(){
+        var index = 0;
+        for (var x = 0; x < 12; x++){
+            for (var y = 0; y < 17; y++) {
+                if(this.mapData[index] == '\n' || this.mapData[index] == ';'){
+                    y--;
+                }
+                else if(this.mapData[index] != '\n' && this.mapData[index] != ';'){
+                    this.map.putTile(this.mapData[index], y+1, x+1, layers[0]);
+                }
+                index++;
+            }
+        }
+    }
+    
+}
