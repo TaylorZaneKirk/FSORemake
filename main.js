@@ -129,6 +129,7 @@ function initMultiPlayer(game, globals){
     client.exports.kill = function(id){
         if(globals.playerList[id] != undefined){
             console.log('killing ', id, globals.playerList[id]);
+            globals.playerList[id].localPlayerObject.playerSprite.kill();
             delete globals.playerList[id];
             //kill sprite here
         }
