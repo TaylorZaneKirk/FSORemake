@@ -131,7 +131,7 @@ var PlayerObject = function(idRef, gameRef){
         } */
         var otherPlayer = game.global.playerList[id].player;
         var otherSprite = game.global.playerList[id].localPlayerObject.playerSprite;
-        console.log(otherPlayer);
+        //console.log(otherPlayer);
         if(otherPlayer.playerAction == 'walk'){
             game.add.tween(otherSprite).to({x: (otherPlayer.pos.x+1) * 32, y: (otherPlayer.pos.y+1) * 32}, 250, null, true);
         }
