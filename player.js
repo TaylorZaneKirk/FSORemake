@@ -157,7 +157,7 @@ var PlayerObject = function(idRef, gameRef){
     
     return {
         game: game,
-        id: id,
+        id: idLocal,
         playerState: playerState,
         update: update,
         playerSprite: playerSprite,
