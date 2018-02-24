@@ -134,8 +134,7 @@ var PlayerObject = function(idRef, gameRef){
         if(otherPlayer.playerAction == 'walk'){
             game.add.tween(otherSprite).to({x: (otherPlayer.pos.x+1) * 32, y: (otherPlayer.pos.y+1) * 32}, 250, null, true);
         }
-        var currentTime = new Date().getTime();
-        if(otherPlayer.lastUpdated + 800 < currentTime){
+        else{
             otherSprite.x = (otherPlayer.pos.x+1) * 32;
             otherSprite.y = (otherPlayer.pos.y+1) * 32;
         }
