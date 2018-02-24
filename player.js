@@ -152,7 +152,7 @@ var PlayerObject = function(idRef, gameRef){
         else if(((otherPlayer.pos.x+1) * 32) != otherSprite.x|0 || ((otherPlayer.pos.y+1) * 32) != otherSprite.y|0){
             /* otherSprite.x = ((otherPlayer.pos.x+1) * 32);
             otherSprite.y = ((otherPlayer.pos.y+1) * 32); */
-            console.log("otherSprite pos mismatch");
+            console.log(otherSprite.x|0);
             otherPlayer.playerAction = "walk";
             game.add.tween(otherSprite).to({x: (otherPlayer.pos.x+1) * 32, y: (otherPlayer.pos.y+1) * 32}, 1000, null, true);
         }
