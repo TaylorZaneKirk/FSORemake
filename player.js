@@ -140,10 +140,21 @@ var PlayerObject = function(idRef, gameRef){
             }
             else{
                 //gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)) * 32, y: (playerState.pos.y+1) * 32}, 750, null, true);
-                playerTween.to({x: ((playerState.pos.x+1)) * 32, y: (playerState.pos.y+1) * 32}, 750, null, true);
+                //playerTween.to({x: ((playerState.pos.x+1)) * 32, y: (playerState.pos.y+1) * 32}, 750, null, true);
+                playerTween = moveSprite(playerTween, playerState.pos, playerSprite);
             }
         }
         playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
+    }
+
+    moveSprite = function(tween, pos, sprite){
+        if(tween.isRunning){
+            console.log("currently moving, no need to update");
+            return tween;
+        }
+        else{
+            tween = game.add.tween(sprite).to({x: ((pos.x+1)) * 32, y: (pos.y+1) * 32}, 750, null, true);
+        }
     }
 
     movePlayer = function(id){
