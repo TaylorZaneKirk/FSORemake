@@ -68,8 +68,10 @@ var MapManager = class MapManager {
         var tileX = (x+1)*32;
         var tileY = (y+1)*32;
         var thisTile = this.map.getTile(x+1, y+1, this.layers[0], true);
-        console.log(thisTile);
-        return true;
+        if(thisTile != null && thisTile.index == 0){
+            return true;
+        }
+        return false;
     }
 
 
