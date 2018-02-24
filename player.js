@@ -136,7 +136,7 @@ var PlayerObject = function(idRef, gameRef){
             console.log("trying to move other player");
             game.add.tween(otherSprite).to({x: (otherPlayer.pos.x+1) * 32, y: (otherPlayer.pos.y+1) * 32}, 250, null, true);
         }
-        else if(((otherPlayer.pos.x+1) * 32) != otherSprite.x && ((otherPlayer.pos.y+1) * 32) != otherSprite.y){
+        else if(((otherPlayer.pos.x+1) * 32) != otherSprite.x || ((otherPlayer.pos.y+1) * 32) != otherSprite.y){
             /* otherSprite.x = ((otherPlayer.pos.x+1) * 32);
             otherSprite.y = ((otherPlayer.pos.y+1) * 32); */
             console.log("trying to move other player");
