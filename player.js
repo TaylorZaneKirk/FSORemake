@@ -11,6 +11,7 @@ var PlayerObject = function(idRef, gameRef){
     var leftKey = null;
     var rightKey = null;
     var ready = null;
+    var playerTween = null;
 
     function init(idRef, gameRef){
         game = gameRef;
@@ -46,6 +47,8 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite.animations.add('idle-W', [5], 1, false);
         playerSprite.animations.add('idle-N', [9], 1, false);
         playerSprite.animations.add('idle-S', [13], 1, false);
+
+        playerTween = game.add.tween(playerSprite);
     }
 
     function update(){
@@ -69,6 +72,7 @@ var PlayerObject = function(idRef, gameRef){
                 playerState: playerState,
                 update: update,
                 playerSprite: playerSprite,
+                playerTween: playerTween,
                 movePlayer: movePlayer,
             };
 
@@ -130,7 +134,8 @@ var PlayerObject = function(idRef, gameRef){
                 playerSprite.y = (playerState.pos.x + 1) * 32;
             }
             else{
-                gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)) * 32, y: (playerState.pos.y+1) * 32}, 750, null, true);
+                //gameRef.add.tween(playerSprite).to({x: ((playerState.pos.x+1)) * 32, y: (playerState.pos.y+1) * 32}, 750, null, true);
+                playerTween.to({x: ((playerState.pos.x+1)) * 32, y: (playerState.pos.y+1) * 32}, 750, null, true);
             }
         }
         playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
@@ -175,6 +180,7 @@ var PlayerObject = function(idRef, gameRef){
         playerState: playerState,
         update: update,
         playerSprite: playerSprite,
+        playerTween: playerTween,
         movePlayer: movePlayer,
     };
 }
