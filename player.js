@@ -79,6 +79,11 @@ var PlayerObject = function(idRef, gameRef){
             game.global.localPlayerObject = game.global.playerList[idLocal].localPlayerObject;
         }
 
+        if(playerTween.isRunning){
+            console.log("currently moving, no need to update");
+            return;
+        }
+
         if (((playerState.pos.x+1)*32 == Math.ceil(playerSprite.x) && (playerState.pos.y+1)*32 == Math.ceil(playerSprite.y)) && playerState.playerAction != 'idle' && playerState.readyToUpdate){
             playerState.playerAction = 'idle';
             //playerState.readyToUpdate = true;
