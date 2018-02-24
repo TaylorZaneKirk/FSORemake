@@ -196,7 +196,7 @@ eurecaServer.exports.message = function(id, message){
             players[id].state.pos = {x: x, y: y};
             players[id].state.readyToUpdate = true;
             players[id].state.playerAction = newAction;
-            console.log(players[id].state.pos.x + "," + players[id].state.pos.x + " " + players[id].state.playerName);
+            console.log(players[id].state.pos.x + "," + players[id].state.pos.y + " " + players[id].state.playerName);
             break;
         }
         case 'attack': {
