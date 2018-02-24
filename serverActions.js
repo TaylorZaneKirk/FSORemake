@@ -1,9 +1,12 @@
+//Utility functions for the server to handle player actions
+
 module.exports = {
     movePlayer: function(state, payload){
         var x = state.pos.x;
         var y = state.pos.y;
         var newAction = '';
 
+        //Need to write something to check if movement is valid
         
         switch(payload){
             case 'E': {
@@ -39,6 +42,7 @@ module.exports = {
         state.pos = {x: x, y: y};
         state.readyToUpdate = true;
         state.playerAction = newAction;
-        console.log(state.pos.x + "," + state.pos.y + " " + state.playerName);
     }
+
+    //Need to write other server actions like attack
 }

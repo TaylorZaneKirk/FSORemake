@@ -107,7 +107,6 @@ function initMultiPlayer(game, globals){
                 globals.playerList[state.playerName].player = state;
             }
              
-            //globals.playerList[state.playerName].localPlayerObject = new PlayerObject(state.playerName, game);
         }
 
         if(state.playerName == globals.myId && globals.localPlayerObject == null){
@@ -117,7 +116,6 @@ function initMultiPlayer(game, globals){
             globals.localPlayerObject = new PlayerObject(state.playerName, game);
             globals.playerList[state.playerName].localPlayerObject = globals.localPlayerObject;
             game.global.ready = true;
-            //changeMap(state.mapData, map, layerFirst);
             globals.mapManager.setMapData(state.mapData);
         }
         
@@ -133,7 +131,6 @@ function initMultiPlayer(game, globals){
             console.log('killing ', id, globals.playerList[id]);
             globals.playerList[id].localPlayerObject.playerSprite.kill();
             delete globals.playerList[id];
-            //kill sprite here
         }
     }
 
@@ -158,8 +155,6 @@ function init() {
 function preload() {
     game.load.image('tileset', 'assets/tiles/FSORemakeMapTileset.png');
     game.load.spritesheet('player', 'assets/PlayerSheet.png', 46, 45, 16);
-    //game.load.image('clown', 'assets/images/clown.png');
-    //game.load.image('portal', 'assets/images/portal.png');
     //game.global.easystar = new EasyStar.js();   //start the pathfinder
     game.physics.startSystem(Phaser.Physics.ARCADE);
 }
@@ -170,13 +165,9 @@ function create() {
     //game.physics.startSystem(Phaser.Physics.ARCADE);
 
     //Maps and layers
-    /* map = game.add.tilemap();
-    map.addTilesetImage('tileset', null, 32, 32);
-    layerFirst = map.create('map', 18, 13, 32, 32); */
-
     game.global.mapManager = new MapManager(game);
 
-    //map.putTile(0, 1, 1, layerFirst);
+
     //layer2 = map.createBlankLayer('collisions', COLS, ROWS, 20, 20);
     //layer2.properties = {'collision' : true};
     //layer.resizeWorld();
@@ -212,21 +203,16 @@ function update() {
 
     if(game.global.localPlayerObject != null || game.global.localPlayerObject != {}){
         game.global.localPlayerObject.update();    //update player
-        //game.global.localPlayerObject.movePlayer();
     }
 
     for(var i in game.global.playerList){
         thisPlayer = game.global.playerList[i];
         if(thisPlayer.player != undefined && thisPlayer.localPlayerObject != undefined && thisPlayer.player != game.global.player){
             if(((thisPlayer.player.pos.x + 1) * 32) != thisPlayer.localPlayerObject.playerSprite.x || ((thisPlayer.player.pos.y + 1) * 32) != thisPlayer.localPlayerObject.playerSprite.y){
-                thisPlayer.localPlayerObject.movePlayer(thisPlayer.player.playerName);
+                thisPlayer.localPlayerObject.movePlayer(thisPlayer.player.playerName); //update other players
             }
         }
     }
-    
-    /* for (var c in game.global.npcList){ //update NPCs
-        game.global.npcList[c].update();
-    } */
 }
 
 function render() {

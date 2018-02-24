@@ -17,6 +17,8 @@ var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 
 //attach eureca.io to our http server
 eurecaServer.attach(server);
 
+
+//Player state needs to have Health implemented
 class PlayerState
 {
     constructor(idString){
@@ -89,7 +91,6 @@ app.get('/', function (req, res, next) {
 
 server.listen(process.env.PORT || 55555, function () {
     console.log('\033[96mlistening on localhost:55555 \033[39m');
-    console.log("Beginning Map-generation...");
 });
 
 /**
@@ -101,30 +102,21 @@ eurecaServer.exports.initPlayer = function (id) {
     var currentTime = new Date().getTime()
 
     players[id].state.readyToUpdate = true;
-    players[id].state.lastUpdated = currentTime;/* 
-    for(var i in players){
-        if(players[i].state.playerName != id){
-            console.log("assigned");
-            players[id].state.playersVisible[players[i].id] = players[i].state;
-        }
-    } */
+    players[id].state.lastUpdated = currentTime;
     
     
-    eurecaServer.updateClientsAboutNewPlayer(id);
+    eurecaServer.updateClients(id);
 
 }
 
-
+//Recieved state update request from a client
 eurecaServer.exports.requestUpdate = function (id) {
 
     var currentServerTime = new Date().getTime();
     if(players[id] && players[id].state.lastUpdated + 1250 < currentServerTime){
         players[id].state.lastUpdated = currentServerTime;
-        /* var remote = eurecaServer.getClient(id);
-
-        //Fetch users that are on the same page
-        remote.recieveStateFromServer(players[id].state); */
-        eurecaServer.updateClientsAboutNewPlayer(id);
+        
+        eurecaServer.updateClients(id);
     } 
 }
 
@@ -149,54 +141,11 @@ eurecaServer.exports.message = function(id, message){
         return;
     }
 
-    var currentTime = new Date();
-
-    //if(players[id].state.lastUpdated + 100 < currentTime.getTime()) { return; }
+    //Give some thought to still implementing something
+    //  to stop players from updating too quickly
     
     switch(message.action.type){
         case 'move': {
-            //do move
-            //Need to make Server Actions file to handle these
-            /* var x = players[id].state.pos.x;
-            var y = players[id].state.pos.y;
-            var newAction = '';
-
-            
-            switch(message.action.payload){
-                case 'E': {
-                    x = x + 1;
-                    newAction = 'walk'
-                    players[id].state.playerFacing = message.action.payload;
-                    break;
-                }
-                case 'W': {
-                    x = x - 1;
-                    newAction = 'walk'
-                    players[id].state.playerFacing = message.action.payload;
-                    break;
-                }
-                case 'N': {
-                    y = y - 1;
-                    newAction = 'walk'
-                    players[id].state.playerFacing = message.action.payload;
-                    break;
-                }
-                case 'S': {
-                    y = y + 1;
-                    newAction = 'walk'
-                    players[id].state.playerFacing = message.action.payload;
-                    break;
-                }
-                default: {
-                    
-                    newAction = 'idle';
-                }
-            }
-            
-            players[id].state.pos = {x: x, y: y};
-            players[id].state.readyToUpdate = true;
-            players[id].state.playerAction = newAction;
-            console.log(players[id].state.pos.x + "," + players[id].state.pos.y + " " + players[id].state.playerName); */
             serverActions.movePlayer(players[id].state, message.action.payload);
             break;
         }
@@ -216,11 +165,17 @@ eurecaServer.exports.message = function(id, message){
     }
 }
 
-eurecaServer.updateClientsAboutNewPlayer = function (id) {
+//Update player about all players, and all players about player
+eurecaServer.updateClients = function (id) {
     var newRemote = players[id].remote;
     var allPlayerStates = [];
+
     for(var i in players) {
         var remote = players[i].remote;
+
+        //This is where I should implement something to only
+        //  update players on the same map
+
         allPlayerStates.push(players[i].state);
         remote.recieveStateFromServer(players[id].state);
     }
