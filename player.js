@@ -71,6 +71,8 @@ var PlayerObject = function(idRef, gameRef){
                 playerSprite: playerSprite,
                 movePlayer: movePlayer,
             };
+
+            game.global.localPlayerObject = game.global.playerList[id].localPlayerObject;
         }
 
         if (((playerState.pos.x+1)*32 == (playerSprite.x | 0) && (playerState.pos.y+1)*32 == (playerSprite.y | 0)) && playerState.playerAction != 'idle' && !playerState.readyToUpdate){
@@ -117,11 +119,6 @@ var PlayerObject = function(idRef, gameRef){
         }
         else{
             console.log(((playerState.pos.x+1)*32 + "," + (playerSprite.x | 0) + " " + (playerState.pos.y+1)*32 + "," + (playerSprite.y | 0)));
-            /* var currentTime = new Date().getTime();
-            if(playerState.lastUpdated + 850 < currentTime){
-                playerSprite.x = (playerState.pos.x+1) * 32;
-                playerSprite.y = (playerState.pos.y+1) * 32;
-            } */
         }
         playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
     }
@@ -134,6 +131,11 @@ var PlayerObject = function(idRef, gameRef){
         } */
         if(playerSprite.playerAction == 'walk'){
             game.add.tween(playerSprite).to({x: (playerState.pos.x+1) * 32, y: (playerState.pos.y+1) * 32}, 250, null, true);
+        }
+        var currentTime = new Date().getTime();
+        if(playerState.lastUpdated + 800 < currentTime){
+            playerSprite.x = (playerState.pos.x+1) * 32;
+            playerSprite.y = (playerState.pos.y+1) * 32;
         }
         playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
     }
