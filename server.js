@@ -283,6 +283,7 @@ Object.filter = function( obj, predicate) {
     // ---------------^---- as noted by @CMS, 
     //      always declare variables with the "var" keyword
 
+    console.log("here");
     for (key in obj) {
         if (obj.hasOwnProperty(key) && !predicate(obj[key])) {
             console.log(key);
