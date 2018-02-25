@@ -229,11 +229,11 @@ loadMapData = function(){
                 for (var x = 0; x < 12; x++){
                     worldMap[filename].mapData[x] = {};
                     for (var y = 0; y < 17; y++) {
-                        if(contents[index] == '\n' || contents[index] == ';'){
+                        if(content[index] == '\n' || content[index] == ';'){
                             y--;
                         }
-                        else if(contents[index] != '\n' && contents[index] != ';'){
-                            worldMap[filename].mapData[x][y] = contents[index];
+                        else if(content[index] != '\n' && content[index] != ';'){
+                            worldMap[filename].mapData[x][y] = content[index];
                         }
                         index++;
                     }
