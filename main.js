@@ -80,7 +80,7 @@ function initMultiPlayer(game, globals){
 
     client.exports.recieveStateFromServer = function(state) {
 
-        if(globals.player != false && globals.player.worldX != state.worldX && globals.player.worldY != state.worldY){
+        if(globals.player != false && globals.player.worldX != state.worldX && globals.player.worldY != state.worldY){ // <- NOT WORKING
             //Changed Map after logging in, kill all the sprites, recreate them, and change map
 
             //Remove old data
@@ -97,9 +97,9 @@ function initMultiPlayer(game, globals){
 
             //Create the new players
             for(var i in state.playersVisible){
-                globals.playerList[state.playerName] = {player: state.playersVisible[i], localPlayerObject: null};
-                globals.playerList[state.playerName].player = state.playersVisible[i];
-                lobals.playerList[state.playerName].localPlayerObject = new PlayerObject(state.playersVisible[i].playerName, game);
+                globals.playerList[state.playersVisible[i].playerName] = {player: state.playersVisible[i], localPlayerObject: null};
+                globals.playerList[state.playersVisible[i].playerName].player = state.playersVisible[i];
+                lobals.playerList[state.playersVisible[i].playerName].localPlayerObject = new PlayerObject(state.playersVisible[i].playerName, game);
             }
             
             globals.mapManager.setMapData(state.mapData);
