@@ -289,9 +289,12 @@ Object.filter = (obj, predicate) =>
     Object.keys(obj)
         .filter( key => predicate(obj[key]) )
         .reduce(function(res, key){
-            thisObj = Object.keys(obj[key])
-                .filter(prop => prop != obj[key].playersVisible)
-            res[key] = thisObj;
+            props = Object.keys(obj[key])
+                .filter(prop => prop != 'playersVisible')
+            for(var i in props){
+                res[key][props[i]] = obj[key][props[i]];
+            }
+            
             console.log(res[key]);
             
         },{} );
