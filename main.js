@@ -80,7 +80,7 @@ function initMultiPlayer(game, globals){
 
     client.exports.recieveStateFromServer = function(state) {
 
-        if(globals.player != false && globals.player.worldX != state.worldX && globals.player.worldY != state.worldY){ // <- NOT WORKING
+        if(globals.player != false && (globals.player.worldX != state.worldX || globals.player.worldY != state.worldY)){ // <- NOT WORKING
             //Changed Map after logging in, kill all the sprites, recreate them, and change map
 
             //Remove old data
