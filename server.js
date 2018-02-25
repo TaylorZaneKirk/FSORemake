@@ -50,9 +50,13 @@ class PlayerState
     }
 };
 
+
+
 var players = {};
+//Should add a world map object
+var worldMap = {
 
-
+}
 
 //detect client connection
 eurecaServer.onConnect(function (conn) {
@@ -72,10 +76,6 @@ eurecaServer.onConnect(function (conn) {
 eurecaServer.onDisconnect(function (conn) {
     console.log('Client disconnected ', conn.id);
 
-    //var removeId = players[conn.id].id;
-
-    delete players[conn.id];
-
     for (var c in players)
     {
         var remote = players[c].remote;
@@ -83,6 +83,7 @@ eurecaServer.onDisconnect(function (conn) {
         //here we call kill() method defined in the client side
         remote.kill(conn.id);
     }
+    delete players[conn.id];
 });
 
 app.get('/', function (req, res, next) {
@@ -91,6 +92,8 @@ app.get('/', function (req, res, next) {
 
 server.listen(process.env.PORT || 55555, function () {
     console.log('\033[96mlistening on localhost:55555 \033[39m');
+    console.log('Generating World Map...');
+    loadMapData();
 });
 
 /**
@@ -199,4 +202,38 @@ readMapFromFile = function(id, x, y){
         players[id].state.mapData = contents;
     });
     
+}
+
+loadMapData = function(){
+    fs.readdir(__dirname + '/maps/', function(err, filenames){
+        if (err) {
+            console.log(err);
+            return;
+        }
+        filenames.forEach(function(filename) {
+            fs.readFile(dirname + filename, 'utf-8', function(err, content) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                worldMap[filename].mapData = [,];
+                worldMap[filename].players = [];
+                worldMap[filename].npcs = [];
+
+                var index = 0;
+
+                for (var x = 0; x < 12; x++){
+                    for (var y = 0; y < 17; y++) {
+                        if(contents[index] == '\n' || contents[index] == ';'){
+                            y--;
+                        }
+                        else if(contents[index] != '\n' && contents[index] != ';'){
+                            worldMap[filename].mapData[x][y] = contents[index];
+                        }
+                        index++;
+                    }
+                }
+            });
+        });
+    });
 }

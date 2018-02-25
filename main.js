@@ -29,7 +29,7 @@ game.global = {
     ready: false,
     myId: 0, //Id for server
     myMap: null, //Tiles for current screen
-    mapManager: null, 
+    mapManager: null, //Reference to mapManager for tilemap
     walls: null, //Likely to be factored to 2nd or 3rd layer
     easystar: null,
     localPlayerObject: null,
@@ -73,18 +73,12 @@ function initMultiPlayer(game, globals){
         // Assign my new connection Id
         globals.myId = id;
 
-        // Put instance of new player into list
-        //globals.playerList[id] = globals.player
-
         //tell server client is ready
         globals.eurecaProxy.initPlayer(id);
 
     }
 
     client.exports.recieveStateFromServer = function(state) {
-        console.log("Recieved State");
-        console.log(state);
-        //state.lastUpdated = new Date().getTime();
 
         if(globals.player != false && globals.player.worldX != state.worldX && globals.player.worldY != state.worldY){
             //changeMap(state.mapData, map, layerFirst);
@@ -92,7 +86,7 @@ function initMultiPlayer(game, globals){
         }
 
         if(state.playerName == globals.myId && globals.localPlayerObject != null){
-            console.log("Assigned Player State");
+            //console.log("Assigned Player State");
             globals.player = state;
             globals.playerList[state.playerName] = state;
             globals.playerList[state.playerName].player = state;
@@ -106,7 +100,7 @@ function initMultiPlayer(game, globals){
             else{
                 globals.playerList[state.playerName].player = state;
             }
-             
+            console.log('logging in: ', state.playerName, globals.playerList[state.playerName]);
         }
 
         if(state.playerName == globals.myId && globals.localPlayerObject == null){
@@ -118,9 +112,6 @@ function initMultiPlayer(game, globals){
             game.global.ready = true;
             globals.mapManager.setMapData(state.mapData);
         }
-        
-
-        
     }
 
     /**
@@ -128,7 +119,7 @@ function initMultiPlayer(game, globals){
         */
     client.exports.kill = function(id){
         if(globals.playerList[id] != undefined){
-            console.log('killing ', id, globals.playerList[id]);
+            console.log('killing: ', id, globals.playerList[id]);
             globals.playerList[id].localPlayerObject.playerSprite.kill();
             delete globals.playerList[id];
         }
@@ -173,10 +164,6 @@ function create() {
     //layer.resizeWorld();
 }
 
-
-
-
-
 function update() {
     var currentTime = new Date();
 
@@ -191,15 +178,11 @@ function update() {
         return; //Stuff isn't ready; hold on...
     }
 
-    
-    
     //wait [0.25] seconds before requesting an update from the server
     if (game.global.player.lastUpdated + 250 < currentTime.getTime() ){
         game.global.player.lastUpdated = currentTime.getTime();
         game.global.eurecaProxy.requestUpdate(game.global.myId);
     }
-    
-
 
     if(game.global.localPlayerObject != null || game.global.localPlayerObject != {}){
         game.global.localPlayerObject.update();    //update player
