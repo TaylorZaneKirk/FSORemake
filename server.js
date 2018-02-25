@@ -243,10 +243,11 @@ loadMapData = function(){
                     }
                 }
                 filesRead++;
+                
+                //Maybe do call back stuff here
+                console.log(totalFiles);
+                console.log(filesRead);
             });
         });
-        //Maybe do call back stuff here
-        console.log(totalFiles);
-        console.log(filesRead);
     });
 }
