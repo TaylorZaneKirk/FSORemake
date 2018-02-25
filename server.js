@@ -289,7 +289,7 @@ Object.filter = (obj, predicate) =>
     Object.keys(obj)
         .filter( key => predicate(obj[key]) )
         .reduce(function(res, key){
-            if(obj[key] != obj[playersVisible]){
+            if(obj[key] != obj.playersVisible){
                 res[key] = obj[key];
                 console.log(res[key]);
             }
