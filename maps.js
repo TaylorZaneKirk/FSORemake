@@ -50,7 +50,7 @@ var MapManager = class MapManager {
     }
 
     changeMap(){
-        var index = 0;
+        /* var index = 0;
         for (var x = 0; x < 12; x++){
             for (var y = 0; y < 17; y++) {
                 if(this.mapData[index] == '\n' || this.mapData[index] == ';'){
@@ -60,6 +60,13 @@ var MapManager = class MapManager {
                     this.map.putTile(this.mapData[index], y+1, x+1, this.layers[0]);
                 }
                 index++;
+            }
+        } */
+        for (var x = 0; x < 12; x++){
+            for (var y = 0; y < 17; y++) {
+                
+                this.map.putTile(this.mapData[x][y], y+1, x+1, this.layers[0]);
+            
             }
         }
     }

@@ -31,8 +31,8 @@ class PlayerState
         this.lastUpdated = null;
         this.readyToUpdate = false;
         this.playersVisible = {};
-        this.mapData = null;
-        readMapFromFile(idString, this.pos.x, this.pos.y);
+        this.mapData = worldMap[this.worldX + '-' + this.worldY].mapData;
+        //readMapFromFile(idString, this.pos.x, this.pos.y);
     }
     
     copy(other)
@@ -221,7 +221,9 @@ loadMapData = function(){
                     return;
                 }
 
-                worldMap[filename] = {
+                mapName = filename.substring(0, filename.lastIndexOf("."));
+
+                worldMap[mapName] = {
                     mapData: {},
                     players: {},
                     npcs: {},
@@ -231,14 +233,13 @@ loadMapData = function(){
                 var index = 0;
 
                 for (var x = 0; x < 12; x++){
-                    worldMap[filename].mapData[x] = {};
+                    worldMap[mapName].mapData[x] = {};
                     for (var y = 0; y < 17; y++) {
                         if(content[index] == '\n' || content[index] == ';'){
                             y--;
                         }
                         else if(content[index] != '\n' && content[index] != ';'){
-                            worldMap[filename].mapData[x][y] = content[index];
-                            console.log(content[index]);
+                            worldMap[mapName].mapData[x][y] = content[index];
                         }
                         index++;
                     }
