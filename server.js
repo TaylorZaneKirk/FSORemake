@@ -216,13 +216,18 @@ loadMapData = function(){
                     console.log(err);
                     return;
                 }
-                worldMap[filename].mapData = [,];
-                worldMap[filename].players = [];
-                worldMap[filename].npcs = [];
+
+                worldMap[filename] = {
+                    mapData: {},
+                    players: {},
+                    npcs: {},
+                    items: {},
+                };
 
                 var index = 0;
 
                 for (var x = 0; x < 12; x++){
+                    worldMap[filename].mapData[x] = {};
                     for (var y = 0; y < 17; y++) {
                         if(contents[index] == '\n' || contents[index] == ';'){
                             y--;
