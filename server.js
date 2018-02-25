@@ -286,7 +286,7 @@ loadMapData = function(){
 Object.filter = (obj, predicate) => 
     Object.keys(obj)
         .filter( key => predicate(obj[key]) )
-        .reduce(function(prev, curr, key, res){
+        .reduce(function(res, key){
             console.log(key);
             res[key] = obj[key];
         },{} );
