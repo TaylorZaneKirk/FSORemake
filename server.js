@@ -291,10 +291,11 @@ Object.filter = (obj, predicate) =>
         .reduce(function(res, key){
             props = Object.keys(obj[key])
                 .filter(prop => prop != 'playersVisible')
+            objCopy = {};
             for(var i in props){
-                res[key][props[i]] = obj[key][props[i]];
+                objCopy[props[i]] = obj[key][props[i]];
             }
-            
+            res[key] = objCopy;
             console.log(res[key]);
             
         },{} );
