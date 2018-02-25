@@ -92,9 +92,7 @@ app.get('/', function (req, res, next) {
 
 server.listen(process.env.PORT || 55555, function () {
     console.log('\033[96mlistening on localhost:55555 \033[39m');
-    console.log('Generating World Map...');
     loadMapData();
-    console.log(worldMap);
 });
 
 /**
@@ -206,12 +204,17 @@ readMapFromFile = function(id, x, y){
 }
 
 loadMapData = function(){
+    console.log('Generating World Map...');
+    var totalFiles = 0;
+    var filesRead = 0;
     fs.readdir(__dirname + '/maps/', function(err, filenames){
         if (err) {
             console.log(err);
             return;
         }
+        totalFiles = filenames.length;
         filenames.forEach(function(filename) {
+
             fs.readFile(__dirname + '/maps/' + filename, 'utf-8', function(err, content) {
                 if (err) {
                     console.log(err);
@@ -239,7 +242,12 @@ loadMapData = function(){
                         index++;
                     }
                 }
+                filesRead++;
             });
         });
     });
+    if(filesRead != 0 && filesRead == totalCount){
+        console.log("World map generated");
+        console.log(worldMap);
+    }
 }
