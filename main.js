@@ -104,7 +104,7 @@ function initMultiPlayer(game, globals){
             
             globals.mapManager.setMapData(state.mapData);
         }
-        else if(state.playerName == globals.myId && globals.localPlayerObject == null && ready == false){
+        else if(state.playerName == globals.myId && globals.localPlayerObject == null && game.global.ready == false){
             //Just logged in, create sprites and map
             
             //Local player
