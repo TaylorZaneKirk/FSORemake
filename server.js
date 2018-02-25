@@ -278,19 +278,15 @@ loadMapData = function(){
     });
 }
 
-Object.filter = function( obj, predicate) {
-    var result = {}, key;
-    // ---------------^---- as noted by @CMS, 
-    //      always declare variables with the "var" keyword
+/* Object.filter = (obj, predicate) => 
+    Object.keys(obj)
+        .filter( key => predicate(obj[key]) )
+        .reduce( (res, key) => (res[key] = obj[key], res), {} ); */
 
-    console.log("here");
-    for (key in obj) {
-        if (obj.hasOwnProperty(key) && !predicate(obj[key])) {
-            console.log(key);
-            result[key] = obj[key];
-        }
-    }
-
-    return result;
-};
-
+Object.filter = (obj, predicate) => 
+    Object.keys(obj)
+        .filter( key => predicate(obj[key]) )
+        .reduce(function(prev, curr, key, res){
+            console.log(res[key]);
+            res[key] = obj[key];
+        },{} );
