@@ -94,6 +94,7 @@ server.listen(process.env.PORT || 55555, function () {
     console.log('\033[96mlistening on localhost:55555 \033[39m');
     console.log('Generating World Map...');
     loadMapData();
+    console.log(worldMap);
 });
 
 /**
