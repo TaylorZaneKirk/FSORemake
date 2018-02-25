@@ -130,9 +130,9 @@ function initMultiPlayer(game, globals){
             globals.playerList[state.playerName].player = state;
             for(var i in state.playersVisible){
                 if(globals.playerList[state.playersVisible[i].playerName] == undefined){
-                    globals.playerList[state.playersVisible[i].playerName] = {player: state, localPlayerObject: null};
-                    globals.playerList[state.playerName].localPlayerObject = new PlayerObject(state.playerName, game);
-                    console.log('logging in: ', state.playerName, globals.playerList[state.playerName]);
+                    globals.playerList[state.playersVisible[i].playerName] = {player: state.playersVisible[i], localPlayerObject: null};
+                    globals.playerList[state.playersVisible[i].playerName].localPlayerObject = new PlayerObject(state.playersVisible[i].playerName, game);
+                    console.log('logging in: ', state.playersVisible[i].playerName, globals.playerList[state.playersVisible[i].playerName]);
                 }
                 else{
                     globals.playerList[state.playersVisible[i].playerName].player = state.playersVisible[i];
