@@ -81,8 +81,8 @@ eurecaServer.onDisconnect(function (conn) {
         remote.kill(conn.id);
     }
     delete worldMap[players[conn.id].state.worldX + '-' + players[conn.id].state.worldY].players[conn.id];
-    delete players[conn.id];
     console.log(worldMap[players[conn.id].state.worldX + '-' + players[conn.id].state.worldY].players);
+    delete players[conn.id];
 });
 
 app.get('/', function (req, res, next) {
