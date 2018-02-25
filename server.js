@@ -289,7 +289,11 @@ Object.filter = (obj, predicate) =>
     Object.keys(obj)
         .filter( key => predicate(obj[key]) )
         .reduce(function(res, key){
-            res[key] = obj[key];
-            console.log(res[key]);
-            delete res[key].playersVisible;
+            if(res[key] != res[playersVisible]){
+                res[key] = obj[key];
+                console.log(res[key]);
+            }
+            else{
+                console.log("should see this one to delete visible");
+            }
         },{} );
