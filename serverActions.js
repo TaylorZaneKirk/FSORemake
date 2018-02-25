@@ -11,8 +11,8 @@ module.exports = {
         switch(payload){
             case 'E': {
                 x = x + 1;
-                if(x > 15){
-                    x = 1;
+                if(x > 16){
+                    x = 0;
                     state.changeMapData(state.worldX + 1, state.worldY);
                 }
                 newAction = 'walk';
@@ -21,8 +21,8 @@ module.exports = {
             }
             case 'W': {
                 x = x - 1;
-                if(x < 1){
-                    x = 15;
+                if(x < 0){
+                    x = 16;
                     state.changeMapData(state.worldX - 1, state.worldY);
                 }
                 newAction = 'walk';
@@ -31,8 +31,8 @@ module.exports = {
             }
             case 'N': {
                 y = y - 1;
-                if(y < 1){
-                    y = 10;
+                if(y < 0){
+                    y = 11;
                     state.changeMapData(state.worldX, state.worldY - 1);
                 }
                 newAction = 'walk';
@@ -41,8 +41,8 @@ module.exports = {
             }
             case 'S': {
                 y = y + 1;
-                if(y > 10){
-                    y = 1;
+                if(y > 11){
+                    y = 0;
                     state.changeMapData(state.worldX, state.worldY + 1);
                 }
                 newAction = 'walk';
