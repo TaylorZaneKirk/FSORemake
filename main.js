@@ -99,7 +99,7 @@ function initMultiPlayer(game, globals){
             for(var i in state.playersVisible){
                 globals.playerList[state.playerName] = {player: state.playersVisible[i], localPlayerObject: null};
                 globals.playerList[state.playerName].player = state.playersVisible[i];
-                lobals.playerList[state.playerName].localPlayerObject = new PlayerObject(state.playersVisible[i], game);
+                lobals.playerList[state.playerName].localPlayerObject = new PlayerObject(state.playersVisible[i].playerName, game);
             }
             
             globals.mapManager.setMapData(state.mapData);
@@ -117,7 +117,7 @@ function initMultiPlayer(game, globals){
             for(var i in state.playersVisible){
                 globals.playerList[state.playersVisible[i].playerName] = {player: state.playersVisible[i], localPlayerObject: null};
                 globals.playerList[state.playersVisible[i].playerName].player = state.playersVisible[i];
-                globals.playerList[state.playersVisible[i].playerName].localPlayerObject = new PlayerObject(state.playersVisible[i], game);
+                globals.playerList[state.playersVisible[i].playerName].localPlayerObject = new PlayerObject(state.playersVisible[i].playerName, game);
             }
 
             game.global.ready = true;
