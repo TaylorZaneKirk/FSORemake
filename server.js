@@ -247,6 +247,6 @@ loadMapData = function(){
         });
         //Maybe do call back stuff here
         console.log(totalFiles);
-        console.log(fileRead);
+        console.log(filesRead);
     });
 }
