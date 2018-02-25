@@ -285,6 +285,7 @@ Object.filter = function( obj, predicate) {
 
     for (key in obj) {
         if (obj.hasOwnProperty(key) && !predicate(obj[key])) {
+            console.log(key);
             result[key] = obj[key];
         }
     }
