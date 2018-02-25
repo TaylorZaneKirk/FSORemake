@@ -238,7 +238,7 @@ loadMapData = function(){
                         }
                         else if(content[index] != '\n' && content[index] != ';'){
                             worldMap[filename].mapData[x][y] = content[index];
-                            console.log(worldMap[filename].mapData[x][y])
+                            console.log(content[index]);
                         }
                         index++;
                     }
