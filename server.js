@@ -287,6 +287,6 @@ Object.filter = (obj, predicate) =>
     Object.keys(obj)
         .filter( key => predicate(obj[key]) )
         .reduce(function(prev, curr, key, res){
-            console.log(res[key]);
+            console.log(key);
             res[key] = obj[key];
         },{} );
