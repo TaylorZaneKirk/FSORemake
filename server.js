@@ -197,15 +197,14 @@ eurecaServer.updateClients = function (id) {
     
             //players[i].state.playersVisible = worldMap[players[i].state.worldX + '-' + players[i].state.worldY].players;
             players[i].state.playersVisible = Object.filter(worldMap[players[i].state.worldX + '-' + players[i].state.worldY].players, player => player.playerName != players[i].id);
-            console.log(players[i].state.playersVisible.length)
             remote.recieveStateFromServer(players[i].state);
         }
        
     }
 
     players[id].state.playersVisible = Object.filter(worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players, player => player.playerName != id);
-    console.log("local:");
-    console.log(players[id].state.playersVisible.length);
+    /* console.log("local:");
+    console.log(players[id].state.playersVisible); */
     newRemote.recieveStateFromServer(players[id].state);
 
     /* for(var i in allPlayerStates){
@@ -296,6 +295,5 @@ Object.filter = (obj, predicate) =>
                 objCopy[props[i]] = obj[key][props[i]];
             }
             res[key] = objCopy;
-            //console.log(res[key]);
-            return res[key];
+            
         },{} );
