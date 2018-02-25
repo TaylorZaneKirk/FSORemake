@@ -105,7 +105,7 @@ eurecaServer.exports.initPlayer = function (id) {
     players[id].state.readyToUpdate = true;
     players[id].state.lastUpdated = currentTime;
     worldMap[playerToAdd.worldX + '-' + playerToAdd.worldY].players[id] = id;
-    console.log(worldMap[playerToAdd.worldX + '-' + playerToAdd.worldY].players[id]);
+    console.log(worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players[id]);
     eurecaServer.updateClients(id);
 
 }
