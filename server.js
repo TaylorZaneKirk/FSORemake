@@ -287,7 +287,7 @@ loadMapData = function(){
 Object.filter = (obj, predicate) => 
     Object.keys(obj)
         .filter( key => predicate(obj[key]) )
-        .reduce(function(res, key, res){
+        .reduce(function(res, key){
             props = Object.keys(obj[key])
                 .filter(prop => prop != 'playersVisible')
             objCopy = {};
