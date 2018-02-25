@@ -48,19 +48,19 @@ class PlayerState
         this.mapData = other.mapData;
     }
 
-    changeMapData(worldXNew, worldYNew){
+    changeMapData(worldXNew, worldYNew){ 
         console.log("Changing map for player: " + this.playerName);
-        worldMap[worldXNew + '-' + worldYNew].players[this.playerName] = this.playerName;
+        worldMap[worldXNew + '-' + worldYNew].players[this.playerName] = this;
 
         //Need to Let other players know this guy left
         delete worldMap[this.worldX + '-' + this.worldY].players[this.playerName];
 
-        for (var c in worldMap[this.worldX + '-' + this.worldY].players){
+        /* for (var c in worldMap[this.worldX + '-' + this.worldY].players){
             var remote = players[c].remote;
 
             //here we call kill() method defined in the client side
             remote.kill(this.playerName);
-        }
+        } */
         this.mapData = worldMap[worldXNew + '-' + worldYNew].mapData;
         this.worldX = worldXNew;
         this.worldY = worldYNew;
@@ -122,7 +122,7 @@ eurecaServer.exports.initPlayer = function (id) {
 
     players[id].state.readyToUpdate = true;
     players[id].state.lastUpdated = currentTime;
-    worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players[id] = id;
+    worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players[id] = players[id].state;
     eurecaServer.updateClients(id);
 
 }
@@ -189,20 +189,29 @@ eurecaServer.updateClients = function (id) {
     var allPlayerStates = [];
 
     for(var i in players) {
-        var remote = players[i].remote;
+        if(players[i].id != id){
+            var remote = players[i].remote;
 
-        //This is where I should implement something to only
-        //  update players on the same map
-
-        allPlayerStates.push(players[i].state);
-        remote.recieveStateFromServer(players[id].state);
+            //This is where I should implement something to only
+            //  update players on the same map
+    
+            players[i].state.playersVisible = worldMap[players[i].state.worldX + '-' + players[i].state.worldY].players;
+            remote.recieveStateFromServer(players[id].state);
+        }
+       
     }
 
-    for(var i in allPlayerStates){
+    players[id].state.playersVisible = worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players
+        .filter(function(state){
+            return state.playerName != id;
+        });
+    newRemote.recieveStateFromServer(players[id].state);
+
+    /* for(var i in allPlayerStates){
         if(allPlayerStates[i].playerName != id){
             newRemote.recieveStateFromServer(allPlayerStates[i]);
         }
-    }
+    } */
 }
 
 /* readMapFromFile = function(id, x, y){
