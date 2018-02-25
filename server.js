@@ -31,11 +31,7 @@ class PlayerState
         this.lastUpdated = null;
         this.readyToUpdate = false;
         this.playersVisible = {};
-        console.log(this.worldX + '-' + this.worldY);
-        console.log(worldMap[this.worldX + '-' + this.worldY]);
-        console.log(worldMap);
         this.mapData = worldMap[this.worldX + '-' + this.worldY].mapData;
-        //readMapFromFile(idString, this.pos.x, this.pos.y);
     }
     
     copy(other)
@@ -57,9 +53,7 @@ class PlayerState
 
 var players = {};
 //Should add a world map object
-var worldMap = {
-
-}
+var worldMap = {}
 
 //detect client connection
 eurecaServer.onConnect(function (conn) {
@@ -86,7 +80,9 @@ eurecaServer.onDisconnect(function (conn) {
         //here we call kill() method defined in the client side
         remote.kill(conn.id);
     }
+    delete worldMap[players[conn.id].state.worldX + '-' + players[conn.id].state.worldY].players[conn.id];
     delete players[conn.id];
+    console.log(worldMap[players[conn.id].state.worldX + '-' + players[conn.id].state.worldY].players);
 });
 
 app.get('/', function (req, res, next) {
@@ -108,8 +104,8 @@ eurecaServer.exports.initPlayer = function (id) {
 
     players[id].state.readyToUpdate = true;
     players[id].state.lastUpdated = currentTime;
-    
-    
+    worldMap[playerToAdd.worldX + '-' + playerToAdd.worldY].players[id] = id;
+    console.log(worldMap[playerToAdd.worldX + '-' + playerToAdd.worldY].players[id]);
     eurecaServer.updateClients(id);
 
 }
@@ -192,7 +188,7 @@ eurecaServer.updateClients = function (id) {
     }
 }
 
-readMapFromFile = function(id, x, y){
+/* readMapFromFile = function(id, x, y){
     
     var returnString = '';
     var filePath = __dirname + '/maps/' + x + '-' + y + '.txt'
@@ -204,7 +200,7 @@ readMapFromFile = function(id, x, y){
         players[id].state.mapData = contents;
     });
     
-}
+} */
 
 loadMapData = function(){
     console.log('Generating World Map...');
@@ -251,7 +247,6 @@ loadMapData = function(){
                 
                 if(filesRead != 0 && filesRead == totalFiles){
                     console.log("Wold Map Generated");
-                    console.log(worldMap);
                 }
             });
         });
