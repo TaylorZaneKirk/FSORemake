@@ -205,7 +205,7 @@ readMapFromFile = function(id, x, y){
 
 loadMapData = function(){
     console.log('Generating World Map...');
-    var totalFiles = 0;
+    var totalFiles = -1;
     var filesRead = 0;
     fs.readdir(__dirname + '/maps/', function(err, filenames){
         if (err) {
@@ -246,8 +246,8 @@ loadMapData = function(){
             });
         });
     });
-    if(filesRead != 0 && filesRead == totalCount){
-        console.log("World map generated");
-        console.log(worldMap);
+    while(filesRead != totalFiles){}
+    if(filesRead == totalFiles){
+        console.log("World Map Generated");
     }
 }
