@@ -287,7 +287,7 @@ loadMapData = function(){
 Object.filter = (obj, predicate) => 
     Object.keys(obj)
         .filter( key => predicate(obj[key]) )
-        .reduce(function(res, key, res){
-            console.log("HERE:" + key);
+        .reduce(function(obj, res, key, res){
             res[key] = obj[key];
+            delete res[key].playersVisible;
         },{} );
