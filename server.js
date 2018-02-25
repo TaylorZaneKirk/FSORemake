@@ -244,9 +244,10 @@ loadMapData = function(){
                 }
                 filesRead++;
                 
-                //Maybe do call back stuff here
-                console.log("Wold Map Generated");
-                console.log(worldMap);
+                if(filesRead != 0 && filesRead == totalFiles){
+                    console.log("Wold Map Generated");
+                    console.log(worldMap);
+                }
             });
         });
     });
