@@ -31,6 +31,9 @@ class PlayerState
         this.lastUpdated = null;
         this.readyToUpdate = false;
         this.playersVisible = {};
+        console.log(this.worldX + '-' + this.worldY);
+        console.log(worldMap[this.worldX + '-' + this.worldY]);
+        console.log(worldMap);
         this.mapData = worldMap[this.worldX + '-' + this.worldY].mapData;
         //readMapFromFile(idString, this.pos.x, this.pos.y);
     }
