@@ -201,10 +201,8 @@ eurecaServer.updateClients = function (id) {
        
     }
 
-    players[id].state.playersVisible = worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players
-        .filter(function(state){
-            return state.playerName != id;
-        });
+    players[id].state.playersVisible = Object.filter(worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players, player => player != id);
+    
     newRemote.recieveStateFromServer(players[id].state);
 
     /* for(var i in allPlayerStates){
