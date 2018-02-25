@@ -245,9 +245,8 @@ loadMapData = function(){
                 filesRead++;
             });
         });
+        //Maybe do call back stuff here
+        console.log(totalFiles);
+        console.log(fileRead);
     });
-    while(filesRead != totalFiles){}
-    if(filesRead == totalFiles){
-        console.log("World Map Generated");
-    }
 }
