@@ -211,7 +211,7 @@ loadMapData = function(){
             return;
         }
         filenames.forEach(function(filename) {
-            fs.readFile(dirname + filename, 'utf-8', function(err, content) {
+            fs.readFile(__dirname + '/maps/' + filename, 'utf-8', function(err, content) {
                 if (err) {
                     console.log(err);
                     return;
