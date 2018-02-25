@@ -195,8 +195,9 @@ eurecaServer.updateClients = function (id) {
             //This is where I should implement something to only
             //  update players on the same map
     
-            players[i].state.playersVisible = worldMap[players[i].state.worldX + '-' + players[i].state.worldY].players;
-            remote.recieveStateFromServer(players[id].state);
+            //players[i].state.playersVisible = worldMap[players[i].state.worldX + '-' + players[i].state.worldY].players;
+            players[i].state.playersVisible = Object.filter(worldMap[players[i].state.worldX + '-' + players[i].state.worldY].players, player => player.playerName == players[i].id);
+            remote.recieveStateFromServer(players[i].state);
         }
        
     }
