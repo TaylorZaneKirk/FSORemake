@@ -26,8 +26,8 @@ class PlayerState
         this.playerFacing = 'S';
         this.playerName = idString;
         this.playerAction = 'idle';
-        this.WorldX = 0;
-        this.WorldY = 0;
+        this.worldX = 0;
+        this.worldY = 0;
         this.lastUpdated = null;
         this.readyToUpdate = false;
         this.playersVisible = {};
