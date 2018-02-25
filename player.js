@@ -93,7 +93,7 @@ var PlayerObject = function(idRef, gameRef){
         }
         else if(playerState.playerAction == 'idle' && playerState.readyToUpdate){
             //Detect key presses
-            
+
             if(altKey.isDown){
                 playerState.playerAction = 'attack';
                 //sendMessageToServer({type: 'attack', payload: ''}, 'player');
@@ -101,7 +101,7 @@ var PlayerObject = function(idRef, gameRef){
             else if (leftKey.isDown){
                 playerState.playerAction = 'walk';
                 playerState.playerFacing = 'W';
-                if(game.global.mapManager.isSpotAvailable(playerState.pos.x - 1, playerState.pos.y)){
+                if(game.global.mapManager.isSpotAvailable(playerState.pos.x - 1, playerState.pos.y, playerState.pos)){
                     playerState.pos.x--;
                     sendMessageToServer({type: 'move', payload: 'W'}, 'self');
                 }
@@ -110,7 +110,7 @@ var PlayerObject = function(idRef, gameRef){
             else if (rightKey.isDown){
                 playerState.playerAction = 'walk';
                 playerState.playerFacing = 'E';
-                if(game.global.mapManager.isSpotAvailable(playerState.pos.x + 1, playerState.pos.y)){
+                if(game.global.mapManager.isSpotAvailable(playerState.pos.x + 1, playerState.pos.y, playerState.pos)){
                     playerState.pos.x++;
                     sendMessageToServer({type: 'move', payload: 'E'}, 'self');
                 }
@@ -119,7 +119,7 @@ var PlayerObject = function(idRef, gameRef){
             else if (upKey.isDown){
                 playerState.playerAction = 'walk';
                 playerState.playerFacing = 'N';
-                if(game.global.mapManager.isSpotAvailable(playerState.pos.x, playerState.pos.y - 1)){
+                if(game.global.mapManager.isSpotAvailable(playerState.pos.x, playerState.pos.y - 1, playerState.pos)){
                     playerState.pos.y--;
                     sendMessageToServer({type: 'move', payload: 'N'}, 'self');
                 }
@@ -128,7 +128,7 @@ var PlayerObject = function(idRef, gameRef){
             else if (downKey.isDown){
                 playerState.playerAction = 'walk';
                 playerState.playerFacing = 'S';
-                if(game.global.mapManager.isSpotAvailable(playerState.pos.x, playerState.pos.y + 1)){
+                if(game.global.mapManager.isSpotAvailable(playerState.pos.x, playerState.pos.y + 1, playerState.pos)){
                     playerState.pos.y++;
                     sendMessageToServer({type: 'move', payload: 'S'}, 'self');
                 }

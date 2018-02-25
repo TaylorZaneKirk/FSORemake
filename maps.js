@@ -71,10 +71,10 @@ var MapManager = class MapManager {
         }
     }
 
-    isSpotAvailable(x, y){
+    isSpotAvailable(x, y, originPos){
         var tileX = (x+1)*32;
         var tileY = (y+1)*32;
-        var thisTile = this.map.getTile(x, y, this.layers[0], true);
+        var thisTile = this.map.getTile(originPos.x+1, originPos.y+1, this.layers[0], true);
         var nextTile = this.map.getTile(x+1, y+1, this.layers[0], true);
         if(nextTile != null && thisTile != null){
             if(thisTile.index != -1 && nextTile.index != 1){
