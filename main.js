@@ -96,11 +96,12 @@ function initMultiPlayer(game, globals){
             if(globals.playerList[state.playerName] == undefined){
                 globals.playerList[state.playerName] = {player: state, localPlayerObject: null};
                 globals.playerList[state.playerName].localPlayerObject = new PlayerObject(state.playerName, game);
+                console.log('logging in: ', state.playerName, globals.playerList[state.playerName]);
             }
             else{
                 globals.playerList[state.playerName].player = state;
             }
-            console.log('logging in: ', state.playerName, globals.playerList[state.playerName]);
+           
         }
 
         if(state.playerName == globals.myId && globals.localPlayerObject == null){

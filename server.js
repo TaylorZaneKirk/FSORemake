@@ -47,6 +47,25 @@ class PlayerState
         this.playersVisible = other.playersVisible;
         this.mapData = other.mapData;
     }
+
+    changeMapData(worldXNew, worldYNew){
+        console.log("Changing map for player: " + this.playerName);
+        worldMap[worldXNew + '-' + worldYNew].players[this.playerName] = this.playerName;
+
+        //Need to Let other players know this guy left
+        delete worldMap[this.worldX + '-' + this.worldY].players[this.playerName];
+
+        for (var c in worldMap[this.worldX + '-' + this.worldY].players){
+            var remote = players[c].remote;
+
+            //here we call kill() method defined in the client side
+            remote.kill(this.playerName);
+        }
+        this.mapData = worldMap[worldXNew + '-' + worldYNew].mapData;
+        this.worldX = worldXNew;
+        this.worldY = worldYNew;
+        console.log("Changed to: " + this.worldX + "," + this.worldY);
+    }
 };
 
 
@@ -81,7 +100,6 @@ eurecaServer.onDisconnect(function (conn) {
         remote.kill(conn.id);
     }
     delete worldMap[players[conn.id].state.worldX + '-' + players[conn.id].state.worldY].players[conn.id];
-    console.log(worldMap[players[conn.id].state.worldX + '-' + players[conn.id].state.worldY].players);
     delete players[conn.id];
 });
 
@@ -105,7 +123,6 @@ eurecaServer.exports.initPlayer = function (id) {
     players[id].state.readyToUpdate = true;
     players[id].state.lastUpdated = currentTime;
     worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players[id] = id;
-    console.log(worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players[id]);
     eurecaServer.updateClients(id);
 
 }
@@ -252,3 +269,4 @@ loadMapData = function(){
         });
     });
 }
+
