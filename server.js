@@ -295,5 +295,5 @@ Object.filter = (obj, predicate) =>
                 objCopy[props[i]] = obj[key][props[i]];
             }
             res[key] = objCopy;
-            
+            return res[key];
         },{} );
