@@ -131,7 +131,7 @@ eurecaServer.exports.initPlayer = function (id) {
 eurecaServer.exports.requestUpdate = function (id) {
 
     var currentServerTime = new Date().getTime();
-    if(players[id] && players[id].state.lastUpdated + 1250 < currentServerTime){
+    if(players[id] && players[id].state.lastUpdated + 750 < currentServerTime){
         players[id].state.lastUpdated = currentServerTime;
         
         eurecaServer.updateClients(id);
@@ -272,7 +272,7 @@ loadMapData = function(){
                 filesRead++;
                 
                 if(filesRead != 0 && filesRead == totalFiles){
-                    console.log("Wold Map Generated");
+                    console.log("World Map Generated");
                 }
             });
         });
