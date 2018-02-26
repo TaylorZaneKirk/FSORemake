@@ -71,9 +71,9 @@ class PlayerState
         if((x + 1 == this.pos.x || x - 1 == this.pos.x || x == this.pos.x)
         && (y + 1 == this.pos.y || y - 1 == this.pos.y || y == this.pos.y)){
             console.log(this.worldX + '-' + this.worldY);
-            console.log(x + '-' + y);
-            console.log(worldMap[this.worldX + '-' + this.worldY].mapData[x][y])
-            return worldMap[this.worldX + '-' + this.worldY].mapData[x][y] == 0; //acceptable tiles
+            console.log(y + '-' + x);
+            console.log(worldMap[this.worldX + '-' + this.worldY].mapData[y][x])
+            return worldMap[this.worldX + '-' + this.worldY].mapData[y][x] == 0; //acceptable tiles
         }
         return false;
     }
