@@ -234,7 +234,7 @@ function update() {
     }
 
     //wait [0.25] seconds before requesting an update from the server
-    if (game.global.player.lastUpdated + 1000 < currentTime.getTime() ){
+    if (game.global.player.lastUpdated + 750 < currentTime.getTime() ){
         game.global.player.lastUpdated = currentTime.getTime();
         for(var i in game.global.actionQueue){
             sendMessageToServer(game.global.actionQueue[i].action, game.global.actionQueue[i].target);
