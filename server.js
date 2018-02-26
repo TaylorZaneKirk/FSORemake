@@ -66,6 +66,10 @@ class PlayerState
         this.worldY = worldYNew;
         console.log("Changed to: " + this.worldX + "," + this.worldY);
     }
+
+    takeStep(x, y){
+        return worldMap[this.worldX + '-' + this.WorldY].mapData[x][y] == 0; //acceptable tiles
+    }
 };
 
 
