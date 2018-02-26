@@ -22,7 +22,7 @@ eurecaServer.attach(server);
 class PlayerState
 {
     constructor(idString){
-        this.pos = {x: 0, y: 0};
+        this.pos = {x: 1, y: 1};
         this.playerFacing = 'S';
         this.playerName = idString;
         this.playerAction = 'idle';

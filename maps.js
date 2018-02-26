@@ -50,18 +50,6 @@ var MapManager = class MapManager {
     }
 
     changeMap(){
-        /* var index = 0;
-        for (var x = 0; x < 12; x++){
-            for (var y = 0; y < 17; y++) {
-                if(this.mapData[index] == '\n' || this.mapData[index] == ';'){
-                    y--;
-                }
-                else if(this.mapData[index] != '\n' && this.mapData[index] != ';'){
-                    this.map.putTile(this.mapData[index], y+1, x+1, this.layers[0]);
-                }
-                index++;
-            }
-        } */
         for (var x = 0; x < 12; x++){
             for (var y = 0; y < 17; y++) {
                 
@@ -72,15 +60,15 @@ var MapManager = class MapManager {
     }
 
     isSpotAvailable(x, y, originPos){
-        var tileX = (x+1)*32;
-        var tileY = (y+1)*32;
         var thisTile = this.map.getTile(originPos.x+1, originPos.y+1, this.layers[0], true);
         var nextTile = this.map.getTile(x+1, y+1, this.layers[0], true);
         if(thisTile != null){
-            if(thisTile != null && thisTile.index != -1 && (nextTile == null || nextTile.index != 1)){
+            if(thisTile != null && thisTile.index != -1 && (nextTile == null || nextTile.index == 0)){
+                //move from acceptable tile into acceptable tile
                 return true;
             }
         }
+        //Trying to move to a spot that is not allowed
         return false;
     }
 
