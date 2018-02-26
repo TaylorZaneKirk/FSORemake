@@ -149,7 +149,7 @@ var PlayerObject = function(idRef, gameRef){
     //  complete. Otherwise, replace the old tween data with new tween
     moveSprite = function(tween, pos, sprite){
         if(tween != undefined && !tween.isRunning){
-            tween = game.add.tween(sprite).to({x: ((pos.x+1)) * 32, y: (pos.y+1) * 32}, 750, null, true);
+            tween = game.add.tween(sprite).to({x: ((pos.x+1)) * 32, y: (pos.y+1) * 32}, 1000, null, true);
         }
         return tween;
     }
