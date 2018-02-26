@@ -240,6 +240,7 @@ function update() {
         game.global.player.lastUpdated = currentTime.getTime();
         for(var i in game.global.actionQueue){
             sendMessageToServer(game.global.actionQueue[i].action, game.global.actionQueue[i].target);
+            game.global.actionQueue.pop();
         }
         game.global.eurecaProxy.requestUpdate(game.global.myId);
     }
