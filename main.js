@@ -35,6 +35,7 @@ game.global = {
     localPlayerObject: null, //reference to the Player object of "your" character. Mostly for quick indexing
     eurecaProxy: null, //For our (limited) communication with the server
     actionQueue: [], //Queue of messages to be sent to the server
+    lastActionTimestamp: null,
 };
 
 function initMultiPlayer(game, globals){
@@ -204,7 +205,14 @@ function update() {
         return; //Stuff isn't ready; hold on...
     }
 
-    //wait [0.25] seconds before requesting an update from the server
+    if(game.global.lastActionTimestamp + 500000 < currentTime.getTime()){
+        //timeout
+        client.disconnect();
+        isMultiInit = false;
+        ready = false;
+    }
+
+    //wait [0.5] seconds after last update before requesting an update from the server
     if (game.global.player.lastUpdated + 500 < currentTime.getTime() ){
         //game.global.player.lastUpdated = currentTime.getTime();
         for(var i in game.global.actionQueue){
@@ -244,6 +252,10 @@ sendMessageToServer = function(action, target) {
         return;
     }
     game.global.player.readyToUpdate = false;
+
+    if(action.payload != 'I'){ //idle is not an "action" in the since that it will not reset the timeout
+        game.global.lastActionTimestamp = new Date().getTime();
+    }  
 
     game.global.eurecaProxy.message(game.global.myId, {action: action, target: target});
 }
