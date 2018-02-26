@@ -205,12 +205,13 @@ function update() {
         return; //Stuff isn't ready; hold on...
     }
 
-    if(game.global.lastActionTimestamp + 500000 < currentTime.getTime()){
+    /* if(game.global.lastActionTimestamp + 500000 < currentTime.getTime()){
         //timeout
         client.disconnect();
         isMultiInit = false;
         ready = false;
-    }
+        console.log("TIMEOUT");
+    } */
 
     //wait [0.5] seconds after last update before requesting an update from the server
     if (game.global.player.lastUpdated + 500 < currentTime.getTime() ){
