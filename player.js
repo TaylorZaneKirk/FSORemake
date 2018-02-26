@@ -88,7 +88,8 @@ var PlayerObject = function(idRef, gameRef){
             //Player reached their intended location. Set them to idle and update server
             
             playerState.playerAction = 'idle';
-            sendMessageToServer({type: 'move', payload: 'I'}, 'self');
+            //sendMessageToServer({type: 'move', payload: 'I'}, 'self');
+            game.global.actionQueue.push({action: {type: 'move', payload: 'I'}, target: 'self'});
         }
         else if(playerState.playerAction == 'idle'){
             //Detect key presses
