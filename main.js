@@ -80,7 +80,7 @@ function initMultiPlayer(game, globals){
 
     client.exports.recieveStateFromServer = function(state) {
 
-        if(globals.player != false && (globals.player.worldX != state.worldX || globals.player.worldY != state.worldY)){ // <- NOT WORKING
+        if(globals.player != false && (globals.player.worldX != state.worldX || globals.player.worldY != state.worldY)){ // <- NOT WORKING Users already on map can see new player, not vice versa
             //Changed Map after logging in, kill all the sprites, recreate them, and change map
 
             //Remove old data
@@ -99,7 +99,7 @@ function initMultiPlayer(game, globals){
             for(var i in state.playersVisible){
                 globals.playerList[state.playersVisible[i].playerName] = {player: state.playersVisible[i], localPlayerObject: null};
                 globals.playerList[state.playersVisible[i].playerName].player = state.playersVisible[i];
-                lobals.playerList[state.playersVisible[i].playerName].localPlayerObject = new PlayerObject(state.playersVisible[i].playerName, game);
+                globals.playerList[state.playersVisible[i].playerName].localPlayerObject = new PlayerObject(state.playersVisible[i].playerName, game);
             }
             
             globals.mapManager.setMapData(state.mapData);
