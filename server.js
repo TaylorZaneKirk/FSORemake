@@ -188,24 +188,26 @@ eurecaServer.updateClients = function (id) {
     var newRemote = players[id].remote;
     var allPlayerStates = [];
 
-    /* for(var i in players) {
-        if(players[i].id != id){
-            var remote = players[i].remote;
+    players[id].state.playersVisible = Object.filter(worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players, player => player.playerName != id);
+    /* console.log("local:");
+    console.log(players[id].state.playersVisible); */
+    newRemote.recieveStateFromServer(players[id].state);
+
+    for(var i in players[id].state.playersVisible) {
+        var index = players[id].state.playersVisible[i].playerName;
+        var visiblePlayer = players[index];
+        if(visiblePlayer.id != id){
+            var remote = visiblePlayer.remote;
 
             //This is where I should implement something to only
             //  update players on the same map
     
             //players[i].state.playersVisible = worldMap[players[i].state.worldX + '-' + players[i].state.worldY].players;
-            players[i].state.playersVisible = Object.filter(worldMap[players[i].state.worldX + '-' + players[i].state.worldY].players, player => player.playerName != players[i].id);
-            remote.recieveStateFromServer(players[i].state);
+            visiblePlayer.state.playersVisible = Object.filter(worldMap[visiblePlayer.state.worldX + '-' + visiblePlayer.state.worldY].players, player => player.playerName != visiblePlayer.id);
+            remote.recieveStateFromServer(visiblePlayer.state);
         }
        
-    } */
-
-    players[id].state.playersVisible = Object.filter(worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players, player => player.playerName != id);
-    /* console.log("local:");
-    console.log(players[id].state.playersVisible); */
-    newRemote.recieveStateFromServer(players[id].state);
+    }
 
     /* for(var i in allPlayerStates){
         if(allPlayerStates[i].playerName != id){
