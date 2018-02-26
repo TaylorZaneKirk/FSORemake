@@ -55,12 +55,12 @@ class PlayerState
         //Need to Let other players know this guy left
         delete worldMap[this.worldX + '-' + this.worldY].players[this.playerName];
 
-        /* for (var c in worldMap[this.worldX + '-' + this.worldY].players){
+        for (var c in worldMap[this.worldX + '-' + this.worldY].players){
             var remote = players[c].remote;
 
             //here we call kill() method defined in the client side
             remote.kill(this.playerName);
-        } */
+        }
         this.mapData = worldMap[worldXNew + '-' + worldYNew].mapData;
         this.worldX = worldXNew;
         this.worldY = worldYNew;
