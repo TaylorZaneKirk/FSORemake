@@ -68,7 +68,7 @@ class PlayerState
     }
 
     takeStep(x, y){
-        return worldMap[this.worldX + '-' + this.WorldY].mapData[x][y] == 0; //acceptable tiles
+        return worldMap[this.worldX + '-' + this.worldY].mapData[x][y] == 0; //acceptable tiles
     }
 };
 
