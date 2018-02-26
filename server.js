@@ -68,9 +68,13 @@ class PlayerState
     }
 
     takeStep(x, y){
-        console.log(this.worldX + '-' + this.worldY);
-        console.log(worldMap[this.worldX + '-' + this.worldY].mapData)
-        return worldMap[this.worldX + '-' + this.worldY].mapData[x][y] == 0; //acceptable tiles
+        if((x + 1 == this.pos.x || x - 1 == this.pos.x || x == this.pos.x)
+        && (y + 1 == this.pos.y || y - 1 == this.pos.y || y == this.pos.y)){
+            console.log(this.worldX + '-' + this.worldY);
+            console.log(worldMap[this.worldX + '-' + this.worldY].mapData)
+            return worldMap[this.worldX + '-' + this.worldY].mapData[x][y] == 0; //acceptable tiles
+        }
+        return false;
     }
 };
 
