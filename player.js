@@ -40,10 +40,10 @@ var PlayerObject = function(idRef, gameRef){
             playerSprite.body.height * 0.5
         );
         //playerSprite.inputEnabled = true;
-        playerSprite.animations.add('walk-E', [0,1,2], 6, false);
-        playerSprite.animations.add('walk-W', [4,5,6], 6, false);
-        playerSprite.animations.add('walk-N', [8,9,10], 6, false);
-        playerSprite.animations.add('walk-S', [12,13,14], 6, false);
+        playerSprite.animations.add('walk-E', [0,1,2], 9, true);
+        playerSprite.animations.add('walk-W', [4,5,6], 9, true);
+        playerSprite.animations.add('walk-N', [8,9,10], 9, true);
+        playerSprite.animations.add('walk-S', [12,13,14], 9, true);
         playerSprite.animations.add('attack-E', [1,3,1], 6, false);
         playerSprite.animations.add('attack-W', [5,7,5], 6, false);
         playerSprite.animations.add('attack-N', [9,11,9], 6, false);
