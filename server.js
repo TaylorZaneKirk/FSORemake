@@ -48,8 +48,7 @@ class PlayerState
         this.mapData = other.mapData;
     }
 
-    changeMapData(worldXNew, worldYNew){ 
-        console.log("Changing map for player: " + this.playerName);
+    changeMapData(worldXNew, worldYNew){
         worldMap[worldXNew + '-' + worldYNew].players[this.playerName] = this;
 
         //Need to Let other players know this guy left
@@ -64,15 +63,12 @@ class PlayerState
         this.mapData = worldMap[worldXNew + '-' + worldYNew].mapData;
         this.worldX = worldXNew;
         this.worldY = worldYNew;
-        console.log("Changed to: " + this.worldX + "," + this.worldY);
     }
 
     takeStep(x, y){
         if((x + 1 == this.pos.x || x - 1 == this.pos.x || x == this.pos.x)
-        && (y + 1 == this.pos.y || y - 1 == this.pos.y || y == this.pos.y)){
-            console.log(this.worldX + '-' + this.worldY);
-            console.log(y + '-' + x);
-            console.log(worldMap[this.worldX + '-' + this.worldY].mapData[y][x])
+            && (y + 1 == this.pos.y || y - 1 == this.pos.y || y == this.pos.y)){
+
             return worldMap[this.worldX + '-' + this.worldY].mapData[y][x] == 0; //acceptable tiles
         }
         return false;
@@ -82,7 +78,6 @@ class PlayerState
 
 
 var players = {};
-//Should add a world map object
 var worldMap = {}
 
 //detect client connection
@@ -278,4 +273,4 @@ Object.filter = (obj, predicate) =>
             }
             res[key] = objCopy;
             return res;
-        },{} );
+        }, {});
