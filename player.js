@@ -90,7 +90,7 @@ var PlayerObject = function(idRef, gameRef){
             playerState.playerAction = 'idle';
             sendMessageToServer({type: 'move', payload: 'I'}, 'self');
         }
-        else if(playerState.playerAction == 'idle' && playerState.readyToUpdate){
+        else if(playerState.playerAction == 'idle'){
             //Detect key presses
 
             if(altKey.isDown){
