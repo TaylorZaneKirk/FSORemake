@@ -189,8 +189,6 @@ eurecaServer.updateClients = function (id) {
     var allPlayerStates = [];
 
     players[id].state.playersVisible = Object.filter(worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players, player => player.playerName != id);
-    /* console.log("local:");
-    console.log(players[id].state.playersVisible); */
     newRemote.recieveStateFromServer(players[id].state);
 
     for(var i in players[id].state.playersVisible) {
@@ -199,36 +197,12 @@ eurecaServer.updateClients = function (id) {
         if(visiblePlayer.id != id){
             var remote = visiblePlayer.remote;
 
-            //This is where I should implement something to only
-            //  update players on the same map
-    
-            //players[i].state.playersVisible = worldMap[players[i].state.worldX + '-' + players[i].state.worldY].players;
             visiblePlayer.state.playersVisible = Object.filter(worldMap[visiblePlayer.state.worldX + '-' + visiblePlayer.state.worldY].players, player => player.playerName != visiblePlayer.id);
             remote.recieveStateFromServer(visiblePlayer.state);
         }
        
     }
-
-    /* for(var i in allPlayerStates){
-        if(allPlayerStates[i].playerName != id){
-            newRemote.recieveStateFromServer(allPlayerStates[i]);
-        }
-    } */
 }
-
-/* readMapFromFile = function(id, x, y){
-    
-    var returnString = '';
-    var filePath = __dirname + '/maps/' + x + '-' + y + '.txt'
-    console.log(filePath);
-    fs.readFile(filePath, 'utf8', function(err, contents) {
-        returnString = contents;
-        console.log(contents);
-        
-        players[id].state.mapData = contents;
-    });
-    
-} */
 
 loadMapData = function(){
     console.log('Generating World Map...');
@@ -280,11 +254,6 @@ loadMapData = function(){
         });
     });
 }
-
-/* Object.filter = (obj, predicate) => 
-    Object.keys(obj)
-        .filter( key => predicate(obj[key]) )
-        .reduce( (res, key) => (res[key] = obj[key], res), {} ); */
 
 Object.filter = (obj, predicate) => 
     Object.keys(obj)

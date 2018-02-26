@@ -88,7 +88,6 @@ var PlayerObject = function(idRef, gameRef){
             //Player reached their intended location. Set them to idle and update server
             
             playerState.playerAction = 'idle';
-            //sendMessageToServer({type: 'move', payload: 'I'}, 'self');
             game.global.actionQueue.push({action: {type: 'move', payload: 'I'}, target: 'self'});
         }
         else if(playerState.playerAction == 'idle'){
@@ -103,7 +102,6 @@ var PlayerObject = function(idRef, gameRef){
                 playerState.playerFacing = 'W';
                 if(game.global.mapManager.isSpotAvailable(playerState.pos.x - 1, playerState.pos.y, playerState.pos)){
                     playerState.pos.x--;
-                    //sendMessageToServer({type: 'move', payload: 'W'}, 'self');
                     game.global.actionQueue.push({action: {type: 'move', payload: 'W'}, target: 'self'});
                 }
                 
@@ -113,7 +111,6 @@ var PlayerObject = function(idRef, gameRef){
                 playerState.playerFacing = 'E';
                 if(game.global.mapManager.isSpotAvailable(playerState.pos.x + 1, playerState.pos.y, playerState.pos)){
                     playerState.pos.x++;
-                    //sendMessageToServer({type: 'move', payload: 'E'}, 'self');
                     game.global.actionQueue.push({action: {type: 'move', payload: 'E'}, target: 'self'});
                 }
                 
@@ -123,7 +120,6 @@ var PlayerObject = function(idRef, gameRef){
                 playerState.playerFacing = 'N';
                 if(game.global.mapManager.isSpotAvailable(playerState.pos.x, playerState.pos.y - 1, playerState.pos)){
                     playerState.pos.y--;
-                    //sendMessageToServer({type: 'move', payload: 'N'}, 'self');
                     game.global.actionQueue.push({action: {type: 'move', payload: 'N'}, target: 'self'});
                 }
                 
@@ -133,7 +129,6 @@ var PlayerObject = function(idRef, gameRef){
                 playerState.playerFacing = 'S';
                 if(game.global.mapManager.isSpotAvailable(playerState.pos.x, playerState.pos.y + 1, playerState.pos)){
                     playerState.pos.y++;
-                    //sendMessageToServer({type: 'move', payload: 'S'}, 'self');
                     game.global.actionQueue.push({action: {type: 'move', payload: 'S'}, target: 'self'});
                 }
                 

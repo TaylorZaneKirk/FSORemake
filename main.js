@@ -24,17 +24,17 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, null, {
 
 game.global = {
     player: null, //References for local player state
-    playerList: {}, //References for all visible player states
+    playerList: {}, //References for all visible player states and objects
     npcList: {}, //References for all visible NPC states
-    ready: false,
+    ready: false, //We're actually ready to begin normal game cycle
     myId: 0, //Id for server
     myMap: null, //Tiles for current screen
     mapManager: null, //Reference to mapManager for tilemap
     walls: null, //Likely to be factored to 2nd or 3rd layer
     easystar: null,
-    localPlayerObject: null,
-    eurecaProxy: null,
-    actionQueue: [],
+    localPlayerObject: null, //reference to the Player object of "your" character. Mostly for quick indexing
+    eurecaProxy: null, //For our (limited) communication with the server
+    actionQueue: [], //Queue of messages to be sent to the server
 };
 
 function initMultiPlayer(game, globals){
@@ -81,7 +81,7 @@ function initMultiPlayer(game, globals){
 
     client.exports.recieveStateFromServer = function(state) {
 
-        if(globals.player != false && (globals.player.worldX != state.worldX || globals.player.worldY != state.worldY)){ // <- NOT WORKING Users already on map can see new player, not vice versa
+        if(globals.player != false && (globals.player.worldX != state.worldX || globals.player.worldY != state.worldY)){
             //Changed Map after logging in, kill all the sprites, recreate them, and change map
 
             //Remove old data
@@ -140,35 +140,6 @@ function initMultiPlayer(game, globals){
                 }
             }
         }
-
-        /* if(state.playerName == globals.myId && globals.localPlayerObject != null){
-            //console.log("Assigned Player State");
-            globals.player = state;
-            //globals.playerList[state.playerName] = state;
-            globals.playerList[state.playerName].player = state;
-        }
-        else if(state.playerName != globals.myId){
-            //Add NPC-Style player sprites here within a list
-            if(globals.playerList[state.playerName] == undefined){
-                globals.playerList[state.playerName] = {player: state, localPlayerObject: null};
-                globals.playerList[state.playerName].localPlayerObject = new PlayerObject(state.playerName, game);
-                console.log('logging in: ', state.playerName, globals.playerList[state.playerName]);
-            }
-            else{
-                globals.playerList[state.playerName].player = state;
-            }
-           
-        }
-
-        if(state.playerName == globals.myId && globals.localPlayerObject == null){
-
-            globals.playerList[state.playerName] = {player: state, localPlayerObject: null};
-            globals.player = state;
-            globals.localPlayerObject = new PlayerObject(state.playerName, game);
-            globals.playerList[state.playerName].localPlayerObject = globals.localPlayerObject;
-            game.global.ready = true;
-            globals.mapManager.setMapData(state.mapData);
-        } */
     }
 
     /**
