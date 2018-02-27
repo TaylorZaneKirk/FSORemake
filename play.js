@@ -4,7 +4,8 @@
 var mainState = {
     create: function(){
         initMultiPlayer(game, game.global);
-
+        
+        client = new Eureca.Client();
         //game.physics.startSystem(Phaser.Physics.ARCADE);
 
         //Maps and layers

@@ -6,8 +6,6 @@ var bootState = {
 
         isMultiInit = false;
 
-        client = new Eureca.Client();
-
         game.global.ready = false;
 
         game.global.player = false;
