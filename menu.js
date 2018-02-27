@@ -31,5 +31,5 @@ var menuState = {
 }
 
 function listener() {
-    game.state.start('main');
+    game.state.start('loadPlayer');
 }

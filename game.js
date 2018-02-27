@@ -5,7 +5,7 @@ game.state.add('boot', bootState);
 game.state.add('load', loadState);
 game.state.add('menu', menuState);
 //game.state.add('newPlayer', newPlayerState);
-//game.state.add('loadPlayer', loadPlayerState);
+game.state.add('loadPlayer', loadPlayerState);
 game.state.add('main', mainState);
 
 game.global = {
