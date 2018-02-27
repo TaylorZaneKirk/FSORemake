@@ -139,6 +139,7 @@ function initMultiPlayer(game, globals){
             globals.localPlayerObject = new PlayerObject(state.playerName, game);
             globals.playerList[state.playerName].localPlayerObject = globals.localPlayerObject;
             globals.lastActionTimestamp = new Date().getTime();
+            loadTime = globals.lastActionTimestamp;
 
             //Create the new players
             for(var i in state.playersVisible){
