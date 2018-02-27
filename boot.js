@@ -8,8 +8,6 @@ var bootState = {
 
         game.global.ready = false;
 
-        //game.global.player = false;
-
         loadTime = currentTime.getTime();
 
         game.physics.startSystem(Phaser.Physics.ARCADE);

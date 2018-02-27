@@ -192,7 +192,7 @@ sendMessageToServer = function(action, target) {
     }
     game.global.player.readyToUpdate = false;
 
-    if(action.payload != 'I'){ //idle is not an "action" in the since that it will not reset the timeout
+    if(action.payload != 'I'){ //idle is not an "action" in the sense that it will not reset the timeout
         game.global.lastActionTimestamp = new Date().getTime();
     }  
 
