@@ -28,4 +28,4 @@ var client;
 var isMultiInit;
 var loadTime;
 
-game.start('boot')
+game.state.start('boot')
