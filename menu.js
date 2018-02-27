@@ -7,9 +7,9 @@ var menuState = {
         guiLoadCharacter.anchor.set(0.5);
         guiLoadCharacter.inputEnabled = true;
         guiLoadCharacter.events.onInputDown.add(listener, this);
-    },
-
-    listener: function(){
-        game.state.start('main');
     }
+}
+
+function listener() {
+    game.state.start('main');
 }
