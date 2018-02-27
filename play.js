@@ -16,12 +16,12 @@ var mainState = {
     update: function(){
         var currentTime = new Date();
 
-        if(isMultiInit == false && currentTime.getTime() > loadTime + 1500){
+        /* if(isMultiInit == false && currentTime.getTime() > loadTime + 1500){
             console.log("ERROR: Something did not load correctly, restarting game");
             client.disconnect();
             game.state.start('menu');
             return;
-        }
+        } */
 
         if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {} || game.global.eurecaProxy == undefined){
             return; //Stuff isn't ready; hold on...
