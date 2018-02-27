@@ -2,7 +2,7 @@ var menuState = {
     create: function(){
 
         var guiMenu = game.add.sprite(game.world.centerX, game.world.centerY, 'menuScreen');
-        var guiLoadCharacter = game.add.sprite(game.world.centerX, game.world.centerY * 1.2, 'loadCharacterButton');
+        var guiLoadCharacter = game.add.sprite(game.world.centerX * 1.05, game.world.centerY * 1.2, 'loadCharacterButton');
         guiMenu.anchor.set(0.5);
         guiLoadCharacter.anchor.set(0.5);
         guiLoadCharacter.inputEnabled = true;
