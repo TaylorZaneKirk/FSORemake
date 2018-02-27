@@ -17,6 +17,23 @@ var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 
 //attach eureca.io to our http server
 eurecaServer.attach(server);
 
+var mysql = require('mysql');
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "1VT2yQtVjX",
+  database: "FSORemake"
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  con.query("SELECT * FROM users", function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+  });
+});
+
 
 //Player state needs to have Health implemented
 class PlayerState
