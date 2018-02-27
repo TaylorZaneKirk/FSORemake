@@ -24,8 +24,8 @@ game.global = {
     lastActionTimestamp: null,
 };
 
-var client;
-var isMultiInit;
-var loadTime;
+var client = null;
+var isMultiInit = null;
+var loadTime = null;
 
 game.state.start('boot')

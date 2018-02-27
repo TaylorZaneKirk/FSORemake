@@ -18,7 +18,9 @@ var mainState = {
 
         if(isMultiInit == false && currentTime.getTime() > loadTime + 1500){
             console.log("ERROR: Something did not load correctly, restarting game");
-            return this.game.state.restart();
+            client.disconnect();
+            game.state.start('menu');
+            return;
         }
 
         if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {} || game.global.eurecaProxy == undefined){
@@ -31,6 +33,7 @@ var mainState = {
             //isMultiInit = false;
             game.global.ready = false;
             console.log("TIMEOUT");
+            game.state.start('menu');
         }
 
         //wait [0.5] seconds after last update before requesting an update from the server
