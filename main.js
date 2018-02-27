@@ -209,8 +209,8 @@ function update() {
     if(game.global.lastActionTimestamp + 500000 < currentTime.getTime()){
         //timeout
         client.disconnect();
-        isMultiInit = false;
-        ready = false;
+        //isMultiInit = false;
+        game.global.ready = false;
         console.log("TIMEOUT");
     }
 
