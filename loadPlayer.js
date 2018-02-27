@@ -10,10 +10,18 @@ var loadPlayerState = {
         confirmButton.anchor.set(0.5);
 
         cancelButton.inputEnabled = true;
+        confirmButton.inputEnabled = true;
+
         cancelButton.events.onInputDown.add(listenerCancel, this);
+        confirmButton.events.onInputDown.add(listenerConfirm, this);
     }
 }
 
 function listenerCancel() {
     game.state.start('menu');
+}
+
+function listenerConfirm() {
+    client = new Eureca.Client();
+    game.state.start('main');
 }

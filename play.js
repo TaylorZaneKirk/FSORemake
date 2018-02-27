@@ -3,7 +3,7 @@
 
 var mainState = {
     create: function(){
-        client = new Eureca.Client();
+        //client = new Eureca.Client();
 
         initMultiPlayer(game, game.global);
 
