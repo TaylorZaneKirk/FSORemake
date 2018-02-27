@@ -8,7 +8,7 @@ var bootState = {
 
         game.global.ready = false;
 
-        game.global.player = false;
+        //game.global.player = false;
 
         loadTime = currentTime.getTime();
 
