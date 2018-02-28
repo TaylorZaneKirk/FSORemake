@@ -140,7 +140,7 @@ server.listen(process.env.PORT || 55555, function () {
 eurecaServer.exports.login = function (username, password){
     var id = this.connection.id;
     var remote = players[id].remote;
-    con.query("SELECT * FROM users WHERE username = " + username, function (err, result, fields) {
+    con.query("SELECT * FROM users WHERE username = '" + username + "'", function (err, result, fields) {
         if (err) throw err;
         console.log(result);
         remote.setId(id);
