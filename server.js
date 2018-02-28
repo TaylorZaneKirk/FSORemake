@@ -144,8 +144,8 @@ eurecaServer.exports.login = function (username, password){
         if (err) throw err;
         console.log(result);
         if(result[0].password == password){
-            players[id].state = new PlayerState(id);
-            remote.setId(id, result[0]);
+            players[id].state = new PlayerState(id, result[0]);
+            remote.setId(id);
         }
         else{
             console.log("Failed");
