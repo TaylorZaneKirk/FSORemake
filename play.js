@@ -6,9 +6,9 @@ var mainState = {
         //client = new Eureca.Client();
 
         initMultiPlayer(game, game.global);
-        
+
         //tell server client is ready
-        game.global.eurecaProxy.initPlayer(id);
+        game.global.eurecaProxy.initPlayer(game.global.myId);
 
         //game.physics.startSystem(Phaser.Physics.ARCADE);
 
