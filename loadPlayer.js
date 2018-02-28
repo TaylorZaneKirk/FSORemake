@@ -6,7 +6,7 @@ var loadPlayerState = {
         var confirmButton = game.add.sprite(game.world.centerX * 1.22225, game.world.centerY * 1.125, 'confirmButton');
         var inputUsername = game.add.inputField(game.world.centerX * 0.9725, game.world.centerY, {
             backgroundColor: '#c0c0c0',
-            width: 110,
+            width: 112.5,
         });
 
         loginScreen.anchor.set(0.5);
