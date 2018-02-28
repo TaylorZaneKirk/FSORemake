@@ -11,7 +11,7 @@ var loadPlayerState = {
         });
 
         var inputPassword = game.add.inputField(game.world.centerX * 0.9725, game.world.centerY * 0.955, {
-            //backgroundColor: '#c0c0c0',
+            backgroundColor: '#c0c0c0',
             width: 112.5,
             height: 20,
         });
@@ -54,7 +54,7 @@ function listenerConfirm() {
         console.log(serverProxy);
         game.global.eurecaProxy = serverProxy;
         //game.state.start('main');
-        serverProxy.login('test', '1234');
+        serverProxy.login(inputUsername, inputPassword);
     });
 
     client.exports.setId = function(id){
