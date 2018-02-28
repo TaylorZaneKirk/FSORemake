@@ -59,8 +59,8 @@ class PlayerState
         this.playerFacing = other.playerFacing;
         this.playerName = other.playerName;
         this.playerAction = other.playerAction;
-        this.WorldX = other.WorldX;
-        this.WorldY = other.WorldY;
+        this.worldX = other.worldX;
+        this.worldY = other.worldY;
         this.lastUpdated = other.lastUpdated;
         this.readyToUpdate = other.readyToUpdate;
         this.playersVisible = other.playersVisible;
@@ -82,6 +82,7 @@ class PlayerState
         this.mapData = worldMap[worldXNew + '-' + worldYNew].mapData;
         this.worldX = worldXNew;
         this.worldY = worldYNew;
+        con.query("UPDATE users SET worldX='" + this.worldX + "', worldY='" + this.worldY + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
     }
 
     takeStep(x, y){
