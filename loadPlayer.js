@@ -42,7 +42,19 @@ function listenerConfirm() {
         console.log("CLIENT READY");
         console.log(serverProxy);
         game.global.eurecaProxy = serverProxy;
-        game.state.start('main');
+        //game.state.start('main');
+        serverProxy.login('test', '1234');
     });
+
+    client.exports.setId = function(id){
+        console.log("Setting Id:" + id);
+
+        // Assign my new connection Id
+        globals.myId = id;
+
+        //tell server client is ready
+        //globals.eurecaProxy.initPlayer(id);
+        game.state.start('main');
+    }
     
 }

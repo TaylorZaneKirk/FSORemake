@@ -103,13 +103,14 @@ eurecaServer.onConnect(function (conn) {
     console.log('New Client id=%s ', conn.id, conn.remoteAddress);
 
     //the getClient method provide a proxy allowing us to call remote client functions
-    var remote = eurecaServer.getClient(conn.id);
+    //var remote = eurecaServer.getClient(conn.id);
 
     //register the client
-    players[conn.id] = {id:conn.id, remote:remote, state: new PlayerState(conn.id)}
+    //players[conn.id] = {id:conn.id, remote:remote, state: new PlayerState(conn.id)}
+    players[conn.id] = {id:conn.id, remote:remote, state: null}
 
     //here we call setId (defined in the client side)
-    remote.setId(conn.id);
+    //remote.setId(conn.id);
 });
 
 //detect client disconnection
@@ -135,6 +136,16 @@ server.listen(process.env.PORT || 55555, function () {
     console.log('\033[96mlistening on localhost:55555 \033[39m');
     loadMapData();
 });
+
+eurecaServer.login = function (username, password){
+    var id = this.connection.id;
+    var remote = players[id].remote;
+    con.query("SELECT * FROM users WHERE username = " + username, function (err, result, fields) {
+        if (err) throw err;
+        console.log(result);
+        remote.setId(id);
+      });
+}
 
 /**
 * Player logs itself into the array of players (handshake still needs to be called

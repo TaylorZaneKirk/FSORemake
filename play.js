@@ -6,6 +6,9 @@ var mainState = {
         //client = new Eureca.Client();
 
         initMultiPlayer(game, game.global);
+        
+        //tell server client is ready
+        game.global.eurecaProxy.initPlayer(id);
 
         //game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -93,7 +96,7 @@ function initMultiPlayer(game, globals){
         * It creates the instance of the player, and communicates
         * it's state information to the server.
         */
-    client.exports.setId = function(id){
+    /* client.exports.setId = function(id){
         console.log("Setting Id:" + id);
 
         // Assign my new connection Id
@@ -102,7 +105,7 @@ function initMultiPlayer(game, globals){
         //tell server client is ready
         globals.eurecaProxy.initPlayer(id);
 
-    }
+    } */
 
     client.exports.recieveStateFromServer = function(state) {
 
