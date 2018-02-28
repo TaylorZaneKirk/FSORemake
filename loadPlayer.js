@@ -5,7 +5,7 @@ var loadPlayerState = {
         var cancelButton = game.add.sprite(game.world.centerX * 1.075, game.world.centerY * 1.1255, 'cancelButton');
         var confirmButton = game.add.sprite(game.world.centerX * 1.22225, game.world.centerY * 1.125, 'confirmButton');
         var inputUsername = game.add.inputField(game.world.centerX * 1.05, game.world.centerY, {
-            'background-color': 'transparent',
+            backgroundColor: 'transparent',
             placeHolder: 'Password',
         });
 
