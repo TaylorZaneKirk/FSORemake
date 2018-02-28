@@ -50,7 +50,7 @@ function listenerConfirm() {
         console.log("Setting Id:" + id);
 
         // Assign my new connection Id
-        globals.myId = id;
+        game.global.myId = id;
 
         //tell server client is ready
         //globals.eurecaProxy.initPlayer(id);
