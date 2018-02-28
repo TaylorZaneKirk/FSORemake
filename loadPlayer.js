@@ -41,7 +41,7 @@ function listenerConfirm() {
         // used in other methods within this module.
         console.log("CLIENT READY");
         console.log(serverProxy);
-        globals.eurecaProxy = serverProxy;
+        game.global.eurecaProxy = serverProxy;
         game.state.start('main');
     });
     
