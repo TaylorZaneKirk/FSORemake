@@ -4,6 +4,7 @@ var loadPlayerState = {
         var loginScreen = game.add.sprite(game.world.centerX, game.world.centerY, 'loginScreen');
         var cancelButton = game.add.sprite(game.world.centerX * 1.075, game.world.centerY * 1.1255, 'cancelButton');
         var confirmButton = game.add.sprite(game.world.centerX * 1.22225, game.world.centerY * 1.125, 'confirmButton');
+        var inputUsername = game.add.inputField(10, 90);
 
         loginScreen.anchor.set(0.5);
         cancelButton.anchor.set(0.5);
