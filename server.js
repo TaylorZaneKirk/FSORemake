@@ -42,8 +42,8 @@ class PlayerState
     constructor(idString, data){
         this.pos = {x: data.localX, y: data.localY};
         this.playerFacing = 'S';
-        //this.playerName = idString;
-        this.playerName = data.username;
+        this.playerName = idString;
+        this.username = data.username;
         this.playerAction = 'idle';
         this.worldX = data.worldX;
         this.worldY = data.worldY;
@@ -88,7 +88,7 @@ class PlayerState
         if((x + 1 == this.pos.x || x - 1 == this.pos.x || x == this.pos.x)
             && (y + 1 == this.pos.y || y - 1 == this.pos.y || y == this.pos.y)){
             
-            con.query("UPDATE users SET localX='" + this.pos.x + "', localY='" + this.pos.y + "' WHERE username = '" + this.playerName + "'", function (err, result, fields) {
+            con.query("UPDATE users SET localX='" + this.pos.x + "', localY='" + this.pos.y + "' WHERE username = '" + this.username + "'", function (err, result, fields) {
                 return worldMap[this.worldX + '-' + this.worldY].mapData[y][x] == 0; //acceptable tiles
             });
         }
