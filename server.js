@@ -88,9 +88,8 @@ class PlayerState
         if((x + 1 == this.pos.x || x - 1 == this.pos.x || x == this.pos.x)
             && (y + 1 == this.pos.y || y - 1 == this.pos.y || y == this.pos.y)){
             
-            con.query("UPDATE users SET localX='" + this.pos.x + "', localY='" + this.pos.y + "' WHERE username = '" + this.username + "'", function (err, result, fields) {
-                return worldMap[this.worldX + '-' + this.worldY].mapData[y][x] == 0; //acceptable tiles
-            });
+            con.query("UPDATE users SET localX='" + this.pos.x + "', localY='" + this.pos.y + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
+            return worldMap[this.worldX + '-' + this.worldY].mapData[y][x] == 0; //acceptable tiles
         }
         return false;
     }
