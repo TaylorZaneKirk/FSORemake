@@ -143,6 +143,7 @@ eurecaServer.exports.login = function (username, password){
     con.query("SELECT * FROM users WHERE username = '" + username + "'", function (err, result, fields) {
         if (err) throw err;
         console.log(result);
+        players[id].state = new PlayerState(id);
         remote.setId(id);
       });
 }
