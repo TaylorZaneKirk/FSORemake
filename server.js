@@ -103,7 +103,7 @@ eurecaServer.onConnect(function (conn) {
     console.log('New Client id=%s ', conn.id, conn.remoteAddress);
 
     //the getClient method provide a proxy allowing us to call remote client functions
-    //var remote = eurecaServer.getClient(conn.id);
+    var remote = eurecaServer.getClient(conn.id);
 
     //register the client
     //players[conn.id] = {id:conn.id, remote:remote, state: new PlayerState(conn.id)}
