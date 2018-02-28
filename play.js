@@ -67,26 +67,26 @@ function initMultiPlayer(game, globals){
     // Reference to our eureca so we can call functions back on the server
     //var eurecaProxy;
 
-    /**
+    /* *
         * Fires on initial connection
         */
-    client.onConnect(function (connection) {
+    /* client.onConnect(function (connection) {
         console.log('Incoming connection', connection);
         isMultiInit = true;
 
-    });
+    }); */
     /**
         * When the connection is established and ready
         * we will set a local variable to the "serverProxy"
         * sent back by the server side.
         */
-    client.ready(function (serverProxy) {
+    /* client.ready(function (serverProxy) {
         // Local reference to the server proxy to be
         // used in other methods within this module.
         console.log("CLIENT READY");
         console.log(serverProxy);
         globals.eurecaProxy = serverProxy;
-    });
+    }); */
 
     /**
         * This sets the players id that we get from the server
