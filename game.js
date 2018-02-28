@@ -1,6 +1,8 @@
 // initialize phaser, call create() once done
 var game = new Phaser.Game(800, 600, Phaser.AUTO, null);
 
+game.add.plugin(PhaserInput.Plugin);
+
 game.state.add('boot', bootState);
 game.state.add('load', loadState);
 game.state.add('menu', menuState);
