@@ -23,27 +23,26 @@ function listenerCancel() {
 
 function listenerConfirm() {
     client = new Eureca.Client();
+    /**
+    * Fires on initial connection
+    */
+    client.onConnect(function (connection) {
+        console.log('Incoming connection', connection);
+        isMultiInit = true;
+
+    });
+    /**
+        * When the connection is established and ready
+        * we will set a local variable to the "serverProxy"
+        * sent back by the server side.
+        */
+    client.ready(function (serverProxy) {
+        // Local reference to the server proxy to be
+        // used in other methods within this module.
+        console.log("CLIENT READY");
+        console.log(serverProxy);
+        globals.eurecaProxy = serverProxy;
+        game.state.start('main');
+    });
     
 }
-
-/**
-* Fires on initial connection
-*/
-client.onConnect(function (connection) {
-    console.log('Incoming connection', connection);
-    isMultiInit = true;
-
-});
-/**
-    * When the connection is established and ready
-    * we will set a local variable to the "serverProxy"
-    * sent back by the server side.
-    */
-client.ready(function (serverProxy) {
-    // Local reference to the server proxy to be
-    // used in other methods within this module.
-    console.log("CLIENT READY");
-    console.log(serverProxy);
-    globals.eurecaProxy = serverProxy;
-    game.state.start('main');
-});
