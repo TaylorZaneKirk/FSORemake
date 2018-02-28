@@ -39,13 +39,13 @@ con.connect(function(err) {
 //Player state needs to have Health implemented
 class PlayerState
 {
-    constructor(idString){
-        this.pos = {x: 1, y: 1};
+    constructor(idString, data){
+        this.pos = {x: data.localX, y: data.localY};
         this.playerFacing = 'S';
         this.playerName = idString;
         this.playerAction = 'idle';
-        this.worldX = 0;
-        this.worldY = 0;
+        this.worldX = data.worldX;
+        this.worldY = data.worldY;
         this.lastUpdated = null;
         this.readyToUpdate = false;
         this.playersVisible = {};
@@ -145,7 +145,7 @@ eurecaServer.exports.login = function (username, password){
         console.log(result);
         if(result[0].password == password){
             players[id].state = new PlayerState(id);
-            remote.setId(id);
+            remote.setId(id, result[0]);
         }
         else{
             console.log("Failed");
