@@ -4,9 +4,8 @@ var loadPlayerState = {
         var loginScreen = game.add.sprite(game.world.centerX, game.world.centerY, 'loginScreen');
         var cancelButton = game.add.sprite(game.world.centerX * 1.075, game.world.centerY * 1.1255, 'cancelButton');
         var confirmButton = game.add.sprite(game.world.centerX * 1.22225, game.world.centerY * 1.125, 'confirmButton');
-        var inputUsername = game.add.inputField(game.world.centerX * 1.05, game.world.centerY, {
+        var inputUsername = game.add.inputField(game.world.centerX * 0.95, game.world.centerY, {
             backgroundColor: '#c0c0c0',
-            placeHolder: 'Password',
         });
 
         loginScreen.anchor.set(0.5);
