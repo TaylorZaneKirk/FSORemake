@@ -143,6 +143,7 @@ server.listen(process.env.PORT || 55555, function () {
 });
 
 eurecaServer.exports.login = function (username, password){
+    console.log('Player is attempting to log in');
     var id = this.connection.id;
     var remote = players[id].remote;
     con.query("SELECT * FROM users WHERE username = '" + username + "'", function (err, result, fields) {
@@ -159,6 +160,7 @@ eurecaServer.exports.login = function (username, password){
 }
 
 eurecaServer.exports.createPlayer = function (username, password){
+    console.log('A New User is being Created');
     var id = this.connection.id;
     var remote = players[id].remote;
 
