@@ -5,7 +5,11 @@ var loadState = {
         game.load.image('loadCharacterButton', 'assets/gui/gui_LoadCharacterButton.png');
         game.load.image('loginScreen', 'assets/gui/gui_LoginScreen.png');
         game.load.image('cancelButton', 'assets/gui/gui_CancelButton.png');
-        game.load.image('confirmButton', 'assets/gui/gui_ConfirmButton.png');
+        game.load.image('createScreen', 'assets/gui/gui_CreateScreen.png');
+        game.load.image('activeRadioButton', 'assets/gui/gui_ActiveRadio.png');
+        game.load.image('inactiveRadioButton', 'assets/gui/gui_InactiveRadio.png');
+        game.load.image('plusButton', 'assets/gui/gui_PlusButton.png');
+        game.load.image('minusButton', 'assets/gui/gui_MinusButton.png');
         game.load.spritesheet('player', 'assets/PlayerSheet.png', 46, 45, 16);
     },
 
