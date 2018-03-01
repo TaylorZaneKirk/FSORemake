@@ -1,8 +1,8 @@
 var newPlayerState = {
     create: function(){
         var createScreen = game.add.sprite(game.world.centerX, game.world.centerY, 'createScreen');
-        var cancelButton = game.add.sprite(game.world.centerX * 1.075, game.world.centerY * 1.1255, 'cancelButton');
-        var confirmButton = game.add.sprite(game.world.centerX * 1.22225, game.world.centerY * 1.125, 'confirmButton');
+        var cancelButton = game.add.sprite(game.world.centerX * 1.075, game.world.centerY * 1.1255, 'cancelButton2');
+        var confirmButton = game.add.sprite(game.world.centerX * 1.22225, game.world.centerY * 1.125, 'confirmButton2');
         inputUsername = game.add.inputField(game.world.centerX * 0.9725, game.world.centerY * 0.87225, {
             backgroundColor: '#c0c0c0',
             width: 112.5,
@@ -15,7 +15,7 @@ var newPlayerState = {
             height: 20,
         });
 
-        createScreen.anchor.set(0.5);
+        createScreen.anchor.set(0.75, 0.5);
         cancelButton.anchor.set(0.5);
         confirmButton.anchor.set(0.5);
 
