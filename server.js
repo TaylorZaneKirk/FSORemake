@@ -160,7 +160,7 @@ eurecaServer.exports.login = function (username, password){
 eurecaServer.exports.createPlayer = function (username, password){
     var id = this.connection.id;
     var remote = players[id].remote;
-    con.query("INSERT INTO users VALUES ('" + username + "', '"
+    con.query("INSERT INTO users(username, password, worldX, worldY, localX, localY) VALUES ('" + username + "', '"
         + password + "', 0, 0, 1, 1)", function (err, result, fields) {
         if (err) throw err;
         console.log(result);
