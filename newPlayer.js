@@ -15,7 +15,7 @@ var newPlayerState = {
             height: 20,
         });
 
-        createScreen.anchor.set(0.575, 0.5);
+        createScreen.anchor.set(0.585, 0.5);
         cancelButton.anchor.set(0.5);
         confirmButton.anchor.set(0.5);
 
