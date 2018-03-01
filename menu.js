@@ -3,13 +3,14 @@ var menuState = {
 
         var guiMenu = game.add.sprite(game.world.centerX, game.world.centerY, 'menuScreen');
         var guiLoadCharacter = game.add.sprite(game.world.centerX * 1.02225, game.world.centerY * 1.425, 'loadCharacterButton');
-        var guiNewCharacter = game.add.sprite(game.world.centerX * 1, game.world.centerY * 1.5770, 'newCharacterButton');
+        var guiNewCharacter = game.add.sprite(game.world.centerX, game.world.centerY * 1.5770, 'newCharacterButton');
         guiMenu.anchor.set(0.5);
         guiLoadCharacter.anchor.set(0.5);
         guiNewCharacter.anchor.set(0.5);
         guiLoadCharacter.inputEnabled = true;
         guiNewCharacter.inputEnabled = true;
-        guiLoadCharacter.events.onInputDown.add(listener, this);
+        guiLoadCharacter.events.onInputDown.add(listenerLoad, this);
+        guiNewCharacter.events.onInputDown.add(listenerNew, this);
 
         isMultiInit = false;
         loadTime = null;
@@ -33,6 +34,10 @@ var menuState = {
     }
 }
 
-function listener() {
+function listenerLoad() {
     game.state.start('loadPlayer');
+}
+
+function listenerNew() {
+    game.state.start('newPlayer');
 }
