@@ -27,7 +27,7 @@ var loadPlayerState = {
         cancelButton.inputEnabled = true;
         confirmButton.inputEnabled = true;
 
-        cancelButton.events.onInputDown.add(game.state.start('menu'), this);
+        cancelButton.events.onInputDown.add(() => game.state.start('menu'), this);
         confirmButton.events.onInputDown.add(queryLogin, this);
     }
 }
