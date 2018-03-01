@@ -42,10 +42,10 @@ function listenerConfirm() {
 
     });
     /**
-        * When the connection is established and ready
-        * we will set a local variable to the "serverProxy"
-        * sent back by the server side.
-        */
+    * When the connection is established and ready
+    * we will set a local variable to the "serverProxy"
+    * sent back by the server side.
+    */
     client.ready(function (serverProxy) {
         // Local reference to the server proxy to be
         // used in other methods within this module.
@@ -65,5 +65,13 @@ function listenerConfirm() {
         //tell server client is ready
         //globals.eurecaProxy.initPlayer(id);
         game.state.start('main');
+    }
+
+    clients.exports.playerAlreadyExists = function(){
+        alert('Sorry, this username is already taken. Please choose a different username and try again.');
+        client.disconnect();
+        isMultiInit = false;
+        game.global.eurecaProxy = null;
+        game.state.restart();
     }
 }

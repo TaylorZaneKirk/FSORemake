@@ -12,7 +12,7 @@ var Eureca = require('eureca.io');
 
 
 //create an instance of EurecaServer
-var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill', 'disconnect']});
+var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill', 'disconnect', 'playerAlreadyExists']});
 
 //attach eureca.io to our http server
 eurecaServer.attach(server);
@@ -160,29 +160,30 @@ eurecaServer.exports.login = function (username, password){
 eurecaServer.exports.createPlayer = function (username, password){
     var id = this.connection.id;
     var remote = players[id].remote;
-    var playerExists = false;
 
     con.query("SELECT * FROM users WHERE username = '" + username + "'", function (err, result, fields) {
         if (err) throw err;
-        console.log(result);
-        if(result.length != 0){
-            playerExists = true;
-        }
 
-        if(!playerExists){
-            con.query("INSERT INTO users(username, password, worldX, worldY, localX, localY) VALUES ('" + username + "', '"
-                + password + "', 0, 0, 1, 1)", function (err, result, fields) {
+        if(result.length == 0){
+            con.query("INSERT INTO users(username, password, worldX, worldY, localX, localY) VALUES ('" 
+                + username + "', '" + password + "', 0, 0, 1, 1)", function (err, result, fields) {
+
                 if (err) throw err;
+
+                console.log("New Player Created: " + username);
 
                 con.query("SELECT * FROM users WHERE username = '" + username + "'", function (err, result, fields) {
                     if (err) throw err;
-                    console.log(result);
+
                     if(result[0]){
                         players[id].state = new PlayerState(id, result[0]);
                         remote.setId(id);
                     }
                 });
             });
+        }
+        else{
+            remote.playerAlreadyExists();
         }
     });
 
