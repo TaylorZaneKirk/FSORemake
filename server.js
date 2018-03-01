@@ -163,6 +163,11 @@ eurecaServer.exports.createPlayer = function (username, password){
     console.log('A New User is being Created');
     var id = this.connection.id;
     var remote = players[id].remote;
+    var regex = '/[a-zA-Z]{2,16}/'; //Only letters, no numbers, symbols, or spaces, between 2 and 16 chars
+    if(!username.match(regex)){
+        console.log("invalid username");
+        return;
+    }
 
     con.query("SELECT * FROM users WHERE username = '" + username + "'", function (err, result, fields) {
         if (err) throw err;

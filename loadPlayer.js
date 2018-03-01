@@ -37,6 +37,9 @@ function listenerCancel() {
 } */
 
 function queryLogin() {
+    if(inputUsername.value == undefined || inputPassword.value == undefined){
+        return;
+    }
     client = new Eureca.Client();
     /**
     * Fires on initial connection
