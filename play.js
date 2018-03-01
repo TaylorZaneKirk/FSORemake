@@ -57,7 +57,7 @@ var mainState = {
             thisPlayer = game.global.playerList[i];
             if(thisPlayer.player != undefined && thisPlayer.localPlayerObject != undefined && thisPlayer.player != game.global.player){
                 if(((thisPlayer.player.pos.x + 1) * 32) != thisPlayer.localPlayerObject.playerSprite.x || ((thisPlayer.player.pos.y + 1) * 32) != thisPlayer.localPlayerObject.playerSprite.y){
-                    thisPlayer.localPlayerObject.movePlayer(thisPlayer.player.playerName); //update other players
+                    thisPlayer.localPlayerObject.movePlayer(thisPlayer.player.playerId); //update other players
                 }
                 thisPlayer.localPlayerObject.playerSprite.play(thisPlayer.player.playerAction + '-' + thisPlayer.player.playerFacing);
             }
@@ -120,35 +120,35 @@ function initMultiPlayer(game, globals){
 
             //Local player
             globals.player = state;
-            globals.playerList[state.playerName] = {player: state, localPlayerObject: null};
-            globals.localPlayerObject = new PlayerObject(state.playerName, game);
-            globals.playerList[state.playerName].localPlayerObject = globals.localPlayerObject;
+            globals.playerList[state.playerId] = {player: state, localPlayerObject: null};
+            globals.localPlayerObject = new PlayerObject(state.playerId, game);
+            globals.playerList[state.playerId].localPlayerObject = globals.localPlayerObject;
 
             //Create the new players
             for(var i in state.playersVisible){
-                globals.playerList[state.playersVisible[i].playerName] = {player: state.playersVisible[i], localPlayerObject: null};
-                globals.playerList[state.playersVisible[i].playerName].player = state.playersVisible[i];
-                globals.playerList[state.playersVisible[i].playerName].localPlayerObject = new PlayerObject(state.playersVisible[i].playerName, game);
+                globals.playerList[state.playersVisible[i].playerId] = {player: state.playersVisible[i], localPlayerObject: null};
+                globals.playerList[state.playersVisible[i].playerId].player = state.playersVisible[i];
+                globals.playerList[state.playersVisible[i].playerId].localPlayerObject = new PlayerObject(state.playersVisible[i].playerId, game);
             }
             
             globals.mapManager.setMapData(state.mapData);
         }
-        else if(state.playerName == globals.myId && globals.localPlayerObject == null && game.global.ready == false){
+        else if(state.playerId == globals.myId && globals.localPlayerObject == null && game.global.ready == false){
             //Just logged in, create sprites and map
             
             //Local player
             globals.player = state;
-            globals.playerList[state.playerName] = {player: state, localPlayerObject: null};
-            globals.localPlayerObject = new PlayerObject(state.playerName, game);
-            globals.playerList[state.playerName].localPlayerObject = globals.localPlayerObject;
+            globals.playerList[state.playerId] = {player: state, localPlayerObject: null};
+            globals.localPlayerObject = new PlayerObject(state.playerId, game);
+            globals.playerList[state.playerId].localPlayerObject = globals.localPlayerObject;
             globals.lastActionTimestamp = new Date().getTime();
             loadTime = globals.lastActionTimestamp;
 
             //Create the new players
             for(var i in state.playersVisible){
-                globals.playerList[state.playersVisible[i].playerName] = {player: state.playersVisible[i], localPlayerObject: null};
-                globals.playerList[state.playersVisible[i].playerName].player = state.playersVisible[i];
-                globals.playerList[state.playersVisible[i].playerName].localPlayerObject = new PlayerObject(state.playersVisible[i].playerName, game);
+                globals.playerList[state.playersVisible[i].playerId] = {player: state.playersVisible[i], localPlayerObject: null};
+                globals.playerList[state.playersVisible[i].playerId].player = state.playersVisible[i];
+                globals.playerList[state.playersVisible[i].playerId].localPlayerObject = new PlayerObject(state.playersVisible[i].playerId, game);
             }
 
             game.global.ready = true;
@@ -158,15 +158,15 @@ function initMultiPlayer(game, globals){
             //just update references
 
             globals.player = state;
-            globals.playerList[state.playerName].player = state;
+            globals.playerList[state.playerId].player = state;
             for(var i in state.playersVisible){
-                if(globals.playerList[state.playersVisible[i].playerName] == undefined){
-                    globals.playerList[state.playersVisible[i].playerName] = {player: state.playersVisible[i], localPlayerObject: null};
-                    globals.playerList[state.playersVisible[i].playerName].localPlayerObject = new PlayerObject(state.playersVisible[i].playerName, game);
-                    console.log('logging in: ', state.playersVisible[i].playerName, globals.playerList[state.playersVisible[i].playerName]);
+                if(globals.playerList[state.playersVisible[i].playerId] == undefined){
+                    globals.playerList[state.playersVisible[i].playerId] = {player: state.playersVisible[i], localPlayerObject: null};
+                    globals.playerList[state.playersVisible[i].playerId].localPlayerObject = new PlayerObject(state.playersVisible[i].playerId, game);
+                    console.log('logging in: ', state.playersVisible[i].playerId, globals.playerList[state.playersVisible[i].playerId]);
                 }
                 else{
-                    globals.playerList[state.playersVisible[i].playerName].player = state.playersVisible[i];
+                    globals.playerList[state.playersVisible[i].playerId].player = state.playersVisible[i];
                 }
             }
         }

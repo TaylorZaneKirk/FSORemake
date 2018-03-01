@@ -64,7 +64,7 @@ var PlayerObject = function(idRef, gameRef){
             return;
         }
 
-        if(playerState != game.global.playerList[idLocal].player && playerState.playerName == game.global.playerList[idLocal].player.playerName){
+        if(playerState != game.global.playerList[idLocal].player && playerState.playerId == game.global.playerList[idLocal].player.playerId){
             playerState = game.global.playerList[idLocal].player;
 
             //Update global reference

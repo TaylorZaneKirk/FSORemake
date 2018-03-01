@@ -42,7 +42,7 @@ class PlayerState
     constructor(idString, data){
         this.pos = {x: data.localX, y: data.localY};
         this.playerFacing = 'S';
-        this.playerName = idString;
+        this.playerId = idString;
         this.username = data.username;
         this.playerAction = 'idle';
         this.worldX = data.worldX;
@@ -57,7 +57,7 @@ class PlayerState
     {
         this.pos = other.pos;
         this.playerFacing = other.playerFacing;
-        this.playerName = other.playerName;
+        this.playerId = other.playerId;
         this.playerAction = other.playerAction;
         this.worldX = other.worldX;
         this.worldY = other.worldY;
@@ -68,16 +68,16 @@ class PlayerState
     }
 
     changeMapData(worldXNew, worldYNew){
-        worldMap[worldXNew + '-' + worldYNew].players[this.playerName] = this;
+        worldMap[worldXNew + '-' + worldYNew].players[this.playerId] = this;
 
         //Need to Let other players know this guy left
-        delete worldMap[this.worldX + '-' + this.worldY].players[this.playerName];
+        delete worldMap[this.worldX + '-' + this.worldY].players[this.playerId];
 
         for (var c in worldMap[this.worldX + '-' + this.worldY].players){
             var remote = players[c].remote;
 
             //here we call kill() method defined in the client side
-            remote.kill(this.playerName);
+            remote.kill(this.playerId);
         }
         this.mapData = worldMap[worldXNew + '-' + worldYNew].mapData;
         this.worldX = worldXNew;
@@ -233,16 +233,16 @@ eurecaServer.updateClients = function (id) {
     var newRemote = players[id].remote;
     var allPlayerStates = [];
 
-    players[id].state.playersVisible = Object.filter(worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players, player => player.playerName != id);
+    players[id].state.playersVisible = Object.filter(worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players, player => player.playerId != id);
     newRemote.recieveStateFromServer(players[id].state);
 
     for(var i in players[id].state.playersVisible) {
-        var index = players[id].state.playersVisible[i].playerName;
+        var index = players[id].state.playersVisible[i].playerId;
         var visiblePlayer = players[index];
         if(visiblePlayer.id != id){
             var remote = visiblePlayer.remote;
 
-            visiblePlayer.state.playersVisible = Object.filter(worldMap[visiblePlayer.state.worldX + '-' + visiblePlayer.state.worldY].players, player => player.playerName != visiblePlayer.id);
+            visiblePlayer.state.playersVisible = Object.filter(worldMap[visiblePlayer.state.worldX + '-' + visiblePlayer.state.worldY].players, player => player.playerId != visiblePlayer.id);
             remote.recieveStateFromServer(visiblePlayer.state);
         }
        
