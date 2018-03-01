@@ -53,7 +53,7 @@ function listenerConfirm() {
         console.log(serverProxy);
         game.global.eurecaProxy = serverProxy;
         //game.state.start('main');
-        serverProxy.login(inputUsername.value, inputPassword.value);
+        serverProxy.createPlayer(inputUsername.value, inputPassword.value);
     });
 
     client.exports.setId = function(id){
