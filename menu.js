@@ -3,7 +3,7 @@ var menuState = {
 
         var guiMenu = game.add.sprite(game.world.centerX, game.world.centerY, 'menuScreen');
         var guiLoadCharacter = game.add.sprite(game.world.centerX * 1.02225, game.world.centerY * 1.425, 'loadCharacterButton');
-        var guiNewCharacter = game.add.sprite(game.world.centerX * 1.02225, game.world.centerY * 1.5775, 'newCharacterButton');
+        var guiNewCharacter = game.add.sprite(game.world.centerX * 1.02225, game.world.centerY * 1.5770, 'newCharacterButton');
         guiMenu.anchor.set(0.5);
         guiLoadCharacter.anchor.set(0.5);
         guiNewCharacter.anchor.set(0.5);
