@@ -160,19 +160,33 @@ eurecaServer.exports.login = function (username, password){
 eurecaServer.exports.createPlayer = function (username, password){
     var id = this.connection.id;
     var remote = players[id].remote;
-    con.query("INSERT INTO users(username, password, worldX, worldY, localX, localY) VALUES ('" + username + "', '"
-        + password + "', 0, 0, 1, 1)", function (err, result, fields) {
+    var playerExists = false;
+
+    con.query("SELECT * FROM users WHERE username = '" + username + "'", function (err, result, fields) {
         if (err) throw err;
         console.log(result);
-        /* if(result[0].password == password){
-            players[id].state = new PlayerState(id, result[0]);
-            remote.setId(id);
+        if(result[0].length != 0){
+            playerExists = true;
         }
-        else{
-            console.log("Failed");
-            console.log(result[0].password + " " + password);
-        } */
+
+        if(!playerExists){
+            con.query("INSERT INTO users(username, password, worldX, worldY, localX, localY) VALUES ('" + username + "', '"
+                + password + "', 0, 0, 1, 1)", function (err, result, fields) {
+                if (err) throw err;
+
+                con.query("SELECT * FROM users WHERE username = '" + username + "'", function (err, result, fields) {
+                    if (err) throw err;
+                    console.log(result);
+                    if(result[0]){
+                        players[id].state = new PlayerState(id, result[0]);
+                        remote.setId(id);
+                    }
+                });
+            });
+        }
     });
+
+    
 }
 
 /**
