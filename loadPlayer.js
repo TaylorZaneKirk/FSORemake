@@ -27,16 +27,16 @@ var loadPlayerState = {
         cancelButton.inputEnabled = true;
         confirmButton.inputEnabled = true;
 
-        cancelButton.events.onInputDown.add(listenerCancel, this);
-        confirmButton.events.onInputDown.add(listenerConfirm, this);
+        cancelButton.events.onInputDown.add(game.state.start('menu'), this);
+        confirmButton.events.onInputDown.add(queryLogin, this);
     }
 }
-
+/* 
 function listenerCancel() {
     game.state.start('menu');
-}
+} */
 
-function listenerConfirm() {
+function queryLogin() {
     client = new Eureca.Client();
     /**
     * Fires on initial connection
