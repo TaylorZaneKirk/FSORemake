@@ -23,7 +23,7 @@ var newPlayerState = {
         confirmButton.inputEnabled = true;
 
         cancelButton.events.onInputDown.add(listenerCancel, this);
-        //confirmButton.events.onInputDown.add(listenerConfirm, this);
+        confirmButton.events.onInputDown.add(listenerConfirm, this);
     }
 }
 
