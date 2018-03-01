@@ -71,8 +71,8 @@ function queryCreate() {
         game.state.start('main');
     }
 
-    client.exports.playerAlreadyExists = function(){
-        alert('Sorry, this username is already taken. Please choose a different username and try again.');
+    client.exports.errorAndDisconnect = function(err){
+        alert(err);
         client.disconnect();
         isMultiInit = false;
         game.global.eurecaProxy = null;

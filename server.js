@@ -12,7 +12,7 @@ var Eureca = require('eureca.io');
 
 
 //create an instance of EurecaServer
-var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill', 'disconnect', 'playerAlreadyExists', 'wrongUserOrPass']});
+var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill', 'disconnect', 'errorAndDisconnect']});
 
 //attach eureca.io to our http server
 eurecaServer.attach(server);
@@ -154,7 +154,7 @@ eurecaServer.exports.login = function (username, password){
             remote.setId(id);
         }
         else{
-            remote.wrongUserOrPass();
+            remote.errorAndDisconnect('Wrong username or password!');
         }
     });
 }
@@ -165,7 +165,7 @@ eurecaServer.exports.createPlayer = function (username, password){
     var remote = players[id].remote;
     var regex = '/[a-zA-Z]{2,16}/'; //Only letters, no numbers, symbols, or spaces, between 2 and 16 chars
     if(!username.match(regex)){
-        console.log("invalid username");
+        remote.errorAndDisconnect('The username you have chosen contains invalid characters!');
         return;
     }
 
@@ -191,7 +191,7 @@ eurecaServer.exports.createPlayer = function (username, password){
             });
         }
         else{
-            remote.playerAlreadyExists();
+            remote.errorAndDisconnect('This username is already taken! Please choose another and try again.');
         }
     });
 
