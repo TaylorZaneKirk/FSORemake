@@ -119,15 +119,17 @@ eurecaServer.onConnect(function (conn) {
 //detect client disconnection
 eurecaServer.onDisconnect(function (conn) {
     console.log('Client disconnected ', conn.id);
-
-    for (var c in players)
-    {
-        var remote = players[c].remote;
-
-        //here we call kill() method defined in the client side
-        remote.kill(conn.id);
+    if(players[conn.id].state){
+        for (var c in players)
+        {
+            var remote = players[c].remote;
+    
+            //here we call kill() method defined in the client side
+            remote.kill(conn.id);
+        }
+        delete worldMap[players[conn.id].state.worldX + '-' + players[conn.id].state.worldY].players[conn.id];
     }
-    delete worldMap[players[conn.id].state.worldX + '-' + players[conn.id].state.worldY].players[conn.id];
+
     delete players[conn.id];
 });
 
