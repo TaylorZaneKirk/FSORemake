@@ -67,7 +67,7 @@ function listenerConfirm() {
         game.state.start('main');
     }
 
-    clients.exports.playerAlreadyExists = function(){
+    client.exports.playerAlreadyExists = function(){
         alert('Sorry, this username is already taken. Please choose a different username and try again.');
         client.disconnect();
         isMultiInit = false;
