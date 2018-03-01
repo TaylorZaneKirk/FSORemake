@@ -12,7 +12,7 @@ var Eureca = require('eureca.io');
 
 
 //create an instance of EurecaServer
-var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill', 'disconnect', 'playerAlreadyExists']});
+var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill', 'disconnect', 'playerAlreadyExists', 'wrongUserOrPass']});
 
 //attach eureca.io to our http server
 eurecaServer.attach(server);
@@ -153,8 +153,7 @@ eurecaServer.exports.login = function (username, password){
             remote.setId(id);
         }
         else{
-            console.log("Failed");
-            console.log(result[0].password + " " + password);
+            remote.wrongUserOrPass();
         }
     });
 }

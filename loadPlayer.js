@@ -71,5 +71,13 @@ function listenerConfirm() {
         //globals.eurecaProxy.initPlayer(id);
         game.state.start('main');
     }
+
+    client.exports.wrongUserOrPass = function(){
+        alert('Sorry, the username or password provided was invalid. Check your info and try again.');
+        client.disconnect();
+        isMultiInit = false;
+        game.global.eurecaProxy = null;
+        game.state.restart();
+    }
     
 }
