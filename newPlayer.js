@@ -9,7 +9,7 @@ var newPlayerState = {
             height: 20,
         });
 
-        inputPassword = game.add.inputField(game.world.centerX * 1.435, game.world.centerY * 0.8875, {
+        inputPassword = game.add.inputField(game.world.centerX * 1.435, game.world.centerY * 0.8845, {
             backgroundColor: '#c0c0c0',
             width: 112.5,
             height: 20,
