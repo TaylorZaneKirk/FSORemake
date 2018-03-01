@@ -165,7 +165,7 @@ eurecaServer.exports.createPlayer = function (username, password){
     con.query("SELECT * FROM users WHERE username = '" + username + "'", function (err, result, fields) {
         if (err) throw err;
         console.log(result);
-        if(result[0].length != 0){
+        if(result.length != 0){
             playerExists = true;
         }
 
