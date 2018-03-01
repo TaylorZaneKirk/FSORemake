@@ -157,6 +157,24 @@ eurecaServer.exports.login = function (username, password){
     });
 }
 
+eurecaServer.exports.createPlayer = function (username, password){
+    var id = this.connection.id;
+    var remote = players[id].remote;
+    con.query("INSERT INTO users(username, password, worldX, worldY, localX, localY) VALUES ('" + username + "', '"
+        + password + "', 0, 0, 1, 1", function (err, result, fields) {
+        if (err) throw err;
+        console.log(result);
+        /* if(result[0].password == password){
+            players[id].state = new PlayerState(id, result[0]);
+            remote.setId(id);
+        }
+        else{
+            console.log("Failed");
+            console.log(result[0].password + " " + password);
+        } */
+    });
+}
+
 /**
 * Player logs itself into the array of players (handshake still needs to be called
 * to do the update. That's done on the client right after).

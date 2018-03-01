@@ -14,6 +14,7 @@ var menuState = {
 
         isMultiInit = false;
         loadTime = null;
+        client = null;
 
         game.global = {
             player: null, //References for local player state
