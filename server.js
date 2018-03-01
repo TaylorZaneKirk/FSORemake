@@ -161,7 +161,7 @@ eurecaServer.exports.createPlayer = function (username, password){
     var id = this.connection.id;
     var remote = players[id].remote;
     con.query("INSERT INTO users VALUES ('" + username + "', '"
-        + password + "', '0', '0', '1', '1'", function (err, result, fields) {
+        + password + "', 0, 0, 1, 1)", function (err, result, fields) {
         if (err) throw err;
         console.log(result);
         /* if(result[0].password == password){
