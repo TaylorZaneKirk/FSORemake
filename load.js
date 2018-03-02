@@ -16,6 +16,7 @@ var loadState = {
         game.load.image('minusButton', 'assets/gui/gui_MinusButton.png');
         game.load.image('topPanel', 'assets/gui/gui_TopPanel.png');
         game.load.image('rightPanel', 'assets/gui/gui_RightPanel.png');
+        game.load.image('leftPanel', 'assets/gui/gui_LeftPanel.png');
         game.load.spritesheet('player', 'assets/PlayerSheet.png', 46, 45, 16);
     },
 
