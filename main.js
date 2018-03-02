@@ -1,7 +1,7 @@
 
 ///Main Game 'World' script//
 
-var chatInput;
+var chatInput = "TEstTEstTEstTEstTEstTEstTEstTEstTEstTEstTEstTEstTEstTEstTEstTEstTEstTEstTEst";
 var chatBox;
 var chatLog;
 
