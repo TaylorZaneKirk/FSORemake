@@ -243,7 +243,7 @@ eurecaServer.exports.initPlayer = function (id) {
 eurecaServer.exports.requestUpdate = function (id) {
 
     var currentServerTime = new Date().getTime();
-    if(players[id] && players[id].state.lastUpdated + 750 < currentServerTime){
+    if(players[id] && players[id].state.lastUpdated + 250 < currentServerTime){
         players[id].state.lastUpdated = currentServerTime;
         
         eurecaServer.updateClients(id);
