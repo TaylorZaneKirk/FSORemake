@@ -26,14 +26,16 @@ var mainState = {
         bottomPanel.anchor.set(0.5);
 
         var style = {
-            font: '14pt Arial',
+            font: '14px Arial',
             backgroundColor: '#494745',
             fill: 'white',
             wordWrap: true,
-            wordWrapWidth: 762
+            wordWrapWidth: 762,
+            width: 762,
+            height: 200,
         }
         var chatBox = game.add.text(game.world.centerX, game.world.centerY, chatLog, style);
-        chatBox.setTextBounds(16, 16, 300, 762);
+        //chatBox.setTextBounds(16, 16, 300, 762);
         
         chatInput = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.9251, {
             backgroundColor: '#494745',
