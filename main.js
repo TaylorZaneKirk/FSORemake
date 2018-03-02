@@ -31,8 +31,8 @@ var mainState = {
             fill: 'white',
             wordWrap: true,
             wordWrapWidth: 762,
-            width: 762,
-            height: 200,
+            width: '762px',
+            height: '200px',
         }
         var chatBox = game.add.text(game.world.width * 0.022, game.world.centerY, chatLog, style);
         //chatBox.setTextBounds(16, 16, 300, 762);
