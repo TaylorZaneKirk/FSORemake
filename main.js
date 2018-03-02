@@ -1,6 +1,8 @@
 
 ///Main Game 'World' script//
 
+var chatInput;
+
 var mainState = {
     create: function(){
 
@@ -21,7 +23,7 @@ var mainState = {
         var bottomPanel = game.add.sprite(game.world.centerX * 0.7475, game.world.bottom * 0.8365, 'bottomPanel');
         bottomPanel.anchor.set(0.5);
         
-        inputUsername = game.add.inputField(game.world.width, game.world.width, {
+        chatInput = game.add.inputField(game.world.width, game.world.width, {
             //backgroundColor: '#c0c0c0',
             width: 200,
             height: 20,
