@@ -147,7 +147,11 @@ eurecaServer.exports.login = function (username, password){
     var id = this.connection.id;
     var remote = players[id].remote;
     con.query("SELECT * FROM users WHERE username = '" + username + "'", function (err, result, fields) {
-        if (err) throw err;
+        if (err){ 
+            throw err;
+            remote.errorAndDisconnect('An unexpected error occured.');
+            return;
+        }
         
         if(result[0].password == password){
             players[id].state = new PlayerState(id, result[0]);
@@ -161,10 +165,12 @@ eurecaServer.exports.login = function (username, password){
 
 eurecaServer.exports.createPlayer = function (username, password){
     console.log('A New User is being Created');
+
     var id = this.connection.id;
     var remote = players[id].remote;
     var regexUsername = '/^[a-zA-Z][a-zA-z0-9]{1,15}/'; //Only letters, symbols, or spaces, between 2 and 16 chars
     var regexPassword = '/^(?=.*[a-zA-Z0-9])(?=.*([-+_!@#$%^&*.,?])).{6,16}$/' //Numbers or letters with atleast 1 symbol between 6 and 16 characters
+
     if(!username.match(regexUsername)){
         remote.errorAndDisconnect('The username you have chosen contains invalid characters!');
         return;
@@ -175,18 +181,30 @@ eurecaServer.exports.createPlayer = function (username, password){
     }
 
     con.query("SELECT * FROM users WHERE username = '" + username + "'", function (err, result, fields) {
-        if (err) throw err;
+        if (err){ 
+            throw err;
+            remote.errorAndDisconnect('An unexpected error occured.');
+            return;
+        }
 
         if(result.length == 0){
             con.query("INSERT INTO users(username, password, worldX, worldY, localX, localY) VALUES ('" 
                 + username + "', '" + password + "', 0, 0, 1, 1)", function (err, result, fields) {
 
-                if (err) throw err;
+                if (err){ 
+                    throw err;
+                    remote.errorAndDisconnect('An unexpected error occured.');
+                    return;
+                }
 
                 console.log("New Player Created: " + username);
 
                 con.query("SELECT * FROM users WHERE username = '" + username + "'", function (err, result, fields) {
-                    if (err) throw err;
+                    if (err){ 
+                        throw err;
+                        remote.errorAndDisconnect('An unexpected error occured.');
+                        return;
+                    }
 
                     if(result[0]){
                         players[id].state = new PlayerState(id, result[0]);
