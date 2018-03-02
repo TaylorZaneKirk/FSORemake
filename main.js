@@ -23,7 +23,7 @@ var mainState = {
         var bottomPanel = game.add.sprite(game.world.centerX * 0.7475, game.world.bottom * 0.8365, 'bottomPanel');
         bottomPanel.anchor.set(0.5);
         
-        chatInput = game.add.inputField(game.world.width * 0.0245, game.world.bottom * 0.9251, {
+        chatInput = game.add.inputField(game.world.width * 0.0242, game.world.bottom * 0.9251, {
             backgroundColor: '#494745',
             width: 757,
             height: 20,
