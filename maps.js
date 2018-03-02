@@ -65,7 +65,7 @@ var MapManager = class MapManager {
         if(thisTile != null){
             if(thisTile.index != -1 && (nextTile == null || nextTile.index != 1)){ //Unacceptable tiles
                 //move from acceptable tile into acceptable tile
-                if(nextTile.index == -1){
+                if(nextTile == null || nextTile.index == -1){
                     this.game.global.player.localPlayerObject.playerSprite.kill();
                 }
                 return true;
