@@ -4,7 +4,7 @@
 var mainState = {
     create: function(){
         //client = new Eureca.Client();
-        var topPanel = game.add.sprite(game.world.centerX, 0, 'topPanel');
+        var topPanel = game.add.sprite(0, 0, 'topPanel');
         //topPanel.anchor.set(0.5);
 
         initMultiPlayer(game, game.global);
