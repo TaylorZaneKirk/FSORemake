@@ -17,7 +17,7 @@ var mainState = {
         //Maps and layers
         game.global.mapManager = new MapManager(game);
         var topPanel = game.add.sprite(0, 0, 'topPanel');
-        var rightPanel = game.add.sprite(game.world.right * 0.9822, 0, 'rightPanel');
+        var rightPanel = game.add.sprite(game.world.right * 0.98215, 0, 'rightPanel');
     },
 
     update: function(){
