@@ -20,6 +20,7 @@ var mainState = {
         var topPanel = game.add.sprite(0, 0, 'topPanel');
         var rightPanel = game.add.sprite(game.world.right * 0.981, 0, 'rightPanel');
         var bottomPanel = game.add.sprite(game.world.centerX, game.world.bottom * 0.099, 'bottomPanel');
+        bottomPanel.anchor.set(0.5);
         
     },
 
