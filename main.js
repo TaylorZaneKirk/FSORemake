@@ -26,7 +26,7 @@ var mainState = {
         bottomPanel.anchor.set(0.5);
 
         var chatBox = game.add.text(game.world.width * 0.022, game.world.bottom * 0.875, chatLog);
-        chatBox.setTextBounds(16, 16, 768, 568);
+        //chatBox.setTextBounds(16, 16, 768, 568);
         
         chatInput = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.9251, {
             backgroundColor: '#494745',
