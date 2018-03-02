@@ -2,6 +2,8 @@
 ///Main Game 'World' script//
 
 var chatInput;
+var chatBox;
+var chatLog;
 
 var mainState = {
     create: function(){
@@ -22,6 +24,9 @@ var mainState = {
         var rightPanel = game.add.sprite(game.world.width * 0.7063, 0, 'rightPanel');
         var bottomPanel = game.add.sprite(game.world.centerX * 0.7475, game.world.bottom * 0.8365, 'bottomPanel');
         bottomPanel.anchor.set(0.5);
+
+        var chatBox = game.add.text(game.world.width * 0.022, game.world.bottom * 0.875, chatLog);
+        chatBox.setTextBounds(16, 16, 768, 568);
         
         chatInput = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.9251, {
             backgroundColor: '#494745',
