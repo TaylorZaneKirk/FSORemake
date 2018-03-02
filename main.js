@@ -3,9 +3,6 @@
 
 var mainState = {
     create: function(){
-        //client = new Eureca.Client();
-        
-        //topPanel.anchor.set(0.5);
 
         initMultiPlayer(game, game.global);
 
@@ -24,18 +21,15 @@ var mainState = {
         var bottomPanel = game.add.sprite(game.world.centerX * 0.7475, game.world.bottom * 0.8365, 'bottomPanel');
         bottomPanel.anchor.set(0.5);
         
-        
+        inputUsername = game.add.inputField(game.world.width, game.world.width, {
+            //backgroundColor: '#c0c0c0',
+            width: 200,
+            height: 20,
+        });
     },
 
     update: function(){
         var currentTime = new Date();
-
-        /* if(isMultiInit == false && currentTime.getTime() > loadTime + 1500){
-            console.log("ERROR: Something did not load correctly, restarting game");
-            client.disconnect();
-            game.state.start('menu');
-            return;
-        } */
 
         if (!game.global.ready || !game.global.player || game.global.localPlayerObject == {} || game.global.eurecaProxy == undefined){
             return; //Stuff isn't ready; hold on...
@@ -44,15 +38,12 @@ var mainState = {
         if(game.global.lastActionTimestamp + 500000 < currentTime.getTime()){
             //timeout
             client.disconnect();
-            //isMultiInit = false;
-            game.global.ready = false;
             console.log("TIMEOUT");
             game.state.start('menu');
         }
 
         //wait [0.5] seconds after last update before requesting an update from the server
         if (game.global.player.lastUpdated + 250 < currentTime.getTime() ){
-            //game.global.player.lastUpdated = currentTime.getTime();
             
             game.global.eurecaProxy.requestUpdate(game.global.myId);
         }
@@ -79,46 +70,6 @@ var mainState = {
 }
 
 function initMultiPlayer(game, globals){
-
-    // Reference to our eureca so we can call functions back on the server
-    //var eurecaProxy;
-
-    /* *
-        * Fires on initial connection
-        */
-    /* client.onConnect(function (connection) {
-        console.log('Incoming connection', connection);
-        isMultiInit = true;
-
-    }); */
-    /**
-        * When the connection is established and ready
-        * we will set a local variable to the "serverProxy"
-        * sent back by the server side.
-        */
-    /* client.ready(function (serverProxy) {
-        // Local reference to the server proxy to be
-        // used in other methods within this module.
-        console.log("CLIENT READY");
-        console.log(serverProxy);
-        globals.eurecaProxy = serverProxy;
-    }); */
-
-    /**
-        * This sets the players id that we get from the server
-        * It creates the instance of the player, and communicates
-        * it's state information to the server.
-        */
-    /* client.exports.setId = function(id){
-        console.log("Setting Id:" + id);
-
-        // Assign my new connection Id
-        globals.myId = id;
-
-        //tell server client is ready
-        globals.eurecaProxy.initPlayer(id);
-
-    } */
 
     client.exports.recieveStateFromServer = function(state) {
 
