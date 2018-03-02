@@ -35,6 +35,7 @@ var mainState = {
             height: '200px',
         }
         var chatBox = game.add.text(game.world.width * 0.022, game.world.centerY, chatLog, style);
+        chatBox.height = 200;
         //chatBox.setTextBounds(16, 16, 300, 762);
         
         chatInput = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.9251, {
