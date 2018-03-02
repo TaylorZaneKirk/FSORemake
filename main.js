@@ -25,7 +25,7 @@ var mainState = {
         var bottomPanel = game.add.sprite(game.world.centerX * 0.7475, game.world.bottom * 0.8365, 'bottomPanel');
         bottomPanel.anchor.set(0.5);
 
-        var chatBox = game.add.text(game.world.width * 0.022, game.world.bottom * 0.875, chatLog);
+        var chatBox = game.add.text(game.world.centerX, game.world.centerY, chatLog);
         //chatBox.setTextBounds(16, 16, 768, 568);
         
         chatInput = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.9251, {
