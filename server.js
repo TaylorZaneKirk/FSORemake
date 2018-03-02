@@ -172,6 +172,7 @@ eurecaServer.exports.createPlayer = function (username, password){
     var regexPassword = '/^(?=.*[a-zA-Z0-9])(?=.*([-+_!@#$%^&*.,?])).{6,16}$/' //Numbers or letters with atleast 1 symbol between 6 and 16 characters
 
     if(!username.match(regexUsername)){
+        console.log(username);
         remote.errorAndDisconnect('The username you have chosen contains invalid characters!');
         return;
     }
