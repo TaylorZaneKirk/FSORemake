@@ -1,9 +1,9 @@
 
 ///Main Game 'World' script//
 
-var chatInput = "TEstTEstTEstTEstTEstTEstTEstTEstTEstTEstTEstTEstTEstTEstTEstTEstTEstTEstTEst";
+var chatInput;
 var chatBox;
-var chatLog;
+var chatLog = "TeStTeStTeStTeStTeSt TeStTeSt TeStTeStTeSt";
 
 var mainState = {
     create: function(){
@@ -25,7 +25,13 @@ var mainState = {
         var bottomPanel = game.add.sprite(game.world.centerX * 0.7475, game.world.bottom * 0.8365, 'bottomPanel');
         bottomPanel.anchor.set(0.5);
 
-        var chatBox = game.add.text(game.world.centerX, game.world.centerY, chatLog);
+        var style = {
+            font: 'bold 60pt Arial',
+            background: 'white',
+            wordWrap: true,
+            wordWrapWidth: 450
+        }
+        var chatBox = game.add.text(game.world.centerX, game.world.centerY, chatLog, style);
         //chatBox.setTextBounds(16, 16, 768, 568);
         
         chatInput = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.9251, {
