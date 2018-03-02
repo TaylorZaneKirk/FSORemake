@@ -32,7 +32,7 @@ var mainState = {
             wordWrap: true,
             wordWrapWidth: 762,
             width: '762px',
-            row: 4,
+            rows: 4,
         }
         var chatBox = game.add.text(game.world.width * 0.022, game.world.centerY, chatLog, style);
         //chatBox.setTextBounds(16, 16, 300, 762);
