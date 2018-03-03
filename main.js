@@ -26,7 +26,7 @@ var mainState = {
         bottomPanel.anchor.set(0.5);
 
         chatBox = document.getElementById('chatLog');
-        console.log(chatBox.style);
+        
         chatBox.style.visibility = 'visible'
         //chatBox.setTextBounds(16, 16, 300, 762);
         
@@ -35,6 +35,8 @@ var mainState = {
             width: 762,
             height: 20,
         });
+
+        console.log(chatInput.style);
     },
 
     update: function(){
