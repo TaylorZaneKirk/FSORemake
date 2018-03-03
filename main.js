@@ -117,7 +117,7 @@ function initMultiPlayer(game, globals){
         //chatLog += '\n' + message;
         //chatBox.setText(chatLog);
         var textStyle = {font:"14px Arial", fill:"white"};
-        var text = game.make.text(game.world.width * 0.022, game.world.bottom * 0.76, message, textStyle);
+        var text = game.make.text(0, scroller.length + 1, message, textStyle);
         scroller.addChild(text);
     }
 
