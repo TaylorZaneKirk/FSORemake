@@ -49,6 +49,7 @@ var mainState = {
         cropRect = game.add.graphics(0, 0);
         cropRect.beginFill(0xffffff);
         cropRect.drawRect(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88);
+        cropRect.endFill();
 
         scroller = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
         var textStyle = {font:"14px Arial", fill:"white"};
@@ -73,7 +74,7 @@ var mainState = {
             }
         });
 
-        //console.log(chatBox);
+        console.log(scroller);
     },
 
     update: function(){
