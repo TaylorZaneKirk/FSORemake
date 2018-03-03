@@ -114,7 +114,7 @@ var mainState = {
     },
 
     render: function(){
-        game.debug.renderRectangle(cropRect,'#0fffff');
+        game.debug.geom( cropRect, 'rgba(255,0,0,1)' ) ;
     }
 }
 
