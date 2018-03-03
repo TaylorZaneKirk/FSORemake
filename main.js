@@ -33,7 +33,7 @@ var mainState = {
             cursorColor: '#494745',
             type: 'textarea'
         });
-        
+        chatBox.domElement.element.type = 'textarea';
         chatBox.domElement.element.readOnly = true;
         chatBox.input.useHandCursor = false;
         //chatBox.setTextBounds(16, 16, 300, 762);
