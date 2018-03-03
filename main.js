@@ -111,6 +111,10 @@ var mainState = {
                 thisPlayer.localPlayerObject.playerSprite.play(thisPlayer.player.playerAction + '-' + thisPlayer.player.playerFacing);
             }
         }
+    },
+
+    render: function(){
+        game.debug.renderRectangle(cropRect,'#0fffff');
     }
 }
 
