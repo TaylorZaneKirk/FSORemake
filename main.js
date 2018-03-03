@@ -26,7 +26,7 @@ var mainState = {
         bottomPanel.anchor.set(0.5);
 
         chatBox = document.getElementById('#chatLog');
-        chatBox.display = 'visible';
+        chatBox.setAttribute('display', 'visible');
         //chatBox.setTextBounds(16, 16, 300, 762);
         
         chatInput = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.9251, {
