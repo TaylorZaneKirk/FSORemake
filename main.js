@@ -36,7 +36,7 @@ var mainState = {
             height: 20,
         });
 
-        console.log(chatInput.style);
+        console.log(chatInput);
     },
 
     update: function(){
