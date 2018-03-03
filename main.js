@@ -102,7 +102,8 @@ var mainState = {
 function initMultiPlayer(game, globals){
 
     client.exports.recieveBroadcast = function(message) {
-        chatLog += '\n' + message;
+        //chatLog += '\n' + message;
+        chatLog.append(message);
         chatBox.setText(chatLog);
     }
 
