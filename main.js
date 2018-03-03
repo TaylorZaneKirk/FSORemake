@@ -29,9 +29,9 @@ var mainState = {
             font: '14px Arial',
             backgroundColor: '#494745',
             fill: 'white',
-            width: '762',
+            width: '762px',
         }
-        var chatBox = game.add.bitmapText(game.world.width * 0.022, game.world.centerY, chatLog, style);
+        var chatBox = game.add.text(game.world.width * 0.022, game.world.centerY, chatLog, style);
         //chatBox.setTextBounds(16, 16, 300, 762);
         
         chatInput = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.9251, {
