@@ -40,6 +40,7 @@ var mainState = {
             backgroundColor: '#494745',
             width: 762,
             height: 20,
+            max: 95,
         });
 
         console.log(chatBox);
