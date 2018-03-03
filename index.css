@@ -1,25 +1,6 @@
-#chatLog {
-    height:75px;
-    width:752.5px;
-    top: 47.5%;
-    left: 2.525%;
-    visibility: hidden;
-    overflow:auto;    
-    list-style:none;
-    padding:5px;
-    background-color: #494745;
-    position: absolute;
-    z-index: 1000;
-}
-
-#chatLog li {
-    list-style:none;
-    padding:0px;
-    color:#55e;
-    font:700 12px arial;
-}
-
-#chatLog li b {
-    font:700 14px arial;
-    color:#b33;
+#chatLog:read-only {
+    white-space: pre-wrap;
+    overflow-y: scroll;
+    resize: none;
+    max-height: 88px;
 }

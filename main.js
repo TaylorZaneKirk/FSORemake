@@ -34,13 +34,13 @@ var mainState = {
             type: 'textarea'
         });
         chatBox.domElement.element.type = 'textarea';
-        chatBox.domElement.element.whiteSpace = 'pre-wrap';
-        chatBox.domElement.element.style.whiteSpace = 'pre-wrap';
+        /* chatBox.domElement.element.whiteSpace = 'pre-wrap';
+        chatBox.domElement.element.style.whiteSpace = 'pre-wrap'; */
         chatBox.domElement.element.readOnly = true;
-        chatBox.domElement.element.overflowY = 'scroll';
+        /* chatBox.domElement.element.overflowY = 'scroll';
         chatBox.domElement.element.style.overflowY = 'scroll';
         chatBox.domElement.element.resize = 'none';
-        chatBox.domElement.element.style.resize = 'none';
+        chatBox.domElement.element.style.resize = 'none'; */
         chatBox.input.useHandCursor = false;
         //chatBox.setTextBounds(16, 16, 300, 762);
         
