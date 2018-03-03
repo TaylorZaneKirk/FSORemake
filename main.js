@@ -29,7 +29,7 @@ var mainState = {
             backgroundColor: '#494745',
             width: 762,
             height: 75,
-            cursorColor: 'none',
+            cursorColor: '#494745',
         });
         
         chatBox.domElement.element.readOnly = true;
