@@ -44,10 +44,12 @@ var mainState = {
         chatBox.domElement.element.style.resize = 'none'; */
         //chatBox.input.useHandCursor = false;
         //chatBox.setTextBounds(16, 16, 300, 762);
+        var cropRect = new Phaser.Rectangle(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88);
 
         scroller = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
         var textStyle = {font:"14px Arial", fill:"white"};
         var text = game.make.text(0, 0, chatLog, textStyle);
+        scroller.mask = cropRect;
         scroller.addChild(text);
         scroller.start();
         
