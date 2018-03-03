@@ -31,6 +31,7 @@ var mainState = {
             width: 762,
             height: 88,
             cursorColor: '#494745',
+            type: 'textarea'
         });
         
         chatBox.domElement.element.readOnly = true;
