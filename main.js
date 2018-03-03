@@ -25,13 +25,13 @@ var mainState = {
         var bottomPanel = game.add.sprite(game.world.centerX * 0.7475, game.world.bottom * 0.8365, 'bottomPanel');
         bottomPanel.anchor.set(0.5);
 
-        var style = {
+        /* var style = {
             font: '14px Arial',
             backgroundColor: '#494745',
             fill: 'white',
-            width: '762px',
+            
         }
-        var chatBox = game.add.text(game.world.width * 0.022, game.world.centerY, chatLog, style);
+        var chatBox = game.add.text(game.world.width * 0.022, game.world.centerY, chatLog, style); */
         //chatBox.setTextBounds(16, 16, 300, 762);
         
         chatInput = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.9251, {
