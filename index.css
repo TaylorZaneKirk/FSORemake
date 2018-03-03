@@ -1,6 +1,6 @@
-#chatBox:read-only {
+#chatBox {
     white-space: pre-wrap;
     overflow-y: scroll;
     resize: none;
-    max-height: 88px;
+    max-height: 20px;
 }
