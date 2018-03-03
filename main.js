@@ -44,7 +44,7 @@ var mainState = {
         //chatBox.input.useHandCursor = false;
         //chatBox.setTextBounds(16, 16, 300, 762);
 
-        this.scroller = game.add.existing(new ScrollableArea(x, y, w, h, params));
+        this.scroller = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
         var textStyle = {font:"30px Arial", fill:"#ffff00"};
         for (var i=0;i<10;i++) {
             for (var j=0;j<80;j++) {
