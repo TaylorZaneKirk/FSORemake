@@ -3,7 +3,7 @@
     width:762px;
     top: 35%;
     left: 5%;
-    display: none;
+    visibility: hidden;
     overflow:auto;    
     list-style:none;
     padding:5px;

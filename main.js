@@ -26,6 +26,7 @@ var mainState = {
         bottomPanel.anchor.set(0.5);
 
         chatBox = document.getElementById('chatLog');
+        console.log(chatBox);
         chatBox.style.display = 'visible'
         //chatBox.setTextBounds(16, 16, 300, 762);
         
