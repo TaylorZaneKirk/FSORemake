@@ -52,7 +52,7 @@ var mainState = {
         cropRect.drawRect(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88);
         cropRect.endFill();
 
-        scroller = game.add.sprite(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
+        scroller = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
         var textStyle = {font:"14px Arial", fill:"white"};
         var text = game.make.text(0, 0, chatLog, textStyle);
         scroller.mask = cropRect;
