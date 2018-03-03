@@ -29,10 +29,7 @@ var mainState = {
             font: '14px Arial',
             backgroundColor: '#494745',
             fill: 'white',
-            wordWrap: true,
-            wordWrapWidth: 762,
-            width: '762px',
-            rows: 4,
+            width: '762',
         }
         var chatBox = game.add.text(game.world.width * 0.022, game.world.centerY, chatLog, style);
         //chatBox.setTextBounds(16, 16, 300, 762);
