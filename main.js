@@ -31,7 +31,7 @@ var mainState = {
             height: 75,
         });
         
-        chatBox.domElement.element.readyOnly = true;
+        chatBox.domElement.element.readOnly = true;
         //chatBox.setTextBounds(16, 16, 300, 762);
         
         chatInput = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.9251, {
