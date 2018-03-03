@@ -1,5 +1,5 @@
 // initialize phaser, call create() once done
-var game = new Phaser.Game(800, 600, Phaser.AUTO, null);
+var game = new Phaser.Game(800, 600, Phaser.AUTO, "main");
 
 
 game.state.add('boot', bootState);
