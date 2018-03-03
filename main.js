@@ -3,7 +3,7 @@
 
 var chatInput;
 var chatBox;
-var chatLog = "TeStTeStTeStTeStTeSt TeStTeSt TeStTeStTeSt";
+var chatLog = "TestMessage says: TeStTeStTeStTeStTeSt TeStTeSt TeStTeStTeSt";
 
 var mainState = {
     create: function(){
@@ -27,6 +27,7 @@ var mainState = {
 
         chatBox = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.76, {
             backgroundColor: '#494745',
+            fill: 'white',
             width: 762,
             height: 88,
             cursorColor: '#494745',
@@ -38,6 +39,7 @@ var mainState = {
         
         chatInput = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.9251, {
             backgroundColor: '#494745',
+            fill: 'white',
             width: 762,
             height: 20,
             max: 95,
@@ -46,6 +48,7 @@ var mainState = {
         $(chatInput.domElement.element).on('keyup', function (e) {
             if (e.keyCode == 13) {
                 // Do something
+                game.global.actionQueue.push({action: {type: 'broadcast', payload: chatInput.value}, target: 'local'});
                 chatInput.setText('');
             }
         });
@@ -95,6 +98,11 @@ var mainState = {
 }
 
 function initMultiPlayer(game, globals){
+
+    client.exports.recieveBroadcast = function(message) {
+        chatLog += '\n' + message;
+        chatBox.setText(chatLog);
+    }
 
     client.exports.recieveStateFromServer = function(state) {
 

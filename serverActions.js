@@ -69,7 +69,23 @@ module.exports = {
         state.pos = {x: x, y: y};
         state.readyToUpdate = true;
         state.playerAction = newAction;
-    }
+    },
 
     //Need to write other server actions like attack
+    broadcastMessage: function(playersArray, id, payload, target){
+        if(target == 'local'){
+            var broadcastingPlayer = playersArray[id];
+            var messageToBroadcast = broadcastingPlayer.state.username + " says: " + payload;
+
+            for( var i in broadcastingPlayer.state.playersVisible ){
+                var index = broadcastingPlayer.state.playersVisible[i].playerId;
+                var visiblePlayer = players[index];
+                var remote = visiblePlayer.remote;
+                remote.recieveBroadcast(messageToBroadcast);
+            }
+
+            broadcastingPlayer.remote.recieveBroadcast(messageToBroadcast);
+        }
+        
+    }
 }

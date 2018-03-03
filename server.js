@@ -12,7 +12,7 @@ var Eureca = require('eureca.io');
 
 
 //create an instance of EurecaServer
-var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill', 'disconnect', 'errorAndDisconnect']});
+var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill', 'disconnect', 'errorAndDisconnect', 'recieveBroadcast']});
 
 //attach eureca.io to our http server
 eurecaServer.attach(server);
@@ -283,9 +283,9 @@ eurecaServer.exports.message = function(id, message){
             //do attack
             break;
         }
-        case 'localBroadcast': 
-        case 'globalBroadcast': {
-            //do broadcast
+        case 'broadcast': {
+            console.log("RECIEVED BCAST " + message.action.payload);
+            serverActions.broadcast(players, id, message.action.payload, message.target);
             break;
         }
         default: {
