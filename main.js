@@ -40,7 +40,7 @@ var mainState = {
             height: 20,
         });
 
-        console.log(chatInput);
+        console.log(chatBox);
     },
 
     update: function(){
