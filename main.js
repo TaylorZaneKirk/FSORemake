@@ -28,7 +28,7 @@ var mainState = {
         chatBox = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.76, {
             backgroundColor: '#494745',
             width: 762,
-            height: 80,
+            height: 85,
             cursorColor: '#494745',
         });
         
