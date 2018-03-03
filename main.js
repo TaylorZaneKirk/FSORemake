@@ -34,6 +34,7 @@ var mainState = {
             type: 'textarea'
         });
         chatBox.domElement.element.type = 'textarea';
+        hatBox.domElement.element.whiteSpace = 'pre-wrap';
         chatBox.domElement.element.style.whiteSpace = 'pre-wrap';
         chatBox.domElement.element.readOnly = true;
         chatBox.input.useHandCursor = false;
@@ -102,7 +103,7 @@ var mainState = {
 function initMultiPlayer(game, globals){
 
     client.exports.recieveBroadcast = function(message) {
-        chatLog += '<br>' + message;
+        chatLog += '\n' + message;
         chatBox.setText(chatLog);
     }
 
