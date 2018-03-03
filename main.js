@@ -41,8 +41,8 @@ var mainState = {
         chatBox.domElement.element.style.overflow = 'hidden';
         chatBox.domElement.element.overflowY = 'auto';
         chatBox.domElement.element.style.overflowY = 'auto';
-        chatBox.domElement.element.maxHeight = 88;
-        chatBox.domElement.element.style.maxHeight = 88;
+        chatBox.domElement.element.resize = 'none';
+        chatBox.domElement.element.style.resize = 'none';
         chatBox.input.useHandCursor = false;
         //chatBox.setTextBounds(16, 16, 300, 762);
         
