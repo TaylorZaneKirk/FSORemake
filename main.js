@@ -43,6 +43,13 @@ var mainState = {
             max: 95,
         });
 
+        $(chatInput.domElement.element).on('keyup', function (e) {
+            if (e.keyCode == 13) {
+                // Do something
+                chatInput.setText('');
+            }
+        });
+
         console.log(chatBox);
     },
 
