@@ -53,7 +53,7 @@ var mainState = {
         scroller = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
         var textStyle = {font:"14px Arial", fill:"white"};
         var text = game.make.text(0, 0, chatLog, textStyle);
-        text.mask = cropRect;
+        scroller.mask = cropRect;
         scroller.addChild(text);
         scroller.start();
         
@@ -117,7 +117,7 @@ var mainState = {
     },
 
     render: function(){
-        game.debug.geom( cropRect, 'rgba(255,0,0,1)' ) ;
+        //game.debug.geom( cropRect, 'rgba(255,0,0,1)' ) ;
     }
 }
 
@@ -128,7 +128,7 @@ function initMultiPlayer(game, globals){
         //chatBox.setText(chatLog);
         var textStyle = {font:"14px Arial", fill:"white"};
         var text = game.make.text(0, scroller.length * 22, message, textStyle);
-        text.mask = cropRect;
+        //text.mask = cropRect;
         console.log(text);
         scroller.addChild(text);
     }
