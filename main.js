@@ -47,10 +47,10 @@ var mainState = {
         //chatBox.input.useHandCursor = false;
         //chatBox.setTextBounds(16, 16, 300, 762);
 
-        cropRect = game.add.graphics(0, 0);
+        /* cropRect = game.add.graphics(0, 0);
         cropRect.beginFill(0xffffff);
         cropRect.drawRect(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88);
-        cropRect.endFill();
+        cropRect.endFill(); */
 
         scroller = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
         var textStyle = {font:"14px Arial", fill:"white"};
