@@ -46,20 +46,16 @@ var mainState = {
         chatBox.domElement.element.style.resize = 'none'; */
         //chatBox.input.useHandCursor = false;
         //chatBox.setTextBounds(16, 16, 300, 762);
-        var containerSprite = game.add.sprite( 0, 0 );
 
         cropRect = game.add.graphics(0, 0);
         cropRect.beginFill(0xffffff);
         cropRect.drawRect(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88);
         cropRect.endFill();
 
-        containerSprite.mask = cropRect;
-
-        scroller = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
-        containerSprite.addChild(scroller);
+        scroller = game.add.sprite(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
         var textStyle = {font:"14px Arial", fill:"white"};
         var text = game.make.text(0, 0, chatLog, textStyle);
-        //scroller.mask = cropRect;
+        scroller.mask = cropRect;
         scroller.addChild(text);
         scroller.start();
         
