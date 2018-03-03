@@ -1,4 +1,4 @@
-#chatLog:read-only {
+#chatBox:read-only {
     white-space: pre-wrap;
     overflow-y: scroll;
     resize: none;
