@@ -1,8 +1,8 @@
 #chatLog {
     height:75px;
-    width:755px;
+    width:752.5px;
     top: 47.5%;
-    left: 2.5%;
+    left: 2.525%;
     visibility: hidden;
     overflow:auto;    
     list-style:none;
