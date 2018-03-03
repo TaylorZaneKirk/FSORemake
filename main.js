@@ -34,6 +34,7 @@ var mainState = {
         
         chatBox.domElement.element.readOnly = true;
         chatBox.domElement.element.cursor = 'default';
+        chatBox.domElement.element.style.cursor = 'default';
         //chatBox.setTextBounds(16, 16, 300, 762);
         
         chatInput = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.9251, {
