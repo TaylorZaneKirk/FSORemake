@@ -25,7 +25,7 @@ var mainState = {
         var bottomPanel = game.add.sprite(game.world.centerX * 0.7475, game.world.bottom * 0.8365, 'bottomPanel');
         bottomPanel.anchor.set(0.5);
 
-        chatBox = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.815, {
+        chatBox = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.8, {
             backgroundColor: '#494745',
             width: 762,
             height: 75,
@@ -33,8 +33,6 @@ var mainState = {
         });
         
         chatBox.domElement.element.readOnly = true;
-        /* chatBox.domElement.element.cursor = 'default';
-        chatBox.domElement.element.style.cursor = 'default'; */
         chatBox.input.useHandCursor = false;
         //chatBox.setTextBounds(16, 16, 300, 762);
         
