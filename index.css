@@ -8,7 +8,7 @@
     list-style:none;
     padding:5px;
     background-color: #494745;
-    position: relative;
+    position: absolute;
     z-index: 1000;
 }
 
