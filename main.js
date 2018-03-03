@@ -45,11 +45,11 @@ var mainState = {
         //chatBox.input.useHandCursor = false;
         //chatBox.setTextBounds(16, 16, 300, 762);
 
-        scroller = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
+        /* scroller = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
         var textStyle = {font:"14px Arial", fill:"white"};
         var text = game.make.text(game.world.width * 0.022, game.world.bottom * 0.76, chatLog, textStyle);
         scroller.addChild(text);
-        scroller.start();
+        scroller.start(); */
         
         chatInput = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.9251, {
             backgroundColor: '#494745',
