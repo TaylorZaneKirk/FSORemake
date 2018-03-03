@@ -34,6 +34,7 @@ var mainState = {
             type: 'textarea'
         });
         chatBox.domElement.element.type = 'textarea';
+        chatBox.domElement.element.style.whiteSpace = 'pre-wrap';
         chatBox.domElement.element.readOnly = true;
         chatBox.input.useHandCursor = false;
         //chatBox.setTextBounds(16, 16, 300, 762);
