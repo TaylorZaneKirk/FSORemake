@@ -6,6 +6,7 @@ var chatBox;
 var chatLog = "TestMessage says: TeStTeStTeStTeStTeSt TeStTeSt TeStTeStTeSt";
 var scroller;
 var cropRect;
+var mask;
 
 var mainState = {
     create: function(){
@@ -45,7 +46,9 @@ var mainState = {
         chatBox.domElement.element.style.resize = 'none'; */
         //chatBox.input.useHandCursor = false;
         //chatBox.setTextBounds(16, 16, 300, 762);
-        cropRect = new Phaser.Rectangle(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88);
+        cropRect = game.add.graphics(0, 0);
+        cropRect.beginFill(0xffffff);
+        cropRect.drawRect(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88);
 
         scroller = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
         var textStyle = {font:"14px Arial", fill:"white"};
