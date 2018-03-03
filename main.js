@@ -53,7 +53,7 @@ var mainState = {
         cropRect.endFill();
 
         scroller = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
-        var textStyle = {font:"14px Arial", fill:"white"};
+        var textStyle = {font:"bold 14px Arial", fill:"black"};
         var text = game.make.text(0, 0, chatLog, textStyle);
         //scroller.maskGraphics = cropRect;
         text.crop(scroller.maskGraphics);
