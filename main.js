@@ -33,8 +33,8 @@ var mainState = {
         });
         
         chatBox.domElement.element.readOnly = true;
-        chatBox.domElement.element.cursor = 'default';
-        chatBox.domElement.element.style.cursor = 'default';
+        /* chatBox.domElement.element.cursor = 'default';
+        chatBox.domElement.element.style.cursor = 'default'; */
         chatBox.input.useHandCursor = false;
         //chatBox.setTextBounds(16, 16, 300, 762);
         
