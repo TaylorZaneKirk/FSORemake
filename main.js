@@ -46,13 +46,6 @@ var mainState = {
         //chatBox.setTextBounds(16, 16, 300, 762);
 
         scroller = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
-        var textStyle = {font:"30px Arial", fill:"#ffff00"};
-        for (var i=0;i<10;i++) {
-            for (var j=0;j<80;j++) {
-                var text = game.make.text(i*330, j*30, "Yes, everything scrolls", textStyle);
-                scroller.addChild(text);
-            }
-        }
         scroller.start();
         
         chatInput = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.9251, {
@@ -118,8 +111,11 @@ var mainState = {
 function initMultiPlayer(game, globals){
 
     client.exports.recieveBroadcast = function(message) {
-        chatLog += '\n' + message;
-        chatBox.setText(chatLog);
+        //chatLog += '\n' + message;
+        //chatBox.setText(chatLog);
+        var textStyle = {font:"14px Arial", fill:"white"};
+        var text = game.make.text(game.world.width * 0.022, game.world.bottom * 0.76, message, textStyle);
+        scroller.addChild(text);
     }
 
     client.exports.recieveStateFromServer = function(state) {
