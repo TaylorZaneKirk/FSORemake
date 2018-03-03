@@ -25,7 +25,7 @@ var mainState = {
         var bottomPanel = game.add.sprite(game.world.centerX * 0.7475, game.world.bottom * 0.8365, 'bottomPanel');
         bottomPanel.anchor.set(0.5);
 
-        chatBox = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.76, {
+        /* chatBox = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.76, {
             backgroundColor: '#494745',
             fill: 'white',
             width: 762,
@@ -33,16 +33,26 @@ var mainState = {
             cursorColor: '#494745',
             type: 'textarea'
         });
-        chatBox.domElement.element.type = 'textarea';
+        chatBox.domElement.element.type = 'textarea'; */
         /* chatBox.domElement.element.whiteSpace = 'pre-wrap';
         chatBox.domElement.element.style.whiteSpace = 'pre-wrap'; */
-        chatBox.domElement.element.readOnly = true;
+        //chatBox.domElement.element.readOnly = true;
         /* chatBox.domElement.element.overflowY = 'scroll';
         chatBox.domElement.element.style.overflowY = 'scroll';
         chatBox.domElement.element.resize = 'none';
         chatBox.domElement.element.style.resize = 'none'; */
-        chatBox.input.useHandCursor = false;
+        //chatBox.input.useHandCursor = false;
         //chatBox.setTextBounds(16, 16, 300, 762);
+
+        this.scroller = game.add.existing(new ScrollableArea(x, y, w, h, params));
+        var textStyle = {font:"30px Arial", fill:"#ffff00"};
+        for (var i=0;i<10;i++) {
+            for (var j=0;j<80;j++) {
+                var text = game.make.text(i*330, j*30, "Yes, everything scrolls", textStyle);
+                scroller.addChild(text);
+            }
+        }
+        scroller.start();
         
         chatInput = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.9251, {
             backgroundColor: '#494745',

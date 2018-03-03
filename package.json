@@ -14,7 +14,8 @@
     "engine.io": "^1.8.5",
     "eureca.io": "^0.7.1",
     "express": "^4.14.0",
-    "npm": "^5.7.1"
+    "npm": "^5.7.1",
+    "phaser-scrollable": "git+https://github.com/trueicecold/phaser-scrollable.git"
   },
   "devDependencies": {},
   "repository": {
