@@ -285,7 +285,7 @@ eurecaServer.exports.message = function(id, message){
         }
         case 'broadcast': {
             console.log("RECIEVED BCAST " + message.action.payload);
-            serverActions.broadcast(players, id, message.action.payload, message.target);
+            serverActions.broadcastMessage(players, id, message.action.payload, message.target);
             break;
         }
         default: {
