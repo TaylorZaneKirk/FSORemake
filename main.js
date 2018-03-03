@@ -7,6 +7,7 @@ var chatLog = "TestMessage says: TeStTeStTeStTeStTeSt TeStTeSt TeStTeStTeSt";
 var scroller;
 var cropRect;
 var mask;
+var container;
 
 var mainState = {
     create: function(){
@@ -52,9 +53,12 @@ var mainState = {
         cropRect.drawRect(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88);
         cropRect.endFill();
 
+        container.mask = cropRect;
+
         scroller = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
         var textStyle = {font:"bold 14px Arial", fill:"black"};
         var text = game.make.text(0, 0, chatLog, textStyle);
+        container.addChild(scroller);
         //scroller.maskGraphics = cropRect;
         text.crop(scroller.maskGraphics);
         scroller.addChild(text);
