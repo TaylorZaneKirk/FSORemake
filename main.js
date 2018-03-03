@@ -116,9 +116,9 @@ function initMultiPlayer(game, globals){
     client.exports.recieveBroadcast = function(message) {
         //chatLog += '\n' + message;
         //chatBox.setText(chatLog);
-        /* var textStyle = {font:"14px Arial", fill:"white"};
+        var textStyle = {font:"14px Arial", fill:"white"};
         var text = game.make.text(game.world.width * 0.022, game.world.bottom * 0.76, message, textStyle);
-        scroller.addChild(text); */
+        scroller.addChild(text);
     }
 
     client.exports.recieveStateFromServer = function(state) {
