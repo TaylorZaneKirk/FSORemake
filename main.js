@@ -206,6 +206,7 @@ function initMultiPlayer(game, globals){
 
             globals.player = state;
             globals.playerList[state.playerId].player = state;
+            updateHealthBar(state.health);
             for(var i in state.playersVisible){
                 if(globals.playerList[state.playersVisible[i].playerId] == undefined){
                     globals.playerList[state.playersVisible[i].playerId] = {player: state.playersVisible[i], localPlayerObject: null};
