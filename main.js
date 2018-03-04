@@ -87,22 +87,20 @@ var mainState = {
             game.state.start('menu');
         }
 
-        scroller.forEach((item) => item.updateCrop());
+        scroller.forEach((child) => {
+            console.log(child);
+            if(child.worldPosition.y < 450 || child.worldPosition.y > 542){
+                child.alpha = 0;
+            }
+            else{
+                child.alpha = 1;
+            }
+        });
 
         //wait [0.5] seconds after last update before requesting an update from the server
         if (game.global.player.lastUpdated + 250 < currentTime.getTime() ){
             
             game.global.eurecaProxy.requestUpdate(game.global.myId);
-
-            scroller.forEach((child) => {
-                console.log(child);
-                if(child.worldPosition.y < 450){
-                    child.alpha = 0;
-                }
-                else{
-                    child.alpha = 1;
-                }
-            });
         }
 
         if(game.global.localPlayerObject != null || game.global.localPlayerObject != {}){
