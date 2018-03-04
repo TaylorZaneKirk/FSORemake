@@ -27,10 +27,11 @@ var PlayerObject = function(idRef, gameRef){
         altKey = game.input.keyboard.addKey(Phaser.Keyboard.ALT);
 
         playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player');
+        playerSprite.inputEnabled = true;
         playerName = game.add.text(15, -10, playerState.username, { font: "14px Ariel", fill: '#ffffff'});
         playerName.alpha = 0;
-        playerSprite.events.onInputOver.add(showPlayerName(true), this);
-        playerSprite.events.onInputOut.add(showPlayerName(false), this);
+        playerSprite.events.onInputOver.add(showPlayerName, this);
+        playerSprite.events.onInputOut.add(hidePlayerName, this);
         playerName.anchor.setTo(0.5);
         playerSprite.addChild(playerName);
         game.physics.arcade.enable(playerSprite);
@@ -65,15 +66,13 @@ var PlayerObject = function(idRef, gameRef){
     }
 
     function showPlayerName(state){
-        console.log("MOUSE:");
-        if(state){
-            console.log("IN");
-            this.playerName = 1;
-        }
-        else{
-            console.log("OUT");
-            this.playerName = 0;
-        }
+        console.log("IN");
+        this.playerName = 1;
+    }
+
+    function hidePlayerName(state){
+        console.log("OUT");
+        this.playerName = 0;
     }
 
     function update(){
