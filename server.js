@@ -107,7 +107,7 @@ class PlayerState
             this.health = 100;
             this.worldX = 0;
             this.worldY = 0;
-            this.pos = {x: 0, y: 0};
+            this.pos = {x: 1, y: 1};
             this.playerFacing = 'S';
             this.playerAction = 'idle';
             this.mapData = worldMap[this.worldX + '-' + this.worldY].mapData;
