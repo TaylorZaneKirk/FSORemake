@@ -66,7 +66,7 @@ var mainState = {
             },
             size: {
                 w: 180,
-                h: 10,
+                h: 8,
                 _1p: 0 /// will be calculated later
             },
             fill_c: 0x00cc00,
