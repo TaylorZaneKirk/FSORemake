@@ -45,8 +45,8 @@ var mainState = {
         $(chatInput.domElement.element).on('keyup', function (e) {
             if (e.keyCode == 13) {
                 if(chatInput.value != undefined && chatInput.value != ''){
-                    if(chatInput.charAt(0) == "'"){
-                        game.global.actionQueue.push({action: {type: 'broadcast', payload: chatInput.value}, target: 'all'});
+                    if(chatInput.value.charAt(0) == "'"){
+                        game.global.actionQueue.push({action: {type: 'broadcast', payload: chatInput.value.substring(0)}, target: 'all'});
                     }
                     else{
                         game.global.actionQueue.push({action: {type: 'broadcast', payload: chatInput.value}, target: 'local'});
