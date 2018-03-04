@@ -7,7 +7,6 @@ var chatLog = "TestMessage says: TeStTeStTeStTeStTeSt TeStTeSt TeStTeStTeSt";
 var scroller;
 var cropRect;
 var mask;
-var container;
 
 var mainState = {
     create: function(){
@@ -48,20 +47,9 @@ var mainState = {
         //chatBox.input.useHandCursor = false;
         //chatBox.setTextBounds(16, 16, 300, 762);
 
-        cropRect = game.add.graphics(0, 0);
-        cropRect.beginFill(0xffffff);
-        cropRect.drawRect(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88);
-        cropRect.endFill();
-
-        container = game.add.sprite(0, 0);
-        container.mask = cropRect;
-
         scroller = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
-        var textStyle = {font:"bold 14px Arial", fill:"black"};
+        var textStyle = {font:"bold 14px Arial", fill:"white"};
         var text = game.make.text(0, 0, chatLog, textStyle);
-        container.addChild(scroller);
-        //scroller.maskGraphics = cropRect;
-        text.crop(scroller.maskGraphics);
         scroller.addChild(text);
         scroller.start();
         
@@ -134,9 +122,8 @@ function initMultiPlayer(game, globals){
     client.exports.recieveBroadcast = function(message) {
         //chatLog += '\n' + message;
         //chatBox.setText(chatLog);
-        var textStyle = {font:"14px Arial", fill:"black"};
+        var textStyle = {font:"14px Arial", fill:"white"};
         var text = game.make.text(0, scroller.length * 22, message, textStyle);
-        text.crop(cropRect);
         console.log(text);
         scroller.addChild(text);
     }
