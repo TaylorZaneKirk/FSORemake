@@ -51,7 +51,7 @@ var mainState = {
         scroller.maskGraphics.alpha = 0;
         var textStyle = {font:"bold 14px Arial", fill:"white"};
         var text = game.make.text(0, 0, chatLog, textStyle);
-        text.crop(scroller.maskGraphics);
+        text.crop(scroller);
         scroller.addChild(text);
         scroller.start();
         
@@ -128,7 +128,7 @@ function initMultiPlayer(game, globals){
         //chatBox.setText(chatLog);
         var textStyle = {font:"14px Arial", fill:"white"};
         var text = game.make.text(0, scroller.length * 22, message, textStyle);
-        text.crop(scroller.maskGraphics);
+        text.crop(scroller);
         console.log(text);
         scroller.addChild(text);
     }
