@@ -73,18 +73,28 @@ module.exports = {
 
     //Need to write other server actions like attack
     broadcastMessage: function(playersArray, id, payload, target){
+        var broadcastingPlayer = playersArray[id];
+
         if(target == 'local'){
-            var broadcastingPlayer = playersArray[id];
-            var messageToBroadcast = broadcastingPlayer.state.username + " says: " + payload;
+            var messageToBroadcastToOthers = broadcastingPlayer.state.username + " says: " + payload;
+            var messageToBroadcastToSelf = "You say: " + payload;
 
             for( var i in broadcastingPlayer.state.playersVisible ){
                 var index = broadcastingPlayer.state.playersVisible[i].playerId;
                 var visiblePlayer = players[index];
                 var remote = visiblePlayer.remote;
-                remote.recieveBroadcast(messageToBroadcast);
+                remote.recieveBroadcast(messageToBroadcastToOthers, '#ffffff');
             }
 
-            broadcastingPlayer.remote.recieveBroadcast(messageToBroadcast);
+            broadcastingPlayer.remote.recieveBroadcast(messageToBroadcastToSelf);
+        }
+        else if(target == 'all'){
+            var messageToBroadcast = broadcastingPlayer.state.username + ": " + payload;
+
+            for(var i in playersArray){
+                var remote = playersArray[i].remote;
+                remote.recieveBroadcast(messageToBroadcast, '#ffff00');
+            }
         }
         
     }

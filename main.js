@@ -4,7 +4,6 @@
 var chatInput;
 var chatBox;
 var chatLog = "TestMessage says: TeStTeStTeStTeStTeSt TeStTeSt TeStTeStTeSt";
-var scroller;
 
 var mainState = {
     create: function(){
@@ -18,6 +17,8 @@ var mainState = {
 
         //Maps and layers
         game.global.mapManager = new MapManager(game);
+
+        //GUI
         var leftPanel = game.add.sprite(0, game.world.bottom * 0.099, 'leftPanel');
         var topPanel = game.add.sprite(0, 0, 'topPanel');
         var rightMiddlePanel = game.add.sprite(game.world.width * 0.88, game.world.centerY * 0.627, 'rightMiddlePanel');
@@ -26,13 +27,14 @@ var mainState = {
         var bottomPanel = game.add.sprite(game.world.centerX * 0.7475, game.world.bottom * 0.8365, 'bottomPanel');
         bottomPanel.anchor.set(0.5);
 
-        scroller = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
-
+        //ChatBox
+        chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
         var textStyle = {font:"bold 14px Arial", fill:"white"};
         var text = game.make.text(0, 0, chatLog, textStyle);
-        scroller.addChild(text);
-        scroller.start();
+        chatBox.addChild(text);
+        chatBox.start();
         
+        //Chat Input for player
         chatInput = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.9251, {
             backgroundColor: '#494745',
             fill: 'white',
@@ -40,11 +42,17 @@ var mainState = {
             height: 20,
             max: 95,
         });
-
         $(chatInput.domElement.element).on('keyup', function (e) {
             if (e.keyCode == 13) {
-                game.global.actionQueue.push({action: {type: 'broadcast', payload: chatInput.value}, target: 'local'});
-                chatInput.setText('');
+                if(chatInput.value != undefined && chatInput.value != ''){
+                    if(chatInput.charAt(0) == "'"){
+                        game.global.actionQueue.push({action: {type: 'broadcast', payload: chatInput.value}, target: 'all'});
+                    }
+                    else{
+                        game.global.actionQueue.push({action: {type: 'broadcast', payload: chatInput.value}, target: 'local'});
+                    }
+                    chatInput.setText('');
+                }
             }
         });
 
@@ -64,7 +72,8 @@ var mainState = {
             game.state.start('menu');
         }
 
-        scroller.forEach((child) => {
+        //Only allow messages within the "sweet spot" to be visible
+        chatBox.forEach((child) => {
             if(child.worldPosition.y < 450 || child.worldPosition.y > 542){
                 child.alpha = 0;
             }
@@ -73,7 +82,7 @@ var mainState = {
             }
         });
 
-        //wait [0.5] seconds after last update before requesting an update from the server
+        //wait [0.25] seconds after last update before requesting an update from the server
         if (game.global.player.lastUpdated + 250 < currentTime.getTime() ){
             
             game.global.eurecaProxy.requestUpdate(game.global.myId);
@@ -83,11 +92,13 @@ var mainState = {
             game.global.localPlayerObject.update();    //update player
         }
 
+        //Send queued actions to server
         for(var i in game.global.actionQueue){
             sendMessageToServer(game.global.actionQueue[i].action, game.global.actionQueue[i].target);
             game.global.actionQueue.pop();
         }
 
+        //Move all the other players
         for(var i in game.global.playerList){
             thisPlayer = game.global.playerList[i];
             if(thisPlayer.player != undefined && thisPlayer.localPlayerObject != undefined && thisPlayer.player != game.global.player){
@@ -106,12 +117,13 @@ var mainState = {
 
 function initMultiPlayer(game, globals){
 
-    client.exports.recieveBroadcast = function(message) {
-        var textStyle = {font:"14px Arial", fill:"white"};
-        var text = game.make.text(0, scroller.length * 22, message, textStyle);
-        scroller.addChild(text);
-        if(scroller.getChildAt(scroller.length - 1).position.y > 85){
-            scroller.scrollTo(0, scroller.getChildAt(scroller.length - 1).position.y, 10); //too much scroll
+    //Recieve Message to add to chatBox
+    client.exports.recieveBroadcast = function(message, color) {
+        var textStyle = {font: "14px Arial", fill: color};
+        var text = game.make.text(0, chatBox.length * 22, message, textStyle);
+        chatBox.addChild(text);
+        if(chatBox.getChildAt(chatBox.length - 1).position.y > 85){
+            chatBox.scrollTo(0, chatBox.getChildAt(chatBox.length - 1).position.y, 10);
         }
     }
 
@@ -171,7 +183,6 @@ function initMultiPlayer(game, globals){
                 if(globals.playerList[state.playersVisible[i].playerId] == undefined){
                     globals.playerList[state.playersVisible[i].playerId] = {player: state.playersVisible[i], localPlayerObject: null};
                     globals.playerList[state.playersVisible[i].playerId].localPlayerObject = new PlayerObject(state.playersVisible[i].playerId, game);
-                    console.log('logging in: ', state.playersVisible[i].playerId, globals.playerList[state.playersVisible[i].playerId]);
                 }
                 else{
                     globals.playerList[state.playersVisible[i].playerId].player = state.playersVisible[i];
@@ -193,6 +204,7 @@ function initMultiPlayer(game, globals){
 
 }
 
+//Function that sends player actions to server
 sendMessageToServer = function(action, target) {
     if(action == null || action == undefined ||
         action.type == null || action.type == undefined ||

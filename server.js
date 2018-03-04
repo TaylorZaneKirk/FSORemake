@@ -143,7 +143,6 @@ server.listen(process.env.PORT || 55555, function () {
 });
 
 eurecaServer.exports.login = function (username, password){
-    console.log('Player is attempting to log in');
     var id = this.connection.id;
     var remote = players[id].remote;
     con.query("SELECT * FROM users WHERE username = '" + username + "'", function (err, result, fields) {
@@ -154,6 +153,7 @@ eurecaServer.exports.login = function (username, password){
         }
         
         if(result[0].password == password){
+            console.log(username + " has logged in");
             players[id].state = new PlayerState(id, result[0]);
             remote.setId(id);
         }
@@ -164,17 +164,12 @@ eurecaServer.exports.login = function (username, password){
 }
 
 eurecaServer.exports.createPlayer = function (username, password){
-    console.log('A New User is being Created');
-
     var id = this.connection.id;
     var remote = players[id].remote;
-    var regexUsername = new RegExp('^[a-zA-z][a-zA-Z0-9]{2,16}$'); //Only letters, symbols, or spaces, between 2 and 16 chars
+    var regexUsername = new RegExp('^[a-zA-z][a-zA-Z0-9]{2,16}$'); //Only letters, numbers, or spaces, between 2 and 16 chars
     var regexPassword = new RegExp('^(?=.*[a-zA-Z0-9])(?=.*([-+_!@#$%^&*.,?])).{6,16}$'); //Numbers or letters with atleast 1 symbol between 6 and 16 characters
 
     if(!regexUsername.test(username)){
-        var err = regexUsername.test(username)
-        console.log(err);
-        console.log(username);
         remote.errorAndDisconnect('The username you have chosen contains invalid characters!');
         return;
     }
@@ -284,7 +279,6 @@ eurecaServer.exports.message = function(id, message){
             break;
         }
         case 'broadcast': {
-            console.log("RECIEVED BCAST " + message.action.payload);
             serverActions.broadcastMessage(players, id, message.action.payload, message.target);
             break;
         }
