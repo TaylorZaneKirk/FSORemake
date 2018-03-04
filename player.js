@@ -109,7 +109,7 @@ var PlayerObject = function(idRef, gameRef){
                     var player = playerState.playersVisible[i];
                     console.log("PLAYER LOC:")
                     console.log(player.pos);
-                    if(player.pos == targetCoords){
+                    if(player.pos.x == targetCoords.x && player.pos.y == targetCoords.y){
                         console.log("trying to hit player");
                         sendMessageToServer({type: 'attack', payload: targetCoords}, 'player');
                     }
