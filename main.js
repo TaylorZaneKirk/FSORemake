@@ -51,6 +51,7 @@ var mainState = {
         scroller.maskGraphics.alpha = 0;
         var textStyle = {font:"bold 14px Arial", fill:"white"};
         var text = game.make.text(0, 0, chatLog, textStyle);
+        text.crop(scroller.maskGraphics);
         scroller.addChild(text);
         scroller.start();
         
@@ -86,6 +87,8 @@ var mainState = {
             console.log("TIMEOUT");
             game.state.start('menu');
         }
+
+        scroller.forEach((item) => item.updateCrop());
 
         //wait [0.5] seconds after last update before requesting an update from the server
         if (game.global.player.lastUpdated + 250 < currentTime.getTime() ){
@@ -125,6 +128,7 @@ function initMultiPlayer(game, globals){
         //chatBox.setText(chatLog);
         var textStyle = {font:"14px Arial", fill:"white"};
         var text = game.make.text(0, scroller.length * 22, message, textStyle);
+        text.crop(scroller.maskGraphics);
         console.log(text);
         scroller.addChild(text);
     }
