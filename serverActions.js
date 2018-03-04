@@ -104,13 +104,16 @@ module.exports = {
         
         if(target == 'player'){
             var targetCoords = payload;
-            attackingPlayer.state.playersVisible.forEach((player) => {
+            
+            for(var i in attackingPlayer.state.playersVisible){
+                var player = attackingPlayer.state.playersVisible[i];
+
                 if(player.pos == targetCoords){
                     console.log('hit other player');
                     var playerAttacked = playersArray[player.playerId];
                     playerAttacked.state.health -= 5; //deduct health
                 }
-            });
+            }
         }
     }
 }

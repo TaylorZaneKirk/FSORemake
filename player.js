@@ -102,12 +102,13 @@ var PlayerObject = function(idRef, gameRef){
                 if(playerState.playerFacing == 'E'){ targetCoords.x++; }
                 if(playerState.playerFacing == 'W'){ targetCoords.x--; }
 
-                playerState.playersVisible.forEach((player) => {
+                for(var i in playerState.playersVisible){
+                    player = playerState.playersVisible[i];
                     if(player.pos == targetCoords){
                         console.log("trying to hit player");
                         sendMessageToServer({type: 'attack', payload: targetCoords}, 'player');
                     }
-                });
+                }
             }
             else if (leftKey.isDown){
                 playerState.playerAction = 'walk';
