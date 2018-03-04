@@ -97,10 +97,10 @@ var mainState = {
             scroller.forEach((child) => {
                 console.log(child);
                 if(child.worldPosition.y < 450){
-                    child.visible = false;
+                    child.alpha = 0;
                 }
                 else{
-                    child.visible = true;
+                    child.alpha = 1;
                 }
             });
         }
