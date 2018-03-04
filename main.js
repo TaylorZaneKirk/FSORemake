@@ -93,6 +93,10 @@ var mainState = {
         if (game.global.player.lastUpdated + 250 < currentTime.getTime() ){
             
             game.global.eurecaProxy.requestUpdate(game.global.myId);
+
+            scroller.forEach((child) => {
+                console.log(child);
+            });
         }
 
         if(game.global.localPlayerObject != null || game.global.localPlayerObject != {}){
@@ -125,11 +129,11 @@ function initMultiPlayer(game, globals){
     client.exports.recieveBroadcast = function(message) {
         //chatLog += '\n' + message;
         //chatBox.setText(chatLog);
-        //var textStyle = {font:"14px Arial", fill:"white"};
-        //var text = game.make.text(0, scroller.length * 22, message, textStyle);
-        //console.log(text);
-        //scroller.addChild(text);
-        chatLog += '/n' + message;
+        var textStyle = {font:"14px Arial", fill:"white"};
+        var text = game.make.text(0, scroller.length * 22, message, textStyle);
+        console.log(text);
+        scroller.addChild(text);
+        //chatLog += '/n' + message;
     }
 
     client.exports.recieveStateFromServer = function(state) {
