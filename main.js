@@ -48,7 +48,6 @@ var mainState = {
         //chatBox.setTextBounds(16, 16, 300, 762);
 
         scroller = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
-        scroller.maskGraphics.anchor.set(0.5);
 
         var textStyle = {font:"bold 14px Arial", fill:"white"};
         var text = game.make.text(0, 0, chatLog, textStyle);
@@ -126,10 +125,11 @@ function initMultiPlayer(game, globals){
     client.exports.recieveBroadcast = function(message) {
         //chatLog += '\n' + message;
         //chatBox.setText(chatLog);
-        var textStyle = {font:"14px Arial", fill:"white"};
-        var text = game.make.text(0, scroller.length * 22, message, textStyle);
-        console.log(text);
-        scroller.addChild(text);
+        //var textStyle = {font:"14px Arial", fill:"white"};
+        //var text = game.make.text(0, scroller.length * 22, message, textStyle);
+        //console.log(text);
+        //scroller.addChild(text);
+        chatLog += '/n' + message;
     }
 
     client.exports.recieveStateFromServer = function(state) {
