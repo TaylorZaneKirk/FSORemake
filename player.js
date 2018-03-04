@@ -102,8 +102,13 @@ var PlayerObject = function(idRef, gameRef){
                 if(playerState.playerFacing == 'E'){ targetCoords.x++; }
                 if(playerState.playerFacing == 'W'){ targetCoords.x--; }
 
+                console.log("TARGET:");
+                console.log(targetCoords);
+
                 for(var i in playerState.playersVisible){
-                    player = playerState.playersVisible[i];
+                    var player = playerState.playersVisible[i];
+                    console.log("PLAYER LOC:")
+                    console.log(player.pos);
                     if(player.pos == targetCoords){
                         console.log("trying to hit player");
                         sendMessageToServer({type: 'attack', payload: targetCoords}, 'player');
