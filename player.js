@@ -27,7 +27,9 @@ var PlayerObject = function(idRef, gameRef){
         altKey = game.input.keyboard.addKey(Phaser.Keyboard.ALT);
 
         playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player');
-        playerName = game.add.text(20, -10, playerState.username, { font: "14px Ariel", fill: '#ffffff'});
+        playerName = game.add.text(15, -10, playerState.username, { font: "14px Ariel", fill: '#ffffff'});
+        playerSprite.events.onInputOver.add(() => {this.playerName.alpha = 1}, this);
+        playerSprite.events.onInputOut.add(() => {this.playerName.alpha = 0}, this);
         playerName.anchor.setTo(0.5);
         playerSprite.addChild(playerName);
         game.physics.arcade.enable(playerSprite);
