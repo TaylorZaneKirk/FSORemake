@@ -136,7 +136,7 @@ function initMultiPlayer(game, globals){
         var text = game.make.text(0, scroller.length * 22, message, textStyle);
         console.log(text);
         scroller.addChild(text);
-        if(scroller.getChildAt(scroller.length - 1).position > 100){
+        if(scroller.getChildAt(scroller.length - 1).position > 85){
             console.log("it is");
             scroller.scrollTo(0, scroller.bottom);
         }
