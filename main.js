@@ -4,6 +4,9 @@
 var chatInput;
 var chatBox;
 var chatLog = "TestMessage says: TeStTeStTeStTeStTeSt TeStTeSt TeStTeStTeSt";
+var hpBar;
+var healthBarObject;
+var healthBarText;
 
 var mainState = {
     create: function(){
@@ -55,6 +58,29 @@ var mainState = {
                 }
             }
         });
+
+        hpBar = {
+            pos: {
+                x: game.world.centerX,
+                y: 20
+            },
+            size: {
+                w: game.world.width  - 40,
+                h: 20,
+                _1p: 0 /// will be calculated later
+            },
+            fill_c: 0x00cc00,
+            border_c: 0x80ff80,
+            alpha: 0.7
+        };
+
+        hpBar.pos.x -= ( hpBar.size.w / 2 ); /// center on X axis ////
+        hpBar.size._1p = hpBar.size.w * 0.01; ///// 1% of width ///
+        
+        healthBarObject = game.add.graphics( hpBar.pos.x, hpBar.pos.y ); 
+        healthBarText = game.make.text( 0 , 0, "", { font: "bold 22px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        healthBarText.setTextBounds(0, 2, hpBar.size.w, hpBar.size.h);
+        healthBarObject.addChild(healthBarText);
 
     },
 
@@ -173,6 +199,7 @@ function initMultiPlayer(game, globals){
 
             game.global.ready = true;
             globals.mapManager.setMapData(state.mapData);
+            updateHealthBar(state.health);
         }
         else{
             //just update references
@@ -220,4 +247,13 @@ sendMessageToServer = function(action, target) {
     }  
 
     game.global.eurecaProxy.message(game.global.myId, {action: action, target: target});
+}
+
+updateHealthBar = function( hpPercentage ){ //// health percentage 
+	healthBarObject.clear();
+	healthBarText.setText( Math.floor(hpPercentage)+"%" );
+	healthBarObject.lineStyle( 2, hpBar.border_c, hpBar.alpha );
+	healthBarObject.beginFill( hpBar.fill_c, hpBar.alpha );
+	healthBarObject.drawRect( 0, 0, hpPercentage * hpBar.size._1p , hpBar.size.h );
+	healthBarObject.endFill();
 }
