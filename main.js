@@ -136,7 +136,7 @@ function initMultiPlayer(game, globals){
         var text = game.make.text(0, scroller.length * 22, message, textStyle);
         console.log(text);
         scroller.addChild(text);
-        scroller.scrollTo(text.worldPosition.x, text.worldPosition.y);
+        scroller.scrollTo(text.position.x, text.position.y);
         
         //chatLog += '/n' + message;
     }
