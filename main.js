@@ -137,7 +137,8 @@ function initMultiPlayer(game, globals){
         console.log(text);
         scroller.addChild(text);
         if(text.worldPosition.y > 542){
-            scroller.scrollTo(0, text.position.y);
+            console.log("it is");
+            scroller.scrollTo(0, scroller.bottom);
         }
         
         //chatLog += '/n' + message;
