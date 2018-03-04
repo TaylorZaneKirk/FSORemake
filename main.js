@@ -61,8 +61,8 @@ var mainState = {
 
         hpBar = {
             pos: {
-                x: game.world.width * 0.74,
-                y: game.world.centerY * 0.22
+                x: game.world.width * 0.75,
+                y: game.world.centerY * 0.24
             },
             size: {
                 w: 180,
