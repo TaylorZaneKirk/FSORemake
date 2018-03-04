@@ -65,7 +65,7 @@ var mainState = {
                 y: game.world.centerY * 0.2275
             },
             size: {
-                w: 190,
+                w: 194,
                 h: 8,
                 _1p: 0 /// will be calculated later
             },
