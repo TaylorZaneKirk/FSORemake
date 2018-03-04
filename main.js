@@ -96,7 +96,7 @@ var mainState = {
 
             scroller.forEach((child) => {
                 console.log(child);
-                if(child.position.y > 63){
+                if(child.worldPosition.y < 450){
                     child.visible = false;
                 }
                 else{
