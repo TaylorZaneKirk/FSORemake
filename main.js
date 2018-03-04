@@ -139,7 +139,7 @@ function initMultiPlayer(game, globals){
         console.log(scroller.getChildAt(scroller.length - 1));
         if(scroller.getChildAt(scroller.length - 1).position.y > 85){
             console.log("it is");
-            scroller.scrollTo(0, scroller.getChildAt(scroller.length - 1).position.y);
+            scroller.scrollTo(0, scroller.getChildAt(scroller.length - 1).position.y, 100); //too much scroll
         }
         /* if(text.worldPosition.y > 542){
             console.log("it is");
