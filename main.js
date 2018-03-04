@@ -53,7 +53,7 @@ var mainState = {
         cropRect.drawRect(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88);
         cropRect.endFill();
 
-        container = game.add.sprite(game.world.width * 0.022, game.world.bottom * 0.76);
+        container = game.add.sprite(0, 0);
         container.mask = cropRect;
 
         scroller = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
