@@ -12,6 +12,7 @@ var PlayerObject = function(idRef, gameRef){
     var rightKey = null;
     var ready = null;
     var playerTween = null;
+    var playerName = null;
 
     function init(idRef, gameRef){
         game = gameRef;
@@ -26,6 +27,8 @@ var PlayerObject = function(idRef, gameRef){
         altKey = game.input.keyboard.addKey(Phaser.Keyboard.ALT);
 
         playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player');
+        playerName = game.add.text(20, 20, playerState.username, { font: "14px Ariel", fill: '#ffffff'});
+        playerSprite.addChild(playerName);
         game.physics.arcade.enable(playerSprite);
         playerSprite.anchor.setTo(0.1430,0.15);
         playerSprite.enableBody = true;
