@@ -5,8 +5,6 @@ var chatInput;
 var chatBox;
 var chatLog = "TestMessage says: TeStTeStTeStTeStTeSt TeStTeSt TeStTeStTeSt";
 var scroller;
-var cropRect;
-var mask;
 
 var mainState = {
     create: function(){
@@ -28,25 +26,6 @@ var mainState = {
         var bottomPanel = game.add.sprite(game.world.centerX * 0.7475, game.world.bottom * 0.8365, 'bottomPanel');
         bottomPanel.anchor.set(0.5);
 
-        /* chatBox = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.76, {
-            backgroundColor: '#494745',
-            fill: 'white',
-            width: 762,
-            height: 88,
-            cursorColor: '#494745',
-            type: 'textarea'
-        });
-        chatBox.domElement.element.type = 'textarea'; */
-        /* chatBox.domElement.element.whiteSpace = 'pre-wrap';
-        chatBox.domElement.element.style.whiteSpace = 'pre-wrap'; */
-        //chatBox.domElement.element.readOnly = true;
-        /* chatBox.domElement.element.overflowY = 'scroll';
-        chatBox.domElement.element.style.overflowY = 'scroll';
-        chatBox.domElement.element.resize = 'none';
-        chatBox.domElement.element.style.resize = 'none'; */
-        //chatBox.input.useHandCursor = false;
-        //chatBox.setTextBounds(16, 16, 300, 762);
-
         scroller = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
 
         var textStyle = {font:"bold 14px Arial", fill:"white"};
@@ -64,13 +43,11 @@ var mainState = {
 
         $(chatInput.domElement.element).on('keyup', function (e) {
             if (e.keyCode == 13) {
-                // Do something
                 game.global.actionQueue.push({action: {type: 'broadcast', payload: chatInput.value}, target: 'local'});
                 chatInput.setText('');
             }
         });
 
-        console.log(scroller.mask);
     },
 
     update: function(){
@@ -130,23 +107,12 @@ var mainState = {
 function initMultiPlayer(game, globals){
 
     client.exports.recieveBroadcast = function(message) {
-        //chatLog += '\n' + message;
-        //chatBox.setText(chatLog);
         var textStyle = {font:"14px Arial", fill:"white"};
         var text = game.make.text(0, scroller.length * 22, message, textStyle);
-        console.log(text);
         scroller.addChild(text);
-        console.log(scroller.getChildAt(scroller.length - 1));
         if(scroller.getChildAt(scroller.length - 1).position.y > 85){
-            console.log("it is");
             scroller.scrollTo(0, scroller.getChildAt(scroller.length - 1).position.y, 10); //too much scroll
         }
-        /* if(text.worldPosition.y > 542){
-            console.log("it is");
-            scroller.scrollTo(0, scroller.bottom);
-        } */
-        
-        //chatLog += '/n' + message;
     }
 
     client.exports.recieveStateFromServer = function(state) {
