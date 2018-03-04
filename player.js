@@ -29,8 +29,8 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player');
         playerName = game.add.text(15, -10, playerState.username, { font: "14px Ariel", fill: '#ffffff'});
         playerName.alpha = 0;
-        playerSprite.events.onInputOver.add(() => {playerName.alpha = 1}, this);
-        playerSprite.events.onInputOut.add(() => {playerName.alpha = 0}, this);
+        playerSprite.events.onInputOver.add(showPlayerName(true), this);
+        playerSprite.events.onInputOut.add(showPlayerName(false), this);
         playerName.anchor.setTo(0.5);
         playerSprite.addChild(playerName);
         game.physics.arcade.enable(playerSprite);
@@ -62,6 +62,18 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite.play('idle-' + playerState.playerFacing);
 
         playerTween = game.add.tween(playerSprite);
+    }
+
+    function showPlayerName(state){
+        console.log("MOUSE:");
+        if(state){
+            console.log("IN");
+            this.playerName = 1;
+        }
+        else{
+            console.log("OUT");
+            this.playerName = 0;
+        }
     }
 
     function update(){
