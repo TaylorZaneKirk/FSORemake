@@ -97,5 +97,20 @@ module.exports = {
             }
         }
         
+    },
+
+    playerAttack: function(playersArray, id, payload, target){
+        var attackingPlayer = playersArray[id];
+        
+        if(target == 'player'){
+            var targetCoords = payload;
+            attackingPlayer.state.playersVisible.forEach((player) => {
+                if(player.pos == targetCoords){
+                    console.log('hit other player');
+                    var playerAttacked = playersArray[player.playerId];
+                    playerAttacked.state.health -= 5; //deduct health
+                }
+            });
+        }
     }
 }

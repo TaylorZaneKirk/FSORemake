@@ -95,7 +95,19 @@ var PlayerObject = function(idRef, gameRef){
 
             if(altKey.isDown){
                 playerState.playerAction = 'attack';
-                //sendMessageToServer({type: 'attack', payload: ''}, 'player');
+                var targetCoords = {x: playerState.pos.x, y: playerState.pos.y};
+
+                if(playerState.playerFacing == 'N'){ targetCoords.y--; }
+                if(playerState.playerFacing == 'S'){ targetCoords.y++; }
+                if(playerState.playerFacing == 'E'){ targetCoords.x++; }
+                if(playerState.playerFacing == 'W'){ targetCoords.x--; }
+
+                playerState.playersVisible.forEach((player) => {
+                    if(player.pos == targetCoords){
+                        console.log("trying to hit player");
+                        sendMessageToServer({type: 'attack', payload: targetCoords}, 'player');
+                    }
+                });
             }
             else if (leftKey.isDown){
                 playerState.playerAction = 'walk';

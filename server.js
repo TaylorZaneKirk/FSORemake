@@ -268,7 +268,7 @@ eurecaServer.exports.message = function(id, message){
             break;
         }
         case 'attack': {
-            //do attack
+            serverActions.attackPlayer(players, id, message.action.payload, message.target);
             break;
         }
         case 'broadcast': {
