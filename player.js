@@ -135,6 +135,11 @@ var PlayerObject = function(idRef, gameRef){
             }
             
         }
+        else{
+            if(playerTween != undefined && !playerTween.isRunning){
+                playerState.playerAction = 'idle'
+            }
+        }
         
         if((((playerState.pos.x+1) * 32) != Math.ceil(playerSprite.x) || ((playerState.pos.y+1) * 32) != Math.ceil(playerSprite.y)) ){
             //Player is moving and we're waiting for a response from server

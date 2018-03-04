@@ -28,10 +28,6 @@ var con = mysql.createConnection({
 
 con.connect(function(err) {
   if (err) throw err;
-  /* con.query("SELECT * FROM users", function (err, result, fields) {
-    if (err) throw err;
-    console.log(result);
-  }); */
   console.log("Database Connection Established");
 });
 
@@ -44,6 +40,7 @@ class PlayerState
         this.playerFacing = 'S';
         this.playerId = idString;
         this.username = data.username;
+        this.health = data.health;
         this.playerAction = 'idle';
         this.worldX = data.worldX;
         this.worldY = data.worldY;
@@ -52,7 +49,7 @@ class PlayerState
         this.playersVisible = {};
         this.mapData = worldMap[this.worldX + '-' + this.worldY].mapData;
     }
-    
+    /* 
     copy(other)
     {
         this.pos = other.pos;
@@ -65,7 +62,7 @@ class PlayerState
         this.readyToUpdate = other.readyToUpdate;
         this.playersVisible = other.playersVisible;
         this.mapData = other.mapData;
-    }
+    } */
 
     changeMapData(worldXNew, worldYNew){
         worldMap[worldXNew + '-' + worldYNew].players[this.playerId] = this;
@@ -109,11 +106,7 @@ eurecaServer.onConnect(function (conn) {
     var remote = eurecaServer.getClient(conn.id);
 
     //register the client
-    //players[conn.id] = {id:conn.id, remote:remote, state: new PlayerState(conn.id)}
     players[conn.id] = {id:conn.id, remote:remote, state: null}
-
-    //here we call setId (defined in the client side)
-    //remote.setId(conn.id);
 });
 
 //detect client disconnection
