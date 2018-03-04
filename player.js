@@ -66,12 +66,10 @@ var PlayerObject = function(idRef, gameRef){
     }
 
     function showPlayerName(state){
-        console.log("IN");
         playerName.alpha = 1;
     }
 
     function hidePlayerName(state){
-        console.log("OUT");
         playerName.alpha = 0;
     }
 
