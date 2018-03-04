@@ -110,7 +110,6 @@ module.exports = {
 
                 if(player.pos.x == targetCoords.x && player.pos.y == targetCoords.y){
                     var playerAttacked = playersArray[player.playerId];
-                    playerAttacked.state.health -= 5; //deduct health
                     playerAttacked.state.takeDamage(5);
                 }
             }
