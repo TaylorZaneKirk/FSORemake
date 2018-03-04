@@ -98,8 +98,20 @@ class PlayerState
             con.query("UPDATE users SET health='" + this.health + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
         }
         else{
-            players[this.playerId].remote.kill();
+            for (var c in worldMap[this.worldX + '-' + this.worldY].players){
+                var remote = players[c].remote;
+    
+                //here we call kill() method defined in the client side
+                remote.kill(this.playerId);
+            }
             this.health = 100;
+            this.worldX = 0;
+            this.worldY = 0;
+            this.pos = {x: 0, y: 0};
+            this.playerFacing = 'S';
+            this.playerAction = 'idle';
+            this.mapData = worldMap[this.worldX + '-' + this.worldY].mapData;
+            worldMap[worldXNew + '-' + worldYNew].players[this.playerId] = this;
             con.query("UPDATE users SET health='" + this.health + "', worldX=0, worldY=0, localX=1, localY=1 WHERE username = '" + this.username + "'", function (err, result, fields) {if (err) throw err; });
         }
     }
