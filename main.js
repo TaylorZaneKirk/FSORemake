@@ -96,6 +96,12 @@ var mainState = {
 
             scroller.forEach((child) => {
                 console.log(child);
+                if(child.position.y > 63){
+                    child.visible = false;
+                }
+                else{
+                    child.visible = true;
+                }
             });
         }
 
