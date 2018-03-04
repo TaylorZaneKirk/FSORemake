@@ -91,6 +91,17 @@ class PlayerState
         }
         return false;
     }
+
+    takeDamage(damage){
+        this.health -= damage;
+        if(this.health > 0){
+            con.query("UPDATE users SET health='" + this.health + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
+        }
+        else{
+            this.health = 100;
+            con.query("UPDATE users SET health='" + this.health + "', worldX=0, worldY=0, localX=1, localY=1 WHERE username = '" + this.username + "'", function (err, result, fields) {});
+        }
+    }
 };
 
 
