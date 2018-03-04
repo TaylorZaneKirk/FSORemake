@@ -48,7 +48,7 @@ var mainState = {
         //chatBox.setTextBounds(16, 16, 300, 762);
 
         scroller = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
-        scroller.maskGraphics.alpha = 0;
+        scroller.maskGraphics.alpha = 1;
         var textStyle = {font:"bold 14px Arial", fill:"white"};
         var text = game.make.text(0, 0, chatLog, textStyle);
         scroller.addChild(text);
@@ -126,7 +126,7 @@ function initMultiPlayer(game, globals){
         //chatLog += '\n' + message;
         //chatBox.setText(chatLog);
         var textStyle = {font:"14px Arial", fill:"white"};
-        var text = game.make.text(0, scroller.length * 22, message, textStyle);
+        var text = game.make.text(0, scroller.bottom, message, textStyle);
         console.log(text);
         scroller.addChild(text);
     }
