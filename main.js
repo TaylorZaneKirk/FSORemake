@@ -62,11 +62,11 @@ var mainState = {
         hpBar = {
             pos: {
                 x: game.world.width * 0.88,
-                y: game.world.centerY * 0.627
+                y: game.world.centerY * 0.620
             },
             size: {
-                w: 80,
-                h: 20,
+                w: 160,
+                h: 10,
                 _1p: 0 /// will be calculated later
             },
             fill_c: 0x00cc00,
@@ -78,7 +78,7 @@ var mainState = {
         hpBar.size._1p = hpBar.size.w * 0.01; ///// 1% of width ///
         
         healthBarObject = game.add.graphics( hpBar.pos.x, hpBar.pos.y ); 
-        healthBarText = game.make.text( 0 , 0, "", { font: "bold 22px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        healthBarText = game.make.text( 0 , 0, "", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
         healthBarText.setTextBounds(0, 2, hpBar.size.w, hpBar.size.h);
         healthBarObject.addChild(healthBarText);
 
