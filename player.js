@@ -128,12 +128,16 @@ var PlayerObject = function(idRef, gameRef){
                 playerState.playerAction = 'walk';
                 playerState.playerFacing = 'W';
                 if(game.global.mapManager.isSpotAvailable(playerState.pos.x - 1, playerState.pos.y, playerState.pos)){
+                    var canMove = true;
                     for(var i in playerState.playersVisible){
                         var player = playerState.playersVisible[i];
                         if(player.pos.x == playerState.pos.x - 1 && player.pos.y == playerState.pos.y){
-                            playerState.pos.x--;
-                            game.global.actionQueue.push({action: {type: 'move', payload: 'W'}, target: 'self'});
+                            canMove = false;
                         }
+                    }
+                    if(canMove) {
+                        playerState.pos.x--;
+                        game.global.actionQueue.push({action: {type: 'move', payload: 'W'}, target: 'self'});
                     }
                 }  
             }
@@ -141,12 +145,16 @@ var PlayerObject = function(idRef, gameRef){
                 playerState.playerAction = 'walk';
                 playerState.playerFacing = 'E';
                 if(game.global.mapManager.isSpotAvailable(playerState.pos.x + 1, playerState.pos.y, playerState.pos)){
+                    var canMove = true;
                     for(var i in playerState.playersVisible){
                         var player = playerState.playersVisible[i];
                         if(player.pos.x == playerState.pos.x + 1 && player.pos.y == playerState.pos.y){
-                            playerState.pos.x++;
-                            game.global.actionQueue.push({action: {type: 'move', payload: 'E'}, target: 'self'});
+                            canMove = false;
                         }
+                    }
+                    if(canMove) {
+                        playerState.pos.x++;
+                        game.global.actionQueue.push({action: {type: 'move', payload: 'E'}, target: 'self'});
                     }
                 }  
             }
@@ -154,12 +162,16 @@ var PlayerObject = function(idRef, gameRef){
                 playerState.playerAction = 'walk';
                 playerState.playerFacing = 'N';
                 if(game.global.mapManager.isSpotAvailable(playerState.pos.x, playerState.pos.y - 1, playerState.pos)){
+                    var canMove = true;
                     for(var i in playerState.playersVisible){
                         var player = playerState.playersVisible[i];
                         if(player.pos.x == playerState.pos.x && player.pos.y == playerState.pos.y - 1){
-                            playerState.pos.y--;
-                            game.global.actionQueue.push({action: {type: 'move', payload: 'N'}, target: 'self'});
+                            canMove = false;
                         }
+                    }
+                    if(canMove) {
+                        playerState.pos.y--;
+                        game.global.actionQueue.push({action: {type: 'move', payload: 'N'}, target: 'self'});
                     }
                 }
             }
@@ -167,14 +179,17 @@ var PlayerObject = function(idRef, gameRef){
                 playerState.playerAction = 'walk';
                 playerState.playerFacing = 'S';
                 if(game.global.mapManager.isSpotAvailable(playerState.pos.x, playerState.pos.y + 1, playerState.pos)){
+                    var canMove = true;
                     for(var i in playerState.playersVisible){
                         var player = playerState.playersVisible[i];
                         if(player.pos.x == playerState.pos.x && player.pos.y == playerState.pos.y + 1){
-                            playerState.pos.y++;
-                            game.global.actionQueue.push({action: {type: 'move', payload: 'S'}, target: 'self'});
+                            canMove = false;
                         }
                     }
-                }
+                    if(canMove) {
+                        playerState.pos.y++;
+                        game.global.actionQueue.push({action: {type: 'move', payload: 'S'}, target: 'self'});
+                    }
                 
             }
             
