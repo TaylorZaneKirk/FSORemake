@@ -109,7 +109,6 @@ module.exports = {
                 var player = attackingPlayer.state.playersVisible[i];
 
                 if(player.pos.x == targetCoords.x && player.pos.y == targetCoords.y){
-                    console.log('hit other player');
                     var playerAttacked = playersArray[player.playerId];
                     playerAttacked.state.health -= 5; //deduct health
                 }

@@ -44,10 +44,10 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite.animations.add('walk-W', [4,5,6], 9, true);
         playerSprite.animations.add('walk-N', [8,9,10], 9, true);
         playerSprite.animations.add('walk-S', [12,13,14], 9, true);
-        playerSprite.animations.add('attack-E', [1,3,1], 6, false);
-        playerSprite.animations.add('attack-W', [5,7,5], 6, false);
-        playerSprite.animations.add('attack-N', [9,11,9], 6, false);
-        playerSprite.animations.add('attack-S', [13,15,13], 6, false);
+        playerSprite.animations.add('attack-E', [1,3,1], 3, false);
+        playerSprite.animations.add('attack-W', [5,7,5], 3, false);
+        playerSprite.animations.add('attack-N', [9,11,9], 3, false);
+        playerSprite.animations.add('attack-S', [13,15,13], 3, false);
         playerSprite.animations.add('idle-E', [1], 1, false);
         playerSprite.animations.add('idle-W', [5], 1, false);
         playerSprite.animations.add('idle-N', [9], 1, false);
@@ -102,15 +102,9 @@ var PlayerObject = function(idRef, gameRef){
                 if(playerState.playerFacing == 'E'){ targetCoords.x++; }
                 if(playerState.playerFacing == 'W'){ targetCoords.x--; }
 
-                console.log("TARGET:");
-                console.log(targetCoords);
-
                 for(var i in playerState.playersVisible){
                     var player = playerState.playersVisible[i];
-                    console.log("PLAYER LOC:")
-                    console.log(player.pos);
                     if(player.pos.x == targetCoords.x && player.pos.y == targetCoords.y){
-                        console.log("trying to hit player");
                         sendMessageToServer({type: 'attack', payload: targetCoords}, 'player');
                     }
                 }
