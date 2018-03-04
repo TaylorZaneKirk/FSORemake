@@ -88,7 +88,6 @@ var mainState = {
         }
 
         scroller.forEach((child) => {
-            console.log(child);
             if(child.worldPosition.y < 450 || child.worldPosition.y > 542){
                 child.alpha = 0;
             }
@@ -137,7 +136,10 @@ function initMultiPlayer(game, globals){
         var text = game.make.text(0, scroller.length * 22, message, textStyle);
         console.log(text);
         scroller.addChild(text);
-        scroller.scrollTo(0, scroller.length * 22);
+        if(text.worldPosition.y > 542){
+            scroller.scrollTo(0, scroller.length * 22);
+        }
+        
         //chatLog += '/n' + message;
     }
 
