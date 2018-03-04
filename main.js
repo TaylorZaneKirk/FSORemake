@@ -78,7 +78,7 @@ var mainState = {
         hpBar.size._1p = hpBar.size.w * 0.01; ///// 1% of width ///
         
         healthBarObject = game.add.graphics( hpBar.pos.x, hpBar.pos.y ); 
-        healthBarText = game.make.text( 0 , 0, "", { font: "bold 12px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        healthBarText = game.make.text( 0 , 0, "", { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
         healthBarText.setTextBounds(0, 2, hpBar.size.w, hpBar.size.h);
         healthBarObject.addChild(healthBarText);
 
