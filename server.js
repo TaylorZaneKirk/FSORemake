@@ -112,7 +112,12 @@ class PlayerState
             this.playerAction = 'idle';
             this.mapData = worldMap[this.worldX + '-' + this.worldY].mapData;
             worldMap[worldXNew + '-' + worldYNew].players[this.playerId] = this;
-            con.query("UPDATE users SET health='" + this.health + "', worldX=0, worldY=0, localX=1, localY=1 WHERE username = '" + this.username + "'", function (err, result, fields) {if (err) throw err; });
+            con.query("UPDATE users SET health='" + this.health + 
+                "', worldX='" + this.worldX + 
+                ", worldY='" + this.worldY + 
+                "', localX='" + this.pos.x + 
+                "', localY='" + this.pos.y + 
+                "' WHERE username = '" + this.username + "'", function (err, result, fields) {if (err) throw err; });
         }
     }
 };
