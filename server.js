@@ -98,8 +98,9 @@ class PlayerState
             con.query("UPDATE users SET health='" + this.health + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
         }
         else{
+            players[this.playerId].remote.kill();
             this.health = 100;
-            con.query("UPDATE users SET health='" + this.health + "', worldX=0, worldY=0, localX=1, localY=1 WHERE username = '" + this.username + "'", function (err, result, fields) {});
+            con.query("UPDATE users SET health='" + this.health + "', worldX=0, worldY=0, localX=1, localY=1 WHERE username = '" + this.username + "'", function (err, result, fields) {if (err) throw err; });
         }
     }
 };
