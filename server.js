@@ -98,6 +98,7 @@ class PlayerState
             con.query("UPDATE users SET health='" + this.health + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
         }
         else{
+            delete worldMap[this.worldX + '-' + this.worldY].players[this.playerId];
             for (var c in worldMap[this.worldX + '-' + this.worldY].players){
                 var remote = players[c].remote;
     
@@ -111,7 +112,7 @@ class PlayerState
             this.playerFacing = 'S';
             this.playerAction = 'idle';
             this.mapData = worldMap[this.worldX + '-' + this.worldY].mapData;
-            worldMap[worldXNew + '-' + worldYNew].players[this.playerId] = this;
+            worldMap[this.worldX + '-' + this.worldY].players[this.playerId] = this;
             con.query("UPDATE users SET health='" + this.health + 
                 "', worldX='" + this.worldX + 
                 ", worldY='" + this.worldY + 
