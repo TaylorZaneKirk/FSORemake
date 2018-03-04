@@ -61,11 +61,11 @@ var mainState = {
 
         hpBar = {
             pos: {
-                x: game.world.centerX,
-                y: 20
+                x: game.world.width * 0.88,
+                y: game.world.centerY * 0.627
             },
             size: {
-                w: game.world.width  - 40,
+                w: 80,
                 h: 20,
                 _1p: 0 /// will be calculated later
             },
@@ -74,7 +74,7 @@ var mainState = {
             alpha: 0.7
         };
 
-        hpBar.pos.x -= ( hpBar.size.w / 2 ); /// center on X axis ////
+        //hpBar.pos.x -= ( hpBar.size.w / 2 ); /// center on X axis ////
         hpBar.size._1p = hpBar.size.w * 0.01; ///// 1% of width ///
         
         healthBarObject = game.add.graphics( hpBar.pos.x, hpBar.pos.y ); 
