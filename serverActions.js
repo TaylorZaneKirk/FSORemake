@@ -86,7 +86,7 @@ module.exports = {
                 remote.recieveBroadcast(messageToBroadcastToOthers, '#ffffff');
             }
 
-            broadcastingPlayer.remote.recieveBroadcast(messageToBroadcastToSelf);
+            broadcastingPlayer.remote.recieveBroadcast(messageToBroadcastToSelf, '#ffffff');
         }
         else if(target == 'all'){
             var messageToBroadcast = broadcastingPlayer.state.username + ": " + payload;

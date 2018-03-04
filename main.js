@@ -46,7 +46,7 @@ var mainState = {
             if (e.keyCode == 13) {
                 if(chatInput.value != undefined && chatInput.value != ''){
                     if(chatInput.value.charAt(0) == "'"){
-                        game.global.actionQueue.push({action: {type: 'broadcast', payload: chatInput.value.substring(0)}, target: 'all'});
+                        game.global.actionQueue.push({action: {type: 'broadcast', payload: chatInput.value.substring(1)}, target: 'all'});
                     }
                     else{
                         game.global.actionQueue.push({action: {type: 'broadcast', payload: chatInput.value}, target: 'local'});
