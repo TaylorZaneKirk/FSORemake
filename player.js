@@ -190,7 +190,7 @@ var PlayerObject = function(idRef, gameRef){
                         playerState.pos.y++;
                         game.global.actionQueue.push({action: {type: 'move', payload: 'S'}, target: 'self'});
                     }
-                
+                }
             }
             
         }
