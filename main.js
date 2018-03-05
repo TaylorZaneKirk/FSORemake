@@ -4,9 +4,26 @@
 var chatInput;
 var chatBox;
 var chatLog = "TestMessage says: TeStTeStTeStTeStTeSt TeStTeSt TeStTeStTeSt";
-var hpBar;
+/* var hpBar;
 var healthBarObject;
-var healthBarText;
+var healthBarText; */
+
+var statusBars = {
+    hp:{
+        hpBar = null,
+        healthBarObject = null,
+        healthBarText = null,
+    },
+    fp:{
+        fpBar = null,
+        healthBarObject = null,
+        healthBarText = null,
+    },
+    stamina:{
+        fpBar = null,
+        healthBarObject = null,
+    }
+}
 
 var mainState = {
     create: function(){
@@ -59,7 +76,7 @@ var mainState = {
             }
         });
 
-        hpBar = {
+        statusBars.hp.hpBar = {
             pos: {
                 x: game.world.width * 0.746,
                 y: game.world.centerY * 0.2275
@@ -75,12 +92,12 @@ var mainState = {
         };
 
         //hpBar.pos.x -= ( hpBar.size.w / 2 ); /// center on X axis ////
-        hpBar.size._1p = hpBar.size.w * 0.01; ///// 1% of width ///
+        statusBars.hp.hpBar.size._1p = statusBars.hp.hpBar.size.w * 0.01; ///// 1% of width ///
         
-        healthBarObject = game.add.graphics( hpBar.pos.x, hpBar.pos.y ); 
-        healthBarText = game.make.text( 0 , 0, "", { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
-        healthBarText.setTextBounds(0, 2, hpBar.size.w, hpBar.size.h);
-        healthBarObject.addChild(healthBarText);
+        statusBars.hp.healthBarObject = game.add.graphics( statusBars.hp.hpBar.pos.x, statusBars.hp.hpBar.pos.y ); 
+        statusBars.hp.healthBarText = game.make.text( 0 , 0, "", { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        statusBars.hp.healthBarText.setTextBounds(0, 2, statusBars.hp.hpBar.size.w, statusBars.hp.hpBar.size.h);
+        statusBars.hp.healthBarObject.addChild(statusBars.hp.healthBarText);
 
     },
 
@@ -251,10 +268,10 @@ sendMessageToServer = function(action, target) {
 }
 
 updateHealthBar = function( hpPercentage ){ //// health percentage 
-	healthBarObject.clear();
-	healthBarText.setText( Math.floor(hpPercentage)+"%" );
-	healthBarObject.lineStyle( 2, hpBar.border_c, hpBar.alpha );
-	healthBarObject.beginFill( hpBar.fill_c, hpBar.alpha );
-	healthBarObject.drawRect( 0, 0, hpPercentage * hpBar.size._1p , hpBar.size.h );
+	statusBars.hp.healthBarObject.clear();
+	statusBars.hp.healthBarText.setText( Math.floor(statusBars.hp.hpPercentage)+"%" );
+	statusBars.hp.healthBarObject.lineStyle( 2, statusBars.hp.hpBar.border_c, statusBars.hp.hpBar.alpha );
+	statusBars.hp.healthBarObject.beginFill( statusBars.hp.hpBar.fill_c, statusBars.hp.hpBar.alpha );
+	statusBars.hp.healthBarObject.drawRect( 0, 0, statusBars.hp.hpPercentage * statusBars.hp.hpBar.size._1p , statusBars.hp.hpBar.size.h );
 	healthBarObject.endFill();
 }
