@@ -20,8 +20,8 @@ var statusBars = {
         focusBarText: null,
     },
     stamina:{
-        spBar = null,
-        staminaBarObject = null,
+        spBar: null,
+        staminaBarObject: null,
     }
 }
 
