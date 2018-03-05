@@ -235,8 +235,8 @@ eurecaServer.exports.createPlayer = function (username, password){
         }
 
         if(result.length == 0){
-            con.query("INSERT INTO users(username, password, worldX, worldY, localX, localY, level, exp, health, focus, stamina) VALUES ('" 
-                + username + "', '" + password + "', 0, 0, 1, 1, 1, 0, 100, 25, 100)", function (err, result, fields) {
+            con.query("INSERT INTO users(username, password, worldX, worldY, localX, localY, level, exp, maxHealth, health, maxFocus, focus, stamina) VALUES ('" 
+                + username + "', '" + password + "', 0, 0, 1, 1, 1, 0, 100, 100, 25, 25, 100)", function (err, result, fields) {
 
                 if (err){ 
                     throw err;
