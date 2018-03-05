@@ -119,10 +119,10 @@ class PlayerState
             worldMap[this.worldX + '-' + this.worldY].players[this.playerId] = this;
             con.query("UPDATE users SET health='" + this.health + 
                 "', worldX='" + this.worldX + 
-                ", worldY='" + this.worldY + 
+                "', worldY='" + this.worldY + 
                 "', localX='" + this.pos.x + 
                 "', localY='" + this.pos.y + 
-                "' WHERE username = '" + this.username + "'", function (err, result, fields) {if (err) throw err; });
+                "' WHERE username='" + this.username + "'", function (err, result, fields) {if (err) throw err; });
             if(attackerId != undefined){
                 var winner = players[attackerId].state;
                 winner.getExp(5); //5 experience for killing a player
