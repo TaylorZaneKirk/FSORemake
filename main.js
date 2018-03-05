@@ -100,15 +100,15 @@ var mainState = {
         statusBars.fp.fpBar = {
             pos: {
                 x: game.world.width * 0.746,
-                y: game.world.centerY * 0.3
+                y: game.world.centerY * 0.275
             },
             size: {
                 w: 193,
                 h: 8,
                 _1p: 0 /// will be calculated later
             },
-            fill_c: 0x000099,
-            border_c: 0x0000ff,
+            fill_c: 0x0000ff,
+            border_c: 0x000099,
             alpha: 0.7
         };
         statusBars.fp.fpBar.size._1p = statusBars.fp.fpBar.size.w * 0.01; ///// 1% of width ///
