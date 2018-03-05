@@ -44,7 +44,7 @@ class PlayerState
         this.exp = data.exp;
         this.health = data.health;
         this.focus = data.focus;
-        this.stamina = data.focus;
+        this.stamina = data.stamina;
         this.playerAction = 'idle';
         this.worldX = data.worldX;
         this.worldY = data.worldY;
