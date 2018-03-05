@@ -19,7 +19,7 @@ var statusBars = {
         focusBarObject: null,
         focusBarText: null,
     },
-    stamina:{
+    sp:{
         spBar: null,
         staminaBarObject: null,
     }
@@ -265,7 +265,7 @@ function initMultiPlayer(game, globals){
             updateHealthBar(state.health);
             updateFocusBar(state.focus);
             updateStaminaBar(state.stamina);
-            
+
             for(var i in state.playersVisible){
                 if(globals.playerList[state.playersVisible[i].playerId] == undefined){
                     globals.playerList[state.playersVisible[i].playerId] = {player: state.playersVisible[i], localPlayerObject: null};
