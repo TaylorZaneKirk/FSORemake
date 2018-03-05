@@ -100,7 +100,7 @@ var mainState = {
         statusBars.fp.fpBar = {
             pos: {
                 x: game.world.width * 0.746,
-                y: game.world.centerY * 0.28
+                y: game.world.centerY * 0.278
             },
             size: {
                 w: 193,
