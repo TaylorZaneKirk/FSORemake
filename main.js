@@ -121,7 +121,7 @@ var mainState = {
         statusBars.sp.spBar = {
             pos: {
                 x: game.world.width * 0.746,
-                y: game.world.centerY * 0.33
+                y: game.world.centerY * 0.335
             },
             size: {
                 w: 193,
