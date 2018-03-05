@@ -269,9 +269,9 @@ sendMessageToServer = function(action, target) {
 
 updateHealthBar = function( hpPercentage ){ //// health percentage 
 	statusBars.hp.healthBarObject.clear();
-	statusBars.hp.healthBarText.setText( Math.floor(statusBars.hp.hpPercentage)+"%" );
+	statusBars.hp.healthBarText.setText( Math.floor(hpPercentage)+"%" );
 	statusBars.hp.healthBarObject.lineStyle( 2, statusBars.hp.hpBar.border_c, statusBars.hp.hpBar.alpha );
 	statusBars.hp.healthBarObject.beginFill( statusBars.hp.hpBar.fill_c, statusBars.hp.hpBar.alpha );
-	statusBars.hp.healthBarObject.drawRect( 0, 0, statusBars.hp.hpPercentage * statusBars.hp.hpBar.size._1p , statusBars.hp.hpBar.size.h );
+	statusBars.hp.healthBarObject.drawRect( 0, 0, hpPercentage * statusBars.hp.hpBar.size._1p , statusBars.hp.hpBar.size.h );
 	healthBarObject.endFill();
 }
