@@ -118,6 +118,24 @@ var mainState = {
         statusBars.fp.focusBarText.setTextBounds(0, 2, statusBars.fp.fpBar.size.w, statusBars.fp.fpBar.size.h);
         statusBars.fp.focusBarObject.addChild(statusBars.fp.focusBarText);
 
+        statusBars.sp.spBar = {
+            pos: {
+                x: game.world.width * 0.746,
+                y: game.world.centerY * 0.3
+            },
+            size: {
+                w: 193,
+                h: 8,
+                _1p: 0 /// will be calculated later
+            },
+            fill_c: 0xffffff,
+            border_c: 0xa6a6a6,
+            alpha: 0.7
+        };
+        statusBars.sp.spBar.size._1p = statusBars.sp.spBar.size.w * 0.01; ///// 1% of width ///
+        
+        statusBars.sp.staminaBarObject = game.add.graphics( statusBars.sp.spBar.pos.x, statusBars.sp.spBar.pos.y );
+
     },
 
     update: function(){
@@ -237,6 +255,7 @@ function initMultiPlayer(game, globals){
             globals.mapManager.setMapData(state.mapData);
             updateHealthBar(state.health);
             updateFocusBar(state.focus);
+            updateStaminaBar(state.stamina);
         }
         else{
             //just update references
@@ -245,6 +264,8 @@ function initMultiPlayer(game, globals){
             globals.playerList[state.playerId].player = state;
             updateHealthBar(state.health);
             updateFocusBar(state.focus);
+            updateStaminaBar(state.stamina);
+            
             for(var i in state.playersVisible){
                 if(globals.playerList[state.playersVisible[i].playerId] == undefined){
                     globals.playerList[state.playersVisible[i].playerId] = {player: state.playersVisible[i], localPlayerObject: null};
