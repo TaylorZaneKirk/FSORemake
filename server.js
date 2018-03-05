@@ -40,7 +40,11 @@ class PlayerState
         this.playerFacing = 'S';
         this.playerId = idString;
         this.username = data.username;
+        this.level = data.level;
+        this.exp = data.exp;
         this.health = data.health;
+        this.focus = data.focus;
+        this.stamina = data.focus;
         this.playerAction = 'idle';
         this.worldX = data.worldX;
         this.worldY = data.worldY;
@@ -92,7 +96,7 @@ class PlayerState
         return false;
     }
 
-    takeDamage(damage){
+    takeDamage(damage, attackerId){ //attackerId can be null if player is taking damage from not a player
         this.health -= damage;
         if(this.health > 0){
             con.query("UPDATE users SET health='" + this.health + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
@@ -119,7 +123,27 @@ class PlayerState
                 "', localX='" + this.pos.x + 
                 "', localY='" + this.pos.y + 
                 "' WHERE username = '" + this.username + "'", function (err, result, fields) {if (err) throw err; });
+            if(attackerId != undefined){
+                var winner = players[attackerId].state;
+                winner.getExp(5); //5 experience for killing a player
+            }
         }
+    }
+
+    getExp(expAmount){
+        this.exp += expAmount;
+        if(this.exp >= 100){
+            this.exp -= 100;
+            this.gainLevel();
+
+        }
+        con.query("UPDATE users SET exp='" + this.exp + "' WHERE username='" + this.username + "'", function (err, result, fields) {if (err) throw err; });
+    }
+
+    gainLevel(){
+        //Calculate Bonuses here
+        this.level++;
+        con.query("UPDATE users SET level='" + this.level + "' WHERE username='" + this.username + "'", function (err, result, fields) {if (err) throw err; });
     }
 };
 
@@ -209,8 +233,8 @@ eurecaServer.exports.createPlayer = function (username, password){
         }
 
         if(result.length == 0){
-            con.query("INSERT INTO users(username, password, worldX, worldY, localX, localY) VALUES ('" 
-                + username + "', '" + password + "', 0, 0, 1, 1)", function (err, result, fields) {
+            con.query("INSERT INTO users(username, password, worldX, worldY, localX, localY, level, exp, health, focus, stamina) VALUES ('" 
+                + username + "', '" + password + "', 0, 0, 1, 1, 1, 0, 100, 25, 100)", function (err, result, fields) {
 
                 if (err){ 
                     throw err;
