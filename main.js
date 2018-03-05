@@ -253,18 +253,24 @@ function initMultiPlayer(game, globals){
 
             game.global.ready = true;
             globals.mapManager.setMapData(state.mapData);
-            updateHealthBar(state.health);
-            updateFocusBar(state.focus);
+            updateHealthBar((state.health / state.maxHealth) * 100);
+            updateFocusBar((state.focus / state.maxFocus) * 100);
             updateStaminaBar(state.stamina);
+            
+            statusBars.hp.healthBarText.setText( state.health );
+            statusBars.fp.focusBarText.setText( state.focus );
         }
         else{
             //just update references
 
             globals.player = state;
             globals.playerList[state.playerId].player = state;
-            updateHealthBar(state.health);
-            updateFocusBar(state.focus);
+            updateHealthBar((state.health / state.maxHealth) * 100);
+            updateFocusBar((state.focus / state.maxFocus) * 100);
             updateStaminaBar(state.stamina);
+            
+            statusBars.hp.healthBarText.setText( state.health );
+            statusBars.fp.focusBarText.setText( state.focus );
 
             for(var i in state.playersVisible){
                 if(globals.playerList[state.playersVisible[i].playerId] == undefined){
@@ -311,7 +317,6 @@ sendMessageToServer = function(action, target) {
 
 updateHealthBar = function( hpPercentage ){ //// health percentage 
 	statusBars.hp.healthBarObject.clear();
-	statusBars.hp.healthBarText.setText( Math.floor(hpPercentage)+"%" );
 	statusBars.hp.healthBarObject.lineStyle( 2, statusBars.hp.hpBar.border_c, statusBars.hp.hpBar.alpha );
 	statusBars.hp.healthBarObject.beginFill( statusBars.hp.hpBar.fill_c, statusBars.hp.hpBar.alpha );
 	statusBars.hp.healthBarObject.drawRect( 0, 0, hpPercentage * statusBars.hp.hpBar.size._1p , statusBars.hp.hpBar.size.h );
@@ -320,7 +325,6 @@ updateHealthBar = function( hpPercentage ){ //// health percentage
 
 updateFocusBar = function( fpPercentage ){ //// focus percentage 
 	statusBars.fp.focusBarObject.clear();
-	statusBars.fp.focusBarText.setText( Math.floor(fpPercentage)+"%" );
 	statusBars.fp.focusBarObject.lineStyle( 2, statusBars.fp.fpBar.border_c, statusBars.fp.fpBar.alpha );
 	statusBars.fp.focusBarObject.beginFill( statusBars.fp.fpBar.fill_c, statusBars.fp.fpBar.alpha );
 	statusBars.fp.focusBarObject.drawRect( 0, 0, fpPercentage * statusBars.fp.fpBar.size._1p , statusBars.fp.fpBar.size.h );

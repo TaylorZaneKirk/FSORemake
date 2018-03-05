@@ -42,7 +42,9 @@ class PlayerState
         this.username = data.username;
         this.level = data.level;
         this.exp = data.exp;
+        this.maxHealth = data.maxHealth;
         this.health = data.health;
+        this.maxFocus = data.maxFocus;
         this.focus = data.focus;
         this.stamina = data.stamina;
         this.playerAction = 'idle';
