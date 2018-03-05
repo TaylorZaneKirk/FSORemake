@@ -90,14 +90,33 @@ var mainState = {
             border_c: 0x990000,
             alpha: 0.7
         };
-
-        //hpBar.pos.x -= ( hpBar.size.w / 2 ); /// center on X axis ////
         statusBars.hp.hpBar.size._1p = statusBars.hp.hpBar.size.w * 0.01; ///// 1% of width ///
         
         statusBars.hp.healthBarObject = game.add.graphics( statusBars.hp.hpBar.pos.x, statusBars.hp.hpBar.pos.y ); 
         statusBars.hp.healthBarText = game.make.text( 0 , 0, "", { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
         statusBars.hp.healthBarText.setTextBounds(0, 2, statusBars.hp.hpBar.size.w, statusBars.hp.hpBar.size.h);
         statusBars.hp.healthBarObject.addChild(statusBars.hp.healthBarText);
+
+        statusBars.fp.fpBar = {
+            pos: {
+                x: game.world.width * 0.746,
+                y: game.world.centerY * 0.23
+            },
+            size: {
+                w: 193,
+                h: 8,
+                _1p: 0 /// will be calculated later
+            },
+            fill_c: 0xff0000,
+            border_c: 0x990000,
+            alpha: 0.7
+        };
+        statusBars.fp.fpBar.size._1p = statusBars.fp.fpBar.size.w * 0.01; ///// 1% of width ///
+        
+        statusBars.fp.focusBarObject = game.add.graphics( statusBars.fp.fpBar.pos.x, statusBars.fp.fpBar.pos.y ); 
+        statusBars.fp.focusBarText = game.make.text( 0 , 0, "", { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        statusBars.fp.focusBarText.setTextBounds(0, 2, statusBars.fp.fpBar.size.w, statusBars.fp.fpBar.size.h);
+        statusBars.fp.focusBarObject.addChild(statusBars.fp.focusBarText);
 
     },
 
@@ -217,6 +236,7 @@ function initMultiPlayer(game, globals){
             game.global.ready = true;
             globals.mapManager.setMapData(state.mapData);
             updateHealthBar(state.health);
+            updateFocusBar(state.focus);
         }
         else{
             //just update references
@@ -224,6 +244,7 @@ function initMultiPlayer(game, globals){
             globals.player = state;
             globals.playerList[state.playerId].player = state;
             updateHealthBar(state.health);
+            updateFocusBar(state.focus);
             for(var i in state.playersVisible){
                 if(globals.playerList[state.playersVisible[i].playerId] == undefined){
                     globals.playerList[state.playersVisible[i].playerId] = {player: state.playersVisible[i], localPlayerObject: null};
@@ -273,5 +294,22 @@ updateHealthBar = function( hpPercentage ){ //// health percentage
 	statusBars.hp.healthBarObject.lineStyle( 2, statusBars.hp.hpBar.border_c, statusBars.hp.hpBar.alpha );
 	statusBars.hp.healthBarObject.beginFill( statusBars.hp.hpBar.fill_c, statusBars.hp.hpBar.alpha );
 	statusBars.hp.healthBarObject.drawRect( 0, 0, hpPercentage * statusBars.hp.hpBar.size._1p , statusBars.hp.hpBar.size.h );
-	healthBarObject.endFill();
+	statusBars.hp.healthBarObject.endFill();
+}
+
+updateFocusBar = function( fpPercentage ){ //// focus percentage 
+	statusBars.fp.focusBarObject.clear();
+	statusBars.fp.focusBarText.setText( Math.floor(fpPercentage)+"%" );
+	statusBars.fp.focusBarObject.lineStyle( 2, statusBars.fp.fpBar.border_c, statusBars.fp.fpBar.alpha );
+	statusBars.fp.focusBarObject.beginFill( statusBars.fp.fpBar.fill_c, statusBars.fp.fpBar.alpha );
+	statusBars.fp.focusBarObject.drawRect( 0, 0, fpPercentage * statusBars.fp.fpBar.size._1p , statusBars.fp.fpBar.size.h );
+	statusBars.fp.focusBarObject.endFill();
+}
+
+updateStaminaBar = function( spPercentage ){ //// focus percentage 
+	statusBars.sp.staminaBarObject.clear();
+	statusBars.sp.staminaBarObject.lineStyle( 2, statusBars.sp.spBar.border_c, statusBars.sp.spBar.alpha );
+	statusBars.sp.staminaBarObject.beginFill( statusBars.sp.spBar.fill_c, statusBars.sp.spBar.alpha );
+	statusBars.sp.staminaBarObject.drawRect( 0, 0, spPercentage * statusBars.sp.spBar.size._1p , statusBars.sp.spBar.size.h );
+	statusBars.sp.staminaBarObject.endFill();
 }
