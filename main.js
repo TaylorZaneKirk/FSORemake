@@ -10,18 +10,18 @@ var healthBarText; */
 
 var statusBars = {
     hp:{
-        hpBar = null,
-        healthBarObject = null,
-        healthBarText = null,
+        hpBar: null,
+        healthBarObject: null,
+        healthBarText: null,
     },
     fp:{
-        fpBar = null,
-        healthBarObject = null,
-        healthBarText = null,
+        fpBar: null,
+        focusBarObject: null,
+        focusBarText: null,
     },
     stamina:{
-        fpBar = null,
-        healthBarObject = null,
+        spBar = null,
+        staminaBarObject = null,
     }
 }
 
