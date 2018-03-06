@@ -41,11 +41,13 @@ var mainState = {
         //GUI
         var leftPanel = game.add.sprite(0, game.world.bottom * 0.099, 'leftPanel');
         var topPanel = game.add.sprite(0, 0, 'topPanel');
-        var rightMiddlePanel = game.add.sprite(game.world.width * 0.88, game.world.centerY * 0.627, 'rightMiddlePanelStats');
+        var rightMiddlePanel = game.add.sprite(game.world.width * 0.88, game.world.centerY * 0.627, 'rightMiddlePanel');
         rightMiddlePanel.anchor.set(0.5);
         var rightPanel = game.add.sprite(game.world.width * 0.7063, 0, 'rightPanel');
         var bottomPanel = game.add.sprite(game.world.centerX * 0.7475, game.world.bottom * 0.8365, 'bottomPanel');
         bottomPanel.anchor.set(0.5);
+        var statsPage = game.add.sprite(game.world.width * 0.88, game.world.centerY * 0.627, 'rightMiddlePanelStats');
+        rightMiddlePanel.addChild(statsPage);
 
         //ChatBox
         chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
@@ -137,8 +139,8 @@ var mainState = {
         statusBars.sp.staminaBarObject = game.add.graphics( statusBars.sp.spBar.pos.x, statusBars.sp.spBar.pos.y );
 
 
-        var guiGoldIcon = game.add.sprite(game.world.width * 0.88, game.world.centerY * 0.627, 'goldSprites');
-        guiGoldIcon.frame = 9;
+        /* var guiGoldIcon = game.add.sprite(game.world.width * 0.88, game.world.centerY * 0.627, 'goldSprites');
+        guiGoldIcon.frame = 9; */
 
     },
 
