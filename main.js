@@ -46,7 +46,11 @@ var mainState = {
         var rightPanel = game.add.sprite(game.world.width * 0.7063, 0, 'rightPanel');
         var bottomPanel = game.add.sprite(game.world.centerX * 0.7475, game.world.bottom * 0.8365, 'bottomPanel');
         bottomPanel.anchor.set(0.5);
+
+        //Stats Page
         var statsPage = game.add.sprite(game.world.width * 0.725, game.world.centerY * 0.4, 'rightMiddlePanelStats');
+        var strengthLabel = game.make.text( 0, 0, "Strength", { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        statsPage.addChild(strengthLabel);
 
         //ChatBox
         chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
