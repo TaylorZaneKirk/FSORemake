@@ -136,6 +136,10 @@ var mainState = {
         
         statusBars.sp.staminaBarObject = game.add.graphics( statusBars.sp.spBar.pos.x, statusBars.sp.spBar.pos.y );
 
+
+        var guiGoldIcon = game.add.sprite(game.world.width * 0.88, game.world.centerY * 0.627, 'goldSprites');
+        guiGoldIcon.frame = 9;
+
     },
 
     update: function(){
