@@ -291,6 +291,7 @@ function initMultiPlayer(game, globals){
             updateHealthBar((state.health / state.maxHealth) * 100);
             updateFocusBar((state.focus / state.maxFocus) * 100);
             updateStaminaBar(state.stamina);
+            updateStatsPage([state.gold, state.strength, state.dexterity, state.endurance, state.agility, state.arcane, state.luck, state.exp]);
             
             statusBars.hp.healthBarText.setText( state.health );
             statusBars.fp.focusBarText.setText( state.focus );
@@ -303,6 +304,7 @@ function initMultiPlayer(game, globals){
             updateHealthBar((state.health / state.maxHealth) * 100);
             updateFocusBar((state.focus / state.maxFocus) * 100);
             updateStaminaBar(state.stamina);
+            updateStatsPage([state.gold, state.strength, state.dexterity, state.endurance, state.agility, state.arcane, state.luck, state.exp]);
             
             statusBars.hp.healthBarText.setText( state.health );
             statusBars.fp.focusBarText.setText( state.focus );
@@ -372,4 +374,15 @@ updateStaminaBar = function( spPercentage ){ //// focus percentage
 	statusBars.sp.staminaBarObject.beginFill( statusBars.sp.spBar.fill_c, statusBars.sp.spBar.alpha );
 	statusBars.sp.staminaBarObject.drawRect( 0, 0, spPercentage * statusBars.sp.spBar.size._1p , statusBars.sp.spBar.size.h );
 	statusBars.sp.staminaBarObject.endFill();
+}
+
+updateStatsPage = function(values){
+    statsPage[0].setValue(values[0]); //gold
+    statsPage[1].setValue(values[1]); //str
+    statsPage[3].setValue(values[2]); //dex
+    statsPage[5].setValue(values[3]); //end
+    statsPage[7].setValue(values[4]); //agi
+    statsPage[9].setValue(values[5]); //arc
+    statsPage[11].setValue(values[6]); //luck
+    statsPage[13].setValue(values[7] + ' / 100'); //exp
 }
