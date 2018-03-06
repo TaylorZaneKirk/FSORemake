@@ -81,7 +81,7 @@ module.exports = {
 
             for( var i in broadcastingPlayer.state.playersVisible ){
                 var index = broadcastingPlayer.state.playersVisible[i].playerId;
-                var visiblePlayer = players[index];
+                var visiblePlayer = playersArray[index];
                 var remote = visiblePlayer.remote;
                 remote.recieveBroadcast(messageToBroadcastToOthers, '#ffffff');
             }
