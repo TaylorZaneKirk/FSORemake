@@ -56,8 +56,11 @@ var mainState = {
         var dexterityLabel = game.make.text( 100, 75, "Dexterity", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
         var enduranceVal = game.make.text( 30, 110, "0", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
         var enduranceLabel = game.make.text( 100, 110, "Endurance", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        var agilityVal = game.make.text( 30, 140, "0", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
         var agilityLabel = game.make.text( 100, 140, "Agility", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        var arcaneVal = game.make.text( 30, 173, "0", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
         var arcaneLabel = game.make.text( 100, 173, "Arcane", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        var luckVal = game.make.text( 30, 207, "0", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
         var luckLabel = game.make.text( 100, 207, "Luck", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
         var expLabel = game.make.text( 100, 240, "0 / 0", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
         statsPage.addChild(goldLabel);
@@ -67,8 +70,11 @@ var mainState = {
         statsPage.addChild(dexterityLabel);
         statsPage.addChild(enduranceVal);
         statsPage.addChild(enduranceLabel);
+        statsPage.addChild(agilityVal);
         statsPage.addChild(agilityLabel);
+        statsPage.addChild(arcaneVal);
         statsPage.addChild(arcaneLabel);
+        statsPage.addChild(luckVal);
         statsPage.addChild(luckLabel);
         statsPage.addChild(expLabel);
 
