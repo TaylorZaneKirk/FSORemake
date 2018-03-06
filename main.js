@@ -50,7 +50,17 @@ var mainState = {
         //Stats Page
         var statsPage = game.add.sprite(game.world.width * 0.725, game.world.centerY * 0.4, 'rightMiddlePanelStats');
         var strengthLabel = game.make.text( 100, 45, "Strength", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        var dexterityLabel = game.make.text( 100, 75, "Dexterity", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        var enduranceLabel = game.make.text( 100, 105, "Endurance", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        var agilityLabel = game.make.text( 100, 135, "Agility", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        var arcaneLabel = game.make.text( 100, 165, "Arcane", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        var luckLabel = game.make.text( 100, 195, "Luck", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
         statsPage.addChild(strengthLabel);
+        statsPage.addChild(dexterityLabel);
+        statsPage.addChild(enduranceLabel);
+        statsPage.addChild(agilityLabel);
+        statsPage.addChild(arcaneLabel);
+        statsPage.addChild(luckLabel);
 
         //ChatBox
         chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
