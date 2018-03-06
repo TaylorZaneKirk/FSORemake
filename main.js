@@ -54,6 +54,7 @@ var mainState = {
         var strengthLabel = game.make.text( 100, 45, "Strength", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
         var dexterityVal = game.make.text( 30, 75, "0", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
         var dexterityLabel = game.make.text( 100, 75, "Dexterity", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        var enduranceVal = game.make.text( 30, 75, "0", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
         var enduranceLabel = game.make.text( 100, 110, "Endurance", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
         var agilityLabel = game.make.text( 100, 140, "Agility", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
         var arcaneLabel = game.make.text( 100, 173, "Arcane", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
@@ -64,6 +65,7 @@ var mainState = {
         statsPage.addChild(strengthLabel);
         statsPage.addChild(dexterityVal);
         statsPage.addChild(dexterityLabel);
+        statsPage.addChild(enduranceVal);
         statsPage.addChild(enduranceLabel);
         statsPage.addChild(agilityLabel);
         statsPage.addChild(arcaneLabel);
