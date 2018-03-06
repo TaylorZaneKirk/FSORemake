@@ -41,12 +41,19 @@ class PlayerState
         this.playerId = idString;
         this.username = data.username;
         this.level = data.level;
+        this.gold = data.gold;
         this.exp = data.exp;
         this.maxHealth = data.maxHealth;
         this.health = data.health;
         this.maxFocus = data.maxFocus;
         this.focus = data.focus;
         this.stamina = data.stamina;
+        this.strength = data.strength;
+        this.dexterity = data.dexterity;
+        this.endurance = data.endurance;
+        this.agility = data.agility;
+        this.arcane = data.arcane;
+        this.luck = data.luck;
         this.playerAction = 'idle';
         this.worldX = data.worldX;
         this.worldY = data.worldY;
@@ -235,8 +242,8 @@ eurecaServer.exports.createPlayer = function (username, password){
         }
 
         if(result.length == 0){
-            con.query("INSERT INTO users(username, password, worldX, worldY, localX, localY, level, exp, maxHealth, health, maxFocus, focus, stamina) VALUES ('" 
-                + username + "', '" + password + "', 0, 0, 1, 1, 1, 0, 100, 100, 25, 25, 100)", function (err, result, fields) {
+            con.query("INSERT INTO users(username, password, worldX, worldY, localX, localY, level, gold, exp, maxHealth, health, maxFocus, focus, stamina, strength, dexterity, endurance, agility, arcane, luck) VALUES ('" 
+                + username + "', '" + password + "', 0, 0, 1, 1, 1, 0, 0, 100, 100, 25, 25, 100, 1, 1, 1, 1, 1, 1)", function (err, result, fields) {
 
                 if (err){ 
                     throw err;
