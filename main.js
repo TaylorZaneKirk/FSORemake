@@ -49,7 +49,7 @@ var mainState = {
 
         //Stats Page
         var statsPage = game.add.sprite(game.world.width * 0.725, game.world.centerY * 0.4, 'rightMiddlePanelStats');
-        var strengthLabel = game.make.text( 100, 20, "Strength", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        var strengthLabel = game.make.text( 100, 37, "Strength", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
         statsPage.addChild(strengthLabel);
 
         //ChatBox
