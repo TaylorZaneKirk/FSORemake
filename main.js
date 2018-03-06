@@ -46,7 +46,7 @@ var mainState = {
         var rightPanel = game.add.sprite(game.world.width * 0.7063, 0, 'rightPanel');
         var bottomPanel = game.add.sprite(game.world.centerX * 0.7475, game.world.bottom * 0.8365, 'bottomPanel');
         bottomPanel.anchor.set(0.5);
-        var statsPage = game.add.sprite(game.world.width * 0.75, game.world.centerY * 0.627, 'rightMiddlePanelStats');
+        var statsPage = game.add.sprite(game.world.width * 0.7, game.world.centerY * 0.627, 'rightMiddlePanelStats');
 
         //ChatBox
         chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
