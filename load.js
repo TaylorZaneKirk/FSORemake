@@ -19,6 +19,7 @@ var loadState = {
         game.load.image('leftPanel', 'assets/gui/gui_LeftPanel.png');
         game.load.image('bottomPanel', 'assets/gui/gui_BottomPanel.png');
         game.load.image('rightMiddlePanel', 'assets/gui/gui_RightPanel_Middle.png');
+        game.load.image('rightMiddlePanelStats', 'assets/gui/gui_RightPanel_Middle_Stats.png');
         game.load.spritesheet('player', 'assets/PlayerSheet.png', 46, 45, 16);
         game.load.spritesheet('goldSprites', 'assets/GoldSheet.png', 32, 32, 10);
     },
