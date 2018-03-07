@@ -375,12 +375,12 @@ updateStaminaBar = function( spPercentage ){ //// focus percentage
 }
 
 updateStatsPage = function(values){
-    statsPage[0].setValue(values[0]); //gold
-    statsPage[1].setValue(values[1]); //str
-    statsPage[3].setValue(values[2]); //dex
-    statsPage[5].setValue(values[3]); //end
-    statsPage[7].setValue(values[4]); //agi
-    statsPage[9].setValue(values[5]); //arc
-    statsPage[11].setValue(values[6]); //luck
-    statsPage[13].setValue(values[7] + ' / 100'); //exp
+    statsPage.getChildAt(0).setText(values[0]); //gold
+    statsPage.getChildAt(1).setText(values[1]); //str
+    statsPage.getChildAt(3).setText(values[2]); //dex
+    statsPage.getChildAt(5).setText(values[3]); //end
+    statsPage.getChildAt(7).setText(values[4]); //agi
+    statsPage.getChildAt(9).setText(values[5]); //arc
+    statsPage.getChildAt(11).setText(values[6]); //luck
+    statsPage.getChildAt(13).setText(values[7] + ' / 100'); //exp
 }
