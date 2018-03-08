@@ -60,7 +60,7 @@ var mainState = {
         var arcaneLabel = game.make.text( 100, 173, "Arcane", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
         var luckVal = game.make.text( 30, 207, "0", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
         var luckLabel = game.make.text( 100, 207, "Luck", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
-        var expLabel = game.make.text( 100, 240, "0 / 0", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        //var expLabel = game.make.text( 100, 240, "0 / 0", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
         statsPage.addChild(goldLabel);
         statsPage.addChild(strengthVal);
         statsPage.addChild(strengthLabel);
@@ -74,7 +74,7 @@ var mainState = {
         statsPage.addChild(arcaneLabel);
         statsPage.addChild(luckVal);
         statsPage.addChild(luckLabel);
-        statsPage.addChild(expLabel);
+        //statsPage.addChild(expLabel);
 
         //ChatBox
         chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
@@ -122,7 +122,7 @@ var mainState = {
         statusBars.hp.hpBar.size._1p = statusBars.hp.hpBar.size.w * 0.01; ///// 1% of width ///
         
         statusBars.hp.healthBarObject = game.add.graphics( statusBars.hp.hpBar.pos.x, statusBars.hp.hpBar.pos.y ); 
-        statusBars.hp.healthBarText = game.make.text( 0 , 0, "", { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        statusBars.hp.healthBarText = game.make.text( 0 , 0, "", { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
         statusBars.hp.healthBarText.setTextBounds(0, 2, statusBars.hp.hpBar.size.w, statusBars.hp.hpBar.size.h);
         statusBars.hp.healthBarObject.addChild(statusBars.hp.healthBarText);
 
@@ -382,5 +382,5 @@ updateStatsPage = function(values){
     statsPage.getChildAt(7).setText(values[4]); //agi
     statsPage.getChildAt(9).setText(values[5]); //arc
     statsPage.getChildAt(11).setText(values[6]); //luck
-    statsPage.getChildAt(13).setText(values[7] + ' / 100'); //exp
+    //statsPage.getChildAt(13).setText(values[7] + ' / 100'); //exp
 }
