@@ -42,7 +42,7 @@ class PlayerState
         this.username = data.username;
         this.level = data.level;
         this.gold = data.gold;
-        this.exp = data.exp;
+        //this.exp = data.exp;
         this.maxHealth = data.maxHealth;
         this.health = data.health;
         this.maxFocus = data.maxFocus;
@@ -134,12 +134,12 @@ class PlayerState
                 "' WHERE username='" + this.username + "'", function (err, result, fields) {if (err) throw err; });
             if(attackerId != undefined){
                 var winner = players[attackerId].state;
-                winner.getExp(5); //5 experience for killing a player
+                //winner.getExp(5); //5 experience for killing a player
             }
         }
     }
 
-    getExp(expAmount){
+    /* getExp(expAmount){
         this.exp += expAmount;
         if(this.exp >= 100){
             this.exp -= 100;
@@ -153,7 +153,7 @@ class PlayerState
         //Calculate Bonuses here
         this.level++;
         con.query("UPDATE users SET level='" + this.level + "' WHERE username='" + this.username + "'", function (err, result, fields) {if (err) throw err; });
-    }
+    } */
 };
 
 
@@ -242,8 +242,8 @@ eurecaServer.exports.createPlayer = function (username, password){
         }
 
         if(result.length == 0){
-            con.query("INSERT INTO users(username, password, worldX, worldY, localX, localY, level, gold, exp, maxHealth, health, maxFocus, focus, stamina, strength, dexterity, endurance, agility, arcane, luck) VALUES ('" 
-                + username + "', '" + password + "', 0, 0, 1, 1, 1, 0, 0, 100, 100, 25, 25, 100, 1, 1, 1, 1, 1, 1)", function (err, result, fields) {
+            con.query("INSERT INTO users(username, password, worldX, worldY, localX, localY, level, gold, maxHealth, health, maxFocus, focus, stamina, strength, dexterity, endurance, agility, arcane, luck) VALUES ('" 
+                + username + "', '" + password + "', 0, 0, 1, 1, 1, 0, 100, 100, 25, 25, 100, 1, 1, 1, 1, 1, 1)", function (err, result, fields) {
 
                 if (err){ 
                     throw err;
