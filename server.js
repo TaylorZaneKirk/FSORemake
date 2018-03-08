@@ -252,7 +252,7 @@ eurecaServer.exports.createPlayer = function (username, password){
                 }
 
                 console.log("New Player Created: " + username);
-                con.query("INSERT INTO skillLevels(username) VALUES('" + username + "')", function (err, result, fields) {if (err) throw err; });
+                //con.query("INSERT INTO skillLevels(username) VALUES('" + username + "')", function (err, result, fields) {if (err) throw err; });
 
                 con.query("SELECT * FROM users WHERE username = '" + username + "'", function (err, result, fields) {
                     if (err){ 
