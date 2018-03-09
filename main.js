@@ -422,4 +422,7 @@ managePageButtons = function(index){
             thisButton.alpha = 1;
         }
     }
+
+    statsPage.alpha = 0;
+    if(index == 1){ statsPage.alpha = 1; }
 }
