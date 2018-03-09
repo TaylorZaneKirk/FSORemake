@@ -247,7 +247,7 @@ var mainState = {
 
         //Only Skills in the sweet spot to be visible
         skillsPage.forEach((child) => {
-            if(child.worldPosition.y < 100 || child.worldPosition.y > 342){
+            if(child.worldPosition.y < 110 || child.worldPosition.y > 400){
                 child.alpha = 0;
             }
             else{
