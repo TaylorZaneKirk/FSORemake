@@ -145,7 +145,7 @@ var mainState = {
 
         //ChatBox
         //chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
-        chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.625, 762, 88, { horizontalScroll: false, verticalScroll: true, horizontalWheel: false, verticalWheel: false, kineticMovement: false }));
+        chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.625, 762, 88));
         var textStyle = {font:"bold 14px Arial", fill:"white"};
         var text = game.make.text(0, 0, chatLog, textStyle);
         chatBox.addChild(text);
@@ -563,4 +563,6 @@ updateScrollingBoxes = function(index){
     else if(index == 1){
         chatBox.verticalWheel = true;
     }
+    skillsPage.configure();
+    chatBox.configure();
 }
