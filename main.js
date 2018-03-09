@@ -555,6 +555,7 @@ managePageButtons = function(index){
 }
 
 updateScrollingBoxes = function(index){
+    console.log(index);
     if(index == 0){
         skillsPage.configure({verticalScroll: true, verticalWheel: true});
         chatBox.configure({verticalScroll: false, verticalWheel: false});
