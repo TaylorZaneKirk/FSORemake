@@ -107,7 +107,7 @@ var mainState = {
         statsPage.addChild(luckLabel);
 
         //Skills Page
-        skillsPage = game.add.existing(new ScrollableArea(game.world.width * 0.765, game.world.centerY * 0.4, 75, 300, { horizontalScroll: false, verticalScroll: true, horizontalWheel: false, verticalWheel: false, kineticMovement: false }));
+        skillsPage = game.add.existing(new ScrollableArea(game.world.width * 0.765, game.world.centerY * 0.4, 75, 300, { horizontalScroll: false, verticalScroll: true, horizontalWheel: false, verticalWheel: true, kineticMovement: false }));
         var textStyle = {font:"bold 14px Arial", fill:"white"};
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Swordsmanship", textStyle));
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Mysticism", textStyle));
@@ -267,18 +267,6 @@ var mainState = {
                 child.alpha = 1;
             }
         });
-
-        if(game.input.y > 110 && game.input.y < 400){
-            updateScrollingBoxes(0);
-            console.log(skillsPage);
-        }
-        else if(game.input.y > 450 && game.input.y < 542){
-            updateScrollingBoxes(1);
-            console.log(chatBox);
-        }
-        else{
-            updateScrollingBoxes(-1);
-        }
 
 
         //wait [0.25] seconds after last update before requesting an update from the server
@@ -554,20 +542,4 @@ managePageButtons = function(index){
     skillsPage.alpha = 0;
     if(index == 0){ statsPage.alpha = 1; }
     else if(index == 2){ skillsPage.alpha = 1; }
-}
-
-updateScrollingBoxes = function(index){
-    console.log(index);
-    if(index == 0){
-        skillsPage.configure({verticalScroll: true, verticalWheel: true});
-        chatBox.configure({verticalScroll: false, verticalWheel: false});
-    }
-    else if(index == 1){
-        skillsPage.configure({verticalScroll: false, verticalWheel: false});
-        chatBox.configure({verticalScroll: true, verticalWheel: true});
-    }
-    else{
-        skillsPage.configure({verticalScroll: false, verticalWheel: false});
-        chatBox.configure({verticalScroll: false, verticalWheel: false});
-    }
 }
