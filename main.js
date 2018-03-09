@@ -414,8 +414,8 @@ updateStatsPage = function(values){
     //statsPage.getChildAt(13).setText(values[7] + ' / 100'); //exp
 }
 
-managePageButtons = function(sprite, index){
-    console.log(index);
+managePageButtons = function(){
+    console.log(this.index);
     for(var i = 0; i < 3; i++){
         var thisButton = pageButtons.getAt(i + 4);
         thisButton.alpha = 0;
