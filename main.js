@@ -555,14 +555,16 @@ managePageButtons = function(index){
 }
 
 updateScrollingBoxes = function(index){
-    skillsPage.verticalWheel = false;
-    chatBox.verticalWheel = false;
     if(index == 0){
-        skillsPage.verticalWheel = true;
+        skillsPage.configure({verticalScroll: true, verticalWheel: true});
+        chatBox.configure({verticalScroll: false, verticalWheel: false});
     }
     else if(index == 1){
-        chatBox.verticalWheel = true;
+        skillsPage.configure({verticalScroll: false, verticalWheel: false});
+        chatBox.configure({verticalScroll: true, verticalWheel: true});
     }
-    skillsPage.configure();
-    chatBox.configure();
+    else{
+        skillsPage.configure({verticalScroll: false, verticalWheel: false});
+        chatBox.configure({verticalScroll: false, verticalWheel: false});
+    }
 }
