@@ -63,10 +63,10 @@ var mainState = {
         pageButtons.add(inventoryButtonInactive);
         pageButtons.add(skillsButtonInactive);
         pageButtons.add(spellsButtonInactive);
-        var statsButtonActive = game.add.sprite(game.world.width * 0.77, game.world.centerY * 0.056, 'statsButtonActive');
-        var inventoryButtonActive = game.add.sprite(game.world.width * 0.825, game.world.centerY * 0.051, 'inventoryButtonActive');
-        var skillsButtonActive = game.add.sprite(game.world.width * 0.89, game.world.centerY * 0.048, 'skillsButtonActive');
-        var spellsButtonActive = game.add.sprite(game.world.width * 0.9335, game.world.centerY * 0.02, 'spellsButtonActive');
+        var statsButtonActive = game.add.sprite(game.world.width * 0.72, game.world.centerY * 0.056, 'statsButtonActive');
+        var inventoryButtonActive = game.add.sprite(game.world.width * 0.82, game.world.centerY * 0.051, 'inventoryButtonActive');
+        var skillsButtonActive = game.add.sprite(game.world.width * 0.84, game.world.centerY * 0.048, 'skillsButtonActive');
+        var spellsButtonActive = game.add.sprite(game.world.width * 0.933, game.world.centerY * 0.02, 'spellsButtonActive');
         statsButtonActive.alpha = 1;
         inventoryButtonActive.alpha = 0;
         skillsButtonActive.alpha = 0;
@@ -415,7 +415,7 @@ updateStatsPage = function(values){
 
 managePageButtons = function(index){
     console.log(index);
-    for(var i = 0; i < 3; i++){
+    for(var i = 0; i < 4; i++){
         var thisButton = pageButtons.getAt(i + 4);
         thisButton.alpha = 0;
         if(i == index - 1){
