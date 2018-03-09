@@ -140,6 +140,7 @@ var mainState = {
         for(var i = 0; i < 28; i++){ //28 skills, loop 28 times
             skillsPage.addChild(game.make.text(150, (skillsPage.length - 28) * 22, "1", textStyle));
         }
+        skillsPage.inputEnabled = true;
         skillsPage.events.onInputOver.add(function(){updateScrollingBoxes(0)});
         skillsPage.events.onInputOut.add(function(){updateScrollingBoxes(-1)});
         skillsPage.start();
@@ -151,6 +152,7 @@ var mainState = {
         var textStyle = {font:"bold 14px Arial", fill:"white"};
         var text = game.make.text(0, 0, chatLog, textStyle);
         chatBox.addChild(text);
+        chatBox.inputEnabled = true;
         chatBox.events.onInputOver.add(function(){updateScrollingBoxes(1)});
         chatBox.events.onInputOut.add(function(){updateScrollingBoxes(-1)});
         chatBox.start();
