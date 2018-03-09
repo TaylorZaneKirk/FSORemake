@@ -234,9 +234,6 @@ var mainState = {
         
         statusBars.sp.staminaBarObject = game.add.graphics( statusBars.sp.spBar.pos.x, statusBars.sp.spBar.pos.y );
 
-        console.log(skillsPage);
-        console.log(chatBox);
-
     },
 
     update: function(){
@@ -263,14 +260,14 @@ var mainState = {
             }
         });
         //Only allow messages within the "sweet spot" to be visible
-        /* chatBox.forEach((child) => {
+        chatBox.forEach((child) => {
             if(child.worldPosition.y < 450 || child.worldPosition.y > 542){
                 child.alpha = 0;
             }
             else{
                 child.alpha = 1;
             }
-        }); */
+        });
 
         //wait [0.25] seconds after last update before requesting an update from the server
         if (game.global.player.lastUpdated + 250 < currentTime.getTime() ){
