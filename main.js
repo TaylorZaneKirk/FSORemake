@@ -71,10 +71,6 @@ var mainState = {
         inventoryButtonActive.alpha = 0;
         skillsButtonActive.alpha = 0;
         spellsButtonActive.alpha = 0;
-        statsButtonActive.inputEnabled = true;
-        inventoryButtonActive.inputEnabled = true;
-        skillsButtonActive.inputEnabled = true;
-        spellsButtonActive.inputEnabled = true;
         pageButtons.add(statsButtonActive);
         pageButtons.add(inventoryButtonActive);
         pageButtons.add(skillsButtonActive);
