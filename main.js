@@ -114,7 +114,6 @@ var mainState = {
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Archery", textStyle));
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Knifeplay", textStyle));
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Blocking", textStyle));
-        skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Archery", textStyle));
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Pugilism", textStyle));
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Fire Magic", textStyle));
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Water Magic", textStyle));
@@ -138,11 +137,8 @@ var mainState = {
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Farming", textStyle));
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Crafting", textStyle));
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Blacksmithing", textStyle));
-
-        skillsPage.addChild(game.make.text(150, (skillsPage.length - 29) * 22, "1", textStyle));
-        
-        for(var i = 0; i < 29; i++){
-            skillsPage.addChild(game.make.text(150, (skillsPage.length - 29) * 22, "1", textStyle));
+        for(var i = 0; i < 28; i++){ //28 skills, loop 28 times
+            skillsPage.addChild(game.make.text(150, (skillsPage.length - 28) * 22, "1", textStyle));
         }
 
         skillsPage.start();
@@ -367,7 +363,40 @@ function initMultiPlayer(game, globals){
             updateFocusBar((state.focus / state.maxFocus) * 100);
             updateStaminaBar(state.stamina);
             updateStatsPage([state.gold, state.strength, state.dexterity, state.endurance, state.agility, state.arcane, state.luck, state.exp]);
-            
+
+            var playerSkills = [
+                state.swordsmanship,
+                state.mysticism,
+                state.archery,
+                state.knifeplay,
+                state.blocking,
+                state.pugilism,
+                state.fireMagic,
+                state.waterMagic,
+                state.earthMagic,
+                state.windMagic,
+                state.whiteMagic,
+                state.blackMagic,
+                state.heavySwords,
+                state.hammerWielding,
+                state.bluntWeapons,
+                state.staffFighting,
+                state.axeFighting,
+                state.fencing,
+                state.shortBows,
+                state.longBows,
+                state.crossbows,
+                state.mining,
+                state.fishing,
+                state.cooking,
+                state.alchemy,
+                state.farming,
+                state.crafting,
+                state.blacksmithing,
+            ];
+
+            updateSkillsPage(playerSkills);
+
             statusBars.hp.healthBarText.setText( state.health );
             statusBars.fp.focusBarText.setText( state.focus );
         }
@@ -380,6 +409,38 @@ function initMultiPlayer(game, globals){
             updateFocusBar((state.focus / state.maxFocus) * 100);
             updateStaminaBar(state.stamina);
             updateStatsPage([state.gold, state.strength, state.dexterity, state.endurance, state.agility, state.arcane, state.luck, state.exp]);
+            var playerSkills = [
+                state.swordsmanship,
+                state.mysticism,
+                state.archery,
+                state.knifeplay,
+                state.blocking,
+                state.pugilism,
+                state.fireMagic,
+                state.waterMagic,
+                state.earthMagic,
+                state.windMagic,
+                state.whiteMagic,
+                state.blackMagic,
+                state.heavySwords,
+                state.hammerWielding,
+                state.bluntWeapons,
+                state.staffFighting,
+                state.axeFighting,
+                state.fencing,
+                state.shortBows,
+                state.longBows,
+                state.crossbows,
+                state.mining,
+                state.fishing,
+                state.cooking,
+                state.alchemy,
+                state.farming,
+                state.crafting,
+                state.blacksmithing,
+            ];
+
+            updateSkillsPage(playerSkills);
             
             statusBars.hp.healthBarText.setText( state.health );
             statusBars.fp.focusBarText.setText( state.focus );
@@ -459,6 +520,12 @@ updateStatsPage = function(values){
     statsPage.getChildAt(7).setText(values[4]); //agi
     statsPage.getChildAt(9).setText(values[5]); //arc
     statsPage.getChildAt(11).setText(values[6]); //luck
+}
+
+updateSkillsPage = function(values){
+    for(var i = 0; i < 28; i++){
+        skillsPage.getAt(i + 28).setText(values[i]);
+    }
 }
 
 managePageButtons = function(index){
