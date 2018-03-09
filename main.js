@@ -55,10 +55,10 @@ var mainState = {
         inventoryButtonInactive.inputEnabled = true;
         skillsButtonInactive.inputEnabled = true;
         spellsButtonInactive.inputEnabled = true;
-        statsButtonInactive.events.onInputDown.add(managePageButtons, {index: 1});
-        inventoryButtonInactive.events.onInputDown.add(managePageButtons, {index: 2});
-        skillsButtonInactive.events.onInputDown.add(managePageButtons, {index: 3});
-        spellsButtonInactive.events.onInputDown.add(managePageButtons, {index: 4});
+        statsButtonInactive.events.onInputDown.add(managePageButtons, {sprite: this, index: 1});
+        inventoryButtonInactive.events.onInputDown.add(managePageButtons, {index: this, index: 2});
+        skillsButtonInactive.events.onInputDown.add(managePageButtons, {index: this, index: 3});
+        spellsButtonInactive.events.onInputDown.add(managePageButtons, {index: this, index: 4});
         pageButtons.add(statsButtonInactive);
         pageButtons.add(inventoryButtonInactive);
         pageButtons.add(skillsButtonInactive);
@@ -414,7 +414,7 @@ updateStatsPage = function(values){
     //statsPage.getChildAt(13).setText(values[7] + ' / 100'); //exp
 }
 
-managePageButtons = function(index){
+managePageButtons = function(sprite, index){
     console.log(index);
     for(var i = 0; i < 3; i++){
         var thisButton = pageButtons.getAt(i + 4);
