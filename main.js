@@ -153,7 +153,7 @@ var mainState = {
         chatBox.start();
         
         //Chat Input for player
-        chatInput = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.79, {
+        chatInput = game.add.inputField(game.world.width * 0.022, game.world.bottom * 0.75, {
             backgroundColor: '#494745',
             fill: 'white',
             width: 762,
