@@ -145,7 +145,8 @@ var mainState = {
         skillsPage.alpha = 0;
 
         //ChatBox
-        chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
+        //chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
+        chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.5, 762, 88));
         var textStyle = {font:"bold 14px Arial", fill:"white"};
         var text = game.make.text(0, 0, chatLog, textStyle);
         chatBox.addChild(text);
@@ -262,14 +263,14 @@ var mainState = {
             }
         });
         //Only allow messages within the "sweet spot" to be visible
-        chatBox.forEach((child) => {
+        /* chatBox.forEach((child) => {
             if(child.worldPosition.y < 450 || child.worldPosition.y > 542){
                 child.alpha = 0;
             }
             else{
                 child.alpha = 1;
             }
-        });
+        }); */
 
         //wait [0.25] seconds after last update before requesting an update from the server
         if (game.global.player.lastUpdated + 250 < currentTime.getTime() ){
