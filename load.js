@@ -20,6 +20,14 @@ var loadState = {
         game.load.image('bottomPanel', 'assets/gui/gui_BottomPanel.png');
         game.load.image('rightMiddlePanel', 'assets/gui/gui_RightPanel_Middle.png');
         game.load.image('rightMiddlePanelStats', 'assets/gui/gui_RightPanel_Middle_Stats.png');
+        game.load.image('statsButtonInactive', 'assets/gui/gui_StatsButton_Inactive.png');
+        game.load.image('statsButtonActive', 'assets/gui/gui_StatsButton_Active.png');
+        game.load.image('inventoryButtonInactive', 'assets/gui/gui_InventoryButton_Inactive.png');
+        game.load.image('inventoryButtonActive', 'assets/gui/gui_InventoryButton_Active.png');
+        game.load.image('skillsButtonInactive', 'assets/gui/gui_SkillsButton_Inactive.png');
+        game.load.image('skillsButtonActive', 'assets/gui/gui_SkillsButton_Active.png');
+        game.load.image('spellsButtonInactive', 'assets/gui/gui_SpellsButton_Inactive.png');
+        game.load.image('spellsButtonActive', 'assets/gui/gui_SpellsButton_Active.png');
         game.load.spritesheet('player', 'assets/PlayerSheet.png', 46, 45, 16);
         game.load.spritesheet('goldSprites', 'assets/GoldSheet.png', 32, 32, 10);
     },

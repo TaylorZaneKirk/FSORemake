@@ -5,6 +5,7 @@ var chatInput;
 var chatBox;
 var chatLog = "TestMessage says: TeStTeStTeStTeStTeSt TeStTeSt TeStTeStTeSt";
 var statsPage;
+var pageButtons;
 
 var statusBars = {
     hp:{
@@ -45,6 +46,10 @@ var mainState = {
         var bottomPanel = game.add.sprite(game.world.centerX * 0.7475, game.world.bottom * 0.8365, 'bottomPanel');
         bottomPanel.anchor.set(0.5);
 
+        pageButtons = game.add.group();
+        var statsButtonInactive = game.add.sprite(game.world.width * 0.88, game.world.centerY * 0.627, 'statsButtonInactive');
+        pageButtons.add(statsButtonInactive);
+
         //Stats Page
         statsPage = game.add.sprite(game.world.width * 0.725, game.world.centerY * 0.4, 'rightMiddlePanelStats');
         var goldLabel = game.make.text( 100, 15, "0", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
@@ -60,7 +65,6 @@ var mainState = {
         var arcaneLabel = game.make.text( 100, 173, "Arcane", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
         var luckVal = game.make.text( 30, 207, "0", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
         var luckLabel = game.make.text( 100, 207, "Luck", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
-        //var expLabel = game.make.text( 100, 240, "0 / 0", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
         statsPage.addChild(goldLabel);
         statsPage.addChild(strengthVal);
         statsPage.addChild(strengthLabel);
@@ -74,7 +78,6 @@ var mainState = {
         statsPage.addChild(arcaneLabel);
         statsPage.addChild(luckVal);
         statsPage.addChild(luckLabel);
-        //statsPage.addChild(expLabel);
 
         //ChatBox
         chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
