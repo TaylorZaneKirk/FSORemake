@@ -146,7 +146,7 @@ var mainState = {
 
         //ChatBox
         //chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
-        chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.6, 762, 88));
+        chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.625, 762, 88));
         var textStyle = {font:"bold 14px Arial", fill:"white"};
         var text = game.make.text(0, 0, chatLog, textStyle);
         chatBox.addChild(text);
