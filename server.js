@@ -254,12 +254,15 @@ eurecaServer.exports.createPlayer = function (username, password){
                 console.log("New Player Created: " + username);
                 //con.query("INSERT INTO skillLevels(username) VALUES('" + username + "')", function (err, result, fields) {if (err) throw err; });
 
-                con.query("SELECT * FROM users WHERE username = '" + username + "'", function (err, result, fields) {
+                //con.query("SELECT * FROM users WHERE username = '" + username + "'", function (err, result, fields) 
+                con.query("SELECT * FROM users INNER JOIN skillsList ON users.username = skillsList.username WHERE username = '" + username + "'", function (err, result, fields) {
                     if (err){ 
                         throw err;
                         remote.errorAndDisconnect('An unexpected error occured.');
                         return;
                     }
+
+                    console.log(result[0]);
 
                     if(result[0]){
                         players[id].state = new PlayerState(id, result[0]);
