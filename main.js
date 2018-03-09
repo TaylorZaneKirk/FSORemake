@@ -139,7 +139,7 @@ var mainState = {
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Crafting", textStyle));
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Blacksmithing", textStyle));
 
-        skillsPage.addChild(game.make.text(50, (skillsPage.length - 28) * 22, "1", textStyle));
+        skillsPage.addChild(game.make.text(100, (skillsPage.length - 29) * 22, "1", textStyle));
         skillsPage.start();
         skillsPage.alpha = 0;
 
