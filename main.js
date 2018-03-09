@@ -47,7 +47,7 @@ var mainState = {
         bottomPanel.anchor.set(0.5);
 
         pageButtons = game.add.group();
-        var statsButtonInactive = game.add.sprite(game.world.width * 0.77, game.world.centerY * 0.35, 'statsButtonInactive');
+        var statsButtonInactive = game.add.sprite(game.world.width * 0.77, game.world.centerY * 0.25, 'statsButtonInactive');
         pageButtons.add(statsButtonInactive);
 
         //Stats Page
