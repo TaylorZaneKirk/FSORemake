@@ -140,16 +140,19 @@ var mainState = {
         for(var i = 0; i < 28; i++){ //28 skills, loop 28 times
             skillsPage.addChild(game.make.text(150, (skillsPage.length - 28) * 22, "1", textStyle));
         }
-
+        skillsPage.events.onInputOver.add(function(){updateScrollingBoxes(0)});
+        skillsPage.events.onInputOut.add(function(){updateScrollingBoxes(-1)});
         skillsPage.start();
         skillsPage.alpha = 0;
 
         //ChatBox
         //chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
-        chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.625, 762, 88));
+        chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.625, 762, 88, { horizontalScroll: false, verticalScroll: true, horizontalWheel: false, verticalWheel: false, kineticMovement: false }));
         var textStyle = {font:"bold 14px Arial", fill:"white"};
         var text = game.make.text(0, 0, chatLog, textStyle);
         chatBox.addChild(text);
+        chatBox.events.onInputOver.add(function(){updateScrollingBoxes(1)});
+        chatBox.events.onInputOut.add(function(){updateScrollingBoxes(-1)});
         chatBox.start();
         
         //Chat Input for player
@@ -268,6 +271,7 @@ var mainState = {
                 child.alpha = 1;
             }
         });
+
 
         //wait [0.25] seconds after last update before requesting an update from the server
         if (game.global.player.lastUpdated + 250 < currentTime.getTime() ){
@@ -542,4 +546,15 @@ managePageButtons = function(index){
     skillsPage.alpha = 0;
     if(index == 0){ statsPage.alpha = 1; }
     else if(index == 2){ skillsPage.alpha = 1; }
+}
+
+updateScrollingBoxes = function(index){
+    skillsPage.verticalWheel = false;
+    chatBox.verticalWheel = false;
+    if(index == 0){
+        skillsPage.verticalWheel = true;
+    }
+    else if(index == 1){
+        chatBox.verticalWheel = true;
+    }
 }
