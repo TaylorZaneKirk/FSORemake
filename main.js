@@ -270,9 +270,11 @@ var mainState = {
 
         if(game.input.y > 110 && game.input.y < 400){
             updateScrollingBoxes(0);
+            console.log(skillsPage);
         }
-        else if(game.input.y > 450 && game.input.y > 542){
+        else if(game.input.y > 450 && game.input.y < 542){
             updateScrollingBoxes(1);
+            console.log(chatBox);
         }
         else{
             updateScrollingBoxes(-1);
