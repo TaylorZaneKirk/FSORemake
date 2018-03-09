@@ -5,6 +5,7 @@ var chatInput;
 var chatBox;
 var chatLog = "TestMessage says: TeStTeStTeStTeStTeSt TeStTeSt TeStTeStTeSt";
 var statsPage;
+var skillsPage;
 var pageButtons;
 
 var statusBars = {
@@ -55,10 +56,10 @@ var mainState = {
         inventoryButtonInactive.inputEnabled = true;
         skillsButtonInactive.inputEnabled = true;
         spellsButtonInactive.inputEnabled = true;
-        statsButtonInactive.events.onInputDown.add(function(){managePageButtons(1)});
-        inventoryButtonInactive.events.onInputDown.add(function(){managePageButtons(2)});
-        skillsButtonInactive.events.onInputDown.add(function(){managePageButtons(3)});
-        spellsButtonInactive.events.onInputDown.add(function(){managePageButtons(4)});
+        statsButtonInactive.events.onInputDown.add(function(){managePageButtons(0)});
+        inventoryButtonInactive.events.onInputDown.add(function(){managePageButtons(1)});
+        skillsButtonInactive.events.onInputDown.add(function(){managePageButtons(2)});
+        spellsButtonInactive.events.onInputDown.add(function(){managePageButtons(3)});
         pageButtons.add(statsButtonInactive);
         pageButtons.add(inventoryButtonInactive);
         pageButtons.add(skillsButtonInactive);
@@ -104,6 +105,40 @@ var mainState = {
         statsPage.addChild(arcaneLabel);
         statsPage.addChild(luckVal);
         statsPage.addChild(luckLabel);
+
+        //Skills Page
+        skillsPage = game.add.existing(new ScrollableArea(game.world.width * 0.725, game.world.centerY * 0.4, 117, 300));
+        var textStyle = {font:"bold 14px Arial", fill:"white"};
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Swordsmanship", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Mysticism", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Archery", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Knifeplay", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Blocking", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Archery", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Pugilism", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Fire Magic", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Water Magic", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Earth Magic", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Wind Magic", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "White Magic", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Black Magic", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Heavy Weapons", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Hammer Wielding", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Blunt Weapons", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Staff Fighting", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Axe Fighting", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Fencing", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Short Bows", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Long Bows", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Crossbows", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Mining", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Fishing", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Cooking", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Alchemy", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Farming", textStyle));
+        skillsPage.addChild(game.make.text(0, chatBox.length * 22, "Crafting", textStyle));
+        skillsPage.start();
+        skillsPage.alpha = 0;
 
         //ChatBox
         chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
@@ -193,10 +228,6 @@ var mainState = {
         statusBars.sp.spBar.size._1p = statusBars.sp.spBar.size.w * 0.01; ///// 1% of width ///
         
         statusBars.sp.staminaBarObject = game.add.graphics( statusBars.sp.spBar.pos.x, statusBars.sp.spBar.pos.y );
-
-
-        /* var guiGoldIcon = game.add.sprite(game.world.width * 0.88, game.world.centerY * 0.627, 'goldSprites');
-        guiGoldIcon.frame = 9; */
 
     },
 
@@ -414,15 +445,16 @@ updateStatsPage = function(values){
 }
 
 managePageButtons = function(index){
-    console.log(index);
     for(var i = 0; i < 4; i++){
         var thisButton = pageButtons.getAt(i + 4);
         thisButton.alpha = 0;
-        if(i == index - 1){
+        if(i == index){
             thisButton.alpha = 1;
         }
     }
 
     statsPage.alpha = 0;
-    if(index == 1){ statsPage.alpha = 1; }
+    skillsPage.alpha = 0;
+    if(index == 0){ statsPage.alpha = 1; }
+    else if(index == 2){ skillsPage.alpha = 1; }
 }
