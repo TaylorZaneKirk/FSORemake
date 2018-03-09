@@ -71,7 +71,7 @@ var mainState = {
         inventoryButtonActive.alpha = 0;
         skillsButtonActive.alpha = 0;
         spellsButtonActive.alpha = 0;
-        statsButtonActive.alpha = true;
+        statsButtonActive.inputEnabled = true;
         inventoryButtonActive.inputEnabled = true;
         skillsButtonActive.inputEnabled = true;
         spellsButtonActive.inputEnabled = true;
@@ -419,6 +419,7 @@ updateStatsPage = function(values){
 }
 
 managePageButtons = function(index){
+    console.log(index);
     for(var i = 0; i < 3; i++){
         var thisButton = pageButtons.getAt(i + 4);
         thisButton.alpha = 0;
