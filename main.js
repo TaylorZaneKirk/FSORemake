@@ -140,9 +140,6 @@ var mainState = {
         for(var i = 0; i < 28; i++){ //28 skills, loop 28 times
             skillsPage.addChild(game.make.text(150, (skillsPage.length - 28) * 22, "1", textStyle));
         }
-        skillsPage.inputEnabled = true;
-        skillsPage.events.onInputOver.add(function(){updateScrollingBoxes(0)});
-        skillsPage.events.onInputOut.add(function(){updateScrollingBoxes(-1)});
         skillsPage.start();
         skillsPage.alpha = 0;
 
@@ -152,9 +149,6 @@ var mainState = {
         var textStyle = {font:"bold 14px Arial", fill:"white"};
         var text = game.make.text(0, 0, chatLog, textStyle);
         chatBox.addChild(text);
-        chatBox.inputEnabled = true;
-        chatBox.events.onInputOver.add(function(){updateScrollingBoxes(1)});
-        chatBox.events.onInputOut.add(function(){updateScrollingBoxes(-1)});
         chatBox.start();
         
         //Chat Input for player
@@ -273,6 +267,16 @@ var mainState = {
                 child.alpha = 1;
             }
         });
+
+        if(game.input.y > 110 && game.input.y < 400){
+            updateScrollingBoxes(0);
+        }
+        else if(game.input.y > 450 && game.input.y > 542){
+            updateScrollingBoxes(1);
+        }
+        else{
+            updateScrollingBoxes(-1);
+        }
 
 
         //wait [0.25] seconds after last update before requesting an update from the server
