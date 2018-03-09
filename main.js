@@ -107,7 +107,7 @@ var mainState = {
         statsPage.addChild(luckLabel);
 
         //Skills Page
-        skillsPage = game.add.existing(new ScrollableArea(game.world.width * 0.725, game.world.centerY * 0.4, 117, 300));
+        skillsPage = game.add.existing(new ScrollableArea(game.world.width * 0.73, game.world.centerY * 0.4, 117, 300));
         var textStyle = {font:"bold 14px Arial", fill:"white"};
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Swordsmanship", textStyle));
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Mysticism", textStyle));
@@ -245,6 +245,15 @@ var mainState = {
             game.state.start('menu');
         }
 
+        //Only Skills in the sweet spot to be visible
+        skillsPage.forEach((child) => {
+            if(child.worldPosition.y < 100 || child.worldPosition.y > 342){
+                child.alpha = 0;
+            }
+            else{
+                child.alpha = 1;
+            }
+        });
         //Only allow messages within the "sweet spot" to be visible
         chatBox.forEach((child) => {
             if(child.worldPosition.y < 450 || child.worldPosition.y > 542){
