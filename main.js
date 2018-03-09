@@ -56,7 +56,7 @@ var mainState = {
         pageButtons.add(skillsButtonInactive);
         pageButtons.add(spellsButtonInactive);
         var statsButtonActive = game.add.sprite(game.world.width * 0.77, game.world.centerY * 0.056, 'statsButtonActive');
-        var inventoryButtonActive = game.add.sprite(game.world.width * 0.825, game.world.centerY * 0.056, 'inventoryButtonActive');
+        var inventoryButtonActive = game.add.sprite(game.world.width * 0.825, game.world.centerY * 0.053, 'inventoryButtonActive');
         var skillsButtonActive = game.add.sprite(game.world.width * 0.885, game.world.centerY * 0.0732, 'skillsButtonActive');
         var spellsButtonActive = game.add.sprite(game.world.width * 0.9335, game.world.centerY * 0.056, 'spellsButtonActive');
 
