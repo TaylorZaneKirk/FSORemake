@@ -51,6 +51,14 @@ var mainState = {
         var inventoryButtonInactive = game.add.sprite(game.world.width * 0.825, game.world.centerY * 0.073, 'inventoryButtonInactive');
         var skillsButtonInactive = game.add.sprite(game.world.width * 0.885, game.world.centerY * 0.0732, 'skillsButtonInactive');
         var spellsButtonInactive = game.add.sprite(game.world.width * 0.9335, game.world.centerY * 0.056, 'spellsButtonInactive');
+        statsButtonInactive.inputEnabled = true;
+        inventoryButtonInactive.inputEnabled = true;
+        skillsButtonInactive.inputEnabled = true;
+        spellsButtonInactive.inputEnabled = true;
+        statsButtonInactive.events.onInputDown.add(managePageButtons, {index: 1});
+        inventoryButtonInactive.events.onInputDown.add(managePageButtons, {index: 2});
+        skillsButtonInactive.events.onInputDown.add(managePageButtons, {index: 3});
+        spellsButtonInactive.events.onInputDown.add(managePageButtons, {index: 4});
         pageButtons.add(statsButtonInactive);
         pageButtons.add(inventoryButtonInactive);
         pageButtons.add(skillsButtonInactive);
@@ -59,6 +67,14 @@ var mainState = {
         var inventoryButtonActive = game.add.sprite(game.world.width * 0.825, game.world.centerY * 0.051, 'inventoryButtonActive');
         var skillsButtonActive = game.add.sprite(game.world.width * 0.89, game.world.centerY * 0.048, 'skillsButtonActive');
         var spellsButtonActive = game.add.sprite(game.world.width * 0.9335, game.world.centerY * 0.02, 'spellsButtonActive');
+        statsButtonActive.inputEnabled = true;
+        inventoryButtonActive.inputEnabled = true;
+        skillsButtonActive.inputEnabled = true;
+        spellsButtonActive.inputEnabled = true;
+        pageButtons.add(statsButtonActive);
+        pageButtons.add(inventoryButtonActive);
+        pageButtons.add(skillsButtonActive);
+        pageButtons.add(spellsButtonActive);
 
         //Stats Page
         statsPage = game.add.sprite(game.world.width * 0.725, game.world.centerY * 0.4, 'rightMiddlePanelStats');
@@ -396,4 +412,14 @@ updateStatsPage = function(values){
     statsPage.getChildAt(9).setText(values[5]); //arc
     statsPage.getChildAt(11).setText(values[6]); //luck
     //statsPage.getChildAt(13).setText(values[7] + ' / 100'); //exp
+}
+
+managePageButtons = function(index){
+    for(var i = 0; i < 3; i++){
+        var thisButton = pageButtons.getAt(i + 4);
+        thisButton.alpha = 0;
+        if(i == index - 1){
+            thisButton.alpha = 1;
+        }
+    }
 }
