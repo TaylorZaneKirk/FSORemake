@@ -24,7 +24,8 @@ var newPlayerState = {
 
         cancelButton.events.onInputDown.add(() => game.state.start('menu'), this);
         confirmButton.events.onInputDown.add(queryCreate, this);
-        var maleButton = game.add.sprite(game.world.centerX * 1.025, game.world.centerY * 0.815, 'activeRadioButton');
+        var maleButton = game.add.sprite(game.world.centerX * 1.0275, game.world.centerY * 0.815, 'activeRadioButton');
+        var femaleButton = game.add.sprite(game.world.centerX * 1.0275, game.world.centerY * 0.875, 'inactiveRadioButton');
     }
 }
 
