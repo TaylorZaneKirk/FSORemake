@@ -108,8 +108,7 @@ var mainState = {
 
         //Skills Page
         skillsPage = game.add.existing(new ScrollableArea(game.world.width * 0.765, game.world.centerY * 0.4, 155, 300, { horizontalScroll: false, verticalScroll: true, horizontalWheel: false, verticalWheel: true, kineticMovement: false }));
-        skillsPage.cursor = 'move';
-        //skillsPage.maskGraphics.input.useHandCursor = true;
+        skillsPage.maskGraphics.input.useHandCursor = true;
         var textStyle = {font:"bold 14px Arial", fill:"white"};
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Swordsmanship", textStyle));
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Mysticism", textStyle));
@@ -153,7 +152,8 @@ var mainState = {
         //ChatBox
         //chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
         chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.625, 762, 88));
-        var textStyle = {font:"bold 14px Arial", fill:"white", cursor:"move"};
+        chatBox.maskGraphics.input.useHandCursor = true;
+        var textStyle = {font:"bold 14px Arial", fill:"white"};
         var text = game.make.text(0, 0, chatLog, textStyle);
         chatBox.addChild(text);
         chatBox.start();
