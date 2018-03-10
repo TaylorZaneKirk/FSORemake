@@ -81,6 +81,18 @@ class PlayerState
         this.farming = data.farming;
         this.crafting = data.crafting;
         this.blacksmithing = data.blacksmithing;
+        this.inventory = [
+            data.slot1, data.slot2, data.slot3, data.slot4,
+            data.slot5, data.slot6, data.slot7, data.slot8,
+            data.slot9, data.slot10, data.slot11, data.slot12, 
+            data.slot13, data.slot14, data.slot15, data.slot16,
+        ];
+        this.equipHead = data.equipHead;
+        this.equipTorso = data.equipTorso;
+        this.equipRight = data.equipRight;
+        this.equipLeft = data.equipLeft;
+        this.equipLegs = data.equipLegs;
+        this.equipExtra =  data.equipExtra;
         this.playerAction = 'idle';
         this.worldX = data.worldX;
         this.worldY = data.worldY;
