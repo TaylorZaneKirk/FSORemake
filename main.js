@@ -107,7 +107,7 @@ var mainState = {
         statsPage.addChild(luckLabel);
 
         //Skills Page
-        skillsPage = game.add.existing(new ScrollableArea(game.world.width * 0.765, game.world.centerY * 0.4, 100, 300, { horizontalScroll: false, verticalScroll: true, horizontalWheel: false, verticalWheel: true, kineticMovement: false }));
+        skillsPage = game.add.existing(new ScrollableArea(game.world.width * 0.765, game.world.centerY * 0.4, 125, 300, { horizontalScroll: false, verticalScroll: true, horizontalWheel: false, verticalWheel: true, kineticMovement: false }));
         //skillsPage.inputEnableChildren = true;
         skillsPage.maskGraphics.input.useHandCursor = true;
         var textStyle = {font:"bold 14px Arial", fill:"white"};
