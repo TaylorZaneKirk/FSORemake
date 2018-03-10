@@ -150,7 +150,6 @@ var mainState = {
         skillsPage.alpha = 0;
 
         //ChatBox
-        //chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.76, 762, 88));
         chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.625, 762, 88));
         chatBox.maskGraphics.input.useHandCursor = true;
         var textStyle = {font:"bold 14px Arial", fill:"white"};

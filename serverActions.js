@@ -101,6 +101,7 @@ module.exports = {
 
     playerAttack: function(playersArray, id, payload, target){
         var attackingPlayer = playersArray[id];
+        attackingPlayer.state.playerAction = 'attack';
         
         if(target == 'player'){
             var targetCoords = payload;
@@ -110,7 +111,7 @@ module.exports = {
 
                 if(player.pos.x == targetCoords.x && player.pos.y == targetCoords.y){
                     var playerAttacked = playersArray[player.playerId];
-                    playerAttacked.state.takeDamage(5, id);
+                    playerAttacked.state.takeDamage(5, id); //Should pass a parameter containing the weapon being used?
                 }
             }
         }
