@@ -40,6 +40,7 @@ class PlayerState
         this.playerFacing = 'S';
         this.playerId = idString;
         this.username = data.username;
+        this.gender = data.gender;
         this.level = data.level;
         this.gold = data.gold;
         this.maxHealth = data.maxHealth;
@@ -258,7 +259,7 @@ eurecaServer.exports.login = function (username, password){
     });
 }
 
-eurecaServer.exports.createPlayer = function (username, password){
+eurecaServer.exports.createPlayer = function (username, password, params){
     var id = this.connection.id;
     var remote = players[id].remote;
     var regexUsername = new RegExp('^[a-zA-z][a-zA-Z0-9]{2,16}$'); //Only letters, numbers, or spaces, between 2 and 16 chars
@@ -281,8 +282,8 @@ eurecaServer.exports.createPlayer = function (username, password){
         }
 
         if(result.length == 0){
-            con.query("INSERT INTO users(username, password, worldX, worldY, localX, localY, level, gold, maxHealth, health, maxFocus, focus, stamina, strength, dexterity, endurance, agility, arcane, luck) VALUES ('" 
-                + username + "', '" + password + "', 0, 0, 1, 1, 1, 0, 100, 100, 25, 25, 100, 1, 1, 1, 1, 1, 1)", function (err, result, fields) {
+            con.query("INSERT INTO users(username, password, gender, worldX, worldY, localX, localY, level, gold, maxHealth, health, maxFocus, focus, stamina, strength, dexterity, endurance, agility, arcane, luck) VALUES ('" 
+                + username + "', '" + password + "', '" + params.gender + "', 0, 0, 1, 1, 1, 0, 100, 100, 25, 25, 100, 1, 1, 1, 1, 1, 1)", function (err, result, fields) {
 
                 if (err){ 
                     throw err;

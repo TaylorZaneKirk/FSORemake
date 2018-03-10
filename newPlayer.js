@@ -1,5 +1,6 @@
 var maleButton;
 var femaleButton;
+var chosenGender;
 
 var newPlayerState = {
     create: function(){
@@ -36,6 +37,8 @@ var newPlayerState = {
 
         maleButton.events.onInputDown.add(function(){ changeGender(false) });
         femaleButton.events.onInputDown.add(function(){ changeGender(true) });
+
+        chosenGender = 'm';
     }
 }
 
@@ -43,10 +46,12 @@ function changeGender(isFemale){
     if(isFemale){
         maleButton.loadTexture('inactiveRadioButton', 0);
         femaleButton.loadTexture('activeRadioButton', 0);
+        chosenGender = 'f';
     }
     else{
         maleButton.loadTexture('activeRadioButton', 0);
         femaleButton.loadTexture('inactiveRadioButton', 0);
+        chosenGender = 'm';
     }
 }
 
@@ -76,7 +81,7 @@ function queryCreate() {
         console.log(serverProxy);
         game.global.eurecaProxy = serverProxy;
         //game.state.start('main');
-        serverProxy.createPlayer(inputUsername.value, inputPassword.value);
+        serverProxy.createPlayer(inputUsername.value, inputPassword.value, {gender: chosenGender});
     });
 
     client.exports.setId = function(id){
