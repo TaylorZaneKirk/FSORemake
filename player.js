@@ -26,7 +26,13 @@ var PlayerObject = function(idRef, gameRef){
         rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
         altKey = game.input.keyboard.addKey(Phaser.Keyboard.ALT);
 
-        playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player');
+        if(playerState.gender == 'm'){
+            playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player');
+        }
+        else{
+            playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player2');
+        }
+        
         playerSprite.inputEnabled = true;
         playerName = game.add.text(15, -10, playerState.username, { font: "14px Ariel", fill: '#ffffff'});
         playerName.alpha = 0;

@@ -29,6 +29,7 @@ var loadState = {
         game.load.image('spellsButtonInactive', 'assets/gui/gui_SpellsButton_Inactive.png');
         game.load.image('spellsButtonActive', 'assets/gui/gui_SpellsButton_Active.png');
         game.load.spritesheet('player', 'assets/PlayerSheet.png', 46, 45, 16);
+        game.load.spritesheet('player2', 'assets/PlayerSheet2.png', 46, 45, 16);
         game.load.spritesheet('goldSprites', 'assets/GoldSheet.png', 32, 32, 10);
     },
 
