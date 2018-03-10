@@ -107,8 +107,9 @@ var mainState = {
         statsPage.addChild(luckLabel);
 
         //Skills Page
-        skillsPage = game.add.existing(new ScrollableArea(game.world.width * 0.765, game.world.centerY * 0.4, 5, 300, { horizontalScroll: false, verticalScroll: true, horizontalWheel: false, verticalWheel: true, kineticMovement: false }));
-        skillsPage.inputEnableChildren = true;
+        skillsPage = game.add.existing(new ScrollableArea(game.world.width * 0.765, game.world.centerY * 0.4, 100, 300, { horizontalScroll: false, verticalScroll: true, horizontalWheel: false, verticalWheel: true, kineticMovement: false }));
+        //skillsPage.inputEnableChildren = true;
+        skillsPage.maskGraphics.input.useHandCursor = true;
         var textStyle = {font:"bold 14px Arial", fill:"white"};
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Swordsmanship", textStyle));
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Mysticism", textStyle));
@@ -140,10 +141,10 @@ var mainState = {
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Blacksmithing", textStyle));
         for(var i = 0; i < 28; i++){ //28 skills, loop 28 times
             skillsPage.addChild(game.make.text(150, (skillsPage.length - 28) * 22, "1", textStyle));
-            skillsPage.getAt(i).inputEnabled = true;
+            /* skillsPage.getAt(i).inputEnabled = true;
             skillsPage.getAt(i).input.useHandCursor = true;
             skillsPage.getAt(i+28).inputEnabled = true;
-            skillsPage.getAt(i+28).input.useHandCursor = true;
+            skillsPage.getAt(i+28).input.useHandCursor = true; */
         }
         
         skillsPage.start();
