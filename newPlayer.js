@@ -59,7 +59,7 @@ function changeGender(isFemale){
         femaleButton.loadTexture('inactiveRadioButton', 0);
         chosenGender = 'm';
         playerModel.loadTexture('player', 0);
-        playerModel.setFrame(13);
+        playerModel.frame = 13;
     }
 }
 
