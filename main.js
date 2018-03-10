@@ -545,9 +545,9 @@ managePageButtons = function(index){
             thisButton.alpha = 1;
         }
     }
-
+    
     statsPage.alpha = 0;
     skillsPage.alpha = 0;
-    if(index == 0){ statsPage.alpha = 1; }
-    else if(index == 2){ skillsPage.alpha = 1; }
+    if(index == 0){ statsPage.alpha = 1; skillsPage.maskGraphics.input.useHandCursor = false;}
+    else if(index == 2){ skillsPage.alpha = 1; skillsPage.maskGraphics.input.useHandCursor = true;}
 }
