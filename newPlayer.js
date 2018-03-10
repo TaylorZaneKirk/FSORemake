@@ -1,3 +1,6 @@
+var maleButton;
+var femaleButton;
+
 var newPlayerState = {
     create: function(){
         var createScreen = game.add.sprite(game.world.centerX, game.world.centerY, 'createScreen');
@@ -24,14 +27,28 @@ var newPlayerState = {
 
         cancelButton.events.onInputDown.add(() => game.state.start('menu'), this);
         confirmButton.events.onInputDown.add(queryCreate, this);
-        var maleButton = game.add.sprite(game.world.centerX * 1.0275, game.world.centerY * 0.815, 'activeRadioButton');
-        var femaleButton = game.add.sprite(game.world.centerX * 1.0275, game.world.centerY * 0.875, 'inactiveRadioButton');
+
+        maleButton = game.add.sprite(game.world.centerX * 1.0275, game.world.centerY * 0.815, 'activeRadioButton');
+        femaleButton = game.add.sprite(game.world.centerX * 1.0275, game.world.centerY * 0.8725, 'inactiveRadioButton');
+
+        maleButton.inputEnabled = true;
+        femaleButton.inputEnabled = true;
+
+        maleButton.events.onInputDown.add(function(){ changeGender(false) });
+        femaleButton.events.onInputDown.add(function(){ changeGender(true) });
     }
 }
 
-/* function listenerCancel() {
-    game.state.start('menu');
-} */
+function changeGender(isFemale){
+    if(isFemale){
+        maleButton.loadTexture('inactiveRadioButton', 0);
+        femaleButton.loadTexture('activeRadioButton', 0);
+    }
+    else{
+        maleButton.loadTexture('activeRadioButton', 0);
+        femaleButton.loadTexture('inactiveRadioButton', 0);
+    }
+}
 
 function queryCreate() {
     if(inputUsername.value == undefined || inputPassword.value == undefined){
