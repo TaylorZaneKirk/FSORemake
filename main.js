@@ -140,6 +140,7 @@ var mainState = {
         for(var i = 0; i < 28; i++){ //28 skills, loop 28 times
             skillsPage.addChild(game.make.text(150, (skillsPage.length - 28) * 22, "1", textStyle));
         }
+        skillsPage.inputEnabledChildren = true;
         skillsPage.start();
         skillsPage.alpha = 0;
 
