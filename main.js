@@ -108,6 +108,7 @@ var mainState = {
 
         //Skills Page
         skillsPage = game.add.existing(new ScrollableArea(game.world.width * 0.765, game.world.centerY * 0.4, 75, 300, { horizontalScroll: false, verticalScroll: true, horizontalWheel: false, verticalWheel: true, kineticMovement: false }));
+        skillsPage.inputEnableChildren = true;
         var textStyle = {font:"bold 14px Arial", fill:"white", cursor:"grab"};
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Swordsmanship", textStyle));
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Mysticism", textStyle));
@@ -140,7 +141,7 @@ var mainState = {
         for(var i = 0; i < 28; i++){ //28 skills, loop 28 times
             skillsPage.addChild(game.make.text(150, (skillsPage.length - 28) * 22, "1", textStyle));
         }
-        skillsPage.inputEnabledChildren = true;
+        
         skillsPage.start();
         skillsPage.alpha = 0;
 
