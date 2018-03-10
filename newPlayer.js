@@ -41,7 +41,7 @@ var newPlayerState = {
 
         chosenGender = 'm';
 
-        playerModel = game.add.sprite(game.world.centerX * 1.05, game.world.centerY, 'player');
+        playerModel = game.add.sprite(game.world.centerX * 1.075, game.world.centerY, 'player');
         playerModel.frame = 13;
     }
 }
