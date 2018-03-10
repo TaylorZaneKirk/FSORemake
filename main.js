@@ -140,8 +140,10 @@ var mainState = {
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Blacksmithing", textStyle));
         for(var i = 0; i < 28; i++){ //28 skills, loop 28 times
             skillsPage.addChild(game.make.text(150, (skillsPage.length - 28) * 22, "1", textStyle));
-            /* skillsPage.getAt(i).inputEnabled = true;
-            skillsPage.getAt(i+28).inputEnabled = true; */
+            skillsPage.getAt(i).inputEnabled = true;
+            skillsPage.getAt(i).useHandCursor = true;
+            skillsPage.getAt(i+28).inputEnabled = true;
+            skillsPage.getAt(i+28).useHandCursor = true;
         }
         
         skillsPage.start();
