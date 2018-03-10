@@ -42,7 +42,7 @@ var newPlayerState = {
         chosenGender = 'm';
 
         playerModel = game.add.sprite(game.world.centerX * 1.25, game.world.centerY, 'player');
-        playerModel.setFrame(4);
+        playerModel.frame = 4;
     }
 }
 
@@ -59,7 +59,7 @@ function changeGender(isFemale){
         femaleButton.loadTexture('inactiveRadioButton', 0);
         chosenGender = 'm';
         playerModel.loadTexture('player', 0);
-        playerModel.frame = 13;
+        playerModel.setFrame(13);
     }
 }
 
