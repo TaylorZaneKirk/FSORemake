@@ -110,7 +110,7 @@ var mainState = {
         skillsPage = game.add.existing(new ScrollableArea(game.world.width * 0.765, game.world.centerY * 0.4, 75, 300, { horizontalScroll: false, verticalScroll: true, horizontalWheel: false, verticalWheel: true, kineticMovement: false }));
         skillsPage.inputEnableChildren = true;
         var textStyle = {font:"bold 14px Arial", fill:"white", cursor:"grab"};
-        skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Swordsmanship", textStyle));
+        skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Swordsmanship", textStyle).inputEnabled = true);
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Mysticism", textStyle));
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Archery", textStyle));
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Knifeplay", textStyle));
