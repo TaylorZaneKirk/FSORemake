@@ -41,8 +41,8 @@ var newPlayerState = {
 
         chosenGender = 'm';
 
-        playerModel = game.add.sprite(game.world.centerX * 1.25, game.world.centerY, 'player');
-        playerModel.frame = 4;
+        playerModel = game.add.sprite(game.world.centerX * 1.15, game.world.centerY, 'player');
+        playerModel.frame = 13;
     }
 }
 
@@ -52,14 +52,14 @@ function changeGender(isFemale){
         femaleButton.loadTexture('activeRadioButton', 0);
         chosenGender = 'f';
         playerModel.loadTexture('player2', 0);
-        playerModel.setFrame(13);
+        playerModel.frame = 13;
     }
     else{
         maleButton.loadTexture('activeRadioButton', 0);
         femaleButton.loadTexture('inactiveRadioButton', 0);
         chosenGender = 'm';
         playerModel.loadTexture('player', 0);
-        playerModel.setFrame(13);
+        playerModel.frame = 13;
     }
 }
 
