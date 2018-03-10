@@ -233,6 +233,8 @@ var mainState = {
         
         statusBars.sp.staminaBarObject = game.add.graphics( statusBars.sp.spBar.pos.x, statusBars.sp.spBar.pos.y );
 
+        console.log(skillsPage);
+
     },
 
     update: function(){
