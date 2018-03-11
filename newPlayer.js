@@ -39,7 +39,7 @@ var newPlayerState = {
         maleButton.events.onInputDown.add(function(){ changeGender(false); });
         femaleButton.events.onInputDown.add(function(){ changeGender(true); });
 
-        var strengthMinusButton = game.add.sprite(game.world.centerX * 0.435, game.world.centerY * 0.799, 'minusButton');
+        var strengthMinusButton = game.add.sprite(game.world.centerX * 0.2, game.world.centerY * 0.81, 'minusButton');
 
         chosenGender = 'm';
 
