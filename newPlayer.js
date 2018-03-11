@@ -11,31 +11,37 @@ var skillBars = {
         strengthBar: null,
         strengthBarObject: null,
         strengthBarText: null,
+        strengthBarTextBonus: null,
     },
     dexterity:{
         dexterityBar: null,
         dexterityBarObject: null,
         dexterityBarText: null,
+        dexterityBarTextBonus: null,
     },
     endurance:{
         enduranceBar: null,
         enduranceBarObject: null,
         enduranceBarText: null,
+        enduranceBarTextBonus: null,
     },
     agility:{
         agilityBar: null,
         agilityBarObject: null,
         agilityBarText: null,
+        agilityBarTextBonus: null,
     },
     arcane:{
         arcaneBar: null,
         arcaneBarObject: null,
         arcaneBarText: null,
+        arcaneBarTextBonus: null,
     },
     luck:{
         luckBar: null,
         luckBarObject: null,
         luckBarText: null,
+        luckBarTextBonus: null,
     }
 };
 
@@ -153,8 +159,10 @@ var newPlayerState = {
         skillBars.strength.strengthBar.size._1p = skillBars.strength.strengthBar.size.w * 0.01; ///// 1% of width ///
         skillBars.strength.strengthBarObject = game.add.graphics( skillBars.strength.strengthBar.pos.x, skillBars.strength.strengthBar.pos.y );
         skillBars.strength.strengthBarText = game.make.text( 0 , 0, "", { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
+        skillBars.strength.strengthBarTextBonus = game.make.text( 7 , 0, " + 0", { font: "bold 10px Arial", fill: "#00ff00",  boundsAlignH: "center", boundsAlignV: "middle" } );
         skillBars.strength.strengthBarText.setTextBounds(0, 2, skillBars.strength.strengthBar.size.w, skillBars.strength.strengthBar.size.h);
         skillBars.strength.strengthBarObject.addChild(skillBars.strength.strengthBarText);
+        skillBars.strength.strengthBarObject.addChild(skillBars.strength.strengthBarTextBonus);
         updateStrengthBar(1);
 
         skillBars.dexterity.dexterityBar = {
@@ -174,8 +182,10 @@ var newPlayerState = {
         skillBars.dexterity.dexterityBar.size._1p = skillBars.dexterity.dexterityBar.size.w * 0.01; ///// 1% of width ///
         skillBars.dexterity.dexterityBarObject = game.add.graphics( skillBars.dexterity.dexterityBar.pos.x, skillBars.dexterity.dexterityBar.pos.y );
         skillBars.dexterity.dexterityBarText = game.make.text( 0 , 0, "", { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
+        skillBars.dexterity.dexterityBarTextBonus = game.make.text( 7 , 0, " + 0", { font: "bold 10px Arial", fill: "#00ff00",  boundsAlignH: "center", boundsAlignV: "middle" } );
         skillBars.dexterity.dexterityBarText.setTextBounds(0, 2, skillBars.dexterity.dexterityBar.size.w, skillBars.dexterity.dexterityBar.size.h);
         skillBars.dexterity.dexterityBarObject.addChild(skillBars.dexterity.dexterityBarText);
+        skillBars.dexterity.dexterityBarObject.addChild(skillBars.dexterity.dexterityBarTextBonus);
         updateDexterityBar(1);
 
         skillBars.endurance.enduranceBar = {
@@ -195,8 +205,10 @@ var newPlayerState = {
         skillBars.endurance.enduranceBar.size._1p = skillBars.endurance.enduranceBar.size.w * 0.01; ///// 1% of width ///
         skillBars.endurance.enduranceBarObject = game.add.graphics( skillBars.endurance.enduranceBar.pos.x, skillBars.endurance.enduranceBar.pos.y );
         skillBars.endurance.enduranceBarText = game.make.text( 0 , 0, "", { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
+        skillBars.endurance.enduranceBarTextBonus = game.make.text( 7 , 0, " + 0", { font: "bold 10px Arial", fill: "#00ff00",  boundsAlignH: "center", boundsAlignV: "middle" } );
         skillBars.endurance.enduranceBarText.setTextBounds(0, 2, skillBars.endurance.enduranceBar.size.w, skillBars.endurance.enduranceBar.size.h);
         skillBars.endurance.enduranceBarObject.addChild(skillBars.endurance.enduranceBarText);
+        skillBars.endurance.enduranceBarObject.addChild(skillBars.endurance.enduranceBarTextBonus);
         updateEnduranceBar(1);
 
         skillBars.agility.agilityBar = {
@@ -216,8 +228,10 @@ var newPlayerState = {
         skillBars.agility.agilityBar.size._1p = skillBars.agility.agilityBar.size.w * 0.01; ///// 1% of width ///
         skillBars.agility.agilityBarObject = game.add.graphics( skillBars.agility.agilityBar.pos.x, skillBars.agility.agilityBar.pos.y );
         skillBars.agility.agilityBarText = game.make.text( 0 , 0, "", { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
+        skillBars.agility.agilityBarTextBonus = game.make.text( 7 , 0, " + 0", { font: "bold 10px Arial", fill: "#00ff00",  boundsAlignH: "center", boundsAlignV: "middle" } );
         skillBars.agility.agilityBarText.setTextBounds(0, 2, skillBars.agility.agilityBar.size.w, skillBars.agility.agilityBar.size.h);
         skillBars.agility.agilityBarObject.addChild(skillBars.agility.agilityBarText);
+        skillBars.agility.agilityBarObject.addChild(skillBars.agility.agilityBarTextBonus);
         updateAgilityBar(1);
 
         skillBars.arcane.arcaneBar = {
@@ -237,8 +251,10 @@ var newPlayerState = {
         skillBars.arcane.arcaneBar.size._1p = skillBars.arcane.arcaneBar.size.w * 0.01; ///// 1% of width ///
         skillBars.arcane.arcaneBarObject = game.add.graphics( skillBars.arcane.arcaneBar.pos.x, skillBars.arcane.arcaneBar.pos.y );
         skillBars.arcane.arcaneBarText = game.make.text( 0 , 0, "", { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
+        skillBars.arcane.arcaneBarTextBonus = game.make.text( 7 , 0, " + 0", { font: "bold 10px Arial", fill: "#00ff00",  boundsAlignH: "center", boundsAlignV: "middle" } );
         skillBars.arcane.arcaneBarText.setTextBounds(0, 2, skillBars.arcane.arcaneBar.size.w, skillBars.arcane.arcaneBar.size.h);
         skillBars.arcane.arcaneBarObject.addChild(skillBars.arcane.arcaneBarText);
+        skillBars.arcane.arcaneBarObject.addChild(skillBars.arcane.arcaneBarTextBonus);
         updateArcaneBar(1);
 
         skillBars.luck.luckBar = {
@@ -258,8 +274,10 @@ var newPlayerState = {
         skillBars.luck.luckBar.size._1p = skillBars.luck.luckBar.size.w * 0.01; ///// 1% of width ///
         skillBars.luck.luckBarObject = game.add.graphics( skillBars.luck.luckBar.pos.x, skillBars.luck.luckBar.pos.y );
         skillBars.luck.luckBarText = game.make.text( 0 , 0, "", { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
+        skillBars.luck.luckBarTextBonus = game.make.text( 7 , 0, " + 0", { font: "bold 10px Arial", fill: "#00ff00",  boundsAlignH: "center", boundsAlignV: "middle" } );
         skillBars.luck.luckBarText.setTextBounds(0, 2, skillBars.luck.luckBar.size.w, skillBars.luck.luckBar.size.h);
         skillBars.luck.luckBarObject.addChild(skillBars.luck.luckBarText);
+        skillBars.luck.luckBarObject.addChild(skillBars.luck.luckBarTextBonus);
         updateLuckBar(1);
 
         chosenGender = 'm';
