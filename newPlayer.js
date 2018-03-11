@@ -80,7 +80,7 @@ var newPlayerState = {
         maleButton.events.onInputDown.add(function(){ changeGender(false); });
         femaleButton.events.onInputDown.add(function(){ changeGender(true); });
 
-        availablePointsText = game.make.text( game.world.centerX * 0.32 , game.world.centerY * 1.169, "Available Points Remaining:" + availablePoints, { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
+        availablePointsText = game.make.text( game.world.centerX * 0.32 , game.world.centerY * 1.5, "Available Points Remaining:" + availablePoints, { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
 
         var strengthMinusButton = game.add.sprite(game.world.centerX * 0.275, game.world.centerY * 0.8125, 'minusButton');
         var dexterityMinusButton = game.add.sprite(game.world.centerX * 0.275, game.world.centerY * 0.8875, 'minusButton');
