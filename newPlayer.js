@@ -84,7 +84,7 @@ var newPlayerState = {
                 y: game.world.centerY * 0.8125
             },
             size: {
-                w: 137,
+                w: 138,
                 h: 13,
                 _1p: 0 /// will be calculated later
             },
