@@ -84,14 +84,14 @@ var newPlayerState = {
         var arcanePlusButton = game.add.sprite(game.world.centerX * 0.68, game.world.centerY * 1.1, 'plusButton');
         var luckPlusButton = game.add.sprite(game.world.centerX * 0.68, game.world.centerY * 1.175, 'plusButton');
         strengthMinusButton.inputEnabled = true;
-        strengthMinusButton.events.onInputDown.add(function(){ updateStrengthBar(skillBars.strength.strengthBarText.value - 1); });
+        strengthMinusButton.events.onInputDown.add(function(){ updateStrengthBar(parseInt(skillBars.strength.strengthBarText.value) - 1); });
         dexterityMinusButton.inputEnabled = true;
         enduranceMinusButton.inputEnabled = true;
         agilityMinusButton.inputEnabled = true;
         arcaneMinusButton.inputEnabled = true;
         luckMinusButton.inputEnabled = true;
         strengthPlusButton.inputEnabled = true;
-        strengthPlusButton.events.onInputDown.add(function(){ updateStrengthBar(skillBars.strength.strengthBarText.value + 1); });
+        strengthPlusButton.events.onInputDown.add(function(){ updateStrengthBar(parseInt(skillBars.strength.strengthBarText.value) + 1); });
         dexterityPlusButton.inputEnabled = true;
         endurancePlusButton.inputEnabled = true;
         agilityPlusButton.inputEnabled = true;
