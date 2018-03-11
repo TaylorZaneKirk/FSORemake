@@ -80,11 +80,11 @@ var newPlayerState = {
 
         skillBars.strength.strengthBar = {
             pos: {
-                x: game.world.centerX * 0.3,
+                x: game.world.centerX * 0.32,
                 y: game.world.centerY * 0.8125
             },
             size: {
-                w: 150,
+                w: 140,
                 h: 13,
                 _1p: 0 /// will be calculated later
             },
