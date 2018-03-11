@@ -229,6 +229,8 @@ var newPlayerState = {
 
         playerModel = game.add.sprite(game.world.centerX * 1.07, game.world.centerY, 'player');
         playerModel.frame = 13;
+
+        console.log(skillBars.strength.strengthBarText.value);
     }
 }
 
