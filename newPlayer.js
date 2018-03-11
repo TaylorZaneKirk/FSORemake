@@ -80,8 +80,6 @@ var newPlayerState = {
         maleButton.events.onInputDown.add(function(){ changeGender(false); });
         femaleButton.events.onInputDown.add(function(){ changeGender(true); });
 
-        availablePointsText = game.make.text( game.world.centerX, game.world.centerY, "Available Points Remaining: " + availablePoints, { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
-
         var strengthMinusButton = game.add.sprite(game.world.centerX * 0.275, game.world.centerY * 0.8125, 'minusButton');
         var dexterityMinusButton = game.add.sprite(game.world.centerX * 0.275, game.world.centerY * 0.8875, 'minusButton');
         var enduranceMinusButton = game.add.sprite(game.world.centerX * 0.275, game.world.centerY * 0.955, 'minusButton');
@@ -249,6 +247,8 @@ var newPlayerState = {
 
         playerModel = game.add.sprite(game.world.centerX * 1.07, game.world.centerY, 'player');
         playerModel.frame = 13;
+
+        availablePointsText = game.make.text( game.world.centerX, game.world.centerY, "Available Points Remaining: " + availablePoints, { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
 
         console.log(availablePointsText);
     }
