@@ -80,6 +80,8 @@ var newPlayerState = {
         maleButton.events.onInputDown.add(function(){ changeGender(false); });
         femaleButton.events.onInputDown.add(function(){ changeGender(true); });
 
+        availablePointsText = game.make.text( game.world.centerX * 0.32 , game.world.centerY * 1.169, "Available Points Remaining:" + availablePoints, { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
+
         var strengthMinusButton = game.add.sprite(game.world.centerX * 0.275, game.world.centerY * 0.8125, 'minusButton');
         var dexterityMinusButton = game.add.sprite(game.world.centerX * 0.275, game.world.centerY * 0.8875, 'minusButton');
         var enduranceMinusButton = game.add.sprite(game.world.centerX * 0.275, game.world.centerY * 0.955, 'minusButton');
@@ -116,7 +118,6 @@ var newPlayerState = {
         arcanePlusButton.events.onInputDown.add(function(){ if(availablePoints > 0 && chosenArcane < 50) { updateArcaneBar(chosenArcane++); availablePoints--; } });
         luckPlusButton.inputEnabled = true;
         luckPlusButton.events.onInputDown.add(function(){ if(availablePoints > 0 && chosenLuck < 50) { updateLuckBar(chosenLuck++); availablePoints--; } });
-
 
         skillBars.strength.strengthBar = {
             pos: {
@@ -244,14 +245,12 @@ var newPlayerState = {
         skillBars.luck.luckBarObject.addChild(skillBars.luck.luckBarText);
         updateLuckBar(1);
 
-        availablePointsText = game.make.text( game.world.centerX * 0.32 , game.world.centerY * 1.169, "Available Points Remaining:" + availablePoints, { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
-
         chosenGender = 'm';
 
         playerModel = game.add.sprite(game.world.centerX * 1.07, game.world.centerY, 'player');
         playerModel.frame = 13;
 
-        console.log(skillBars.strength.strengthBarText);
+        console.log(availablePointsText);
     }
 }
 
