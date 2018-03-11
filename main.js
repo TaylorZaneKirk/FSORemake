@@ -657,7 +657,7 @@ updateStatsPage = function(values){
 
 updateSkillsPage = function(levels, currents, nexts){
     for(var i = 0; i < 28; i++){
-        skillsPage.getAt(i + 28).setText(values[i] + " (" + currents[i] + " / " + nexts[i] + ")");
+        skillsPage.getAt(i + 28).setText(levels[i] + " (" + currents[i] + " / " + nexts[i] + ")");
     }
 }
 
