@@ -149,8 +149,8 @@ var mainState = {
             skillsPage.getAt(i+28).inputEnabled = true;
         }
 
-        skillsPage.onChildInputOver.add(function(sprite){ sprite.getChildAt(0).alpha = 1; });
-        skillsPage.onChildInputOut.add(function(sprite){ sprite.getChildAt(0).alpha = 0; });
+        skillsPage.onChildInputOver.add(function(sprite){ console.log(sprite); });
+        //skillsPage.onChildInputOut.add(function(sprite){ sprite.getChildAt(0).alpha = 0; });
         
         skillsPage.start();
         skillsPage.alpha = 0;
