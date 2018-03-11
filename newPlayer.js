@@ -162,7 +162,7 @@ var newPlayerState = {
         skillBars.strength.strengthBarTextBonus = game.make.text( 7 , 0, " + 0", { font: "bold 10px Arial", fill: "#00ff00",  boundsAlignH: "center", boundsAlignV: "middle" } );
         skillBars.strength.strengthBarText.setTextBounds(0, 2, skillBars.strength.strengthBar.size.w, skillBars.strength.strengthBar.size.h);
         skillBars.strength.strengthBarObject.addChild(skillBars.strength.strengthBarText);
-        skillBars.strength.strengthBarObject.addChild(skillBars.strength.strengthBarTextBonus);
+        skillBars.strength.strengthBarText.addChild(skillBars.strength.strengthBarTextBonus);
         updateStrengthBar(1);
 
         skillBars.dexterity.dexterityBar = {
