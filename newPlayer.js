@@ -78,9 +78,9 @@ var newPlayerState = {
         var arcanePlusButton = game.add.sprite(game.world.centerX * 0.68, game.world.centerY * 1.1, 'plusButton');
         var luckPlusButton = game.add.sprite(game.world.centerX * 0.68, game.world.centerY * 1.175, 'plusButton');
 
-        skillBars.strength.strengthBar = {
+        skillBars.strength.strengthBar = { //cant see you?
             pos: {
-                x: game.world.centerX * 0.275,
+                x: game.world.centerX * 0.28,
                 y: game.world.centerY * 0.8125
             },
             size: {
@@ -94,6 +94,7 @@ var newPlayerState = {
         };
         skillBars.strength.strengthBar.size._1p = skillBars.strength.strengthBar.size.w * 0.01; ///// 1% of width ///
         skillBars.strength.strengthBarObject = game.add.graphics( skillBars.strength.strengthBar.pos.x, skillBars.strength.strengthBar.pos.y );
+        updatestrengthBar(100);
 
         chosenGender = 'm';
 
@@ -117,6 +118,14 @@ function changeGender(isFemale){
         playerModel.loadTexture('player', 0);
         playerModel.frame = 13;
     }
+}
+
+updatestrengthBar = function( strengthPercentage ){ //// strength percentage 
+	statusBars.strength.strengthBarObject.clear();
+	statusBars.strength.strengthBarObject.lineStyle( 2, statusBars.strength.strengthBar.border_c, statusBars.strength.strengthBar.alpha );
+	statusBars.strength.strengthBarObject.beginFill( statusBars.strength.strengthBar.fill_c, statusBars.strength.strengthBar.alpha );
+	statusBars.strength.strengthBarObject.drawRect( 0, 0, strengthPercentage * statusBars.strength.strengthBar.size._1p , statusBars.strength.strengthBar.size.h );
+	statusBars.strength.strengthBarObject.endFill();
 }
 
 function queryCreate() {
