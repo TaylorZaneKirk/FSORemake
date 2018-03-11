@@ -78,14 +78,14 @@ var newPlayerState = {
         var arcanePlusButton = game.add.sprite(game.world.centerX * 0.68, game.world.centerY * 1.1, 'plusButton');
         var luckPlusButton = game.add.sprite(game.world.centerX * 0.68, game.world.centerY * 1.175, 'plusButton');
 
-        skillBars.strength.strengthBar = { //cant see you?
+        skillBars.strength.strengthBar = {
             pos: {
-                x: game.world.centerX * 0.28,
+                x: game.world.centerX * 0.3,
                 y: game.world.centerY * 0.8125
             },
             size: {
-                w: 193,
-                h: 8,
+                w: 150,
+                h: 13,
                 _1p: 0 /// will be calculated later
             },
             fill_c: 0xff0000,
