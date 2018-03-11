@@ -41,6 +41,7 @@ class PlayerState
         this.playerId = idString;
         this.username = data.username;
         this.gender = data.gender;
+        this.class = data.class;
         this.level = data.level;
         this.gold = data.gold;
         this.maxHealth = data.maxHealth;
