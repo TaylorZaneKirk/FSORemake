@@ -1,5 +1,9 @@
 var maleButton;
 var femaleButton;
+var warriorButton;
+var archerButton;
+var mageButton;
+var chosenClass;
 var chosenGender;
 var playerModel;
 var skillBars = {
@@ -74,17 +78,24 @@ var newPlayerState = {
         maleButton = game.add.sprite(game.world.centerX * 1.0275, game.world.centerY * 0.815, 'activeRadioButton');
         femaleButton = game.add.sprite(game.world.centerX * 1.0275, game.world.centerY * 0.8725, 'inactiveRadioButton');
         warriorButton = game.add.sprite(game.world.centerX * 1.285, game.world.centerY * 1.06, 'activeRadioButton');
-        archerButton = game.add.sprite(game.world.centerX * 1.285, game.world.centerY * 1.1075, 'activeRadioButton');
-        mageButton = game.add.sprite(game.world.centerX * 1.285, game.world.centerY * 1.156, 'activeRadioButton');
+        archerButton = game.add.sprite(game.world.centerX * 1.285, game.world.centerY * 1.1075, 'inactiveRadioButton');
+        mageButton = game.add.sprite(game.world.centerX * 1.285, game.world.centerY * 1.156, 'inactiveRadioButton');
 
         warriorButton.addChild(game.make.text( 15 , -2, "Warrior", { font: "bold 12px Arial", fill: "#000",  boundsAlignH: "center", boundsAlignV: "middle" } ));
         archerButton.addChild(game.make.text( 15 , -2, "Archer", { font: "bold 12px Arial", fill: "#000",  boundsAlignH: "center", boundsAlignV: "middle" } ));
+        mageButton.addChild(game.make.text( 15 , -2, "Archer", { font: "bold 12px Arial", fill: "#000",  boundsAlignH: "center", boundsAlignV: "middle" } ));
 
         maleButton.inputEnabled = true;
         femaleButton.inputEnabled = true;
+        warriorButton.inputEnabled = true;
+        archerButton.inputEnabled = true;
+        mageButton.inputEnabled = true;
 
         maleButton.events.onInputDown.add(function(){ changeGender(false); });
         femaleButton.events.onInputDown.add(function(){ changeGender(true); });
+        warriorButton.events.onInputDown.add(function(){ changeClass(0); });
+        archerButton.events.onInputDown.add(function(){ changeClass(1); });
+        mageButton.events.onInputDown.add(function(){ changeClass(2); });
 
         var strengthMinusButton = game.add.sprite(game.world.centerX * 0.275, game.world.centerY * 0.8125, 'minusButton');
         var dexterityMinusButton = game.add.sprite(game.world.centerX * 0.275, game.world.centerY * 0.8875, 'minusButton');
@@ -276,6 +287,27 @@ function changeGender(isFemale){
     }
 }
 
+function changeClass(index){
+    if(index == 0){
+        warriorButton.loadTexture('activeRadioButton', 0);
+        archerButton.loadTexture('inactiveRadioButton', 0);
+        mageButton.loadTexture('inactiveRadioButton', 0);
+        chosenClass = 'warrior';
+    }
+    else if(index == 1){
+        warriorButton.loadTexture('inactiveRadioButton', 0);
+        archerButton.loadTexture('activeRadioButton', 0);
+        mageButton.loadTexture('inactiveRadioButton', 0);
+        chosenClass = 'archer';
+    }
+    else{
+        warriorButton.loadTexture('inactiveRadioButton', 0);
+        archerButton.loadTexture('inactiveRadioButton', 0);
+        mageButton.loadTexture('activeRadioButton', 0);
+        chosenClass = 'mage';
+    }
+}
+
 updateStrengthBar = function( strengthPercentage ){ //// strength percentage
 	skillBars.strength.strengthBarObject.clear();
     skillBars.strength.strengthBarObject.lineStyle( 2, skillBars.strength.strengthBar.border_c, skillBars.strength.strengthBar.alpha );
@@ -362,7 +394,7 @@ function queryCreate() {
         console.log(serverProxy);
         game.global.eurecaProxy = serverProxy;
         //game.state.start('main');
-        serverProxy.createPlayer(inputUsername.value, inputPassword.value, {gender: chosenGender, strength: chosenStrength, dexterity: chosenDexterity, endurance: chosenEndurance, agility: chosenAgility, arcane: chosenArcane, luck: chosenLuck});
+        serverProxy.createPlayer(inputUsername.value, inputPassword.value, {gender: chosenGender, class: chosenClass, strength: chosenStrength, dexterity: chosenDexterity, endurance: chosenEndurance, agility: chosenAgility, arcane: chosenArcane, luck: chosenLuck});
     });
 
     client.exports.setId = function(id){
