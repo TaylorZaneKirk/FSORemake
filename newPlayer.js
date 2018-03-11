@@ -44,7 +44,7 @@ var newPlayerState = {
         var enduranceMinusButton = game.add.sprite(game.world.centerX * 0.275, game.world.centerY * 0.955, 'minusButton');
         var agilityMinusButton = game.add.sprite(game.world.centerX * 0.275, game.world.centerY * 1.025, 'minusButton');
         var arcaneMinusButton = game.add.sprite(game.world.centerX * 0.275, game.world.centerY * 1.05, 'minusButton');
-        var luckMinusButton = game.add.sprite(game.world.centerX * 0.275, game.world.centerY * 1.12, 'minusButton');
+        var luckMinusButton = game.add.sprite(game.world.centerX * 0.275, game.world.centerY * 1.125, 'minusButton');
 
         chosenGender = 'm';
 
