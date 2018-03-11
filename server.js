@@ -287,11 +287,11 @@ eurecaServer.exports.createPlayer = function (username, password, params){
         }
 
         if(result.length == 0){
-            
+
             if(params.class == 'warrior'){
                 params.strength += 5;
             }
-            else if(params.class = 'archer'){
+            else if(params.class == 'archer'){
                 params.dexterity += 5;
             }
             else{
