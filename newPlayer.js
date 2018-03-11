@@ -35,6 +35,15 @@ var skillBars = {
     }
 };
 
+var chosenStrength = 1;
+var chosenDexterity = 1;
+var chosenEndurance = 1;
+var chosenAgility = 1;
+var chosenArcane = 1;
+var chosenLuck = 1;
+var availablePoints = 50;
+var availablePointsText;
+
 var newPlayerState = {
     create: function(){
         var createScreen = game.add.sprite(game.world.centerX, game.world.centerY, 'createScreen');
@@ -84,29 +93,29 @@ var newPlayerState = {
         var arcanePlusButton = game.add.sprite(game.world.centerX * 0.68, game.world.centerY * 1.1, 'plusButton');
         var luckPlusButton = game.add.sprite(game.world.centerX * 0.68, game.world.centerY * 1.175, 'plusButton');
         strengthMinusButton.inputEnabled = true;
-        strengthMinusButton.events.onInputDown.add(function(){ updateStrengthBar(parseInt(skillBars.strength.strengthBarText._text) - 1); });
+        strengthMinusButton.events.onInputDown.add(function(){ if(availablePoints < 50 && chosenStrength > 0) { updateStrengthBar(chosenStrength--); availablePoints++; } });
         dexterityMinusButton.inputEnabled = true;
-        dexterityMinusButton.events.onInputDown.add(function(){ updateDexterityBar(parseInt(skillBars.dexterity.dexterityBarText._text) - 1); });
+        dexterityMinusButton.events.onInputDown.add(function(){ if(availablePoints < 50 && chosenDexterity > 0) { updateDexterityBar(chosenDexterity--); availablePoints++; } });
         enduranceMinusButton.inputEnabled = true;
-        enduranceMinusButton.events.onInputDown.add(function(){ updateEnduranceBar(parseInt(skillBars.endurance.enduranceBarText._text) - 1); });
+        enduranceMinusButton.events.onInputDown.add(function(){ if(availablePoints < 50 && chosenEndurance > 0) { updateEnduranceBar(chosenEndurance--); availablePoints++; } });
         agilityMinusButton.inputEnabled = true;
-        agilityMinusButton.events.onInputDown.add(function(){ updateAgilityBar(parseInt(skillBars.agility.agilityBarText._text) - 1); });
+        agilityMinusButton.events.onInputDown.add(function(){ if(availablePoints < 50 && chosenAgility > 0) { updateAgilityBar(chosenAgility--); availablePoints++; } });
         arcaneMinusButton.inputEnabled = true;
-        arcaneMinusButton.events.onInputDown.add(function(){ updateArcaneBar(parseInt(skillBars.arcane.arcaneBarText._text) - 1); });
+        arcaneMinusButton.events.onInputDown.add(function(){ if(availablePoints < 50 && chosenArcane > 0) { updateArcaneBar(chosenArcane--); availablePoints++; } });
         luckMinusButton.inputEnabled = true;
-        luckMinusButton.events.onInputDown.add(function(){ updateLuckBar(parseInt(skillBars.luck.luckBarText._text) - 1); });
+        luckMinusButton.events.onInputDown.add(function(){ if(availablePoints < 50 && chosenLuck > 0) { updateLuckBar(chosenLuck--); availablePoints++; } });
         strengthPlusButton.inputEnabled = true;
-        strengthPlusButton.events.onInputDown.add(function(){ updateStrengthBar(parseInt(skillBars.strength.strengthBarText._text) + 1); });
+        strengthPlusButton.events.onInputDown.add(function(){ if(availablePoints > 0 && chosenStrength < 50) { updateStrengthBar(chosenStrength++); availablePoints--; } });
         dexterityPlusButton.inputEnabled = true;
-        dexterityPlusButton.events.onInputDown.add(function(){ updateDexterityBar(parseInt(skillBars.dexterity.dexterityBarText._text) + 1); });
+        dexterityPlusButton.events.onInputDown.add(function(){ if(availablePoints > 0 && chosenDexterity < 50) { updateDexterityBar(chosenDexterity++); availablePoints--; } });
         endurancePlusButton.inputEnabled = true;
-        endurancePlusButton.events.onInputDown.add(function(){ updateEnduranceBar(parseInt(skillBars.endurance.enduranceBarText._text) + 1); });
+        endurancePlusButton.events.onInputDown.add(function(){ if(availablePoints > 0 && chosenEndurance < 50) { updateEnduranceBar(chosenEndurance++); availablePoints--; } });
         agilityPlusButton.inputEnabled = true;
-        agilityPlusButton.events.onInputDown.add(function(){ updateAgilityBar(parseInt(skillBars.agility.agilityBarText._text) + 1); });
+        agilityPlusButton.events.onInputDown.add(function(){ if(availablePoints > 0 && chosenAgility < 50) { updateAgilityBar(chosenAgility++); availablePoints--; } });
         arcanePlusButton.inputEnabled = true;
-        arcanePlusButton.events.onInputDown.add(function(){ updateArcaneBar(parseInt(skillBars.arcane.arcaneBarText._text) + 1); });
+        arcanePlusButton.events.onInputDown.add(function(){ if(availablePoints > 0 && chosenArcane < 50) { updateArcaneBar(chosenArcane++); availablePoints--; } });
         luckPlusButton.inputEnabled = true;
-        luckPlusButton.events.onInputDown.add(function(){ updateLuckBar(parseInt(skillBars.luck.luckBarText._text) + 1); });
+        luckPlusButton.events.onInputDown.add(function(){ if(availablePoints > 0 && chosenLuck < 50) { updateLuckBar(chosenLuck++); availablePoints--; } });
 
 
         skillBars.strength.strengthBar = {
@@ -235,6 +244,8 @@ var newPlayerState = {
         skillBars.luck.luckBarObject.addChild(skillBars.luck.luckBarText);
         updateLuckBar(1);
 
+        availablePointsText = game.make.text( game.world.centerX * 0.32 , game.world.centerY * 1.169, "Available Points Remaining:" + availablePoints, { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
+
         chosenGender = 'm';
 
         playerModel = game.add.sprite(game.world.centerX * 1.07, game.world.centerY, 'player');
@@ -261,11 +272,11 @@ function changeGender(isFemale){
     }
 }
 
-updateStrengthBar = function( strengthPercentage ){ //// strength percentage 
-    console.log(strengthPercentage);
+updateStrengthBar = function( strengthPercentage ){ //// strength percentage
 	skillBars.strength.strengthBarObject.clear();
     skillBars.strength.strengthBarObject.lineStyle( 2, skillBars.strength.strengthBar.border_c, skillBars.strength.strengthBar.alpha );
     skillBars.strength.strengthBarText.setText( strengthPercentage );
+    availablePointsText.setText( "Available Points Remaining:" + availablePoints );
 	skillBars.strength.strengthBarObject.beginFill( skillBars.strength.strengthBar.fill_c, skillBars.strength.strengthBar.alpha );
 	skillBars.strength.strengthBarObject.drawRect( 0, 0, strengthPercentage * skillBars.strength.strengthBar.size._1p , skillBars.strength.strengthBar.size.h );
 	skillBars.strength.strengthBarObject.endFill();
@@ -275,6 +286,7 @@ updateDexterityBar = function( dexterityPercentage ){ //// dexterity percentage
 	skillBars.dexterity.dexterityBarObject.clear();
     skillBars.dexterity.dexterityBarObject.lineStyle( 2, skillBars.dexterity.dexterityBar.border_c, skillBars.dexterity.dexterityBar.alpha );
     skillBars.dexterity.dexterityBarText.setText( dexterityPercentage );
+    availablePointsText.setText( "Available Points Remaining:" + availablePoints );
 	skillBars.dexterity.dexterityBarObject.beginFill( skillBars.dexterity.dexterityBar.fill_c, skillBars.dexterity.dexterityBar.alpha );
 	skillBars.dexterity.dexterityBarObject.drawRect( 0, 0, dexterityPercentage * skillBars.dexterity.dexterityBar.size._1p , skillBars.dexterity.dexterityBar.size.h );
 	skillBars.dexterity.dexterityBarObject.endFill();
@@ -284,6 +296,7 @@ updateEnduranceBar = function( endurancePercentage ){ //// endurance percentage
 	skillBars.endurance.enduranceBarObject.clear();
     skillBars.endurance.enduranceBarObject.lineStyle( 2, skillBars.endurance.enduranceBar.border_c, skillBars.endurance.enduranceBar.alpha );
     skillBars.endurance.enduranceBarText.setText( endurancePercentage );
+    availablePointsText.setText( "Available Points Remaining:" + availablePoints );
 	skillBars.endurance.enduranceBarObject.beginFill( skillBars.endurance.enduranceBar.fill_c, skillBars.endurance.enduranceBar.alpha );
 	skillBars.endurance.enduranceBarObject.drawRect( 0, 0, endurancePercentage * skillBars.endurance.enduranceBar.size._1p , skillBars.endurance.enduranceBar.size.h );
 	skillBars.endurance.enduranceBarObject.endFill();
@@ -293,6 +306,7 @@ updateAgilityBar = function( agilityPercentage ){ //// agility percentage
 	skillBars.agility.agilityBarObject.clear();
     skillBars.agility.agilityBarObject.lineStyle( 2, skillBars.agility.agilityBar.border_c, skillBars.agility.agilityBar.alpha );
     skillBars.agility.agilityBarText.setText( agilityPercentage );
+    availablePointsText.setText( "Available Points Remaining:" + availablePoints );
 	skillBars.agility.agilityBarObject.beginFill( skillBars.agility.agilityBar.fill_c, skillBars.agility.agilityBar.alpha );
 	skillBars.agility.agilityBarObject.drawRect( 0, 0, agilityPercentage * skillBars.agility.agilityBar.size._1p , skillBars.agility.agilityBar.size.h );
 	skillBars.agility.agilityBarObject.endFill();
@@ -302,6 +316,7 @@ updateArcaneBar = function( arcanePercentage ){ //// arcane percentage
 	skillBars.arcane.arcaneBarObject.clear();
     skillBars.arcane.arcaneBarObject.lineStyle( 2, skillBars.arcane.arcaneBar.border_c, skillBars.arcane.arcaneBar.alpha );
     skillBars.arcane.arcaneBarText.setText( arcanePercentage );
+    availablePointsText.setText( "Available Points Remaining:" + availablePoints );
 	skillBars.arcane.arcaneBarObject.beginFill( skillBars.arcane.arcaneBar.fill_c, skillBars.arcane.arcaneBar.alpha );
 	skillBars.arcane.arcaneBarObject.drawRect( 0, 0, arcanePercentage * skillBars.arcane.arcaneBar.size._1p , skillBars.arcane.arcaneBar.size.h );
 	skillBars.arcane.arcaneBarObject.endFill();
@@ -311,6 +326,7 @@ updateLuckBar = function( luckPercentage ){ //// luck percentage
 	skillBars.luck.luckBarObject.clear();
     skillBars.luck.luckBarObject.lineStyle( 2, skillBars.luck.luckBar.border_c, skillBars.luck.luckBar.alpha );
     skillBars.luck.luckBarText.setText( luckPercentage );
+    availablePointsText.setText( "Available Points Remaining:" + availablePoints );
 	skillBars.luck.luckBarObject.beginFill( skillBars.luck.luckBar.fill_c, skillBars.luck.luckBar.alpha );
 	skillBars.luck.luckBarObject.drawRect( 0, 0, luckPercentage * skillBars.luck.luckBar.size._1p , skillBars.luck.luckBar.size.h );
 	skillBars.luck.luckBarObject.endFill();
