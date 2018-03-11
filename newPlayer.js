@@ -73,6 +73,7 @@ var newPlayerState = {
 
         maleButton = game.add.sprite(game.world.centerX * 1.0275, game.world.centerY * 0.815, 'activeRadioButton');
         femaleButton = game.add.sprite(game.world.centerX * 1.0275, game.world.centerY * 0.8725, 'inactiveRadioButton');
+        warriorButton = game.add.sprite(game.world.centerX * 1.5, game.world.centerY * 1.2, 'activeRadioButton');
 
         maleButton.inputEnabled = true;
         femaleButton.inputEnabled = true;
@@ -250,9 +251,6 @@ var newPlayerState = {
         playerModel = game.add.sprite(game.world.centerX * 1.07, game.world.centerY, 'player');
         playerModel.frame = 13;
 
-        
-        //createScreen.addChild(availablePointsText);
-        console.log(availablePointsText);
     }
 }
 
@@ -359,7 +357,7 @@ function queryCreate() {
         console.log(serverProxy);
         game.global.eurecaProxy = serverProxy;
         //game.state.start('main');
-        serverProxy.createPlayer(inputUsername.value, inputPassword.value, {gender: chosenGender});
+        serverProxy.createPlayer(inputUsername.value, inputPassword.value, {gender: chosenGender, strength: chosenStrength, dexterity: chosenDexterity, endurance: chosenEndurance, agility: chosenAgility, arcane: chosenArcane, luck: chosenLuck});
     });
 
     client.exports.setId = function(id){

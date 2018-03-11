@@ -264,7 +264,12 @@ eurecaServer.exports.createPlayer = function (username, password, params){
     var remote = players[id].remote;
     var regexUsername = new RegExp('^[a-zA-z][a-zA-Z0-9]{2,16}$'); //Only letters, numbers, or spaces, between 2 and 16 chars
     var regexPassword = new RegExp('^(?=.*[a-zA-Z0-9])(?=.*([-+_!@#$%^&*.,?])).{6,16}$'); //Numbers or letters with atleast 1 symbol between 6 and 16 characters
+    var totalPointsUsed = params.strength + params.dexterity + params.endurance + params.agility + params.arcane + params.luck;
 
+    if(totalPointsUsed > 56 || totalPointsUsed < 6){
+        remote.errorAndDisconnect('Hacking Detected. Do not do that.');
+        return;
+    }
     if(!regexUsername.test(username)){
         remote.errorAndDisconnect('The username you have chosen contains invalid characters!');
         return;
@@ -283,7 +288,7 @@ eurecaServer.exports.createPlayer = function (username, password, params){
 
         if(result.length == 0){
             con.query("INSERT INTO users(username, password, gender, worldX, worldY, localX, localY, level, gold, maxHealth, health, maxFocus, focus, stamina, strength, dexterity, endurance, agility, arcane, luck) VALUES ('" 
-                + username + "', '" + password + "', '" + params.gender + "', 0, 0, 1, 1, 1, 0, 100, 100, 25, 25, 100, 1, 1, 1, 1, 1, 1)", function (err, result, fields) {
+                + username + "', '" + password + "', '" + params.gender + "', 0, 0, 1, 1, 1, 0, 100, 100, 25, 25, 100, '" + params.strength + "', '" + params.dexterity + "', '" + params.endurance + "', '" + params.agility + "', '" + params.arcane + "', '" + params.luck + "')", function (err, result, fields) {
 
                 if (err){ 
                     throw err;
