@@ -279,7 +279,7 @@ updateArcaneBar = function( arcanePercentage ){ //// arcane percentage
 	skillBars.arcane.arcaneBarObject.endFill();
 }
 
-updateDexterityBar = function( luckPercentage ){ //// luck percentage 
+updateLuckBar = function( luckPercentage ){ //// luck percentage 
 	skillBars.luck.luckBarObject.clear();
     skillBars.luck.luckBarObject.lineStyle( 2, skillBars.luck.luckBar.border_c, skillBars.luck.luckBar.alpha );
     skillBars.luck.luckBarText.setText( luckPercentage );
