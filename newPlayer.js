@@ -117,7 +117,7 @@ var newPlayerState = {
         luckPlusButton.inputEnabled = true;
         luckPlusButton.events.onInputDown.add(function(){ if(availablePoints > 0 && chosenLuck < 51) { availablePoints--; updateLuckBar(++chosenLuck); } });
 
-        availablePointsText = game.add.text( game.world.centerX * 0.32, game.world.centerY * 1.255, "Available Points Remaining: " + availablePoints, { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
+        availablePointsText = game.add.text( game.world.centerX * 0.32, game.world.centerY * 1.255, "Available Points Remaining: " + availablePoints, { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
 
         skillBars.strength.strengthBar = {
             pos: {
@@ -240,7 +240,7 @@ var newPlayerState = {
         };
         skillBars.luck.luckBar.size._1p = skillBars.luck.luckBar.size.w * 0.01; ///// 1% of width ///
         skillBars.luck.luckBarObject = game.add.graphics( skillBars.luck.luckBar.pos.x, skillBars.luck.luckBar.pos.y );
-        skillBars.luck.luckBarText = game.make.text( 0 , 0, "", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
+        skillBars.luck.luckBarText = game.make.text( 0 , 0, "", { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
         skillBars.luck.luckBarText.setTextBounds(0, 2, skillBars.luck.luckBar.size.w, skillBars.luck.luckBar.size.h);
         skillBars.luck.luckBarObject.addChild(skillBars.luck.luckBarText);
         updateLuckBar(1);
