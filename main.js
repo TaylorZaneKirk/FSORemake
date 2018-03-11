@@ -141,7 +141,7 @@ var mainState = {
         for(var i = 0; i < 28; i++){ //28 skills, loop 28 times
             skillsPage.addChild(game.make.text(150, (skillsPage.length - 28) * 22, "1", textStyle));
             skillsPage.getAt(i).addChild(game.make.text(0, 0, "CURRENT EXP / EXP NEEDED", textStyle))
-            skillsPage.getAt(i).getAt(1).alpha = 0;
+            skillsPage.getAt(i).getChildAt(1).alpha = 0;
             skillsPage.getAt(i).inputEnabled = true;
             skillsPage.getAt(i).events.onInputOver.add(function(){console.log(this.getAt(1))})
             skillsPage.getAt(i+28).inputEnabled = true;
