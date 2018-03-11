@@ -192,7 +192,7 @@ var newPlayerState = {
         skillBars.luck.luckBar = {
             pos: {
                 x: game.world.centerX * 0.32,
-                y: game.world.centerY * 1.025
+                y: game.world.centerY * 1.175
             },
             size: {
                 w: 138,
