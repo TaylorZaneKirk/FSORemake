@@ -250,6 +250,7 @@ function changeGender(isFemale){
 }
 
 updateStrengthBar = function( strengthPercentage ){ //// strength percentage 
+    console.log(strengthPercentage);
 	skillBars.strength.strengthBarObject.clear();
     skillBars.strength.strengthBarObject.lineStyle( 2, skillBars.strength.strengthBar.border_c, skillBars.strength.strengthBar.alpha );
     skillBars.strength.strengthBarText.setText( strengthPercentage );
