@@ -143,7 +143,7 @@ var mainState = {
             skillsPage.getAt(i).addChild(game.make.text(0, 0, "CURRENT EXP / EXP NEEDED", textStyle))
             skillsPage.getAt(i).getChildAt(0).alpha = 0;
             skillsPage.getAt(i).inputEnabled = true;
-            skillsPage.getAt(i).events.onInputOver.add(function(){console.log(this.getAt(1))})
+            skillsPage.getAt(i).events.onInputOver.add(function(sprite){console.log(sprite)})
             skillsPage.getAt(i+28).inputEnabled = true;
         }
         
