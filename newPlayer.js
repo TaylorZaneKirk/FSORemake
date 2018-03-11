@@ -77,6 +77,8 @@ var newPlayerState = {
         archerButton = game.add.sprite(game.world.centerX * 1.285, game.world.centerY * 1.1075, 'activeRadioButton');
         mageButton = game.add.sprite(game.world.centerX * 1.285, game.world.centerY * 1.156, 'activeRadioButton');
 
+        warriorButton.addChild(game.make.text( 5 , 0, "Warrior", { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } ));        
+
         maleButton.inputEnabled = true;
         femaleButton.inputEnabled = true;
 
