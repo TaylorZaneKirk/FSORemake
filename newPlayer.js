@@ -159,7 +159,7 @@ var newPlayerState = {
         skillBars.strength.strengthBar.size._1p = skillBars.strength.strengthBar.size.w * 0.01; ///// 1% of width ///
         skillBars.strength.strengthBarObject = game.add.graphics( skillBars.strength.strengthBar.pos.x, skillBars.strength.strengthBar.pos.y );
         skillBars.strength.strengthBarText = game.make.text( 0 , 0, "", { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
-        skillBars.strength.strengthBarTextBonus = game.make.text( 7 , 0, " + 0", { font: "bold 10px Arial", fill: "#00ff00",  boundsAlignH: "center", boundsAlignV: "middle" } );
+        skillBars.strength.strengthBarTextBonus = game.make.text( 7 , 0, " + 5", { font: "bold 10px Arial", fill: "#00ff00",  boundsAlignH: "center", boundsAlignV: "middle" } );
         skillBars.strength.strengthBarText.setTextBounds(0, 2, skillBars.strength.strengthBar.size.w, skillBars.strength.strengthBar.size.h);
         skillBars.strength.strengthBarObject.addChild(skillBars.strength.strengthBarText);
         skillBars.strength.strengthBarText.addChild(skillBars.strength.strengthBarTextBonus);
@@ -185,7 +185,7 @@ var newPlayerState = {
         skillBars.dexterity.dexterityBarTextBonus = game.make.text( 7 , 0, " + 0", { font: "bold 10px Arial", fill: "#00ff00",  boundsAlignH: "center", boundsAlignV: "middle" } );
         skillBars.dexterity.dexterityBarText.setTextBounds(0, 2, skillBars.dexterity.dexterityBar.size.w, skillBars.dexterity.dexterityBar.size.h);
         skillBars.dexterity.dexterityBarObject.addChild(skillBars.dexterity.dexterityBarText);
-        skillBars.dexterity.dexterityBarObject.addChild(skillBars.dexterity.dexterityBarTextBonus);
+        skillBars.dexterity.dexterityBarText.addChild(skillBars.dexterity.dexterityBarTextBonus);
         updateDexterityBar(1);
 
         skillBars.endurance.enduranceBar = {
@@ -208,7 +208,7 @@ var newPlayerState = {
         skillBars.endurance.enduranceBarTextBonus = game.make.text( 7 , 0, " + 0", { font: "bold 10px Arial", fill: "#00ff00",  boundsAlignH: "center", boundsAlignV: "middle" } );
         skillBars.endurance.enduranceBarText.setTextBounds(0, 2, skillBars.endurance.enduranceBar.size.w, skillBars.endurance.enduranceBar.size.h);
         skillBars.endurance.enduranceBarObject.addChild(skillBars.endurance.enduranceBarText);
-        skillBars.endurance.enduranceBarObject.addChild(skillBars.endurance.enduranceBarTextBonus);
+        skillBars.endurance.enduranceBarText.addChild(skillBars.endurance.enduranceBarTextBonus);
         updateEnduranceBar(1);
 
         skillBars.agility.agilityBar = {
@@ -231,7 +231,7 @@ var newPlayerState = {
         skillBars.agility.agilityBarTextBonus = game.make.text( 7 , 0, " + 0", { font: "bold 10px Arial", fill: "#00ff00",  boundsAlignH: "center", boundsAlignV: "middle" } );
         skillBars.agility.agilityBarText.setTextBounds(0, 2, skillBars.agility.agilityBar.size.w, skillBars.agility.agilityBar.size.h);
         skillBars.agility.agilityBarObject.addChild(skillBars.agility.agilityBarText);
-        skillBars.agility.agilityBarObject.addChild(skillBars.agility.agilityBarTextBonus);
+        skillBars.agility.agilityBarText.addChild(skillBars.agility.agilityBarTextBonus);
         updateAgilityBar(1);
 
         skillBars.arcane.arcaneBar = {
@@ -254,7 +254,7 @@ var newPlayerState = {
         skillBars.arcane.arcaneBarTextBonus = game.make.text( 7 , 0, " + 0", { font: "bold 10px Arial", fill: "#00ff00",  boundsAlignH: "center", boundsAlignV: "middle" } );
         skillBars.arcane.arcaneBarText.setTextBounds(0, 2, skillBars.arcane.arcaneBar.size.w, skillBars.arcane.arcaneBar.size.h);
         skillBars.arcane.arcaneBarObject.addChild(skillBars.arcane.arcaneBarText);
-        skillBars.arcane.arcaneBarObject.addChild(skillBars.arcane.arcaneBarTextBonus);
+        skillBars.arcane.arcaneBarText.addChild(skillBars.arcane.arcaneBarTextBonus);
         updateArcaneBar(1);
 
         skillBars.luck.luckBar = {
@@ -277,7 +277,7 @@ var newPlayerState = {
         skillBars.luck.luckBarTextBonus = game.make.text( 7 , 0, " + 0", { font: "bold 10px Arial", fill: "#00ff00",  boundsAlignH: "center", boundsAlignV: "middle" } );
         skillBars.luck.luckBarText.setTextBounds(0, 2, skillBars.luck.luckBar.size.w, skillBars.luck.luckBar.size.h);
         skillBars.luck.luckBarObject.addChild(skillBars.luck.luckBarText);
-        skillBars.luck.luckBarObject.addChild(skillBars.luck.luckBarTextBonus);
+        skillBars.luck.luckBarText.addChild(skillBars.luck.luckBarTextBonus);
         updateLuckBar(1);
 
         chosenGender = 'm';
@@ -310,18 +310,27 @@ function changeClass(index){
         warriorButton.loadTexture('activeRadioButton', 0);
         archerButton.loadTexture('inactiveRadioButton', 0);
         mageButton.loadTexture('inactiveRadioButton', 0);
+        skillBars.strength.strengthBarTextBonus.setText( " + 5" );
+        skillBars.dexterity.dexterityBarTextBonus.setText( " + 0" );
+        skillBars.arcane.arcaneBarTextBonus.setText( " + 0" );
         chosenClass = 'warrior';
     }
     else if(index == 1){
         warriorButton.loadTexture('inactiveRadioButton', 0);
         archerButton.loadTexture('activeRadioButton', 0);
         mageButton.loadTexture('inactiveRadioButton', 0);
+        skillBars.strength.strengthBarTextBonus.setText( " + 0" );
+        skillBars.dexterity.dexterityBarTextBonus.setText( " + 5" );
+        skillBars.arcane.arcaneBarTextBonus.setText( " + 0" );
         chosenClass = 'archer';
     }
     else{
         warriorButton.loadTexture('inactiveRadioButton', 0);
         archerButton.loadTexture('inactiveRadioButton', 0);
         mageButton.loadTexture('activeRadioButton', 0);
+        skillBars.strength.strengthBarTextBonus.setText( " + 0" );
+        skillBars.dexterity.dexterityBarTextBonus.setText( " + 0" );
+        skillBars.arcane.arcaneBarTextBonus.setText( " + 5" );
         chosenClass = 'mage';
     }
 }
