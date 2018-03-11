@@ -79,18 +79,18 @@ var mainState = {
 
         //Stats Page
         statsPage = game.add.sprite(game.world.width * 0.725, game.world.centerY * 0.4, 'rightMiddlePanelStats');
-        var goldLabel = game.make.text( 100, 15, "0", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
-        var strengthVal = game.make.text( 30, 45, "0", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        var goldLabel = game.make.text( 100, 15, "0", { font: "bold 14px Arial", fill: "#e6e600",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        var strengthVal = game.make.text( 30, 45, "0", { font: "bold 14px Arial", fill: "#e6e600",  boundsAlignH: "center", boundsAlignV: "middle"} );
         var strengthLabel = game.make.text( 100, 45, "Strength", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
-        var dexterityVal = game.make.text( 30, 75, "0", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        var dexterityVal = game.make.text( 30, 75, "0", { font: "bold 14px Arial", fill: "#e6e600",  boundsAlignH: "center", boundsAlignV: "middle"} );
         var dexterityLabel = game.make.text( 100, 75, "Dexterity", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
-        var enduranceVal = game.make.text( 30, 110, "0", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        var enduranceVal = game.make.text( 30, 110, "0", { font: "bold 14px Arial", fill: "#e6e600",  boundsAlignH: "center", boundsAlignV: "middle"} );
         var enduranceLabel = game.make.text( 100, 110, "Endurance", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
-        var agilityVal = game.make.text( 30, 140, "0", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        var agilityVal = game.make.text( 30, 140, "0", { font: "bold 14px Arial", fill: "#e6e600",  boundsAlignH: "center", boundsAlignV: "middle"} );
         var agilityLabel = game.make.text( 100, 140, "Agility", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
-        var arcaneVal = game.make.text( 30, 173, "0", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        var arcaneVal = game.make.text( 30, 173, "0", { font: "bold 14px Arial", fill: "#e6e600",  boundsAlignH: "center", boundsAlignV: "middle"} );
         var arcaneLabel = game.make.text( 100, 173, "Arcane", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
-        var luckVal = game.make.text( 30, 207, "0", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
+        var luckVal = game.make.text( 30, 207, "0", { font: "bold 14px Arial", fill: "#e6e600",  boundsAlignH: "center", boundsAlignV: "middle"} );
         var luckLabel = game.make.text( 100, 207, "Luck", { font: "bold 14px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle"} );
         statsPage.addChild(goldLabel);
         statsPage.addChild(strengthVal);
