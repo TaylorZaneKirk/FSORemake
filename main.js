@@ -109,7 +109,7 @@ var mainState = {
         //Skills Page
         skillsPage = game.add.existing(new ScrollableArea(game.world.width * 0.765, game.world.centerY * 0.4, 155, 300, { horizontalScroll: false, verticalScroll: true, horizontalWheel: false, verticalWheel: true, kineticMovement: false }));
         skillsPage.maskGraphics.input.useHandCursor = false;
-        skillsPage.inputEnableChildren = true;
+        
         var textStyle = {font:"bold 14px Arial", fill:"white"};
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Swordsmanship", textStyle));
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Mysticism", textStyle));
@@ -144,10 +144,13 @@ var mainState = {
             skillsPage.getAt(i).addChild(game.make.text(0, 0, "CURRENT EXP / EXP NEEDED", textStyle))
             skillsPage.getAt(i).getChildAt(0).alpha = 0;
             skillsPage.getAt(i).inputEnabled = true;
-            skillsPage.getAt(i).events.onInputOver.add(function(sprite){ sprite.getChildAt(0).alpha = 1; })
-            skillsPage.getAt(i).events.onInputOut.add(function(sprite){ sprite.getChildAt(0).alpha = 0; })
+            /* skillsPage.getAt(i).events.onInputOver.add(function(sprite){ sprite.getChildAt(0).alpha = 1; })
+            skillsPage.getAt(i).events.onInputOut.add(function(sprite){ sprite.getChildAt(0).alpha = 0; }) */
             skillsPage.getAt(i+28).inputEnabled = true;
         }
+
+        skillsPage.onChildInputOver.add(function(sprite){ sprite.getChildAt(0).alpha = 1; });
+        skillsPage.onChildInputOut.add(function(sprite){ sprite.getChildAt(0).alpha = 0; });
         
         skillsPage.start();
         skillsPage.alpha = 0;
