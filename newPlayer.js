@@ -121,11 +121,11 @@ function changeGender(isFemale){
 }
 
 updatestrengthBar = function( strengthPercentage ){ //// strength percentage 
-	statusBars.strength.strengthBarObject.clear();
-	statusBars.strength.strengthBarObject.lineStyle( 2, statusBars.strength.strengthBar.border_c, statusBars.strength.strengthBar.alpha );
-	statusBars.strength.strengthBarObject.beginFill( statusBars.strength.strengthBar.fill_c, statusBars.strength.strengthBar.alpha );
-	statusBars.strength.strengthBarObject.drawRect( 0, 0, strengthPercentage * statusBars.strength.strengthBar.size._1p , statusBars.strength.strengthBar.size.h );
-	statusBars.strength.strengthBarObject.endFill();
+	skillBars.strength.strengthBarObject.clear();
+	skillBars.strength.strengthBarObject.lineStyle( 2, skillBars.strength.strengthBar.border_c, skillBars.strength.strengthBar.alpha );
+	skillBars.strength.strengthBarObject.beginFill( skillBars.strength.strengthBar.fill_c, skillBars.strength.strengthBar.alpha );
+	skillBars.strength.strengthBarObject.drawRect( 0, 0, strengthPercentage * skillBars.strength.strengthBar.size._1p , skillBars.strength.strengthBar.size.h );
+	skillBars.strength.strengthBarObject.endFill();
 }
 
 function queryCreate() {
