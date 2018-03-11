@@ -171,7 +171,7 @@ var newPlayerState = {
         skillBars.arcane.arcaneBar = {
             pos: {
                 x: game.world.centerX * 0.32,
-                y: game.world.centerY * 1.1
+                y: game.world.centerY * 1.09
             },
             size: {
                 w: 138,
@@ -192,7 +192,7 @@ var newPlayerState = {
         skillBars.luck.luckBar = {
             pos: {
                 x: game.world.centerX * 0.32,
-                y: game.world.centerY * 1.175
+                y: game.world.centerY * 1.17
             },
             size: {
                 w: 138,
