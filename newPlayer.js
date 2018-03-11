@@ -83,7 +83,7 @@ var newPlayerState = {
 
         warriorButton.addChild(game.make.text( 15 , -2, "Warrior", { font: "bold 12px Arial", fill: "#000",  boundsAlignH: "center", boundsAlignV: "middle" } ));
         archerButton.addChild(game.make.text( 15 , -2, "Archer", { font: "bold 12px Arial", fill: "#000",  boundsAlignH: "center", boundsAlignV: "middle" } ));
-        mageButton.addChild(game.make.text( 15 , -2, "Archer", { font: "bold 12px Arial", fill: "#000",  boundsAlignH: "center", boundsAlignV: "middle" } ));
+        mageButton.addChild(game.make.text( 15 , -2, "Mage", { font: "bold 12px Arial", fill: "#000",  boundsAlignH: "center", boundsAlignV: "middle" } ));
 
         maleButton.inputEnabled = true;
         femaleButton.inputEnabled = true;
