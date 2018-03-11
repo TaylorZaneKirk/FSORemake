@@ -5,27 +5,33 @@ var playerModel;
 var skillBars = {
     strength:{
         strengthBar: null,
-        strengthBarObject: null
+        strengthBarObject: null,
+        strengthBarText: null,
     },
     dexterity:{
         dexterityBar: null,
-        dexterityBarObject: null
+        dexterityBarObject: null,
+        dexterityBarText: null,
     },
     endurance:{
         enduranceBar: null,
         enduranceBarObject: null,
+        enduranceBarText: null,
     },
     agility:{
         agilityBar: null,
-        agilityBarObject: null
+        agilityBarObject: null,
+        agilityBarText: null,
     },
     arcane:{
         arcaneBar: null,
-        arcaneBarObject: null
+        arcaneBarObject: null,
+        arcaneBarText: null,
     },
     luck:{
         luckBar: null,
-        luckBarObject: null
+        luckBarObject: null,
+        luckBarText: null,
     }
 };
 
@@ -94,6 +100,9 @@ var newPlayerState = {
         };
         skillBars.strength.strengthBar.size._1p = skillBars.strength.strengthBar.size.w * 0.01; ///// 1% of width ///
         skillBars.strength.strengthBarObject = game.add.graphics( skillBars.strength.strengthBar.pos.x, skillBars.strength.strengthBar.pos.y );
+        skillBars.strength.strengthBarText = game.make.text( 0 , 0, "", { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
+        skillBars.strength.strengthBarText.setTextBounds(0, 2, skillBars.strength.strengthBar.size.w, skillBars.strength.strengthBar.size.h);
+        skillBars.strength.strengthBarObject.addChild(skillBars.strength.strengthBarText);
         updateStrengthBar(100);
 
         skillBars.dexterity.dexterityBar = {
@@ -112,6 +121,9 @@ var newPlayerState = {
         };
         skillBars.dexterity.dexterityBar.size._1p = skillBars.dexterity.dexterityBar.size.w * 0.01; ///// 1% of width ///
         skillBars.dexterity.dexterityBarObject = game.add.graphics( skillBars.dexterity.dexterityBar.pos.x, skillBars.dexterity.dexterityBar.pos.y );
+        skillBars.dexterity.dexterityBarText = game.make.text( 0 , 0, "", { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
+        skillBars.dexterity.dexterityBarText.setTextBounds(0, 2, skillBars.dexterity.dexterityBar.size.w, skillBars.dexterity.dexterityBar.size.h);
+        skillBars.dexterity.dexterityBarObject.addChild(skillBars.dexterity.dexterityBarText);
         updateDexterityBar(100);
 
         chosenGender = 'm';
@@ -140,7 +152,8 @@ function changeGender(isFemale){
 
 updateStrengthBar = function( strengthPercentage ){ //// strength percentage 
 	skillBars.strength.strengthBarObject.clear();
-	skillBars.strength.strengthBarObject.lineStyle( 2, skillBars.strength.strengthBar.border_c, skillBars.strength.strengthBar.alpha );
+    skillBars.strength.strengthBarObject.lineStyle( 2, skillBars.strength.strengthBar.border_c, skillBars.strength.strengthBar.alpha );
+    skillBars.strength.strengthBarText.setText( strengthPercentage );
 	skillBars.strength.strengthBarObject.beginFill( skillBars.strength.strengthBar.fill_c, skillBars.strength.strengthBar.alpha );
 	skillBars.strength.strengthBarObject.drawRect( 0, 0, strengthPercentage * skillBars.strength.strengthBar.size._1p , skillBars.strength.strengthBar.size.h );
 	skillBars.strength.strengthBarObject.endFill();
@@ -148,7 +161,8 @@ updateStrengthBar = function( strengthPercentage ){ //// strength percentage
 
 updateDexterityBar = function( dexterityPercentage ){ //// dexterity percentage 
 	skillBars.dexterity.dexterityBarObject.clear();
-	skillBars.dexterity.dexterityBarObject.lineStyle( 2, skillBars.dexterity.dexterityBar.border_c, skillBars.dexterity.dexterityBar.alpha );
+    skillBars.dexterity.dexterityBarObject.lineStyle( 2, skillBars.dexterity.dexterityBar.border_c, skillBars.dexterity.dexterityBar.alpha );
+    skillBars.dexterity.dexterityBarText.setText( dexterityPercentage );
 	skillBars.dexterity.dexterityBarObject.beginFill( skillBars.dexterity.dexterityBar.fill_c, skillBars.dexterity.dexterityBar.alpha );
 	skillBars.dexterity.dexterityBarObject.drawRect( 0, 0, dexterityPercentage * skillBars.dexterity.dexterityBar.size._1p , skillBars.dexterity.dexterityBar.size.h );
 	skillBars.dexterity.dexterityBarObject.endFill();
