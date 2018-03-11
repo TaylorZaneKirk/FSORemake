@@ -86,17 +86,27 @@ var newPlayerState = {
         strengthMinusButton.inputEnabled = true;
         strengthMinusButton.events.onInputDown.add(function(){ updateStrengthBar(parseInt(skillBars.strength.strengthBarText._text) - 1); });
         dexterityMinusButton.inputEnabled = true;
+        dexterityMinusButton.events.onInputDown.add(function(){ updateDexterityBar(parseInt(skillBars.dexterity.dexterityBarText._text) - 1); });
         enduranceMinusButton.inputEnabled = true;
+        enduranceMinusButton.events.onInputDown.add(function(){ updateEnduranceBar(parseInt(skillBars.endurance.enduranceBarText._text) - 1); });
         agilityMinusButton.inputEnabled = true;
+        agilityMinusButton.events.onInputDown.add(function(){ updateAgilityBar(parseInt(skillBars.agility.agilityBarText._text) - 1); });
         arcaneMinusButton.inputEnabled = true;
+        arcaneMinusButton.events.onInputDown.add(function(){ updateArcaneBar(parseInt(skillBars.arcane.arcaneBarText._text) - 1); });
         luckMinusButton.inputEnabled = true;
+        luckMinusButton.events.onInputDown.add(function(){ updateLuckBar(parseInt(skillBars.luck.luckBarText._text) - 1); });
         strengthPlusButton.inputEnabled = true;
         strengthPlusButton.events.onInputDown.add(function(){ updateStrengthBar(parseInt(skillBars.strength.strengthBarText._text) + 1); });
         dexterityPlusButton.inputEnabled = true;
+        dexterityPlusButton.events.onInputDown.add(function(){ updateDexterityBar(parseInt(skillBars.dexterity.dexterityBarText._text) + 1); });
         endurancePlusButton.inputEnabled = true;
+        endurancePlusButton.events.onInputDown.add(function(){ updateEnduranceBar(parseInt(skillBars.endurance.enduranceBarText._text) + 1); });
         agilityPlusButton.inputEnabled = true;
+        agilityPlusButton.events.onInputDown.add(function(){ updateAgilityBar(parseInt(skillBars.agility.agilityBarText._text) + 1); });
         arcanePlusButton.inputEnabled = true;
+        arcanePlusButton.events.onInputDown.add(function(){ updateArcaneBar(parseInt(skillBars.arcane.arcaneBarText._text) + 1); });
         luckPlusButton.inputEnabled = true;
+        luckPlusButton.events.onInputDown.add(function(){ updateLuckBar(parseInt(skillBars.luck.luckBarText._text) + 1); });
 
 
         skillBars.strength.strengthBar = {
