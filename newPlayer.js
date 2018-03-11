@@ -88,13 +88,31 @@ var newPlayerState = {
                 h: 13,
                 _1p: 0 /// will be calculated later
             },
-            fill_c: 0xff0000,
-            border_c: 0x990000,
+            fill_c: 0x0000ff,
+            border_c: 0x000099,
             alpha: 0.7
         };
         skillBars.strength.strengthBar.size._1p = skillBars.strength.strengthBar.size.w * 0.01; ///// 1% of width ///
         skillBars.strength.strengthBarObject = game.add.graphics( skillBars.strength.strengthBar.pos.x, skillBars.strength.strengthBar.pos.y );
-        updatestrengthBar(100);
+        updateStrengthBar(100);
+
+        skillBars.dexterity.dexterityBar = {
+            pos: {
+                x: game.world.centerX * 0.32,
+                y: game.world.centerY * 0.8875
+            },
+            size: {
+                w: 138,
+                h: 13,
+                _1p: 0 /// will be calculated later
+            },
+            fill_c: 0x0000ff,
+            border_c: 0x000099,
+            alpha: 0.7
+        };
+        skillBars.dexterity.dexterityBar.size._1p = skillBars.dexterity.dexterityBar.size.w * 0.01; ///// 1% of width ///
+        skillBars.dexterity.dexterityBarObject = game.add.graphics( skillBars.dexterity.dexterityBar.pos.x, skillBars.dexterity.dexterityBar.pos.y );
+        updateDexterityBar(100);
 
         chosenGender = 'm';
 
@@ -120,12 +138,20 @@ function changeGender(isFemale){
     }
 }
 
-updatestrengthBar = function( strengthPercentage ){ //// strength percentage 
+updateStrengthBar = function( strengthPercentage ){ //// strength percentage 
 	skillBars.strength.strengthBarObject.clear();
 	skillBars.strength.strengthBarObject.lineStyle( 2, skillBars.strength.strengthBar.border_c, skillBars.strength.strengthBar.alpha );
 	skillBars.strength.strengthBarObject.beginFill( skillBars.strength.strengthBar.fill_c, skillBars.strength.strengthBar.alpha );
 	skillBars.strength.strengthBarObject.drawRect( 0, 0, strengthPercentage * skillBars.strength.strengthBar.size._1p , skillBars.strength.strengthBar.size.h );
 	skillBars.strength.strengthBarObject.endFill();
+}
+
+updateDexterityBar = function( dexterityPercentage ){ //// dexterity percentage 
+	skillBars.dexterity.dexterityBarObject.clear();
+	skillBars.dexterity.dexterityBarObject.lineStyle( 2, skillBars.dexterity.dexterityBar.border_c, skillBars.dexterity.dexterityBar.alpha );
+	skillBars.dexterity.dexterityBarObject.beginFill( skillBars.dexterity.dexterityBar.fill_c, skillBars.dexterity.dexterityBar.alpha );
+	skillBars.dexterity.dexterityBarObject.drawRect( 0, 0, dexterityPercentage * skillBars.dexterity.dexterityBar.size._1p , skillBars.dexterity.dexterityBar.size.h );
+	skillBars.dexterity.dexterityBarObject.endFill();
 }
 
 function queryCreate() {
