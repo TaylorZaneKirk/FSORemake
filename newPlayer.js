@@ -249,7 +249,7 @@ var newPlayerState = {
         playerModel.frame = 13;
 
         availablePointsText = game.make.text( game.world.centerX, game.world.centerY, "Available Points Remaining: " + availablePoints, { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
-
+        createScreen.addChild(availablePointsText);
         console.log(availablePointsText);
     }
 }
