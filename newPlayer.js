@@ -2,6 +2,32 @@ var maleButton;
 var femaleButton;
 var chosenGender;
 var playerModel;
+var skillBars = {
+    strength:{
+        strengthBar: null,
+        strengthBarObject: null
+    },
+    dexterity:{
+        dexterityBar: null,
+        dexterityBarObject: null
+    },
+    endurance:{
+        enduranceBar: null,
+        enduranceBarObject: null,
+    },
+    agility:{
+        agilityBar: null,
+        agilityBarObject: null
+    },
+    arcane:{
+        arcaneBar: null,
+        arcaneBarObject: null
+    },
+    luck:{
+        luckBar: null,
+        luckBarObject: null
+    }
+};
 
 var newPlayerState = {
     create: function(){
@@ -51,6 +77,23 @@ var newPlayerState = {
         var agilityPlusButton = game.add.sprite(game.world.centerX * 0.68, game.world.centerY * 1.025, 'plusButton');
         var arcanePlusButton = game.add.sprite(game.world.centerX * 0.68, game.world.centerY * 1.1, 'plusButton');
         var luckPlusButton = game.add.sprite(game.world.centerX * 0.68, game.world.centerY * 1.175, 'plusButton');
+
+        skillBars.strength.strengthBar = {
+            pos: {
+                x: game.world.centerX * 0.275,
+                y: game.world.centerY * 0.8125
+            },
+            size: {
+                w: 193,
+                h: 8,
+                _1p: 0 /// will be calculated later
+            },
+            fill_c: 0xff0000,
+            border_c: 0x990000,
+            alpha: 0.7
+        };
+        skillBars.strength.strengthBar.size._1p = skillBars.strength.strengthBar.size.w * 0.01; ///// 1% of width ///
+        skillBars.strength.strengthBarObject = game.add.graphics( skillBars.strength.strengthBar.pos.x, skillBars.strength.strengthBar.pos.y );
 
         chosenGender = 'm';
 
