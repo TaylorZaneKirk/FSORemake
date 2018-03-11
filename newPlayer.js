@@ -126,6 +126,90 @@ var newPlayerState = {
         skillBars.dexterity.dexterityBarObject.addChild(skillBars.dexterity.dexterityBarText);
         updateDexterityBar(100);
 
+        skillBars.endurance.enduranceBar = {
+            pos: {
+                x: game.world.centerX * 0.32,
+                y: game.world.centerY * 0.955
+            },
+            size: {
+                w: 138,
+                h: 13,
+                _1p: 0 /// will be calculated later
+            },
+            fill_c: 0x0000ff,
+            border_c: 0x000099,
+            alpha: 0.7
+        };
+        skillBars.endurance.enduranceBar.size._1p = skillBars.endurance.enduranceBar.size.w * 0.01; ///// 1% of width ///
+        skillBars.endurance.enduranceBarObject = game.add.graphics( skillBars.endurance.enduranceBar.pos.x, skillBars.endurance.enduranceBar.pos.y );
+        skillBars.endurance.enduranceBarText = game.make.text( 0 , 0, "", { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
+        skillBars.endurance.enduranceBarText.setTextBounds(0, 2, skillBars.endurance.enduranceBar.size.w, skillBars.endurance.enduranceBar.size.h);
+        skillBars.endurance.enduranceBarObject.addChild(skillBars.endurance.enduranceBarText);
+        updateEnduranceBar(100);
+
+        skillBars.agility.agilityBar = {
+            pos: {
+                x: game.world.centerX * 0.32,
+                y: game.world.centerY * 1.025
+            },
+            size: {
+                w: 138,
+                h: 13,
+                _1p: 0 /// will be calculated later
+            },
+            fill_c: 0x0000ff,
+            border_c: 0x000099,
+            alpha: 0.7
+        };
+        skillBars.agility.agilityBar.size._1p = skillBars.agility.agilityBar.size.w * 0.01; ///// 1% of width ///
+        skillBars.agility.agilityBarObject = game.add.graphics( skillBars.agility.agilityBar.pos.x, skillBars.agility.agilityBar.pos.y );
+        skillBars.agility.agilityBarText = game.make.text( 0 , 0, "", { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
+        skillBars.agility.agilityBarText.setTextBounds(0, 2, skillBars.agility.agilityBar.size.w, skillBars.agility.agilityBar.size.h);
+        skillBars.agility.agilityBarObject.addChild(skillBars.agility.agilityBarText);
+        updateAgilityBar(100);
+
+        skillBars.arcane.arcaneBar = {
+            pos: {
+                x: game.world.centerX * 0.32,
+                y: game.world.centerY * 1.1
+            },
+            size: {
+                w: 138,
+                h: 13,
+                _1p: 0 /// will be calculated later
+            },
+            fill_c: 0x0000ff,
+            border_c: 0x000099,
+            alpha: 0.7
+        };
+        skillBars.arcane.arcaneBar.size._1p = skillBars.arcane.arcaneBar.size.w * 0.01; ///// 1% of width ///
+        skillBars.arcane.arcaneBarObject = game.add.graphics( skillBars.arcane.arcaneBar.pos.x, skillBars.arcane.arcaneBar.pos.y );
+        skillBars.arcane.arcaneBarText = game.make.text( 0 , 0, "", { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
+        skillBars.arcane.arcaneBarText.setTextBounds(0, 2, skillBars.arcane.arcaneBar.size.w, skillBars.arcane.arcaneBar.size.h);
+        skillBars.arcane.arcaneBarObject.addChild(skillBars.arcane.arcaneBarText);
+        updateArcaneBar(100);
+
+        skillBars.luck.luckBar = {
+            pos: {
+                x: game.world.centerX * 0.32,
+                y: game.world.centerY * 1.025
+            },
+            size: {
+                w: 138,
+                h: 13,
+                _1p: 0 /// will be calculated later
+            },
+            fill_c: 0x0000ff,
+            border_c: 0x000099,
+            alpha: 0.7
+        };
+        skillBars.luck.luckBar.size._1p = skillBars.luck.luckBar.size.w * 0.01; ///// 1% of width ///
+        skillBars.luck.luckBarObject = game.add.graphics( skillBars.luck.luckBar.pos.x, skillBars.luck.luckBar.pos.y );
+        skillBars.luck.luckBarText = game.make.text( 0 , 0, "", { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
+        skillBars.luck.luckBarText.setTextBounds(0, 2, skillBars.luck.luckBar.size.w, skillBars.luck.luckBar.size.h);
+        skillBars.luck.luckBarObject.addChild(skillBars.luck.luckBarText);
+        updateLuckBar(100);
+
         chosenGender = 'm';
 
         playerModel = game.add.sprite(game.world.centerX * 1.07, game.world.centerY, 'player');
@@ -166,6 +250,42 @@ updateDexterityBar = function( dexterityPercentage ){ //// dexterity percentage
 	skillBars.dexterity.dexterityBarObject.beginFill( skillBars.dexterity.dexterityBar.fill_c, skillBars.dexterity.dexterityBar.alpha );
 	skillBars.dexterity.dexterityBarObject.drawRect( 0, 0, dexterityPercentage * skillBars.dexterity.dexterityBar.size._1p , skillBars.dexterity.dexterityBar.size.h );
 	skillBars.dexterity.dexterityBarObject.endFill();
+}
+
+updateEnduranceBar = function( endurancePercentage ){ //// endurance percentage 
+	skillBars.endurance.enduranceBarObject.clear();
+    skillBars.endurance.enduranceBarObject.lineStyle( 2, skillBars.endurance.enduranceBar.border_c, skillBars.endurance.enduranceBar.alpha );
+    skillBars.endurance.enduranceBarText.setText( endurancePercentage );
+	skillBars.endurance.enduranceBarObject.beginFill( skillBars.endurance.enduranceBar.fill_c, skillBars.endurance.enduranceBar.alpha );
+	skillBars.endurance.enduranceBarObject.drawRect( 0, 0, endurancePercentage * skillBars.endurance.enduranceBar.size._1p , skillBars.endurance.enduranceBar.size.h );
+	skillBars.endurance.enduranceBarObject.endFill();
+}
+
+updateAgilityBar = function( agilityPercentage ){ //// agility percentage 
+	skillBars.agility.agilityBarObject.clear();
+    skillBars.agility.agilityBarObject.lineStyle( 2, skillBars.agility.agilityBar.border_c, skillBars.agility.agilityBar.alpha );
+    skillBars.agility.agilityBarText.setText( agilityPercentage );
+	skillBars.agility.agilityBarObject.beginFill( skillBars.agility.agilityBar.fill_c, skillBars.agility.agilityBar.alpha );
+	skillBars.agility.agilityBarObject.drawRect( 0, 0, agilityPercentage * skillBars.agility.agilityBar.size._1p , skillBars.agility.agilityBar.size.h );
+	skillBars.agility.agilityBarObject.endFill();
+}
+
+updateArcaneBar = function( arcanePercentage ){ //// arcane percentage 
+	skillBars.arcane.arcaneBarObject.clear();
+    skillBars.arcane.arcaneBarObject.lineStyle( 2, skillBars.arcane.arcaneBar.border_c, skillBars.arcane.arcaneBar.alpha );
+    skillBars.arcane.arcaneBarText.setText( arcanePercentage );
+	skillBars.arcane.arcaneBarObject.beginFill( skillBars.arcane.arcaneBar.fill_c, skillBars.arcane.arcaneBar.alpha );
+	skillBars.arcane.arcaneBarObject.drawRect( 0, 0, arcanePercentage * skillBars.arcane.arcaneBar.size._1p , skillBars.arcane.arcaneBar.size.h );
+	skillBars.arcane.arcaneBarObject.endFill();
+}
+
+updateDexterityBar = function( luckPercentage ){ //// luck percentage 
+	skillBars.luck.luckBarObject.clear();
+    skillBars.luck.luckBarObject.lineStyle( 2, skillBars.luck.luckBar.border_c, skillBars.luck.luckBar.alpha );
+    skillBars.luck.luckBarText.setText( luckPercentage );
+	skillBars.luck.luckBarObject.beginFill( skillBars.luck.luckBar.fill_c, skillBars.luck.luckBar.alpha );
+	skillBars.luck.luckBarObject.drawRect( 0, 0, luckPercentage * skillBars.luck.luckBar.size._1p , skillBars.luck.luckBar.size.h );
+	skillBars.luck.luckBarObject.endFill();
 }
 
 function queryCreate() {
