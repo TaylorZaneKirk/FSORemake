@@ -40,6 +40,11 @@ var newPlayerState = {
         femaleButton.events.onInputDown.add(function(){ changeGender(true); });
 
         var strengthMinusButton = game.add.sprite(game.world.centerX * 0.275, game.world.centerY * 0.8125, 'minusButton');
+        var dexterityMinusButton = game.add.sprite(game.world.centerX * 0.275, game.world.centerY * 0.8325, 'minusButton');
+        var enduranceMinusButton = game.add.sprite(game.world.centerX * 0.275, game.world.centerY * 0.8125, 'minusButton');
+        var agilityMinusButton = game.add.sprite(game.world.centerX * 0.275, game.world.centerY * 0.8125, 'minusButton');
+        var arcaneMinusButton = game.add.sprite(game.world.centerX * 0.275, game.world.centerY * 0.8125, 'minusButton');
+        var luckMinusButton = game.add.sprite(game.world.centerX * 0.275, game.world.centerY * 0.8125, 'minusButton');
 
         chosenGender = 'm';
 
