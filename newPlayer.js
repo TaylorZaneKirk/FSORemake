@@ -80,7 +80,7 @@ var newPlayerState = {
         maleButton.events.onInputDown.add(function(){ changeGender(false); });
         femaleButton.events.onInputDown.add(function(){ changeGender(true); });
 
-        availablePointsText = game.make.text( game.world.centerX * 0.32 , game.world.centerY * 1.5, "Available Points Remaining:" + availablePoints, { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
+        availablePointsText = game.make.text( game.world.centerX, game.world.centerY, "Available Points Remaining: " + availablePoints, { font: "bold 10px Arial", fill: "#FFF",  boundsAlignH: "center", boundsAlignV: "middle" } );
 
         var strengthMinusButton = game.add.sprite(game.world.centerX * 0.275, game.world.centerY * 0.8125, 'minusButton');
         var dexterityMinusButton = game.add.sprite(game.world.centerX * 0.275, game.world.centerY * 0.8875, 'minusButton');
@@ -275,7 +275,7 @@ updateStrengthBar = function( strengthPercentage ){ //// strength percentage
 	skillBars.strength.strengthBarObject.clear();
     skillBars.strength.strengthBarObject.lineStyle( 2, skillBars.strength.strengthBar.border_c, skillBars.strength.strengthBar.alpha );
     skillBars.strength.strengthBarText.setText( strengthPercentage );
-    availablePointsText.setText( "Available Points Remaining:" + availablePoints );
+    //availablePointsText.setText( "Available Points Remaining:" + availablePoints );
 	skillBars.strength.strengthBarObject.beginFill( skillBars.strength.strengthBar.fill_c, skillBars.strength.strengthBar.alpha );
 	skillBars.strength.strengthBarObject.drawRect( 0, 0, strengthPercentage * skillBars.strength.strengthBar.size._1p , skillBars.strength.strengthBar.size.h );
 	skillBars.strength.strengthBarObject.endFill();
@@ -285,7 +285,7 @@ updateDexterityBar = function( dexterityPercentage ){ //// dexterity percentage
 	skillBars.dexterity.dexterityBarObject.clear();
     skillBars.dexterity.dexterityBarObject.lineStyle( 2, skillBars.dexterity.dexterityBar.border_c, skillBars.dexterity.dexterityBar.alpha );
     skillBars.dexterity.dexterityBarText.setText( dexterityPercentage );
-    availablePointsText.setText( "Available Points Remaining:" + availablePoints );
+    //availablePointsText.setText( "Available Points Remaining:" + availablePoints );
 	skillBars.dexterity.dexterityBarObject.beginFill( skillBars.dexterity.dexterityBar.fill_c, skillBars.dexterity.dexterityBar.alpha );
 	skillBars.dexterity.dexterityBarObject.drawRect( 0, 0, dexterityPercentage * skillBars.dexterity.dexterityBar.size._1p , skillBars.dexterity.dexterityBar.size.h );
 	skillBars.dexterity.dexterityBarObject.endFill();
@@ -295,7 +295,7 @@ updateEnduranceBar = function( endurancePercentage ){ //// endurance percentage
 	skillBars.endurance.enduranceBarObject.clear();
     skillBars.endurance.enduranceBarObject.lineStyle( 2, skillBars.endurance.enduranceBar.border_c, skillBars.endurance.enduranceBar.alpha );
     skillBars.endurance.enduranceBarText.setText( endurancePercentage );
-    availablePointsText.setText( "Available Points Remaining:" + availablePoints );
+    //availablePointsText.setText( "Available Points Remaining:" + availablePoints );
 	skillBars.endurance.enduranceBarObject.beginFill( skillBars.endurance.enduranceBar.fill_c, skillBars.endurance.enduranceBar.alpha );
 	skillBars.endurance.enduranceBarObject.drawRect( 0, 0, endurancePercentage * skillBars.endurance.enduranceBar.size._1p , skillBars.endurance.enduranceBar.size.h );
 	skillBars.endurance.enduranceBarObject.endFill();
@@ -305,7 +305,7 @@ updateAgilityBar = function( agilityPercentage ){ //// agility percentage
 	skillBars.agility.agilityBarObject.clear();
     skillBars.agility.agilityBarObject.lineStyle( 2, skillBars.agility.agilityBar.border_c, skillBars.agility.agilityBar.alpha );
     skillBars.agility.agilityBarText.setText( agilityPercentage );
-    availablePointsText.setText( "Available Points Remaining:" + availablePoints );
+    //availablePointsText.setText( "Available Points Remaining:" + availablePoints );
 	skillBars.agility.agilityBarObject.beginFill( skillBars.agility.agilityBar.fill_c, skillBars.agility.agilityBar.alpha );
 	skillBars.agility.agilityBarObject.drawRect( 0, 0, agilityPercentage * skillBars.agility.agilityBar.size._1p , skillBars.agility.agilityBar.size.h );
 	skillBars.agility.agilityBarObject.endFill();
@@ -315,7 +315,7 @@ updateArcaneBar = function( arcanePercentage ){ //// arcane percentage
 	skillBars.arcane.arcaneBarObject.clear();
     skillBars.arcane.arcaneBarObject.lineStyle( 2, skillBars.arcane.arcaneBar.border_c, skillBars.arcane.arcaneBar.alpha );
     skillBars.arcane.arcaneBarText.setText( arcanePercentage );
-    availablePointsText.setText( "Available Points Remaining:" + availablePoints );
+    //availablePointsText.setText( "Available Points Remaining:" + availablePoints );
 	skillBars.arcane.arcaneBarObject.beginFill( skillBars.arcane.arcaneBar.fill_c, skillBars.arcane.arcaneBar.alpha );
 	skillBars.arcane.arcaneBarObject.drawRect( 0, 0, arcanePercentage * skillBars.arcane.arcaneBar.size._1p , skillBars.arcane.arcaneBar.size.h );
 	skillBars.arcane.arcaneBarObject.endFill();
@@ -325,7 +325,7 @@ updateLuckBar = function( luckPercentage ){ //// luck percentage
 	skillBars.luck.luckBarObject.clear();
     skillBars.luck.luckBarObject.lineStyle( 2, skillBars.luck.luckBar.border_c, skillBars.luck.luckBar.alpha );
     skillBars.luck.luckBarText.setText( luckPercentage );
-    availablePointsText.setText( "Available Points Remaining:" + availablePoints );
+    //availablePointsText.setText( "Available Points Remaining:" + availablePoints );
 	skillBars.luck.luckBarObject.beginFill( skillBars.luck.luckBar.fill_c, skillBars.luck.luckBar.alpha );
 	skillBars.luck.luckBarObject.drawRect( 0, 0, luckPercentage * skillBars.luck.luckBar.size._1p , skillBars.luck.luckBar.size.h );
 	skillBars.luck.luckBarObject.endFill();
