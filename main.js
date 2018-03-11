@@ -140,10 +140,6 @@ var mainState = {
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Blacksmithing", textStyle));
         for(var i = 0; i < 28; i++){ //28 skills, loop 28 times
             skillsPage.addChild(game.make.text(120, (skillsPage.length - 28) * 22, "1 (0 / 100)", {font:"bold 14px Arial", fill:"#e6e600"}));
-            /* skillsPage.getAt(i).inputEnabled = true;
-            skillsPage.getAt(i).input.useHandCursor = true;
-            skillsPage.getAt(i+28).inputEnabled = true;
-            skillsPage.getAt(i+28).input.useHandCursor = true; */
         }
         
         skillsPage.start();
@@ -374,99 +370,37 @@ function initMultiPlayer(game, globals){
             updateStatsPage([state.gold, state.strength, state.dexterity, state.endurance, state.agility, state.arcane, state.luck, state.exp]);
 
             var playerSkills = [
-                state.swordsmanship,
-                state.mysticism,
-                state.archery,
-                state.knifeplay,
-                state.blocking,
-                state.pugilism,
-                state.fireMagic,
-                state.waterMagic,
-                state.earthMagic,
-                state.windMagic,
-                state.whiteMagic,
-                state.blackMagic,
-                state.heavySwords,
-                state.hammerWielding,
-                state.bluntWeapons,
-                state.staffFighting,
-                state.axeFighting,
-                state.fencing,
-                state.shortBows,
-                state.longBows,
-                state.crossbows,
-                state.mining,
-                state.fishing,
-                state.cooking,
-                state.alchemy,
-                state.farming,
-                state.crafting,
-                state.blacksmithing,
+                { level: state.swordsmanship, current: state.swordsmanshipCurrent, next: state.swordsmanshipNext },
+                { level: state.mysticism, current: state.mysticismCurrent, next: state.mysticismNext },
+                { level: state.archery, current: state.archeryCurrent, next: state.archeryNext },
+                { level: state.knifeplay, current: state.knifeplayCurrent, next: state.knifeplayNext },
+                { level: state.blocking, current: state.blockingCurrent, next: state.blockingNext },
+                { level: state.pugilism, current: state.pugilismCurrent, next: state.pugilismNext },
+                { level: state.fireMagic, current: state.fireMagicCurrent, next: state.fireMagicNext },
+                { level: state.waterMagic, current: state.waterMagicCurrent, next: state.waterMagicNext },
+                { level: state.earthMagic, current: state.earthMagicCurrent, next: state.earthMagicNext },
+                { level: state.windMagic, current: state.windMagicCurrent, next: state.windMagicNext },
+                { level: state.whiteMagic, current: state.whiteMagicCurrent, next: state.whiteMagicNext },
+                { level: state.blackMagic, current: state.blackMagicCurrent, next: state.blackMagicNext },
+                { level: state.heavySwords, current: state.heavySwordsCurrent, next: state.heavySwordsNext },
+                { level: state.hammerWielding, current: state.hammerWieldingCurrent, next: state.hammerWieldingNext },
+                { level: state.bluntWeapons, current: state.bluntWeaponsCurrent, next: state.bluntWeaponsNext },
+                { level: state.staffFighting, current: state.staffFightingCurrent, next: state.staffFightingNext },
+                { level: state.axeFighting, current: state.axeFightingCurrent, next: state.axeFightingNext },
+                { level: state.fencing, current: state.fencingCurrent, next: state.fencingNext },
+                { level: state.shortBows, current: state.shortBowsCurrent, next: state.shortBowsNext },
+                { level: state.longBows, current: state.longBowsCurrent, next: state.longBowsNext },
+                { level: state.crossbows, current: state.crossbowsCurrent, next: state.crossbowsNext },
+                { level: state.mining, current: state.miningCurrent, next: state.miningNext },
+                { level: state.fishing, current: state.fishingCurrent, next: state.fishingNext },
+                { level: state.cooking, current: state.cookingCurrent, next: state.cookingNext },
+                { level: state.alchemy, current: state.alchemyCurrent, next: state.alchemyNext },
+                { level: state.farming, current: state.farmingCurrent, next: state.farmingNext },
+                { level: state.crafting, current: state.craftingCurrent, next: state.craftingNext },
+                { level: state.blacksmithing, current: state.blacksmithingCurrent, next: state.blacksmithingNext },
             ];
 
-            var playerSkillsCurrent = [
-                state.swordsmanshipCurrent,
-                state.mysticismCurrent,
-                state.archeryCurrent,
-                state.knifeplayCurrent,
-                state.blockingCurrent,
-                state.pugilismCurrent,
-                state.fireMagicCurrent,
-                state.waterMagicCurrent,
-                state.earthMagicCurrent,
-                state.windMagicCurrent,
-                state.whiteMagicCurrent,
-                state.blackMagicCurrent,
-                state.heavySwordsCurrent,
-                state.hammerWieldingCurrent,
-                state.bluntWeaponsCurrent,
-                state.staffFightingCurrent,
-                state.axeFightingCurrent,
-                state.fencingCurrent,
-                state.shortBowsCurrent,
-                state.longBowsCurrent,
-                state.crossbowsCurrent,
-                state.miningCurrent,
-                state.fishingCurrent,
-                state.cookingCurrent,
-                state.alchemyCurrent,
-                state.farmingCurrent,
-                state.craftingCurrent,
-                state.blacksmithingCurrent,
-            ];
-
-            var playerSkillsNext = [
-                state.swordsmanshipNext,
-                state.mysticismNext,
-                state.archeryNext,
-                state.knifeplayNext,
-                state.blockingNext,
-                state.pugilismNext,
-                state.fireMagicNext,
-                state.waterMagicNext,
-                state.earthMagicNext,
-                state.windMagicNext,
-                state.whiteMagicNext,
-                state.blackMagicNext,
-                state.heavySwordsNext,
-                state.hammerWieldingNext,
-                state.bluntWeaponsNext,
-                state.staffFightingNext,
-                state.axeFightingNext,
-                state.fencingNext,
-                state.shortBowsNext,
-                state.longBowsNext,
-                state.crossbowsNext,
-                state.miningNext,
-                state.fishingNext,
-                state.cookingNext,
-                state.alchemyNext,
-                state.farmingNext,
-                state.craftingNext,
-                state.blacksmithingNext,
-            ];
-
-            updateSkillsPage(playerSkills, playerSkillsCurrent, playerSkillsNext);
+            updateSkillsPage(playerSkills);
 
             statusBars.hp.healthBarText.setText( state.health );
             statusBars.fp.focusBarText.setText( state.focus );
@@ -481,99 +415,37 @@ function initMultiPlayer(game, globals){
             updateStaminaBar(state.stamina);
             updateStatsPage([state.gold, state.strength, state.dexterity, state.endurance, state.agility, state.arcane, state.luck, state.exp]);
             var playerSkills = [
-                state.swordsmanship,
-                state.mysticism,
-                state.archery,
-                state.knifeplay,
-                state.blocking,
-                state.pugilism,
-                state.fireMagic,
-                state.waterMagic,
-                state.earthMagic,
-                state.windMagic,
-                state.whiteMagic,
-                state.blackMagic,
-                state.heavySwords,
-                state.hammerWielding,
-                state.bluntWeapons,
-                state.staffFighting,
-                state.axeFighting,
-                state.fencing,
-                state.shortBows,
-                state.longBows,
-                state.crossbows,
-                state.mining,
-                state.fishing,
-                state.cooking,
-                state.alchemy,
-                state.farming,
-                state.crafting,
-                state.blacksmithing,
+                { level: state.swordsmanship, current: state.swordsmanshipCurrent, next: state.swordsmanshipNext },
+                { level: state.mysticism, current: state.mysticismCurrent, next: state.mysticismNext },
+                { level: state.archery, current: state.archeryCurrent, next: state.archeryNext },
+                { level: state.knifeplay, current: state.knifeplayCurrent, next: state.knifeplayNext },
+                { level: state.blocking, current: state.blockingCurrent, next: state.blockingNext },
+                { level: state.pugilism, current: state.pugilismCurrent, next: state.pugilismNext },
+                { level: state.fireMagic, current: state.fireMagicCurrent, next: state.fireMagicNext },
+                { level: state.waterMagic, current: state.waterMagicCurrent, next: state.waterMagicNext },
+                { level: state.earthMagic, current: state.earthMagicCurrent, next: state.earthMagicNext },
+                { level: state.windMagic, current: state.windMagicCurrent, next: state.windMagicNext },
+                { level: state.whiteMagic, current: state.whiteMagicCurrent, next: state.whiteMagicNext },
+                { level: state.blackMagic, current: state.blackMagicCurrent, next: state.blackMagicNext },
+                { level: state.heavySwords, current: state.heavySwordsCurrent, next: state.heavySwordsNext },
+                { level: state.hammerWielding, current: state.hammerWieldingCurrent, next: state.hammerWieldingNext },
+                { level: state.bluntWeapons, current: state.bluntWeaponsCurrent, next: state.bluntWeaponsNext },
+                { level: state.staffFighting, current: state.staffFightingCurrent, next: state.staffFightingNext },
+                { level: state.axeFighting, current: state.axeFightingCurrent, next: state.axeFightingNext },
+                { level: state.fencing, current: state.fencingCurrent, next: state.fencingNext },
+                { level: state.shortBows, current: state.shortBowsCurrent, next: state.shortBowsNext },
+                { level: state.longBows, current: state.longBowsCurrent, next: state.longBowsNext },
+                { level: state.crossbows, current: state.crossbowsCurrent, next: state.crossbowsNext },
+                { level: state.mining, current: state.miningCurrent, next: state.miningNext },
+                { level: state.fishing, current: state.fishingCurrent, next: state.fishingNext },
+                { level: state.cooking, current: state.cookingCurrent, next: state.cookingNext },
+                { level: state.alchemy, current: state.alchemyCurrent, next: state.alchemyNext },
+                { level: state.farming, current: state.farmingCurrent, next: state.farmingNext },
+                { level: state.crafting, current: state.craftingCurrent, next: state.craftingNext },
+                { level: state.blacksmithing, current: state.blacksmithingCurrent, next: state.blacksmithingNext },
             ];
 
-            var playerSkillsCurrent = [
-                state.swordsmanshipCurrent,
-                state.mysticismCurrent,
-                state.archeryCurrent,
-                state.knifeplayCurrent,
-                state.blockingCurrent,
-                state.pugilismCurrent,
-                state.fireMagicCurrent,
-                state.waterMagicCurrent,
-                state.earthMagicCurrent,
-                state.windMagicCurrent,
-                state.whiteMagicCurrent,
-                state.blackMagicCurrent,
-                state.heavySwordsCurrent,
-                state.hammerWieldingCurrent,
-                state.bluntWeaponsCurrent,
-                state.staffFightingCurrent,
-                state.axeFightingCurrent,
-                state.fencingCurrent,
-                state.shortBowsCurrent,
-                state.longBowsCurrent,
-                state.crossbowsCurrent,
-                state.miningCurrent,
-                state.fishingCurrent,
-                state.cookingCurrent,
-                state.alchemyCurrent,
-                state.farmingCurrent,
-                state.craftingCurrent,
-                state.blacksmithingCurrent,
-            ];
-
-            var playerSkillsNext = [
-                state.swordsmanshipNext,
-                state.mysticismNext,
-                state.archeryNext,
-                state.knifeplayNext,
-                state.blockingNext,
-                state.pugilismNext,
-                state.fireMagicNext,
-                state.waterMagicNext,
-                state.earthMagicNext,
-                state.windMagicNext,
-                state.whiteMagicNext,
-                state.blackMagicNext,
-                state.heavySwordsNext,
-                state.hammerWieldingNext,
-                state.bluntWeaponsNext,
-                state.staffFightingNext,
-                state.axeFightingNext,
-                state.fencingNext,
-                state.shortBowsNext,
-                state.longBowsNext,
-                state.crossbowsNext,
-                state.miningNext,
-                state.fishingNext,
-                state.cookingNext,
-                state.alchemyNext,
-                state.farmingNext,
-                state.craftingNext,
-                state.blacksmithingNext,
-            ];
-
-            updateSkillsPage(playerSkills, playerSkillsCurrent, playerSkillsNext);
+            updateSkillsPage(playerSkills);
             
             statusBars.hp.healthBarText.setText( state.health );
             statusBars.fp.focusBarText.setText( state.focus );
@@ -655,9 +527,9 @@ updateStatsPage = function(values){
     statsPage.getChildAt(11).setText(values[6]); //luck
 }
 
-updateSkillsPage = function(levels, currents, nexts){
+updateSkillsPage = function(skills){
     for(var i = 0; i < 28; i++){
-        skillsPage.getAt(i + 28).setText(levels[i] + " (" + currents[i] + " / " + nexts[i] + ")");
+        skillsPage.getAt(i + 28).setText(skills[i].level + " (" + skills[i].current + " / " + skills[i].next + ")");
     }
 }
 
