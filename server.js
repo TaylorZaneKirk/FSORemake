@@ -83,6 +83,65 @@ class PlayerState
         this.farming = data.farming;
         this.crafting = data.crafting;
         this.blacksmithing = data.blacksmithing;
+
+        this.swordsmanshipCurrent = data.swordsmanshipCurrent;
+        this.mysticismCurrent = data.mysticismCurrent;
+        this.archeryCurrent = data.archeryCurrent;
+        this.knifeplayCurrent = data.knifeplayCurrent;
+        this.blockingCurrent = data.blockingCurrent;
+        this.pugilismCurrent = data.pugilismCurrent;
+        this.fireMagicCurrent = data.fireMagicCurrent;
+        this.waterMagicCurrent = data.waterMagicCurrent;
+        this.earthMagicCurrent = data.earthMagicCurrent;
+        this.windMagicCurrent = data.windMagicCurrent;
+        this.whiteMagicCurrent = data.whiteMagicCurrent;
+        this.blackMagicCurrent = data.blackMagicCurrent;
+        this.heavySwordsCurrent = data.heavySwordsCurrent;
+        this.hammerWieldingCurrent = data.hammerWieldingCurrent;
+        this.bluntWeaponsCurrent = data.bluntWeaponsCurrent;
+        this.staffFightingCurrent = data.staffFightingCurrent;
+        this.axeFightingCurrent = data.axeFightingCurrent;
+        this.fencingCurrent = data.fencingCurrent;
+        this.shortBowsCurrent = data.shortBowsCurrent;
+        this.longBowsCurrent = data.longBowsCurrent;
+        this.crossbowsCurrent = data.crossbowsCurrent;
+        this.miningCurrent = data.miningCurrent;
+        this.fishingCurrent = data.fishingCurrent;
+        this.cookingCurrent = data.cookingCurrent;
+        this.alchemyCurrent = data.alchemyCurrent;
+        this.farmingCurrent = data.farmingCurrent;
+        this.craftingCurrent = data.craftingCurrent;
+        this.blacksmithingCurrent = data.blacksmithingCurrent;
+
+        this.swordsmanshipNext = data.swordsmanshipNext;
+        this.mysticismNext = data.mysticismNext;
+        this.archeryNext = data.archeryNext;
+        this.knifeplayNext = data.knifeplayNext;
+        this.blockingNext = data.blockingNext;
+        this.pugilismNext = data.pugilismNext;
+        this.fireMagicNext = data.fireMagicNext;
+        this.waterMagicNext = data.waterMagicNext;
+        this.earthMagicNext = data.earthMagicNext;
+        this.windMagicNext = data.windMagicNext;
+        this.whiteMagicNext = data.whiteMagicNext;
+        this.blackMagicNext = data.blackMagicNext;
+        this.heavySwordsNext = data.heavySwordsNext;
+        this.hammerWieldingNext = data.hammerWieldingNext;
+        this.bluntWeaponsNext = data.bluntWeaponsNext;
+        this.staffFightingNext = data.staffFightingNext;
+        this.axeFightingNext = data.axeFightingNext;
+        this.fencingNext = data.fencingNext;
+        this.shortBowsNext = data.shortBowsNext;
+        this.longBowsNext = data.longBowsNext;
+        this.crossbowsNext = data.crossbowsNext;
+        this.miningNext = data.miningNext;
+        this.fishingNext = data.fishingNext;
+        this.cookingNext = data.cookingNext;
+        this.alchemyNext = data.alchemyNext;
+        this.farmingNext = data.farmingNext;
+        this.craftingNext = data.craftingNext;
+        this.blacksmithingNext = data.blacksmithingNext;
+
         this.inventory = [
             data.slot1, data.slot2, data.slot3, data.slot4,
             data.slot5, data.slot6, data.slot7, data.slot8,

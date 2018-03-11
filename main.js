@@ -109,7 +109,6 @@ var mainState = {
         //Skills Page
         skillsPage = game.add.existing(new ScrollableArea(game.world.width * 0.765, game.world.centerY * 0.4, 155, 300, { horizontalScroll: false, verticalScroll: true, horizontalWheel: false, verticalWheel: true, kineticMovement: false }));
         skillsPage.maskGraphics.input.useHandCursor = false;
-        
         var textStyle = {font:"bold 14px Arial", fill:"white"};
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Swordsmanship", textStyle));
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Mysticism", textStyle));
@@ -140,17 +139,12 @@ var mainState = {
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Crafting", textStyle));
         skillsPage.addChild(game.make.text(0, skillsPage.length * 22, "Blacksmithing", textStyle));
         for(var i = 0; i < 28; i++){ //28 skills, loop 28 times
-            skillsPage.addChild(game.make.text(150, (skillsPage.length - 28) * 22, "1", textStyle));
-            skillsPage.getAt(i).addChild(game.make.text(0, 0, "CURRENT EXP / EXP NEEDED", textStyle))
-            skillsPage.getAt(i).getChildAt(0).alpha = 0;
-            skillsPage.getAt(i).inputEnabled = true;
-            /* skillsPage.getAt(i).events.onInputOver.add(function(sprite){ sprite.getChildAt(0).alpha = 1; })
-            skillsPage.getAt(i).events.onInputOut.add(function(sprite){ sprite.getChildAt(0).alpha = 0; }) */
+            skillsPage.addChild(game.make.text(150, (skillsPage.length - 28) * 22, "1 (0 / 100)", textStyle));
+            /* skillsPage.getAt(i).inputEnabled = true;
+            skillsPage.getAt(i).input.useHandCursor = true;
             skillsPage.getAt(i+28).inputEnabled = true;
+            skillsPage.getAt(i+28).input.useHandCursor = true; */
         }
-
-        skillsPage.onChildInputOver.add(function(sprite){ console.log(sprite); });
-        //skillsPage.onChildInputOut.add(function(sprite){ sprite.getChildAt(0).alpha = 0; });
         
         skillsPage.start();
         skillsPage.alpha = 0;
@@ -410,7 +404,69 @@ function initMultiPlayer(game, globals){
                 state.blacksmithing,
             ];
 
-            updateSkillsPage(playerSkills);
+            var playerSkillsCurrent = [
+                state.swordsmanshipCurrent,
+                state.mysticismCurrent,
+                state.archeryCurrent,
+                state.knifeplayCurrent,
+                state.blockingCurrent,
+                state.pugilismCurrent,
+                state.fireMagicCurrent,
+                state.waterMagicCurrent,
+                state.earthMagicCurrent,
+                state.windMagicCurrent,
+                state.whiteMagicCurrent,
+                state.blackMagicCurrent,
+                state.heavySwordsCurrent,
+                state.hammerWieldingCurrent,
+                state.bluntWeaponsCurrent,
+                state.staffFightingCurrent,
+                state.axeFightingCurrent,
+                state.fencingCurrent,
+                state.shortBowsCurrent,
+                state.longBowsCurrent,
+                state.crossbowsCurrent,
+                state.miningCurrent,
+                state.fishingCurrent,
+                state.cookingCurrent,
+                state.alchemyCurrent,
+                state.farmingCurrent,
+                state.craftingCurrent,
+                state.blacksmithingCurrent,
+            ];
+
+            var playerSkillsNext = [
+                state.swordsmanshipNext,
+                state.mysticismNext,
+                state.archeryNext,
+                state.knifeplayNext,
+                state.blockingNext,
+                state.pugilismNext,
+                state.fireMagicNext,
+                state.waterMagicNext,
+                state.earthMagicNext,
+                state.windMagicNext,
+                state.whiteMagicNext,
+                state.blackMagicNext,
+                state.heavySwordsNext,
+                state.hammerWieldingNext,
+                state.bluntWeaponsNext,
+                state.staffFightingNext,
+                state.axeFightingNext,
+                state.fencingNext,
+                state.shortBowsNext,
+                state.longBowsNext,
+                state.crossbowsNext,
+                state.miningNext,
+                state.fishingNext,
+                state.cookingNext,
+                state.alchemyNext,
+                state.farmingNext,
+                state.craftingNext,
+                state.blacksmithingNext,
+            ];
+
+            updateSkillsPage(playerSkills, playerSkillsCurrent, playerSkillsNext);
 
             statusBars.hp.healthBarText.setText( state.health );
             statusBars.fp.focusBarText.setText( state.focus );
@@ -455,7 +511,69 @@ function initMultiPlayer(game, globals){
                 state.blacksmithing,
             ];
 
-            updateSkillsPage(playerSkills);
+            var playerSkillsCurrent = [
+                state.swordsmanshipCurrent,
+                state.mysticismCurrent,
+                state.archeryCurrent,
+                state.knifeplayCurrent,
+                state.blockingCurrent,
+                state.pugilismCurrent,
+                state.fireMagicCurrent,
+                state.waterMagicCurrent,
+                state.earthMagicCurrent,
+                state.windMagicCurrent,
+                state.whiteMagicCurrent,
+                state.blackMagicCurrent,
+                state.heavySwordsCurrent,
+                state.hammerWieldingCurrent,
+                state.bluntWeaponsCurrent,
+                state.staffFightingCurrent,
+                state.axeFightingCurrent,
+                state.fencingCurrent,
+                state.shortBowsCurrent,
+                state.longBowsCurrent,
+                state.crossbowsCurrent,
+                state.miningCurrent,
+                state.fishingCurrent,
+                state.cookingCurrent,
+                state.alchemyCurrent,
+                state.farmingCurrent,
+                state.craftingCurrent,
+                state.blacksmithingCurrent,
+            ];
+
+            var playerSkillsNext = [
+                state.swordsmanshipNext,
+                state.mysticismNext,
+                state.archeryNext,
+                state.knifeplayNext,
+                state.blockingNext,
+                state.pugilismNext,
+                state.fireMagicNext,
+                state.waterMagicNext,
+                state.earthMagicNext,
+                state.windMagicNext,
+                state.whiteMagicNext,
+                state.blackMagicNext,
+                state.heavySwordsNext,
+                state.hammerWieldingNext,
+                state.bluntWeaponsNext,
+                state.staffFightingNext,
+                state.axeFightingNext,
+                state.fencingNext,
+                state.shortBowsNext,
+                state.longBowsNext,
+                state.crossbowsNext,
+                state.miningNext,
+                state.fishingNext,
+                state.cookingNext,
+                state.alchemyNext,
+                state.farmingNext,
+                state.craftingNext,
+                state.blacksmithingNext,
+            ];
+
+            updateSkillsPage(playerSkills, playerSkillsCurrent, playerSkillsNext);
             
             statusBars.hp.healthBarText.setText( state.health );
             statusBars.fp.focusBarText.setText( state.focus );
@@ -537,9 +655,9 @@ updateStatsPage = function(values){
     statsPage.getChildAt(11).setText(values[6]); //luck
 }
 
-updateSkillsPage = function(values){
+updateSkillsPage = function(levels, currents, nexts){
     for(var i = 0; i < 28; i++){
-        skillsPage.getAt(i + 28).setText(values[i]);
+        skillsPage.getAt(i + 28).setText(values[i] + " (" + currents[i] + " / " + nexts[i] + ")");
     }
 }
 
