@@ -229,6 +229,7 @@ var PlayerObject = function(idRef, gameRef){
             playerTween = moveSprite(playerTween, playerState.pos, playerSprite);
         }
         playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
+        playerHead.play(playerState.playerAction + '-' + playerState.playerFacing);
     }
 
     //Function to handle moving the sprites, if the tween
