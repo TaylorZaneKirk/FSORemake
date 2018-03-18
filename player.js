@@ -71,7 +71,18 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite.animations.add('idle-S', [13], 1, false);
         playerSprite.play('idle-' + playerState.playerFacing);
 
-        playerHead.animations = playerSprite.animations;
+        playerHead.animations.add('walk-E', [0,1,2], 6, true);
+        playerHead.animations.add('walk-W', [4,5,6], 6, true);
+        playerHead.animations.add('walk-N', [8,9,10], 6, true);
+        playerHead.animations.add('walk-S', [12,13,14], 6, true);
+        playerHead.animations.add('attack-E', [1,3,1], 3, false);
+        playerHead.animations.add('attack-W', [5,7,5], 3, false);
+        playerHead.animations.add('attack-N', [9,11,9], 3, false);
+        playerHead.animations.add('attack-S', [13,15,13], 3, false);
+        playerHead.animations.add('idle-E', [1], 1, false);
+        playerHead.animations.add('idle-W', [5], 1, false);
+        playerHead.animations.add('idle-N', [9], 1, false);
+        playerHead.animations.add('idle-S', [13], 1, false);
         playerHead.play('idle-' + playerState.playerFacing);
 
         playerTween = game.add.tween(playerSprite);
