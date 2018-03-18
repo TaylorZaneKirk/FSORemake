@@ -5,6 +5,7 @@ var PlayerObject = function(idRef, gameRef){
     var idLocal = null; //Local player's id
     var playerState = null; //player's current state
     var playerSprite = null;
+    var playerHead = null;
     var currentAction = null;
     var upKey = null;
     var downKey = null;
@@ -29,7 +30,8 @@ var PlayerObject = function(idRef, gameRef){
         if(playerState.gender == 'm'){
             //playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player');
             playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'defaultBody');
-            playerSprite.addChild(game.add.sprite(0, 0, 'maleHead1'));
+            playerHead = game.add.sprite(0, 0, 'maleHead1');
+            playerSprite.addChild(playerHead);
         }
         else{
             playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player2');
@@ -68,6 +70,9 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite.animations.add('idle-N', [9], 1, false);
         playerSprite.animations.add('idle-S', [13], 1, false);
         playerSprite.play('idle-' + playerState.playerFacing);
+
+        playerHead.animations = playerSprite.animations;
+        playerHead.play('idle-' + playerState.playerFacing);
 
         playerTween = game.add.tween(playerSprite);
     }
