@@ -31,6 +31,9 @@ var loadState = {
         game.load.spritesheet('player', 'assets/PlayerSheet.png', 46, 45, 16);
         game.load.spritesheet('player2', 'assets/PlayerSheet2.png', 46, 45, 16);
         game.load.spritesheet('goldSprites', 'assets/GoldSheet.png', 32, 32, 10);
+
+        game.load.spritesheet('defaultBody', 'assets/DefaultBody.png', 46, 45, 16);
+        game.load.spritesheet('maleHead1', 'assets/MaleHead1.png', 46, 45, 16);
     },
 
     create: function(){

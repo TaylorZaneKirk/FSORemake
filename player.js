@@ -27,7 +27,9 @@ var PlayerObject = function(idRef, gameRef){
         altKey = game.input.keyboard.addKey(Phaser.Keyboard.ALT);
 
         if(playerState.gender == 'm'){
-            playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player');
+            //playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player');
+            playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'defaultBody');
+            playerSprite.addChild(game.add.sprite(0, 0, 'maleHead1'));
         }
         else{
             playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player2');
