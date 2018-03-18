@@ -30,8 +30,7 @@ var PlayerObject = function(idRef, gameRef){
         if(playerState.gender == 'm'){
             //playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player');
             playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'defaultBody');
-            playerHead = game.add.sprite(0, 0, 'maleHead1');
-            playerHead.anchor.setTo(0.5);
+            playerHead = game.add.sprite(-1, -1, 'maleHead1');
             playerSprite.addChild(playerHead);
         }
         else{
