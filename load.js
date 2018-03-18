@@ -34,6 +34,7 @@ var loadState = {
 
         game.load.spritesheet('defaultBody', 'assets/DefaultBody.png', 46, 45, 16);
         game.load.spritesheet('maleHead1', 'assets/MaleHead1.png', 46, 45, 16);
+        game.load.spritesheet('femaleHead1', 'assets/FemaleHead1.png', 46, 45, 16);
     },
 
     create: function(){

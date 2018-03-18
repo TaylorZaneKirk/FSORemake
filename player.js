@@ -34,7 +34,10 @@ var PlayerObject = function(idRef, gameRef){
             playerSprite.addChild(playerHead);
         }
         else{
-            playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player2');
+            //playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player2');
+            playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'defaultBody');
+            playerHead = game.add.sprite(-6.5, -7, 'femaleHead1');
+            playerSprite.addChild(playerHead);
         }
         
         playerSprite.inputEnabled = true;
