@@ -86,7 +86,8 @@ var PlayerObject = function(idRef, gameRef){
         playerHead.animations.add('idle-W', [5], 1, false);
         playerHead.animations.add('idle-N', [9], 1, false);
         playerHead.animations.add('idle-S', [13], 1, false);
-        playerHead.play('idle-' + playerState.playerFacing);
+        //playerHead.play('idle-' + playerState.playerFacing);
+        playerHead.frame = playerSprite.frame;
 
         playerTween = game.add.tween(playerSprite);
     }
@@ -232,7 +233,8 @@ var PlayerObject = function(idRef, gameRef){
             playerTween = moveSprite(playerTween, playerState.pos, playerSprite);
         }
         playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
-        playerHead.play(playerState.playerAction + '-' + playerState.playerFacing);
+        //playerHead.play(playerState.playerAction + '-' + playerState.playerFacing);
+        playerHead.frame = playerSprite.frame;
     }
 
     //Function to handle moving the sprites, if the tween
@@ -266,7 +268,7 @@ var PlayerObject = function(idRef, gameRef){
         game.global.playerList[id].localPlayerObject.playerSprite = otherSprite;
         game.global.playerList[id].localPlayerObject.playerTween = otherTween;
         otherSprite.play(otherPlayer.playerAction + '-' + otherPlayer.playerFacing);
-
+        otherSprite.getAt(0).frame = otherSprite.frame;
         
     }
 
