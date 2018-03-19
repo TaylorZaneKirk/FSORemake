@@ -537,7 +537,7 @@ loadMapData = function(){
                 items.forEach((item) => {
                     if(mapName == (item.worldX + "-" + item.worldY)){
                         worldMap[mapName].items[item.itemId] = item;
-                        console.log("GOT ITEM!");
+                        console.log(item);
                     }
                 });
                 filesRead++;
