@@ -12,7 +12,7 @@ var Eureca = require('eureca.io');
 
 
 //create an instance of EurecaServer
-var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill', 'disconnect', 'errorAndDisconnect', 'recieveBroadcast', 'itemUpdate']});
+var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill', 'disconnect', 'errorAndDisconnect', 'recieveBroadcast']});
 
 //attach eureca.io to our http server
 eurecaServer.attach(server);
@@ -26,27 +26,11 @@ var con = mysql.createConnection({
   database: "FSORemake"
 });
 
-class Item{
-    constructor(data){
-        this.itemId = data.itemId;
-        this.itemName = data.name;
-        this.worldX = data.worldX;
-        this.worldY = data.worldY;
-        this.pos = {x: data.localX, y: data.localY};
-        this.amount = data.amount;
-        this.respawnable = data.respawnable;
-    }
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Database Connection Established");
+});
 
-    pickUp(){
-        delete worldMap[this.worldX + '-' + this.worldY].items[this.itemId];
-        for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
-            var index = worldMap[this.worldX + '-' + this.worldY].players[i].playerId;
-            var visiblePlayer = players[index];
-            visiblePlayer.remote.updateItem(this.itemId, 'kill');
-           
-        }
-    }
-}
 
 //Player state needs to have Health implemented
 class PlayerState
@@ -176,7 +160,7 @@ class PlayerState
         this.lastUpdated = null;
         this.readyToUpdate = false;
         this.playersVisible = {};
-        this.mapData = worldMap[this.worldX + '-' + this.worldY];
+        this.mapData = worldMap[this.worldX + '-' + this.worldY].mapData;
     }
     /* 
     copy(other)
@@ -275,8 +259,7 @@ class PlayerState
 
 
 var players = {};
-var worldMap = {};
-var items = [];
+var worldMap = {}
 
 //detect client connection
 eurecaServer.onConnect(function (conn) {
@@ -312,17 +295,7 @@ app.get('/', function (req, res, next) {
 
 server.listen(process.env.PORT || 55555, function () {
     console.log('\033[96mlistening on localhost:55555 \033[39m');
-    con.connect(function(err) {
-        if (err) throw err;
-        console.log("Database Connection Established");
-        con.query("SELECT * FROM worldItems", function (err, result, fields){
-            if (err) throw err;
-
-            items = result;
-            console.log("Items loaded");
-            loadMapData();
-        });
-    });
+    loadMapData();
 });
 
 eurecaServer.exports.login = function (username, password){
@@ -497,10 +470,7 @@ eurecaServer.updateClients = function (id) {
     var newRemote = players[id].remote;
     var allPlayerStates = [];
 
-    console.log(worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players);
-    console.log('break');
-    players[id].state.playersVisible = Object.filter(worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players, player => {console.log(player.playerId != id); return player.playerId != id});
-    console.log(players[id].state.playersVisible);
+    players[id].state.playersVisible = Object.filter(worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players, player => player.playerId != id);
     newRemote.recieveStateFromServer(players[id].state);
 
     for(var i in players[id].state.playersVisible) {
@@ -557,12 +527,6 @@ loadMapData = function(){
                         index++;
                     }
                 }
-                items.forEach((item) => {
-                    if(mapName == (item.worldX + "-" + item.worldY)){
-                        worldMap[mapName].items[item.itemId] = new Item(item);
-                        console.log(worldMap[mapName].items[item.itemId]);
-                    }
-                });
                 filesRead++;
                 
                 if(filesRead != 0 && filesRead == totalFiles){
