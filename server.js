@@ -205,7 +205,7 @@ class PlayerState
             //here we call kill() method defined in the client side
             remote.kill(this.playerId);
         }
-        this.mapData = worldMap[worldXNew + '-' + worldYNew].mapData;
+        this.mapData = worldMap[worldXNew + '-' + worldYNew];
         this.worldX = worldXNew;
         this.worldY = worldYNew;
         con.query("UPDATE users SET worldX='" + this.worldX + "', worldY='" + this.worldY + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
