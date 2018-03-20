@@ -123,6 +123,8 @@ module.exports = {
         var mapItems = state.mapData.items;
         var thisItem = null;
 
+        console.log(playerLocalPos);
+
         switch(playerFacing){
             case 'E': {
                 for(var i in mapItems){
