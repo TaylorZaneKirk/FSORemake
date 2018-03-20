@@ -338,6 +338,8 @@ function initMultiPlayer(game, globals){
                 delete globals.items[i]
             }
 
+            globals.mapManager.setMapData(state.mapData);
+
             //Local player
             globals.player = state;
             globals.playerList[state.playerId] = {player: state, localPlayerObject: null};
@@ -350,8 +352,6 @@ function initMultiPlayer(game, globals){
                 globals.playerList[state.playersVisible[i].playerId].player = state.playersVisible[i];
                 globals.playerList[state.playersVisible[i].playerId].localPlayerObject = new PlayerObject(state.playersVisible[i].playerId, game);
             }
-            
-            globals.mapManager.setMapData(state.mapData);
         }
         else if(state.playerId == globals.myId && globals.localPlayerObject == null && game.global.ready == false){
             //Just logged in, create sprites and map
