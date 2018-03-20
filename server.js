@@ -28,6 +28,7 @@ var con = mysql.createConnection({
 
 class Item{
     constructor(data){
+        this.locationId = data.locationId;
         this.itemId = data.itemId;
         this.itemName = data.name;
         this.worldX = data.worldX;
@@ -37,12 +38,12 @@ class Item{
         this.respawnable = data.respawnable;
     }
 
-    pickUp(){
-        delete worldMap[this.worldX + '-' + this.worldY].items[this.itemId];
+    remove(){
+        delete worldMap[this.worldX + '-' + this.worldY].items[this.locationId];
         for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
             var index = worldMap[this.worldX + '-' + this.worldY].players[i].playerId;
             var visiblePlayer = players[index];
-            visiblePlayer.remote.updateItem(this.itemId, 'kill');
+            visiblePlayer.remote.updateItem(this.locationId, 'kill');
            
         }
     }
@@ -270,6 +271,16 @@ class PlayerState
         this.level++;
         con.query("UPDATE users SET level='" + this.level + "' WHERE username='" + this.username + "'", function (err, result, fields) {if (err) throw err; });
     } */
+
+    getItem(locationId){
+        var thisItem = worldMap[this.worldX + '-' + this.worldY].items[this.locationId];
+        for(var item of this.inventory){
+            if (item.itemName == 'NOTHING'){
+                //place item here
+                item.remove();
+            }
+        }
+    }
 };
 
 
@@ -277,6 +288,7 @@ class PlayerState
 var players = {};
 var worldMap = {};
 var items = [];
+var itemData = {};
 
 //detect client connection
 eurecaServer.onConnect(function (conn) {
@@ -319,8 +331,15 @@ server.listen(process.env.PORT || 55555, function () {
             if (err) throw err;
 
             items = result;
-            console.log("Items loaded");
+            console.log("World Items loaded");
             loadMapData();
+        });
+
+        con.query("SELECT * FROM itemData", function (err, result, fields){
+            if (err) throw err;
+
+            itemData = result;
+            console.log("Item Data loaded");
         });
     });
 });
@@ -561,8 +580,7 @@ loadMapData = function(){
                 }
                 items.forEach((item) => {
                     if(mapName == (item.worldX + "-" + item.worldY)){
-                        worldMap[mapName].items[item.itemId] = new Item(item);
-                        console.log(worldMap[mapName].items[item.itemId]);
+                        worldMap[mapName].items[item.locationId] = new Item(item);
                     }
                 });
                 filesRead++;

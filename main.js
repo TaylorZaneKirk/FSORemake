@@ -309,7 +309,10 @@ var mainState = {
 function initMultiPlayer(game, globals){
 
     client.exports.updateItem = function(itemId, action){
-
+        if(action == 'kill'){
+            globals.items[itemId].kill();
+            delete globals.items[itemId];
+        }
     }
 
     //Recieve Message to add to chatBox

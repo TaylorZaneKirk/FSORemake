@@ -123,14 +123,10 @@ module.exports = {
         var mapItems = state.mapData.items;
         var thisItem = null;
 
-        console.log(playerLocalPos);
-
         switch(playerFacing){
             case 'E': {
-                console.log("trying to pick item up")
                 for(var i in mapItems){
                     thisItem = mapItems[i];
-                    console.log(thisItem);
                     if(thisItem.pos.x == playerLocalPos.x + 1 && thisItem.pos.y == playerLocalPos.y){
                         console.log("would have picked up item")
                     }
@@ -169,5 +165,10 @@ module.exports = {
                 return;
             }
         }
+    },
+
+    getItemData: function(itemId){
+        
+
     }
 }
