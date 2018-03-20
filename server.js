@@ -26,11 +26,6 @@ var con = mysql.createConnection({
   database: "FSORemake"
 });
 
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("Database Connection Established");
-});
-
 
 //Player state needs to have Health implemented
 class PlayerState
@@ -259,7 +254,8 @@ class PlayerState
 
 
 var players = {};
-var worldMap = {}
+var worldMap = {};
+var items = [];
 
 //detect client connection
 eurecaServer.onConnect(function (conn) {
@@ -295,7 +291,17 @@ app.get('/', function (req, res, next) {
 
 server.listen(process.env.PORT || 55555, function () {
     console.log('\033[96mlistening on localhost:55555 \033[39m');
-    loadMapData();
+    con.connect(function(err) {
+        if (err) throw err;
+        console.log("Database Connection Established");
+        con.query("SELECT * FROM worldItems", function (err, result, fields){
+            if (err) throw err;
+
+            items = result;
+            console.log("Items loaded");
+            loadMapData();
+        });
+    });
 });
 
 eurecaServer.exports.login = function (username, password){
@@ -523,10 +529,17 @@ loadMapData = function(){
                         }
                         else if(content[index] != '\n' && content[index] != ';'){
                             worldMap[mapName].mapData[x][y] = content[index];
+                            //populate items by query
                         }
                         index++;
                     }
                 }
+                items.forEach((item) => {
+                    if(mapName == (item.worldX + "-" + item.worldY)){
+                        worldMap[mapName].items[item.itemId] = item;
+                        console.log(item);
+                    }
+                });
                 filesRead++;
                 
                 if(filesRead != 0 && filesRead == totalFiles){
