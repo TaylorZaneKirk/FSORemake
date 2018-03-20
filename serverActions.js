@@ -127,8 +127,10 @@ module.exports = {
 
         switch(playerFacing){
             case 'E': {
+                console.log("trying to pick item up")
                 for(var i in mapItems){
                     thisItem = mapItems[i];
+                    console.log(thisItem);
                     if(thisItem.localX == playerLocalPos.x + 1 && thisItem.localY == playerLocalPos.y){
                         console.log("would have picked up item")
                     }
