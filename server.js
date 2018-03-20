@@ -12,7 +12,7 @@ var Eureca = require('eureca.io');
 
 
 //create an instance of EurecaServer
-var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill', 'disconnect', 'errorAndDisconnect', 'recieveBroadcast']});
+var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill', 'disconnect', 'errorAndDisconnect', 'recieveBroadcast', 'itemUpdate']});
 
 //attach eureca.io to our http server
 eurecaServer.attach(server);
@@ -26,6 +26,27 @@ var con = mysql.createConnection({
   database: "FSORemake"
 });
 
+class Item{
+    constructor(data){
+        this.itemId = data.itemId;
+        this.itemName = data.name;
+        this.worldX = data.worldX;
+        this.worldY = data.worldY;
+        this.pos = {x: data.localX, y: data.localY};
+        this.amount = data.amount;
+        this.respawnable = data.respawnable;
+    }
+
+    pickUp(){
+        delete worldMap[this.worldX + '-' + this.worldY].items[this.itemId];
+        for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
+            var index = worldMap[this.worldX + '-' + this.worldY].players[i].playerId;
+            var visiblePlayer = players[index];
+            visiblePlayer.remote.updateItem(this.itemId, 'kill');
+           
+        }
+    }
+}
 
 //Player state needs to have Health implemented
 class PlayerState
@@ -155,7 +176,7 @@ class PlayerState
         this.lastUpdated = null;
         this.readyToUpdate = false;
         this.playersVisible = {};
-        this.mapData = worldMap[this.worldX + '-' + this.worldY].mapData;
+        this.mapData = worldMap[this.worldX + '-' + this.worldY];
     }
     /* 
     copy(other)
@@ -529,15 +550,14 @@ loadMapData = function(){
                         }
                         else if(content[index] != '\n' && content[index] != ';'){
                             worldMap[mapName].mapData[x][y] = content[index];
-                            //populate items by query
                         }
                         index++;
                     }
                 }
                 items.forEach((item) => {
                     if(mapName == (item.worldX + "-" + item.worldY)){
-                        worldMap[mapName].items[item.itemId] = item;
-                        console.log(item);
+                        worldMap[mapName].items[item.itemId] = new Item(item);
+                        console.log(worldMap[mapName].items[item.itemId]);
                     }
                 });
                 filesRead++;

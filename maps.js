@@ -17,6 +17,7 @@ var MapManager = class MapManager {
         this.map.addTilesetImage('tileset', null, 32, 32);
         this.layers = [];
         this.layers.push(this.map.create('map', 18, 13, 32, 32));
+        this.layers.push(this.map.createBlankLayer('items', 18, 13, 32, 32));
         this.mapData = null;
     }
 
@@ -37,9 +38,13 @@ var MapManager = class MapManager {
         for (var x = 0; x < 12; x++){
             for (var y = 0; y < 17; y++) {
                 
-                this.map.putTile(this.mapData[x][y], y+1, x+1, this.layers[0]);
-            
+                this.map.putTile(this.mapData.mapData[x][y], y+1, x+1, this.layers[0]);
             }
+        }
+
+        for(var i in this.mapData.items){
+            console.log(this.mapData.items[i].itemName);
+            game.add.sprite((this.mapData.items[i].localX+1) * 32, (this.mapData.items[i].localY+1) * 32, this.mapData.items[i].itemName);
         }
     }
 

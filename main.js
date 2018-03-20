@@ -308,6 +308,10 @@ var mainState = {
 
 function initMultiPlayer(game, globals){
 
+    client.exports.updateItem = function(itemId, action){
+
+    }
+
     //Recieve Message to add to chatBox
     client.exports.recieveBroadcast = function(message, color) {
         var textStyle = {font: "14px Arial", fill: color};
