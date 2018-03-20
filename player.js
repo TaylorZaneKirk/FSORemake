@@ -222,6 +222,7 @@ var PlayerObject = function(idRef, gameRef){
                 }
             }
             else if (shiftKey.isDown){
+                console.log("trying to pick up");
                 game.global.actionQueue.push({action: {type: 'pickup', payload: 'N/A'}, target: 'self'});
             }
         }
