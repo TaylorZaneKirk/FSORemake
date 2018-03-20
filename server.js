@@ -26,6 +26,21 @@ var con = mysql.createConnection({
   database: "FSORemake"
 });
 
+class Item{
+    constructor(data){
+        this.itemId = data.itemId;
+        this.itemName = data.name;
+        this.worldX = data.worldX;
+        this.worldY = data.worldY;
+        this.pos = {x: data.localX, y: data.localY};
+        this.amount = data.amount;
+        this.respawnable = data.respawnable;
+    }
+
+    pickUp(){
+        delete worldMap[this.worldX + '-' + this.worldY].items[this.itemId];
+    }
+}
 
 //Player state needs to have Health implemented
 class PlayerState
@@ -529,15 +544,14 @@ loadMapData = function(){
                         }
                         else if(content[index] != '\n' && content[index] != ';'){
                             worldMap[mapName].mapData[x][y] = content[index];
-                            //populate items by query
                         }
                         index++;
                     }
                 }
                 items.forEach((item) => {
                     if(mapName == (item.worldX + "-" + item.worldY)){
-                        worldMap[mapName].items[item.itemId] = item;
-                        console.log(item);
+                        worldMap[mapName].items[item.itemId] = new Item(item);
+                        console.log(worldMap[mapName].items[item.itemId]);
                     }
                 });
                 filesRead++;
