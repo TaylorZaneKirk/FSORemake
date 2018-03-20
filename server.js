@@ -12,7 +12,7 @@ var Eureca = require('eureca.io');
 
 
 //create an instance of EurecaServer
-var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill', 'disconnect', 'errorAndDisconnect', 'recieveBroadcast']});
+var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill', 'disconnect', 'errorAndDisconnect', 'recieveBroadcast', 'itemUpdate']});
 
 //attach eureca.io to our http server
 eurecaServer.attach(server);
@@ -39,6 +39,12 @@ class Item{
 
     pickUp(){
         delete worldMap[this.worldX + '-' + this.worldY].items[this.itemId];
+        for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
+            var index = worldMap[this.worldX + '-' + this.worldY].players[i].playerId;
+            var visiblePlayer = players[index];
+            visiblePlayer.remote.updateItem(this.itemId, 'kill');
+           
+        }
     }
 }
 
@@ -170,7 +176,7 @@ class PlayerState
         this.lastUpdated = null;
         this.readyToUpdate = false;
         this.playersVisible = {};
-        this.mapData = worldMap[this.worldX + '-' + this.worldY].mapData;
+        this.mapData = worldMap[this.worldX + '-' + this.worldY];
     }
     /* 
     copy(other)
@@ -492,6 +498,7 @@ eurecaServer.updateClients = function (id) {
     var allPlayerStates = [];
 
     players[id].state.playersVisible = Object.filter(worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players, player => player.playerId != id);
+    players[id].state.mapData.players = players[id].state.playersVisible;
     newRemote.recieveStateFromServer(players[id].state);
 
     for(var i in players[id].state.playersVisible) {
