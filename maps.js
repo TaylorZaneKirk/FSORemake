@@ -48,6 +48,7 @@ var MapManager = class MapManager {
             var thisTile = this.map.getTile(this.mapData.items[i].pos.x+1, this.mapData.items[i].pos.y+1, this.layers[0], true);
             var item = game.add.sprite(thisTile.worldX+16, thisTile.worldY+16, this.mapData.items[i].itemName); //adjust position
             item.anchor.setTo(0.5);
+            this.game.global.items[this.mapData.items[i].itemId] = item;
         }
     }
 

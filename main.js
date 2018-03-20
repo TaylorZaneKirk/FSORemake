@@ -333,6 +333,11 @@ function initMultiPlayer(game, globals){
                 delete globals.playerList[i]
             }
 
+            for(var i in globals.items){
+                globals.items[i].kill();
+                delete globals.items[i]
+            }
+
             //Local player
             globals.player = state;
             globals.playerList[state.playerId] = {player: state, localPlayerObject: null};
