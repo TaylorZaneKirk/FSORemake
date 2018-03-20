@@ -350,7 +350,7 @@ function initMultiPlayer(game, globals){
         }
         else if(state.playerId == globals.myId && globals.localPlayerObject == null && game.global.ready == false){
             //Just logged in, create sprites and map
-            
+            globals.mapManager.setMapData(state.mapData);
             //Local player
             globals.player = state;
             globals.playerList[state.playerId] = {player: state, localPlayerObject: null};
@@ -367,7 +367,6 @@ function initMultiPlayer(game, globals){
             }
 
             game.global.ready = true;
-            globals.mapManager.setMapData(state.mapData);
             updateHealthBar((state.health / state.maxHealth) * 100);
             updateFocusBar((state.focus / state.maxFocus) * 100);
             updateStaminaBar(state.stamina);
