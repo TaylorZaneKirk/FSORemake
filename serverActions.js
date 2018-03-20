@@ -115,5 +115,55 @@ module.exports = {
                 }
             }
         }
+    },
+
+    pickUpItem: function(state){
+        var playerLocalPos = state.pos;
+        var playerFacing = state.playerFacing;
+        var mapItems = state.mapData.items;
+        var thisItem = null;
+
+        switch(playerFacing){
+            case 'E': {
+                for(var i in mapItems){
+                    thisItem = mapItems[i];
+                    if(thisItem.localX == playerLocalPos.x + 1 && thisItem.localY == playerLocalPos.y){
+                        console.log("would have picked up item")
+                    }
+                }
+                break;
+            }
+            case 'W': {
+                for(var i in mapItems){
+                    thisItem = mapItems[i];
+                    if(thisItem.localX == playerLocalPos.x - 1 && thisItem.localY == playerLocalPos.y){
+                        console.log("would have picked up item")
+                    }
+                }
+                break;
+            }
+            case 'N': {
+                for(var i in mapItems){
+                    thisItem = mapItems[i];
+                    if(thisItem.localX == playerLocalPos.x && thisItem.localY == playerLocalPos.y - 1){
+                        console.log("would have picked up item")
+                    }
+                }
+                break;
+            }
+            case 'S': {
+                for(var i in mapItems){
+                    thisItem = mapItems[i];
+                    if(thisItem.localX == playerLocalPos.x && thisItem.localY == playerLocalPos.y + 1){
+                        console.log("would have picked up item")
+                    }
+                }
+                break;
+            }
+            default: {
+                console.log("shouldn't see this");
+                return;
+            }
+        }
     }
 }

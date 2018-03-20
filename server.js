@@ -485,6 +485,10 @@ eurecaServer.exports.message = function(id, message){
             serverActions.broadcastMessage(players, id, message.action.payload, message.target);
             break;
         }
+        case 'pickup': {
+            serverActions.pickUpItem(players[id].state);
+            break;
+        }
         default: {
             console.log("ERROR: Recieved invalid message");
             return;
