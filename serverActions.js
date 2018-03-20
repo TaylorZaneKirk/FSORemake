@@ -131,7 +131,7 @@ module.exports = {
                 for(var i in mapItems){
                     thisItem = mapItems[i];
                     console.log(thisItem);
-                    if(thisItem.localX == playerLocalPos.x + 1 && thisItem.localY == playerLocalPos.y){
+                    if(thisItem.pos.x == playerLocalPos.x + 1 && thisItem.pos.y == playerLocalPos.y){
                         console.log("would have picked up item")
                     }
                 }
@@ -140,7 +140,7 @@ module.exports = {
             case 'W': {
                 for(var i in mapItems){
                     thisItem = mapItems[i];
-                    if(thisItem.localX == playerLocalPos.x - 1 && thisItem.localY == playerLocalPos.y){
+                    if(thisItem.pos.x == playerLocalPos.x - 1 && thisItem.pos.y == playerLocalPos.y){
                         console.log("would have picked up item")
                     }
                 }
@@ -149,7 +149,7 @@ module.exports = {
             case 'N': {
                 for(var i in mapItems){
                     thisItem = mapItems[i];
-                    if(thisItem.localX == playerLocalPos.x && thisItem.localY == playerLocalPos.y - 1){
+                    if(thisItem.pos.x == playerLocalPos.x && thisItem.pos.y == playerLocalPos.y - 1){
                         console.log("would have picked up item")
                     }
                 }
@@ -158,7 +158,7 @@ module.exports = {
             case 'S': {
                 for(var i in mapItems){
                     thisItem = mapItems[i];
-                    if(thisItem.localX == playerLocalPos.x && thisItem.localY == playerLocalPos.y + 1){
+                    if(thisItem.pos.x == playerLocalPos.x && thisItem.pos.y == playerLocalPos.y + 1){
                         console.log("would have picked up item")
                     }
                 }
