@@ -26,6 +26,7 @@ var PlayerObject = function(idRef, gameRef){
         leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
         rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
         altKey = game.input.keyboard.addKey(Phaser.Keyboard.ALT);
+        shiftKey = game.input.keyboard.addKey(Phaser.Keyboard.SHIFT);
 
         if(playerState.gender == 'm'){
             //playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player');
@@ -219,6 +220,9 @@ var PlayerObject = function(idRef, gameRef){
                         game.global.actionQueue.push({action: {type: 'move', payload: 'S'}, target: 'self'});
                     }
                 }
+            }
+            else if (shiftKey.isDown){
+                game.global.actionQueue.push({action: {type: 'pickup', payload: 'N/A'}, target: 'self'});
             }
         }
         else if(playerState.playerAction == 'attack'){
