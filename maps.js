@@ -45,7 +45,7 @@ var MapManager = class MapManager {
 
         for(var i in this.mapData.items){
             console.log(this.mapData.items[i].itemName);
-            game.add.sprite((this.mapData.items[i].localX+1) * 32, (this.mapData.items[i].localY+1) * 32, this.mapData.items[i].itemName);
+            game.add.sprite((this.mapData.items[i].pos.x+1) * 32, (this.mapData.items[i].pos.y+1) * 32, this.mapData.items[i].itemName);
         }
     }
 
