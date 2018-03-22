@@ -303,10 +303,10 @@ class PlayerState
     } */
 
     getItem(locationId){
-        console.log("trying to give player item");
         var thisItem = worldMap[this.worldX + '-' + this.worldY].items[this.locationId];
+        console.log(worldMap[this.worldX + '-' + this.worldY].items);
+        console.log(locationId);
         for(var item of this.inventory){
-            console.log(item);
             if (item == 1){
                 //place item here
                 item = thisItem.itemId;
