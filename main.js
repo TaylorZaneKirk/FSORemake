@@ -309,6 +309,7 @@ var mainState = {
 function initMultiPlayer(game, globals){
 
     client.exports.updateItem = function(itemId, action){
+        console.log("updating item");
         if(action == 'kill'){
             globals.items[itemId].kill();
             delete globals.items[itemId];
