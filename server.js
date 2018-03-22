@@ -39,9 +39,9 @@ class WorldItem{
     }
 
     remove(){
-        console.log('item.remove()');
         delete worldMap[this.worldX + '-' + this.worldY].items[this.locationId];
         for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
+            console.log("updating player");
             var index = worldMap[this.worldX + '-' + this.worldY].players[i].playerId;
             var visiblePlayer = players[index];
             visiblePlayer.remote.updateItem(this.locationId, 'kill');
