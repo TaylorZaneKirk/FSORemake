@@ -574,6 +574,7 @@ eurecaServer.updateClients = function (id) {
         }
        
     }
+    console.log(worldMap[players[id].state.worldX + '-' + players[id].state.worldY]);
 }
 
 loadMapData = function(){
