@@ -394,7 +394,7 @@ eurecaServer.exports.login = function (username, password){
             console.log(username + " has logged in");
             players[id].state = new PlayerState(id, result[0]);
             worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players[id] = players[id].state;
-            console.log(worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players);
+            console.log(worldMap[players[id].state.worldX + '-' + players[id].state.worldY]);
             remote.setId(id);
         }
         else{
@@ -466,6 +466,7 @@ eurecaServer.exports.createPlayer = function (username, password, params){
 
                     if(result[0]){
                         players[id].state = new PlayerState(id, result[0]);
+                        worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players[id] = players[id].state;
                         remote.setId(id);
                     }
                 });
