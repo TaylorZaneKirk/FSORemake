@@ -26,7 +26,7 @@ var con = mysql.createConnection({
   database: "FSORemake"
 });
 
-class Item{
+class WorldItem{
     constructor(data){
         this.locationId = data.locationId;
         this.itemId = data.itemId;
@@ -46,6 +46,36 @@ class Item{
             visiblePlayer.remote.updateItem(this.locationId, 'kill');
            
         }
+    }
+}
+
+class Item{
+    constructor(data){
+        this.itemId = data.itemId;
+        this.itemName = data.name;
+        this.canEquip = data.canEquip;
+        this.canConsume = data.canConsume;
+        this.maxHealthBonus = data.maxHealthBonus;
+        this.currentHealthBonus = data.currentHealthBonus;
+        this.maxFocusBonus = data.maxFocusBonus;
+        this.currentFocusBonus = data.currentFocusBonus;
+        this.maxStaminaBonus = data.maxStaminaBonus;
+        this.currentStaminaBonus = data.currentStaminaBonus;
+        this.strengthBonus = data.strengthBonus;
+        this.dexterityBonus = data.dexterityBonus;
+        this.enduranceBonus = data.enduranceBonus;
+        this.agilityBonus = data.agilityBonus;
+        this.arcaneBonus = data.arcaneBonus;
+        this.luckBonus = data.luckBonus;
+        this.physicalAttack = data.physicalAttack;
+        this.physicalDefense = data.physicalDefense;
+        this.physicalEvasion = data.physicalEvasion;
+        this.magicalAttack = data.magicalAttack;
+        this.magicalDefense = data.magicalDefense;
+        this.magicalEvasion = data.magicalEvasion;
+        this.amount = data.amount;
+        this.equipSlot = data.equipSlot;
+        this.effectLength = data.effectLength;
     }
 }
 
@@ -275,9 +305,11 @@ class PlayerState
     getItem(locationId){
         var thisItem = worldMap[this.worldX + '-' + this.worldY].items[this.locationId];
         for(var item of this.inventory){
-            if (item.itemName == 'NOTHING'){
+            if (item == 1){
                 //place item here
-                item.remove();
+                item = thisItem.itemId;
+                thisItem.remove();
+                break;
             }
         }
     }
@@ -287,7 +319,7 @@ class PlayerState
 
 var players = {};
 var worldMap = {};
-var items = [];
+var worldItems = [];
 var itemData = {};
 
 //detect client connection
@@ -330,7 +362,7 @@ server.listen(process.env.PORT || 55555, function () {
         con.query("SELECT * FROM worldItems", function (err, result, fields){
             if (err) throw err;
 
-            items = result;
+            worldItems = result;
             console.log("World Items loaded");
             loadMapData();
         });
@@ -338,7 +370,9 @@ server.listen(process.env.PORT || 55555, function () {
         con.query("SELECT * FROM itemData", function (err, result, fields){
             if (err) throw err;
 
-            itemData = result;
+            for(var item of result){
+                itemData[item.id] = new Item(item);
+            }
             console.log("Item Data loaded");
         });
     });
@@ -578,9 +612,9 @@ loadMapData = function(){
                         index++;
                     }
                 }
-                items.forEach((item) => {
+                worldItems.forEach((item) => {
                     if(mapName == (item.worldX + "-" + item.worldY)){
-                        worldMap[mapName].items[item.locationId] = new Item(item);
+                        worldMap[mapName].items[item.locationId] = new WorldItem(item);
                     }
                 });
                 filesRead++;

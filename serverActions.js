@@ -128,7 +128,7 @@ module.exports = {
                 for(var i in mapItems){
                     thisItem = mapItems[i];
                     if(thisItem.pos.x == playerLocalPos.x + 1 && thisItem.pos.y == playerLocalPos.y){
-                        console.log("would have picked up item")
+                        state.getItem(thisItem.locationId);
                     }
                 }
                 break;
@@ -137,7 +137,7 @@ module.exports = {
                 for(var i in mapItems){
                     thisItem = mapItems[i];
                     if(thisItem.pos.x == playerLocalPos.x - 1 && thisItem.pos.y == playerLocalPos.y){
-                        console.log("would have picked up item")
+                        state.getItem(thisItem.locationId);
                     }
                 }
                 break;
@@ -146,7 +146,7 @@ module.exports = {
                 for(var i in mapItems){
                     thisItem = mapItems[i];
                     if(thisItem.pos.x == playerLocalPos.x && thisItem.pos.y == playerLocalPos.y - 1){
-                        console.log("would have picked up item")
+                        state.getItem(thisItem.locationId);
                     }
                 }
                 break;
@@ -155,7 +155,7 @@ module.exports = {
                 for(var i in mapItems){
                     thisItem = mapItems[i];
                     if(thisItem.pos.x == playerLocalPos.x && thisItem.pos.y == playerLocalPos.y + 1){
-                        console.log("would have picked up item")
+                        state.getItem(thisItem.locationId);
                     }
                 }
                 break;
@@ -166,9 +166,4 @@ module.exports = {
             }
         }
     },
-
-    getItemData: function(itemId){
-        
-
-    }
 }
