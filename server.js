@@ -558,7 +558,8 @@ eurecaServer.exports.message = function(id, message){
 eurecaServer.updateClients = function (id) {
     var newRemote = players[id].remote;
     var allPlayerStates = [];
-    var origWorldMap = Object.assign({}, worldMap);
+    var origWorldMap = Object.assign({}, worldMap[players[id].state.worldX + '-' + players[id].state.worldY]);
+    console.log(origWorldMap);
 
     players[id].state.playersVisible = Object.filter(worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players, player => player.playerId != id);
     players[id].state.mapData.players = players[id].state.playersVisible;
@@ -575,7 +576,7 @@ eurecaServer.updateClients = function (id) {
         }
        
     }
-    worldMap = Object.assign({}, origWorldMap);
+    worldMap[players[id].state.worldX + '-' + players[id].state.worldY] = Object.assign({}, origWorldMap);
     console.log(worldMap[players[id].state.worldX + '-' + players[id].state.worldY]);
 }
 
