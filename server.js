@@ -39,6 +39,7 @@ class WorldItem{
     }
 
     remove(){
+        console.log('item.remove()');
         delete worldMap[this.worldX + '-' + this.worldY].items[this.locationId];
         for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
             var index = worldMap[this.worldX + '-' + this.worldY].players[i].playerId;
@@ -304,14 +305,11 @@ class PlayerState
 
     getItem(locationId){
         var thisItem = worldMap[this.worldX + '-' + this.worldY].items[locationId];
-        console.log(worldMap[this.worldX + '-' + this.worldY].items);
-        console.log(locationId);
         for(var item of this.inventory){
             if (item == 1){
                 //place item here
                 item = thisItem.itemId;
                 thisItem.remove();
-                console.log("tried to place and remove");
                 break;
             }
         }
