@@ -306,10 +306,12 @@ class PlayerState
         console.log("trying to give player item");
         var thisItem = worldMap[this.worldX + '-' + this.worldY].items[this.locationId];
         for(var item of this.inventory){
+            console.log(item);
             if (item == 1){
                 //place item here
                 item = thisItem.itemId;
                 thisItem.remove();
+                console.log("tried to place and remove");
                 break;
             }
         }
