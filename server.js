@@ -45,6 +45,7 @@ class WorldItem{
             console.log("updating player");
             var index = worldMap[this.worldX + '-' + this.worldY].players[i].playerId;
             var visiblePlayer = players[index];
+            console.log(visiblePlayer);
             visiblePlayer.remote.updateItem(this.locationId, 'kill');
            
         }
@@ -394,7 +395,6 @@ eurecaServer.exports.login = function (username, password){
             console.log(username + " has logged in");
             players[id].state = new PlayerState(id, result[0]);
             worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players[id] = players[id].state;
-            console.log(worldMap[players[id].state.worldX + '-' + players[id].state.worldY]);
             remote.setId(id);
         }
         else{
@@ -559,7 +559,6 @@ eurecaServer.updateClients = function (id) {
     var newRemote = players[id].remote;
     var allPlayerStates = [];
     var origWorldMap = Object.assign({}, worldMap[players[id].state.worldX + '-' + players[id].state.worldY]);
-    console.log(origWorldMap);
 
     players[id].state.playersVisible = Object.filter(worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players, player => player.playerId != id);
     players[id].state.mapData.players = players[id].state.playersVisible;
@@ -577,7 +576,6 @@ eurecaServer.updateClients = function (id) {
        
     }
     worldMap[players[id].state.worldX + '-' + players[id].state.worldY] = Object.assign({}, origWorldMap);
-    console.log(worldMap[players[id].state.worldX + '-' + players[id].state.worldY]);
 }
 
 loadMapData = function(){
