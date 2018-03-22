@@ -303,7 +303,7 @@ class PlayerState
     } */
 
     getItem(locationId){
-        var thisItem = worldMap[this.worldX + '-' + this.worldY].items[this.locationId];
+        var thisItem = worldMap[this.worldX + '-' + this.worldY].items[locationId];
         console.log(worldMap[this.worldX + '-' + this.worldY].items);
         console.log(locationId);
         for(var item of this.inventory){
