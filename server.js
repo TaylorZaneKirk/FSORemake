@@ -39,6 +39,7 @@ class WorldItem{
     }
 
     remove(){
+        console.log(worldMap[this.worldX + '-' + this.worldY]);
         delete worldMap[this.worldX + '-' + this.worldY].items[this.locationId];
         for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
             console.log("updating player");
