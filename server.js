@@ -311,7 +311,11 @@ class PlayerState
                 item = thisItem.itemId;
                 thisItem.remove();
                 console.log(item);
-                con.query("UPDATE playerInv SET slot" + (i + 1) + "='" + item + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
+                con.query("UPDATE playerInv SET slot" + (i + 1) + "='" + item + "' WHERE username = '" + this.username + "'", function (err, result, fields) {
+                    if (err) throw err;
+
+                    console.log("item placed in inventory");
+                });
                 break;
             }
         }
