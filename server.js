@@ -331,16 +331,38 @@ class PlayerState
 
     getItem(locationId){
         var thisItem = worldMap[this.worldX + '-' + this.worldY].items[locationId];
+
+        //Stackable logic...
+        var shouldStack = false;
+        var chosenSlot = null;
+        var stackAmount = 0;
+
         for(var i = 0; i < this.inventory.length; i++){
             var item = this.inventory[i];
             var itemSlot = parseInt(i) + 1;
             if (item.itemId == 1){
                 //place item here
-                item.itemId = thisItem.itemId;
-                item.amount = thisItem.amount;
-                thisItem.remove();
-                con.query("UPDATE playerInv SET slot" + itemSlot + "='" + item.itemId + "', slot" + itemSlot + "Amount ='" + item.amount + "' WHERE username = '" + this.username + "'", function (err, result, fields) {if (err) throw err;});
+                chosenSlot = i;
+            }
+            if(item.itemid == thisItem.itemId){
+                shouldStack = true;
+                stackAmount = item.amount;
+                chosenSlot = i;
                 break;
+            }
+        }
+
+        if(chosenSlot != null){
+            this.inventory[chosenSlot].itemId = thisItem.itemId;
+            this.inventory[chosenSlot].amount = thisItem.amount;
+            thisItem.remove();
+
+            if(shouldStack){
+                this.inventory[chosenSlot].amount += stackAmount;
+                con.query("UPDATE playerInv SET slot" + chosenSlot + "Amount ='" + this.inventory[chosenSlot].amount + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
+            }
+            else{
+                con.query("UPDATE playerInv SET slot" + chosenSlot + "='" + thisItem.itemId + "', slot" + chosenSlot + "Amount ='" + this.inventory[chosenSlot].amount + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
             }
         }
     }
