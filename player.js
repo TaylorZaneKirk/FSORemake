@@ -126,111 +126,114 @@ var PlayerObject = function(idRef, gameRef){
         }
 
 
-        if (((playerState.pos.x+1)*32 == Math.ceil(playerSprite.x) 
+        if(playerState.readyToUpdate == true){
+            if (((playerState.pos.x+1)*32 == Math.ceil(playerSprite.x) 
             && (playerState.pos.y+1)*32 == Math.ceil(playerSprite.y)) 
             && playerState.playerAction == 'walk'){
             //Player reached their intended location. Set them to idle and update server
             
             playerState.playerAction = 'idle';
             game.global.actionQueue.push({action: {type: 'move', payload: 'I'}, target: 'self'});
-        }
-        else if(playerState.playerAction == 'idle'){
-            //Detect key presses
+            }
+            else if(playerState.playerAction == 'idle'){
+                //Detect key presses
 
-            if(altKey.isDown){
-                playerState.playerAction = 'attack';
-                var targetCoords = {x: playerState.pos.x, y: playerState.pos.y};
+                if(altKey.isDown){
+                    playerState.playerAction = 'attack';
+                    var targetCoords = {x: playerState.pos.x, y: playerState.pos.y};
 
-                if(playerState.playerFacing == 'N'){ targetCoords.y--; }
-                if(playerState.playerFacing == 'S'){ targetCoords.y++; }
-                if(playerState.playerFacing == 'E'){ targetCoords.x++; }
-                if(playerState.playerFacing == 'W'){ targetCoords.x--; }
+                    if(playerState.playerFacing == 'N'){ targetCoords.y--; }
+                    if(playerState.playerFacing == 'S'){ targetCoords.y++; }
+                    if(playerState.playerFacing == 'E'){ targetCoords.x++; }
+                    if(playerState.playerFacing == 'W'){ targetCoords.x--; }
 
-                for(var i in playerState.playersVisible){
-                    var player = playerState.playersVisible[i];
-                    if(player.pos.x == targetCoords.x && player.pos.y == targetCoords.y){
-                        game.global.actionQueue.push({action: {type: 'attack', payload: targetCoords}, target:'player'});
+                    for(var i in playerState.playersVisible){
+                        var player = playerState.playersVisible[i];
+                        if(player.pos.x == targetCoords.x && player.pos.y == targetCoords.y){
+                            game.global.actionQueue.push({action: {type: 'attack', payload: targetCoords}, target:'player'});
+                        }
                     }
                 }
-            }
-            else if (leftKey.isDown){
-                playerState.playerAction = 'walk';
-                playerState.playerFacing = 'W';
-                if(game.global.mapManager.isSpotAvailable(playerState.pos.x - 1, playerState.pos.y, playerState.pos)){
-                    var canMove = true;
-                    for(var i in playerState.playersVisible){
-                        var player = playerState.playersVisible[i];
-                        if(player.pos.x == playerState.pos.x - 1 && player.pos.y == playerState.pos.y){
-                            canMove = false;
+                else if (leftKey.isDown){
+                    playerState.playerAction = 'walk';
+                    playerState.playerFacing = 'W';
+                    if(game.global.mapManager.isSpotAvailable(playerState.pos.x - 1, playerState.pos.y, playerState.pos)){
+                        var canMove = true;
+                        for(var i in playerState.playersVisible){
+                            var player = playerState.playersVisible[i];
+                            if(player.pos.x == playerState.pos.x - 1 && player.pos.y == playerState.pos.y){
+                                canMove = false;
+                            }
                         }
-                    }
-                    if(canMove) {
-                        playerState.pos.x--;
-                        game.global.actionQueue.push({action: {type: 'move', payload: 'W'}, target: 'self'});
-                    }
-                }  
-            }
-            else if (rightKey.isDown){
-                playerState.playerAction = 'walk';
-                playerState.playerFacing = 'E';
-                if(game.global.mapManager.isSpotAvailable(playerState.pos.x + 1, playerState.pos.y, playerState.pos)){
-                    var canMove = true;
-                    for(var i in playerState.playersVisible){
-                        var player = playerState.playersVisible[i];
-                        if(player.pos.x == playerState.pos.x + 1 && player.pos.y == playerState.pos.y){
-                            canMove = false;
+                        if(canMove) {
+                            playerState.pos.x--;
+                            game.global.actionQueue.push({action: {type: 'move', payload: 'W'}, target: 'self'});
                         }
-                    }
-                    if(canMove) {
-                        playerState.pos.x++;
-                        game.global.actionQueue.push({action: {type: 'move', payload: 'E'}, target: 'self'});
-                    }
-                }  
-            }
-            else if (upKey.isDown){
-                playerState.playerAction = 'walk';
-                playerState.playerFacing = 'N';
-                if(game.global.mapManager.isSpotAvailable(playerState.pos.x, playerState.pos.y - 1, playerState.pos)){
-                    var canMove = true;
-                    for(var i in playerState.playersVisible){
-                        var player = playerState.playersVisible[i];
-                        if(player.pos.x == playerState.pos.x && player.pos.y == playerState.pos.y - 1){
-                            canMove = false;
+                    }  
+                }
+                else if (rightKey.isDown){
+                    playerState.playerAction = 'walk';
+                    playerState.playerFacing = 'E';
+                    if(game.global.mapManager.isSpotAvailable(playerState.pos.x + 1, playerState.pos.y, playerState.pos)){
+                        var canMove = true;
+                        for(var i in playerState.playersVisible){
+                            var player = playerState.playersVisible[i];
+                            if(player.pos.x == playerState.pos.x + 1 && player.pos.y == playerState.pos.y){
+                                canMove = false;
+                            }
                         }
-                    }
-                    if(canMove) {
-                        playerState.pos.y--;
-                        game.global.actionQueue.push({action: {type: 'move', payload: 'N'}, target: 'self'});
+                        if(canMove) {
+                            playerState.pos.x++;
+                            game.global.actionQueue.push({action: {type: 'move', payload: 'E'}, target: 'self'});
+                        }
+                    }  
+                }
+                else if (upKey.isDown){
+                    playerState.playerAction = 'walk';
+                    playerState.playerFacing = 'N';
+                    if(game.global.mapManager.isSpotAvailable(playerState.pos.x, playerState.pos.y - 1, playerState.pos)){
+                        var canMove = true;
+                        for(var i in playerState.playersVisible){
+                            var player = playerState.playersVisible[i];
+                            if(player.pos.x == playerState.pos.x && player.pos.y == playerState.pos.y - 1){
+                                canMove = false;
+                            }
+                        }
+                        if(canMove) {
+                            playerState.pos.y--;
+                            game.global.actionQueue.push({action: {type: 'move', payload: 'N'}, target: 'self'});
+                        }
                     }
                 }
-            }
-            else if (downKey.isDown){
-                playerState.playerAction = 'walk';
-                playerState.playerFacing = 'S';
-                if(game.global.mapManager.isSpotAvailable(playerState.pos.x, playerState.pos.y + 1, playerState.pos)){
-                    var canMove = true;
-                    for(var i in playerState.playersVisible){
-                        var player = playerState.playersVisible[i];
-                        if(player.pos.x == playerState.pos.x && player.pos.y == playerState.pos.y + 1){
-                            canMove = false;
+                else if (downKey.isDown){
+                    playerState.playerAction = 'walk';
+                    playerState.playerFacing = 'S';
+                    if(game.global.mapManager.isSpotAvailable(playerState.pos.x, playerState.pos.y + 1, playerState.pos)){
+                        var canMove = true;
+                        for(var i in playerState.playersVisible){
+                            var player = playerState.playersVisible[i];
+                            if(player.pos.x == playerState.pos.x && player.pos.y == playerState.pos.y + 1){
+                                canMove = false;
+                            }
+                        }
+                        if(canMove) {
+                            playerState.pos.y++;
+                            game.global.actionQueue.push({action: {type: 'move', payload: 'S'}, target: 'self'});
                         }
                     }
-                    if(canMove) {
-                        playerState.pos.y++;
-                        game.global.actionQueue.push({action: {type: 'move', payload: 'S'}, target: 'self'});
-                    }
+                }
+                else if (shiftKey.isDown){
+                    console.log("trying to pick up");
+                    game.global.actionQueue.push({action: {type: 'pickup', payload: 'N/A'}, target: 'self'});
                 }
             }
-            else if (shiftKey.isDown){
-                console.log("trying to pick up");
-                game.global.actionQueue.push({action: {type: 'pickup', payload: 'N/A'}, target: 'self'});
+            else if(playerState.playerAction == 'attack'){
+                if(playerState.playerTween != undefined && !playerState.playerTween.isRunning){
+                    playerState.playerAction = 'idle'
+                }
             }
         }
-        else if(playerState.playerAction == 'attack'){
-            if(playerState.playerTween != undefined && !playerState.playerTween.isRunning){
-                playerState.playerAction = 'idle'
-            }
-        }
+        
         
         if((((playerState.pos.x+1) * 32) != Math.ceil(playerSprite.x) || ((playerState.pos.y+1) * 32) != Math.ceil(playerSprite.y)) ){
             //Player is moving and we're waiting for a response from server

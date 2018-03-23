@@ -12,7 +12,7 @@ var Eureca = require('eureca.io');
 
 
 //create an instance of EurecaServer
-var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill', 'disconnect', 'errorAndDisconnect', 'recieveBroadcast', 'updateItem']});
+var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill', 'disconnect', 'errorAndDisconnect', 'recieveBroadcast', 'removeItem', 'placeItem']});
 
 //attach eureca.io to our http server
 eurecaServer.attach(server);
@@ -36,15 +36,35 @@ class WorldItem{
         this.pos = {x: data.localX, y: data.localY};
         this.amount = data.amount;
         this.respawnable = data.respawnable;
+        this.isSpawned = data.isSpawned;
+        this.respawnTimer = data.respawnTimer;
     }
 
     remove(){
         delete worldMap[this.worldX + '-' + this.worldY].items[this.locationId];
+        if(!this.respawnable){
+            con.query("DELETE FROM worldItems WHERE locationId = '" + this.locationId + "'", function (err, result, fields) {});
+        }
+        else{
+            //Item is respawnable, need to modify sql table for a isSpawned property and timeToRespawn
+            con.query("UPDATE worldItems SET isSpawned = 0 WHERE locationId = '" + this.locationId + "'", function (err, result, fields) {});
+            setTimeout(this.respawn, this.respawnTimer);
+        }
         for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
             var index = worldMap[this.worldX + '-' + this.worldY].players[i].playerId;
             var visiblePlayer = players[index];
-            visiblePlayer.remote.updateItem(this.locationId, 'kill');
+            visiblePlayer.remote.removeItem(this.locationId);
            
+        }
+    }
+
+    respawn(){
+        con.query("UPDATE worldItems SET isSpawned = 1 WHERE locationId = '" + this.locationId + "'", function (err, result, fields) {});
+        worldMap[this.worldX + '-' + this.worldY].items[this.locationId] = this;
+        for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
+            var index = worldMap[this.worldX + '-' + this.worldY].players[i].playerId;
+            var visiblePlayer = players[index];
+            visiblePlayer.remote.placeItem(this);  
         }
     }
 }
@@ -312,12 +332,7 @@ class PlayerState
                 item = thisItem.itemId;
 
                 thisItem.remove();
-                console.log(parseInt(itemSlot));
-                con.query("UPDATE playerInv SET slot" + parseInt(itemSlot) + "='" + item + "' WHERE username = '" + this.username + "'", function (err, result, fields) {
-                    if (err) throw err;
-
-                    console.log("item placed in inventory");
-                });
+                con.query("UPDATE playerInv SET slot" + parseInt(itemSlot) + "='" + item + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
                 break;
             }
         }
@@ -568,6 +583,7 @@ eurecaServer.updateClients = function (id) {
 
     players[id].state.playersVisible = Object.filter(worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players, player => player.playerId != id);
     players[id].state.mapData.players = players[id].state.playersVisible;
+    players[id].state.readyToUpdate = true;
     newRemote.recieveStateFromServer(players[id].state);
 
     for(var i in players[id].state.playersVisible) {
