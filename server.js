@@ -334,12 +334,12 @@ class PlayerState
         for(var i = 0; i < this.inventory.length; i++){
             var item = this.inventory[i];
             var itemSlot = parseInt(i) + 1;
-            if (item == 1){
+            if (item.itemId == 1){
                 //place item here
-                item = thisItem.itemId;
-
+                item.itemId = thisItem.itemId;
+                item.amount = thisItem.amount;
                 thisItem.remove();
-                con.query("UPDATE playerInv SET slot" + itemSlot + "='" + item + ", slot" + itemSlot + "Amount='" + this.amount + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
+                con.query("UPDATE playerInv SET slot" + itemSlot + "='" + item + ", slot" + itemSlot + "Amount='" + item.amount + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
                 break;
             }
         }
