@@ -331,6 +331,7 @@ class PlayerState
 
     getItem(locationId){
         var thisItem = worldMap[this.worldX + '-' + this.worldY].items[locationId];
+        console.log(thisItem);
 
         //Stackable logic...
         var shouldStack = false;
