@@ -331,7 +331,6 @@ class PlayerState
 
     getItem(locationId){
         var thisItem = worldMap[this.worldX + '-' + this.worldY].items[locationId];
-        console.log(thisItem);
 
         //Stackable logic...
         var shouldStack = false;
@@ -341,12 +340,11 @@ class PlayerState
         for(var i = 0; i < this.inventory.length; i++){
             var item = this.inventory[i];
             var itemSlot = parseInt(i) + 1;
-            console.log(item.itemid + " " + thisItem.itemId);
             if (item.itemId == 1){
                 //place item here
                 chosenSlot = itemSlot;
             }
-            if(item.itemId == thisItem.itemId){
+            if(item.itemId == thisItem.itemId && item.amount < 99){
                 shouldStack = true;
                 stackAmount = item.amount;
                 chosenSlot = itemSlot;
@@ -355,7 +353,7 @@ class PlayerState
         }
 
         if(chosenSlot != null){
-            chosenSlot = parseInt(chosenSlot);
+            //chosenSlot = parseInt(chosenSlot);
             this.inventory[chosenSlot - 1].itemId = thisItem.itemId;
             this.inventory[chosenSlot - 1].amount = thisItem.amount;
             thisItem.remove();
