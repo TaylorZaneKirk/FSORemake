@@ -313,7 +313,7 @@ class PlayerState
 
                 thisItem.remove();
                 console.log(parseInt(itemSlot));
-                con.query("UPDATE playerInv SET slot" + itemSlot + "='" + item + "' WHERE username = '" + this.username + "'", function (err, result, fields) {
+                con.query("UPDATE playerInv SET slot" + parseInt(itemSlot) + "='" + item + "' WHERE username = '" + this.username + "'", function (err, result, fields) {
                     if (err) throw err;
 
                     console.log("item placed in inventory");
