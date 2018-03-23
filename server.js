@@ -216,11 +216,12 @@ class PlayerState
         this.blacksmithingNext = data.blacksmithingNext;
 
         this.inventory = [
-            data.slot1, data.slot2, data.slot3, data.slot4,
-            data.slot5, data.slot6, data.slot7, data.slot8,
-            data.slot9, data.slot10, data.slot11, data.slot12, 
-            data.slot13, data.slot14, data.slot15, data.slot16,
+            {itemId: data.slot1, amount: data.slot1Amount}, {itemId: data.slot2, amount: data.slot2Amount}, {itemId: data.slot3, amount: data.slot3Amount}, {itemId: data.slot4, amount: data.slot4Amount},
+            {itemId: data.slot5, amount: data.slot5Amount}, {itemId: data.slot6, amount: data.slot6Amount}, {itemId: data.slot7, amount: data.slot7Amount}, {itemId: data.slot8, amount: data.slot8Amount},
+            {itemId: data.slot9, amount: data.slot9Amount}, {itemId: data.slot10, amount: data.slot10Amount}, {itemId: data.slot11, amount: data.slot11Amount}, {itemId: data.slot12, amount: data.slot12Amount},
+            {itemId: data.slot13, amount: data.slot13Amount}, {itemId: data.slot14, amount: data.slot14Amount}, {itemId: data.slot15, amount: data.slot15Amount}, {itemId: data.slot16, amount: data.slot16Amount},
         ];
+
         this.equipHead = data.equipHead;
         this.equipTorso = data.equipTorso;
         this.equipRight = data.equipRight;
@@ -333,17 +334,14 @@ class PlayerState
         for(var i = 0; i < this.inventory.length; i++){
             var item = this.inventory[i];
             var itemSlot = parseInt(i) + 1;
-            console.log(item);
-            console.log(itemSlot);
             if (item == 1){
                 //place item here
                 item = thisItem.itemId;
 
                 thisItem.remove();
-                con.query("UPDATE playerInv SET slot" + itemSlot + "='" + item + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
+                con.query("UPDATE playerInv SET slot" + itemSlot + "='" + item + ", slot" + itemSlot + "Amount='" + this.amount + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
                 break;
             }
-            console.log('done');
         }
     }
 };
