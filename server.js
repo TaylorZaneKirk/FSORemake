@@ -335,6 +335,8 @@ class PlayerState
         for(var i in this.inventory){
             var item = this.inventory[i];
             var itemSlot = parseInt(i) + 1;
+            console.log(item);
+            console.log(itemSlot);
             if (item == 1){
                 //place item here
                 item = thisItem.itemId;
@@ -343,6 +345,7 @@ class PlayerState
                 con.query("UPDATE playerInv SET slot" + itemSlot + "='" + item + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
                 break;
             }
+            console.log('done');
         }
     }
 };
