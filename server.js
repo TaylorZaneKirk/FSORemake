@@ -341,6 +341,7 @@ class PlayerState
         for(var i = 0; i < this.inventory.length; i++){
             var item = this.inventory[i];
             var itemSlot = parseInt(i) + 1;
+            console.log(item.itemid + " " + thisItem.itemId);
             if (item.itemId == 1){
                 //place item here
                 chosenSlot = itemSlot;
@@ -360,11 +361,11 @@ class PlayerState
             thisItem.remove();
 
             if(shouldStack){
-                this.inventory[chosenSlot].amount += stackAmount;
-                con.query("UPDATE playerInv SET slot" + chosenSlot + "Amount ='" + this.inventory[chosenSlot].amount + "' WHERE username = '" + this.username + "'", function (err, result, fields) {if (err) throw err;});
+                this.inventory[chosenSlot - 1].amount += stackAmount;
+                con.query("UPDATE playerInv SET slot" + chosenSlot + "Amount ='" + this.inventory[chosenSlot-1].amount + "' WHERE username = '" + this.username + "'", function (err, result, fields) {if (err) throw err;});
             }
             else{
-                con.query("UPDATE playerInv SET slot" + chosenSlot + "='" + thisItem.itemId + "', slot" + chosenSlot + "Amount ='" + this.inventory[chosenSlot].amount + "' WHERE username = '" + this.username + "'", function (err, result, fields) {if (err) throw err;});
+                con.query("UPDATE playerInv SET slot" + chosenSlot + "='" + thisItem.itemId + "', slot" + chosenSlot + "Amount ='" + this.inventory[chosenSlot-1].amount + "' WHERE username = '" + this.username + "'", function (err, result, fields) {if (err) throw err;});
             }
         }
     }
