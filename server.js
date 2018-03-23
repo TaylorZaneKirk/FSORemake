@@ -39,13 +39,10 @@ class WorldItem{
     }
 
     remove(){
-        console.log(worldMap[this.worldX + '-' + this.worldY]);
         delete worldMap[this.worldX + '-' + this.worldY].items[this.locationId];
         for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
-            console.log("updating player");
             var index = worldMap[this.worldX + '-' + this.worldY].players[i].playerId;
             var visiblePlayer = players[index];
-            console.log(visiblePlayer);
             visiblePlayer.remote.updateItem(this.locationId, 'kill');
            
         }
@@ -307,11 +304,13 @@ class PlayerState
 
     getItem(locationId){
         var thisItem = worldMap[this.worldX + '-' + this.worldY].items[locationId];
-        for(var item of this.inventory){
+        for(var i in this.inventory){
+            var item = this.inventory[i];
             if (item == 1){
                 //place item here
                 item = thisItem.itemId;
                 thisItem.remove();
+                con.query("UPDATE playerInv SET slot" + (i + 1) + "='" + item + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
                 break;
             }
         }
