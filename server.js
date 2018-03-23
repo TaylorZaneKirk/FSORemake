@@ -38,9 +38,14 @@ class WorldItem{
         this.respawnable = data.respawnable;
         this.isSpawned = data.isSpawned;
         this.respawnTimer = data.respawnTimer;
+
+        if(this.respawnable && !this.isSpawned){
+            setTimeout(() => this.respawn(), this.respawnTimer);
+        }
     }
 
     remove(){
+        console.log(this.worldX + " " + this.worldY);
         if(!this.respawnable){
             delete worldMap[this.worldX + '-' + this.worldY].items[this.locationId];
             con.query("DELETE FROM worldItems WHERE locationId = '" + this.locationId + "'", function (err, result, fields) {});
@@ -49,7 +54,7 @@ class WorldItem{
             //Item is respawnable, need to modify sql table for a isSpawned property and timeToRespawn
             this.isSpawned = false;
             con.query("UPDATE worldItems SET isSpawned = 0 WHERE locationId = '" + this.locationId + "'", function (err, result, fields) {});
-            setTimeout(this.respawn, this.respawnTimer);
+            setTimeout(() => this.respawn(), this.respawnTimer);
         }
         for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
             var index = worldMap[this.worldX + '-' + this.worldY].players[i].playerId;
