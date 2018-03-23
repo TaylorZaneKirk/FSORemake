@@ -346,7 +346,7 @@ class PlayerState
                 //place item here
                 chosenSlot = itemSlot;
             }
-            if(item.itemid == thisItem.itemId){
+            if(item.itemId == thisItem.itemId){
                 shouldStack = true;
                 stackAmount = item.amount;
                 chosenSlot = itemSlot;
