@@ -228,7 +228,7 @@ class PlayerState
         this.worldX = data.worldX;
         this.worldY = data.worldY;
         this.lastUpdated = null;
-        this.readyToUpdate = false;
+        this.readyToUpdate = true;
         this.playersVisible = {};
         this.mapData = worldMap[this.worldX + '-' + this.worldY];
     }
