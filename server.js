@@ -332,7 +332,7 @@ class PlayerState
 
     getItem(locationId){
         var thisItem = worldMap[this.worldX + '-' + this.worldY].items[locationId];
-        for(var i in this.inventory){
+        for(var i = 0; i < this.inventory.length; i++){
             var item = this.inventory[i];
             var itemSlot = parseInt(i) + 1;
             console.log(item);
