@@ -311,7 +311,7 @@ function initMultiPlayer(game, globals){
     client.exports.updateItem = function(itemId, action){
         console.log(globals.items);
         if(action == 'kill'){
-            globals.items[itemId].kill();
+            globals.items['' + itemId].kill();
             delete globals.items[itemId];
         }
     }
