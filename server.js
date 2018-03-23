@@ -41,12 +41,13 @@ class WorldItem{
     }
 
     remove(){
-        delete worldMap[this.worldX + '-' + this.worldY].items[this.locationId];
         if(!this.respawnable){
+            delete worldMap[this.worldX + '-' + this.worldY].items[this.locationId];
             con.query("DELETE FROM worldItems WHERE locationId = '" + this.locationId + "'", function (err, result, fields) {});
         }
         else{
             //Item is respawnable, need to modify sql table for a isSpawned property and timeToRespawn
+            this.isSpawned = false;
             con.query("UPDATE worldItems SET isSpawned = 0 WHERE locationId = '" + this.locationId + "'", function (err, result, fields) {});
             setTimeout(this.respawn, this.respawnTimer);
         }
@@ -59,6 +60,7 @@ class WorldItem{
     }
 
     respawn(){
+        this.isSpawned = true;
         con.query("UPDATE worldItems SET isSpawned = 1 WHERE locationId = '" + this.locationId + "'", function (err, result, fields) {});
         worldMap[this.worldX + '-' + this.worldY].items[this.locationId] = this;
         for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
