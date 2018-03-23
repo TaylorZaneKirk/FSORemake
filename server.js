@@ -334,13 +334,13 @@ class PlayerState
         var thisItem = worldMap[this.worldX + '-' + this.worldY].items[locationId];
         for(var i in this.inventory){
             var item = this.inventory[i];
-            var itemSlot = i + 1;
+            var itemSlot = parseInt(i) + 1;
             if (item == 1){
                 //place item here
                 item = thisItem.itemId;
 
                 thisItem.remove();
-                con.query("UPDATE playerInv SET slot" + parseInt(itemSlot) + "='" + item + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
+                con.query("UPDATE playerInv SET slot" + itemSlot + "='" + item + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
                 break;
             }
         }
