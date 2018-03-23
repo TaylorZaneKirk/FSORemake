@@ -342,27 +342,28 @@ class PlayerState
             var itemSlot = parseInt(i) + 1;
             if (item.itemId == 1){
                 //place item here
-                chosenSlot = i;
+                chosenSlot = itemSlot;
             }
             if(item.itemid == thisItem.itemId){
                 shouldStack = true;
                 stackAmount = item.amount;
-                chosenSlot = i;
+                chosenSlot = itemSlot;
                 break;
             }
         }
 
         if(chosenSlot != null){
-            this.inventory[chosenSlot].itemId = thisItem.itemId;
-            this.inventory[chosenSlot].amount = thisItem.amount;
+            chosenSlot = parseInt(chosenSlot);
+            this.inventory[chosenSlot - 1].itemId = thisItem.itemId;
+            this.inventory[chosenSlot - 1].amount = thisItem.amount;
             thisItem.remove();
 
             if(shouldStack){
                 this.inventory[chosenSlot].amount += stackAmount;
-                con.query("UPDATE playerInv SET slot" + chosenSlot + "Amount ='" + this.inventory[chosenSlot].amount + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
+                con.query("UPDATE playerInv SET slot" + chosenSlot + "Amount ='" + this.inventory[chosenSlot].amount + "' WHERE username = '" + this.username + "'", function (err, result, fields) {if (err) throw err;});
             }
             else{
-                con.query("UPDATE playerInv SET slot" + chosenSlot + "='" + thisItem.itemId + "', slot" + chosenSlot + "Amount ='" + this.inventory[chosenSlot].amount + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
+                con.query("UPDATE playerInv SET slot" + chosenSlot + "='" + thisItem.itemId + "', slot" + chosenSlot + "Amount ='" + this.inventory[chosenSlot].amount + "' WHERE username = '" + this.username + "'", function (err, result, fields) {if (err) throw err;});
             }
         }
     }
