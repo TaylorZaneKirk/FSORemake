@@ -339,7 +339,7 @@ class PlayerState
                 item.itemId = thisItem.itemId;
                 item.amount = thisItem.amount;
                 thisItem.remove();
-                con.query("UPDATE playerInv SET slot" + itemSlot + "='" + item + ", slot" + itemSlot + "Amount='" + item.amount + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
+                con.query("UPDATE playerInv SET slot" + itemSlot + "='" + item + ", slot" + itemSlot + "Amount='" + item.amount + "' WHERE username = '" + this.username + "'", function (err, result, fields) {if (err) throw err;});
                 break;
             }
         }
