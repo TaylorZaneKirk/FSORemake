@@ -7,6 +7,7 @@ var chatLog = "TestMessage says: TeStTeStTeStTeStTeSt TeStTeSt TeStTeStTeSt";
 var statsPage;
 var skillsPage;
 var inventoryPage;
+var inventoryContext;
 var pageButtons;
 
 var statusBars = {
@@ -27,6 +28,7 @@ var statusBars = {
 }
 
 var playerInventory = {};
+var playerInventoryData = {};
 
 var mainState = {
     create: function(){
@@ -160,11 +162,13 @@ var mainState = {
                 var offsetY = i * 35;
                 var item = game.add.sprite((game.world.width * 0.7825) + offsetX, (game.world.centerY * 0.45) + offsetY, 'NOTHING');
                 var itemAmount = game.make.text(15, 11, "1", {font:"bold 10px Arial", fill:"white"});
+                item.inputEnabled = true;
                 itemAmount.alpha = 0;
                 item.addChild(itemAmount);
                 item.anchor.setTo(0.5);
                 inventoryPage.add(item);
-                playerInventory[inventoryIndex] = {sprite: item, amount: itemAmount};
+                playerInventory[inventoryIndex] = {sprite: item, amount: itemAmount, index: inventoryIndex};
+                playerInventory[inventoryIndex].sprite.events.onInputDown.add(function(){openContextMenu(playerInventory[inventoryIndex].index)});
                 inventoryIndex++;
             }
         }
@@ -602,4 +606,14 @@ managePageButtons = function(index){
     if(index == 0){ statsPage.alpha = 1; }
     else if(index == 1){ inventoryPage.alpha = 1; }
     else if(index == 2){ skillsPage.alpha = 1; skillsPage.maskGraphics.input.useHandCursor = true;}
+}
+
+openContextMenu = function(index){
+    var inventory = game.global.player.inventory;
+    var itemName = game.global.itemManager.getItemName(inventory[index].itemId);
+    var itemCanEquip = game.global.itemManager.canEquip(inventory[index].itemId);
+    var itemEquipSlot = game.global.itemManager.getEquipSlot(inventory[index].itemId);
+    console.log(itemName);
+    console.log(itemCanEquip);
+    console.log(itemEquipSlot);
 }
