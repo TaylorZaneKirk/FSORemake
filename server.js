@@ -601,7 +601,7 @@ eurecaServer.exports.message = function(id, message){
             break;
         }
         case 'equipItem': {
-            serverActions.equipItem(players[id].state, message);
+            serverActions.equipItem(players[id].state, message, itemData);
             break;
         }
         default: {
