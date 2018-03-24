@@ -640,7 +640,7 @@ openContextMenu = function(index){
 
     if(itemCanEquip){
         var equipButton = null;
-        if(itemEquipSlot == 'arms'){
+        if(itemEquipSlot == 'Arms'){
             equipButton = game.make.text( 0, inventoryContext.children.length * 20, "Equip: Right", {font:"bold 10px Arial", fill:"purple", backgroundColor: "black"});
             equipButton.inputEnabled = true;
             equipButton.events.onInputDown.add(function(){closeContextMenu()});
