@@ -186,12 +186,12 @@ var mainState = {
         inventoryContext.alpha = 0;
         inventoryPage.addChild(inventoryContext);
 
-        playerEquipment.head = game.add.sprite(game.world.width * 0.8075, game.world.centerY * 1.01, 'knife');
-        playerEquipment.right = game.add.sprite(game.world.width * 0.8075, game.world.centerY * 1.14, 'knife');
-        playerEquipment.legs = game.add.sprite(game.world.width * 0.8075, game.world.centerY * 1.27, 'knife');
-        playerEquipment.torso = game.add.sprite(game.world.width * 0.9325, game.world.centerY * 1.01, 'knife');
-        playerEquipment.left = game.add.sprite(game.world.width * 0.9325, game.world.centerY * 1.14, 'knife');
-        playerEquipment.extra = game.add.sprite(game.world.width * 0.9325, game.world.centerY * 1.27, 'knife');
+        playerEquipment.head = game.add.sprite(game.world.width * 0.8075, game.world.centerY * 1.01, 'NOTHING');
+        playerEquipment.right = game.add.sprite(game.world.width * 0.8075, game.world.centerY * 1.14, 'NOTHING');
+        playerEquipment.legs = game.add.sprite(game.world.width * 0.8075, game.world.centerY * 1.27, 'NOTHING');
+        playerEquipment.torso = game.add.sprite(game.world.width * 0.9325, game.world.centerY * 1.01, 'NOTHING');
+        playerEquipment.left = game.add.sprite(game.world.width * 0.9325, game.world.centerY * 1.14, 'NOTHING');
+        playerEquipment.extra = game.add.sprite(game.world.width * 0.9325, game.world.centerY * 1.27, 'NOTHING');
         playerEquipment.head.anchor.setTo(0.5);
         playerEquipment.right.anchor.setTo(0.5);
         playerEquipment.legs.anchor.setTo(0.5);
@@ -522,7 +522,16 @@ function initMultiPlayer(game, globals){
             ];
 
             updateSkillsPage(playerSkills);
-            updateInventoryPage(state.inventory);
+
+            var equipment = {
+                head: state.equipHead,
+                torso: state.equipTorso,
+                right: state.equipRight,
+                left: state.equipLeft,
+                legs: state.equipLegs,
+                extra: state.equipExtra,
+            };
+            updateInventoryPage(state.inventory, equipment);
             
             statusBars.hp.healthBarText.setText( state.health );
             statusBars.fp.focusBarText.setText( state.focus );
@@ -610,7 +619,7 @@ updateSkillsPage = function(skills){
     }
 }
 
-updateInventoryPage = function(inventory){
+updateInventoryPage = function(inventory, equipment){
     for(var i = 0; i < 16; i++){
         var itemName = game.global.itemManager.getItemName(inventory[i].itemId);
         playerInventory[i].sprite.loadTexture(itemName, 0);
@@ -620,6 +629,20 @@ updateInventoryPage = function(inventory){
             playerInventory[i].sprite.getChildAt(0).alpha = 1;
         }
     }
+
+    var headName = game.global.itemManager.getItemName(equipment.head);
+    var torsoName = game.global.itemManager.getItemName(equipment.torso);
+    var rightName = game.global.itemManager.getItemName(equipment.right);
+    var leftName = game.global.itemManager.getItemName(equipment.left);
+    var legsName = game.global.itemManager.getItemName(equipment.legs);
+    var extraName = game.global.itemManager.getItemName(equipment.extra);
+
+    playerEquipment.head.loadTexture(headName, 0);
+    playerEquipment.torso.loadTexture(torsoName, 0);
+    playerEquipment.right.loadTexture(rightName, 0);
+    playerEquipment.left.loadTexture(leftName, 0);
+    playerEquipment.legs.loadTexture(legsName, 0);
+    playerEquipment.extra.loadTexture(extraName, 0);
 }
 
 managePageButtons = function(index){
