@@ -1,5 +1,6 @@
 var itemManager = class itemManager{
     constructor(itemData){
+        console.log(itemData);
         this.itemData = null;
         for (var item of itemData){
             this.itemData[item.itemId] = item;
