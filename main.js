@@ -620,6 +620,7 @@ openContextMenu = function(index){
     var itemName = game.global.itemManager.getItemName(inventory[index].itemId);
     var itemCanEquip = game.global.itemManager.canEquip(inventory[index].itemId);
     var itemEquipSlot = game.global.itemManager.getEquipSlot(inventory[index].itemId);
+    inventoryContext.position = inventorySprite.sprite.children[0].worldPosition;
     console.log(inventorySprite);
     console.log(itemName);
     console.log(itemCanEquip);
