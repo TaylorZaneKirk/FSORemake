@@ -626,7 +626,7 @@ openContextMenu = function(index){
     }
 
     inventoryContext.position.y = inventorySprite.sprite.children[0].worldPosition.y;
-    inventoryContext.position.x = inventorySprite.sprite.children[0].worldPosition.x ;
+    inventoryContext.position.x = inventorySprite.sprite.children[0].worldPosition.x - 50;
     console.log(inventorySprite);
     console.log(itemName);
     console.log(itemCanEquip);
@@ -641,17 +641,17 @@ openContextMenu = function(index){
     if(itemCanEquip){
         var equipButton = null;
         if(itemEquipSlot == 'Arms'){
-            equipButton = game.make.text( 0, inventoryContext.children.length * 20, "Equip: Right", {font:"bold 12px Arial", fill:"purple", backgroundColor: "black"});
+            equipButton = game.make.text( 0, inventoryContext.children.length * 20, "EQUIP: Right", {font:"bold 12px Arial", fill:"purple", backgroundColor: "black"});
             equipButton.inputEnabled = true;
             equipButton.events.onInputDown.add(function(){closeContextMenu()});
             inventoryContext.addChild(equipButton);
-            var otherArmSlot = game.make.text( 0, inventoryContext.children.length * 20, "Equip: Left", {font:"bold 12px Arial", fill:"purple", backgroundColor: "black"});
+            var otherArmSlot = game.make.text( 0, inventoryContext.children.length * 20, "EQUIP: Left", {font:"bold 12px Arial", fill:"purple", backgroundColor: "black"});
             otherArmSlot.inputEnabled = true;
             otherArmSlot.events.onInputDown.add(function(){closeContextMenu()});
             inventoryContext.addChild(otherArmSlot);
         }
         else{
-            equipButton = game.make.text( 0, inventoryContext.children.length * 20, "Equip: " + itemEquipSlot, {font:"bold 12px Arial", fill:"purple", backgroundColor: "black"});
+            equipButton = game.make.text( 0, inventoryContext.children.length * 20, "EQUIP: " + itemEquipSlot, {font:"bold 12px Arial", fill:"purple", backgroundColor: "black"});
             equipButton.inputEnabled = true;
             equipButton.events.onInputDown.add(function(){closeContextMenu()});
             inventoryContext.addChild(equipButton);
