@@ -234,7 +234,7 @@ module.exports = {
             }
             else{
                 //decrement the amount of the stacked item and place the item that was equipped into inventory
-                console.log("case 4");
+                console.log("case 4"); //STILL NEEDS TESTING!!!!!!!!!
                 if(equipToInventorySlot == targetInventorySlot && thisEquipment == thisItemId){ 
                     //Trying to equip the same item as is already equipped, 
                     //and it would placed into the same stack, why bother doing anything

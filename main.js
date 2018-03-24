@@ -29,6 +29,14 @@ var statusBars = {
 
 var playerInventory = {};
 var playerInventoryData = {};
+var playerEquipment = {
+    head: null,
+    torso: null,
+    right: null,
+    left: null,
+    legs: null,
+    extra: null,
+};
 
 var mainState = {
     create: function(){
@@ -177,6 +185,9 @@ var mainState = {
         inventoryContext = game.add.group();
         inventoryContext.alpha = 0;
         inventoryPage.addChild(inventoryContext);
+
+        playerEquipment.head = game.add.sprite(0, 0, 'knife');
+        inventoryPage.addChild(playerEquipment.head);
         inventoryPage.alpha = 0;
 
         //ChatBox
