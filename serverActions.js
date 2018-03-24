@@ -208,6 +208,7 @@ module.exports = {
             thisItemAmount--;
             if(thisItemAmount == 0){
                 //remove what that item was and replace with NOTHING
+                console.log("case 1");
                 player.equipQuery("UPDATE playerInv SET slot" + targetInventorySlot + "=" + thisEquipment + ", slot" + targetInventorySlot + "Amount = 1, equip" + targetEquipSlot + "=" + thisItemId + " WHERE username = '" + player.username + "'");
                 player['equip' + targetEquipSlot] = thisItemId;
                 player.inventory[targetInventorySlot - 1].itemId = 1; //Nothing
@@ -215,6 +216,7 @@ module.exports = {
             }
             else{
                 //decrement the amount of the stacked item
+                console.log("case 2");
                 player.equipQuery("UPDATE playerInv SET slot" + targetInventorySlot + "Amount=" + thisItemAmount + ", equip" + targetEquipSlot + "=" + thisItemId + " WHERE username = '" + player.username + "'");
                 player['equip' + targetEquipSlot] = thisItemId;
                 player.inventory[targetInventorySlot - 1].amount -= 1;
@@ -225,6 +227,7 @@ module.exports = {
             thisItemAmount--;
             if(thisItemAmount == 0){
                 //remove what that item was and replace with item that was equipped
+                console.log("case 3");
                 player.equipQuery("UPDATE playerInv SET slot" + targetInventorySlot + "=" + thisEquipment + ", slot" + targetInventorySlot + "Amount = 1, equip" + targetEquipSlot + "=" + thisItemId + " WHERE username = '" + player.username + "'");
                 var temp = thisEquipment;
                 player['equip' + targetEquipSlot] = thisItemId;
@@ -233,6 +236,7 @@ module.exports = {
             }
             else{
                 //decrement the amount of the stacked item and place the item that was equipped into inventory
+                console.log("case 4");
                 player.equipQuery("UPDATE playerInv SET slot" + equipToInventorySlot + "=" + thisEquipment + ", slot" + targetInventorySlot + "Amount=" + thisItemAmount + ", slot" + equipToInventorySlot + "Amount=" + stackAmount + ", equip" + targetEquipSlot + "=" + thisItemId + " WHERE username = '" + player.username + "'");
                 player.inventory[equipToInventorySlot - 1] = {itemId: thisEquipment, amount: stackAmount};
                 player['equip' + targetEquipSlot] = thisItemId;
