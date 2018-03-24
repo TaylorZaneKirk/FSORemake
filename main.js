@@ -198,12 +198,14 @@ var mainState = {
         playerEquipment.torso.anchor.setTo(0.5);
         playerEquipment.left.anchor.setTo(0.5);
         playerEquipment.extra.anchor.setTo(0.5);
+        var unequipHead = game.add.sprite(game.world.width * 0.807, game.world.centerY * 1.01, 'xButton');
         inventoryPage.addChild(playerEquipment.head);
         inventoryPage.addChild(playerEquipment.right);
         inventoryPage.addChild(playerEquipment.legs);
         inventoryPage.addChild(playerEquipment.torso);
         inventoryPage.addChild(playerEquipment.left);
         inventoryPage.addChild(playerEquipment.extra);
+        inventoryPage.addChild(unequipHead);
         inventoryPage.alpha = 0;
 
         //ChatBox
