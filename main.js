@@ -580,6 +580,7 @@ updateInventoryPage = function(inventory){
         var itemName = game.global.itemManager.getItemName(inventory[i].itemId);
         playerInventory[i].sprite.loadTexture(itemName, 0);
         playerInventory[i].sprite.getChildAt(0).setText(inventory[i].amount);
+        playerInventory[i].sprite.getChildAt(0).alpha = 0;
         if (itemName != 'NOTHING'){
             playerInventory[i].sprite.getChildAt(0).alpha = 1;
         }
