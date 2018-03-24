@@ -198,7 +198,7 @@ var mainState = {
         playerEquipment.torso.anchor.setTo(0.5);
         playerEquipment.left.anchor.setTo(0.5);
         playerEquipment.extra.anchor.setTo(0.5);
-        var unequipHead = game.add.sprite(game.world.width * 0.8, game.world.centerY * 1.01, 'xButton');
+        var unequipHead = game.add.sprite(game.world.width * 0.7, game.world.centerY * 1.01, 'xButton');
         unequipHead.anchor.setTo(0.5);
         inventoryPage.addChild(playerEquipment.head);
         inventoryPage.addChild(playerEquipment.right);
