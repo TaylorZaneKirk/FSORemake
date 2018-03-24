@@ -178,30 +178,38 @@ module.exports = {
         var shouldStack = false;
         var stackAmount = 0;
 
-        if(thisItemAmount == 1){
-            //just swap items
-            equipToInventorySlot = targetInventorySlot;
-        }
-        else{
-            //Find Slot to place item
-            for(var i = 0; i < player.inventory.length; i++){
-                var item = player.inventory[i];
-                var itemSlot = parseInt(i) + 1;
-                if (item.itemId == 1){
-                    //place item here
-                    chosenSlot = itemSlot;
-                }
-                if(item.itemId == thisItemData.itemId && item.amount < 99){
-                    //Already holding that item, and holding less than 99
-                    shouldStack = true;
-                    stackAmount = item.amount;
-                    equipToInventorySlot = itemSlot;
-                    break;
+        if(thisEquipment != 1){
+            if(thisItemAmount == 1){
+                //just swap items
+                equipToInventorySlot = targetInventorySlot;
+            }
+            else{
+                //Find Slot to place item
+                for(var i = 0; i < player.inventory.length; i++){
+                    var item = player.inventory[i];
+                    var itemSlot = parseInt(i) + 1;
+                    if (item.itemId == 1){
+                        //place item here
+                        chosenSlot = itemSlot;
+                    }
+                    if(item.itemId == thisEquipment && item.amount < 99){
+                        //Already holding that item, and holding less than 99
+                        shouldStack = true;
+                        stackAmount = item.amount;
+                        equipToInventorySlot = itemSlot;
+                        break;
+                    }
                 }
             }
         }
+
+        //If thisEquipment == Nothing, just remove item from inventory and place into equip slot
+
+        //If thisEquipment != Nothing, remove item from inventory, remove thisEquipment, place item into thisEquipment, place thisEquipment into targetslot
+        
         console.log(thisItemData);
         console.log(thisEquipment);
         console.log(equipToInventorySlot);
+        console.log(thisItemAmount);
     }
 }
