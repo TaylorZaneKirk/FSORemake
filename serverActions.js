@@ -225,10 +225,13 @@ module.exports = {
         else{
             //If thisEquipment != Nothing, remove item from inventory, remove thisEquipment, place item into thisEquipment, place thisEquipment into targetslot
             thisItemAmount--;
+            if(shouldStack){
+                stackAmount++;
+            }
             if(thisItemAmount == 0){
                 //remove what that item was and replace with item that was equipped
                 console.log("case 3");
-                player.equipQuery("UPDATE playerInv SET slot" + targetInventorySlot + "=" + thisEquipment + ", slot" + targetInventorySlot + "Amount = 1, equip" + targetEquipSlot + "=" + thisItemId + " WHERE username = '" + player.username + "'");
+                player.equipQuery("UPDATE playerInv SET slot" + equipToInventorySlot + "=" + thisEquipment + ", slot" + targetInventorySlot + "Amount=" + thisItemAmount + ", slot" + equipToInventorySlot + "Amount=" + stackAmount + ", equip" + targetEquipSlot + "=" + thisItemId + " WHERE username = '" + player.username + "'");
                 var temp = thisEquipment;
                 player['equip' + targetEquipSlot] = thisItemId;
                 player.inventory[targetInventorySlot - 1].itemId = temp;
@@ -237,9 +240,6 @@ module.exports = {
             else{
                 //decrement the amount of the stacked item and place the item that was equipped into inventory
                 console.log("case 4");
-                if(shouldStack){
-                    stackAmount++;
-                }
                 player.equipQuery("UPDATE playerInv SET slot" + equipToInventorySlot + "=" + thisEquipment + ", slot" + targetInventorySlot + "Amount=" + thisItemAmount + ", slot" + equipToInventorySlot + "Amount=" + stackAmount + ", equip" + targetEquipSlot + "=" + thisItemId + " WHERE username = '" + player.username + "'");
                 player.inventory[equipToInventorySlot - 1] = {itemId: thisEquipment, amount: stackAmount};
                 player['equip' + targetEquipSlot] = thisItemId;
