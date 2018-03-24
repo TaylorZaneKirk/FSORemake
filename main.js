@@ -632,12 +632,12 @@ openContextMenu = function(index){
     console.log(itemEquipSlot);
     console.log(inventoryContext);
 
-    var useButton = game.make.text( 0, inventoryContext.children.length * 30, "USE", {font:"bold 14px Arial", fill:"purple", backgroundColor: "black"});
+    var useButton = game.make.text( 0, inventoryContext.children.length * 25, "USE", {font:"bold 14px Arial", fill:"purple", backgroundColor: "black"});
     useButton.inputEnabled = true;
     useButton.events.onInputDown.add(function(){closeContextMenu()});
     inventoryContext.addChild(useButton);
 
-    var cancelButton = game.make.text(0 , inventoryContext.children.length * 30, "CANCEL", {font:"bold 14px Arial", fill:"purple", backgroundColor: "black"});
+    var cancelButton = game.make.text( 0, inventoryContext.children.length * 25, "CANCEL", {font:"bold 14px Arial", fill:"purple", backgroundColor: "black"});
     cancelButton.inputEnabled = true;
     cancelButton.events.onInputDown.add(function(){closeContextMenu()});
     inventoryContext.addChild(cancelButton);
