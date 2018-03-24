@@ -235,6 +235,9 @@ module.exports = {
             else{
                 //decrement the amount of the stacked item and place the item that was equipped into inventory
                 console.log("case 4");
+                if(equipToInventorySlot == targetInventorySlot){
+                    return;
+                }
                 player.equipQuery("UPDATE playerInv SET slot" + equipToInventorySlot + "=" + thisEquipment + ", slot" + targetInventorySlot + "Amount=" + thisItemAmount + ", slot" + equipToInventorySlot + "Amount=" + stackAmount + ", equip" + targetEquipSlot + "=" + thisItemId + " WHERE username = '" + player.username + "'");
                 player.inventory[equipToInventorySlot - 1] = {itemId: thisEquipment, amount: stackAmount};
                 player['equip' + targetEquipSlot] = thisItemId;
