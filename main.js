@@ -148,7 +148,7 @@ var mainState = {
 
         //Inventory Page
         inventoryPage = game.add.group();
-        inventoryPage.add(game.add.sprite(game.world.width * 0.8, game.world.centerY * 0.4, 'equipmentPanel'));
+        inventoryPage.add(game.add.sprite(game.world.width * 0.775, game.world.centerY * 0.75, 'equipmentPanel'));
 
         inventoryPage.alpha = 0;
 
@@ -568,6 +568,6 @@ managePageButtons = function(index){
     skillsPage.alpha = 0;
     skillsPage.maskGraphics.input.useHandCursor = false;
     if(index == 0){ statsPage.alpha = 1; }
-    else if(index == 1){ inventoryPage.alpha = 1; inventoryPage.maskGraphics.input.useHandCursor = true;}
-    else if(index == 2){ skillsPage.alpha = 1; }
+    else if(index == 1){ inventoryPage.alpha = 1; }
+    else if(index == 2){ skillsPage.alpha = 1; skillsPage.maskGraphics.input.useHandCursor = true;}
 }
