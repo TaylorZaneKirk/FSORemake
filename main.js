@@ -175,9 +175,6 @@ var mainState = {
             }
         }
         inventoryContext = game.add.group();
-        inventoryContext.addChild(game.make.text(0 , 0, "CANCEL", {font:"bold 14px Arial", fill:"purple", backgroundColor: "black"}));
-        inventoryContext.children[0].inputEnabled = true;
-        inventoryContext.children[0].events.onInputDown.add(function(){closeContextMenu()});
         inventoryContext.alpha = 0;
         inventoryPage.addChild(inventoryContext);
         inventoryPage.alpha = 0;
@@ -622,15 +619,33 @@ openContextMenu = function(index){
     var itemName = game.global.itemManager.getItemName(inventory[index].itemId);
     var itemCanEquip = game.global.itemManager.canEquip(inventory[index].itemId);
     var itemEquipSlot = game.global.itemManager.getEquipSlot(inventory[index].itemId);
-    inventoryContext.position = inventorySprite.sprite.children[0].worldPosition;
+
+    if(itemName == 'NOTHING'){
+        return;
+    }
+
+    inventoryContext.position.y = inventorySprite.sprite.children[0].worldPosition.y;
+    inventoryContext.position.x = inventorySprite.sprite.children[0].worldPosition.x ;
     console.log(inventorySprite);
     console.log(itemName);
     console.log(itemCanEquip);
     console.log(itemEquipSlot);
     console.log(inventoryContext);
+
+    var useButton = game.make.text( 0, inventoryContext.children.length * 30, "USE", {font:"bold 14px Arial", fill:"purple", backgroundColor: "black"});
+    useButton.inputEnabled = true;
+    useButton.events.onInputDown.add(function(){closeContextMenu()});
+    inventoryContext.addChild(useButton);
+
+    var cancelButton = game.make.text(0 , inventoryContext.children.length * 30, "CANCEL", {font:"bold 14px Arial", fill:"purple", backgroundColor: "black"});
+    cancelButton.inputEnabled = true;
+    cancelButton.events.onInputDown.add(function(){closeContextMenu()});
+    inventoryContext.addChild(cancelButton);
+    
     inventoryContext.alpha = 1;
 }
 
 closeContextMenu = function(){
     inventoryContext.alpha = 0;
+    inventoryContext.removeAll();
 }
