@@ -179,26 +179,20 @@ module.exports = {
         var stackAmount = 1;
 
         if(thisEquipment != 1){
-            if(thisItemAmount == 1){
-                //just swap items
-                equipToInventorySlot = targetInventorySlot;
-            }
-            else{
-                //Find Slot to place item
-                for(var i = 0; i < player.inventory.length; i++){
-                    var item = player.inventory[i];
-                    var itemSlot = parseInt(i) + 1;
-                    if (item.itemId == 1){
-                        //place item here
-                        equipToInventorySlot = itemSlot;
-                    }
-                    if(item.itemId == thisEquipment && item.amount < 99){
-                        //Already holding that item, and holding less than 99
-                        shouldStack = true;
-                        stackAmount = item.amount;
-                        equipToInventorySlot = itemSlot;
-                        break;
-                    }
+            //Find Slot to place item
+            for(var i = 0; i < player.inventory.length; i++){
+                var item = player.inventory[i];
+                var itemSlot = parseInt(i) + 1;
+                if (item.itemId == 1){
+                    //place item here
+                    equipToInventorySlot = itemSlot;
+                }
+                if(item.itemId == thisEquipment && item.amount < 99){
+                    //Already holding that item, and holding less than 99
+                    shouldStack = true;
+                    stackAmount = item.amount;
+                    equipToInventorySlot = itemSlot;
+                    break;
                 }
             }
         }
