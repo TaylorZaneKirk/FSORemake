@@ -187,8 +187,8 @@ var mainState = {
         inventoryPage.addChild(inventoryContext);
 
         playerEquipment.head = game.add.sprite(game.world.width * 0.8075, game.world.centerY * 1.01, 'knife');
-        playerEquipment.right = game.add.sprite(game.world.width * 0.8075, game.world.centerY * 1.16, 'knife');
-        playerEquipment.legs = game.add.sprite(game.world.width * 0.8075, game.world.centerY * 1.31, 'knife');
+        playerEquipment.right = game.add.sprite(game.world.width * 0.8075, game.world.centerY * 1.14, 'knife');
+        playerEquipment.legs = game.add.sprite(game.world.width * 0.8075, game.world.centerY * 1.27, 'knife');
         playerEquipment.head.anchor.setTo(0.5);
         playerEquipment.right.anchor.setTo(0.5);
         playerEquipment.legs.anchor.setTo(0.5);
