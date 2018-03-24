@@ -209,14 +209,15 @@ module.exports = {
             if(thisItemAmount == 0){
                 //remove what that item was and replace with NOTHING
                 player.equipQuery("UPDATE playerInv SET slot" + targetInventorySlot + "=" + thisEquipment + ", slot" + targetInventorySlot + "Amount = 1, equip" + targetEquipSlot + "=" + thisItemId + " WHERE username = '" + player.username + "'");
-                thisEquipment = thisItemId;
-                thisItemId = 1; //Nothing
-                thisItemAmount = 1;
+                player['equip' + targetEquipSlot] = thisItemId;
+                player.inventory[targetInventorySlot - 1].itemId = 1; //Nothing
+                player.inventory[targetInventorySlot - 1].amount = 1;
             }
             else{
                 //decrement the amount of the stacked item
                 player.equipQuery("UPDATE playerInv SET slot" + targetInventorySlot + "Amount=" + thisItemAmount + ", equip" + targetEquipSlot + "=" + thisItemId + " WHERE username = '" + player.username + "'");
-                thisEquipment = thisItemId;
+                player['equip' + targetEquipSlot] = thisItemId;
+                player.inventory[targetInventorySlot - 1].amount -= 1;
             }
         }
         else{
@@ -226,15 +227,16 @@ module.exports = {
                 //remove what that item was and replace with item that was equipped
                 player.equipQuery("UPDATE playerInv SET slot" + targetInventorySlot + "=" + thisEquipment + ", slot" + targetInventorySlot + "Amount = 1, equip" + targetEquipSlot + "=" + thisItemId + " WHERE username = '" + player.username + "'");
                 var temp = thisEquipment;
-                thisEquipment = thisItemId;
-                thisItemId = temp;
-                thisItemAmount = 1;
+                player['equip' + targetEquipSlot] = thisItemId;
+                player.inventory[targetInventorySlot - 1].itemId = temp;
+                player.inventory[targetInventorySlot - 1].amount = 1;
             }
             else{
                 //decrement the amount of the stacked item and place the item that was equipped into inventory
                 player.equipQuery("UPDATE playerInv SET slot" + equipToInventorySlot + "=" + thisEquipment + ", slot" + targetInventorySlot + "Amount=" + thisItemAmount + ", slot" + equipToInventorySlot + "Amount=" + stackAmount + ", equip" + targetEquipSlot + "=" + thisItemId + " WHERE username = '" + player.username + "'");
                 player.inventory[equipToInventorySlot - 1] = {itemId: thisEquipment, amount: stackAmount};
-                thisEquipment = thisItemId;
+                player['equip' + targetEquipSlot] = thisItemId;
+                player.inventory[targetInventorySlot - 1].amount -= 1;
             }
         }
     }
