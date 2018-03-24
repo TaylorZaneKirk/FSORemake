@@ -577,8 +577,12 @@ updateSkillsPage = function(skills){
 updateInventoryPage = function(inventory){
     for(var i = 0; i < 16; i++){
         //Need to be able to get itemName by itemId client side
-        playerInventory[i].sprite.loadTexture(game.global.itemManager.getItemName(inventory[i].itemId, 0));
+        var itemName = game.global.itemManager.getItemName(inventory[i].itemId);
+        playerInventory[i].sprite.loadTexture(itemName, 0);
         playerInventory[i].sprite.getChildAt(0).setText(inventory[i].amount);
+        if (itemName != 'NOTHING'){
+            playerInventory[i].sprite.getChildAt(0).alpha = 1;
+        }
     }
 }
 
