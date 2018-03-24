@@ -226,6 +226,7 @@ module.exports = {
                 //remove what that item was and replace with item that was equipped
                 console.log("case 3");
                 player.equipQuery("UPDATE playerInv SET slot" + equipToInventorySlot + "=" + thisEquipment + ", slot" + targetInventorySlot + "=1, slot" + targetInventorySlot + "Amount=1, slot" + equipToInventorySlot + "Amount=" + stackAmount + ", equip" + targetEquipSlot + "=" + thisItemId + " WHERE username = '" + player.username + "'");
+                player.inventory[equipToInventorySlot - 1] = {itemId: thisEquipment, amount: stackAmount};
                 var temp = thisEquipment;
                 player['equip' + targetEquipSlot] = thisItemId;
                 player.inventory[targetInventorySlot - 1].itemId = 1;
