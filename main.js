@@ -186,7 +186,7 @@ var mainState = {
         inventoryContext.alpha = 0;
         inventoryPage.addChild(inventoryContext);
 
-        playerEquipment.head = game.add.sprite(0, 0, 'knife');
+        playerEquipment.head = game.add.sprite(game.world.width * 0.785, game.world.centerY * 0.95, 'knife');
         inventoryPage.addChild(playerEquipment.head);
         inventoryPage.alpha = 0;
 
