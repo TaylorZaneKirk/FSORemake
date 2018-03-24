@@ -78,7 +78,7 @@ class WorldItem{
 class Item{
     constructor(data){
         this.itemId = data.itemId;
-        this.itemName = data.name;
+        this.itemName = data.itemName;
         this.canEquip = data.canEquip;
         this.canConsume = data.canConsume;
         this.maxHealthBonus = data.maxHealthBonus;
