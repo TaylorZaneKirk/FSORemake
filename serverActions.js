@@ -231,10 +231,10 @@ module.exports = {
             if(thisItemAmount == 0){
                 //remove what that item was and replace with item that was equipped
                 console.log("case 3");
-                player.equipQuery("UPDATE playerInv SET slot" + equipToInventorySlot + "=" + thisEquipment + ", slot" + targetInventorySlot + "Amount=" + thisItemAmount + ", slot" + equipToInventorySlot + "Amount=" + stackAmount + ", equip" + targetEquipSlot + "=" + thisItemId + " WHERE username = '" + player.username + "'");
+                player.equipQuery("UPDATE playerInv SET slot" + equipToInventorySlot + "=" + thisEquipment + ", slot" + targetInventorySlot + "=1, slot" + targetInventorySlot + "Amount=1, slot" + equipToInventorySlot + "Amount=" + stackAmount + ", equip" + targetEquipSlot + "=" + thisItemId + " WHERE username = '" + player.username + "'");
                 var temp = thisEquipment;
                 player['equip' + targetEquipSlot] = thisItemId;
-                player.inventory[targetInventorySlot - 1].itemId = temp;
+                player.inventory[targetInventorySlot - 1].itemId = 1;
                 player.inventory[targetInventorySlot - 1].amount = 1;
             }
             else{
