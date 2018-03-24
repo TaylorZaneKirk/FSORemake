@@ -168,7 +168,7 @@ var mainState = {
                 item.anchor.setTo(0.5);
                 inventoryPage.add(item);
                 playerInventory[inventoryIndex] = {sprite: item, amount: itemAmount, index: inventoryIndex};
-                playerInventory[inventoryIndex].sprite.events.onInputDown.add(function(){openContextMenu(playerInventory[inventoryIndex].index)});
+                playerInventory[inventoryIndex].sprite.events.onInputDown.add(function(){openContextMenu(item.index)});
                 inventoryIndex++;
             }
         }
