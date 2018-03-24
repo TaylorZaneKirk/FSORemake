@@ -189,12 +189,21 @@ var mainState = {
         playerEquipment.head = game.add.sprite(game.world.width * 0.8075, game.world.centerY * 1.01, 'knife');
         playerEquipment.right = game.add.sprite(game.world.width * 0.8075, game.world.centerY * 1.14, 'knife');
         playerEquipment.legs = game.add.sprite(game.world.width * 0.8075, game.world.centerY * 1.27, 'knife');
+        playerEquipment.torso = game.add.sprite(game.world.width * 0.85, game.world.centerY * 1.01, 'knife');
+        playerEquipment.left = game.add.sprite(game.world.width * 0.85, game.world.centerY * 1.14, 'knife');
+        playerEquipment.extra = game.add.sprite(game.world.width * 0.85, game.world.centerY * 1.27, 'knife');
         playerEquipment.head.anchor.setTo(0.5);
         playerEquipment.right.anchor.setTo(0.5);
         playerEquipment.legs.anchor.setTo(0.5);
+        playerEquipment.torso.anchor.setTo(0.5);
+        playerEquipment.left.anchor.setTo(0.5);
+        playerEquipment.extra.anchor.setTo(0.5);
         inventoryPage.addChild(playerEquipment.head);
         inventoryPage.addChild(playerEquipment.right);
         inventoryPage.addChild(playerEquipment.legs);
+        inventoryPage.addChild(playerEquipment.torso);
+        inventoryPage.addChild(playerEquipment.left);
+        inventoryPage.addChild(playerEquipment.extra);
         inventoryPage.alpha = 0;
 
         //ChatBox
