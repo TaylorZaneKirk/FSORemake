@@ -161,6 +161,7 @@ var mainState = {
                 var offsetX = j * 45;
                 var offsetY = i * 35;
                 var item = game.add.sprite((game.world.width * 0.7825) + offsetX, (game.world.centerY * 0.45) + offsetY, 'NOTHING');
+                item.inputEnabled = true;
                 var itemAmount = game.make.text(15, 11, "1", {font:"bold 10px Arial", fill:"white"});
                 itemAmount.alpha = 0;
                 item.addChild(itemAmount);
