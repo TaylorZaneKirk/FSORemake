@@ -235,7 +235,10 @@ module.exports = {
             else{
                 //decrement the amount of the stacked item and place the item that was equipped into inventory
                 console.log("case 4");
-                if(equipToInventorySlot == targetInventorySlot && thisEquipment == thisItemId){ //Trying to equip the same item as is already equipped, and it would placed into why bother?
+                if(equipToInventorySlot == targetInventorySlot && thisEquipment == thisItemId){ 
+                    //Trying to equip the same item as is already equipped, 
+                    //and it would placed into the same stack, why bother doing anything
+                    //if nothing is actually changing?
                     return;
                 }
                 player.equipQuery("UPDATE playerInv SET slot" + equipToInventorySlot + "=" + thisEquipment + ", slot" + targetInventorySlot + "Amount=" + thisItemAmount + ", slot" + equipToInventorySlot + "Amount=" + stackAmount + ", equip" + targetEquipSlot + "=" + thisItemId + " WHERE username = '" + player.username + "'");
