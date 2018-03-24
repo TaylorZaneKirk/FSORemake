@@ -427,7 +427,7 @@ server.listen(process.env.PORT || 55555, function () {
             if (err) throw err;
 
             for(var item of result){
-                var itemId = item.id;
+                var itemId = item.itemId
                 itemData[itemId] = new Item(item);
             }
             console.log("Item Data loaded");
