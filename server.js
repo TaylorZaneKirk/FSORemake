@@ -369,6 +369,11 @@ class PlayerState
             }
         }
     }
+
+    equipQuery(queryString){
+        console.log(queryString);
+        con.query(queryString, function (err, result, fields) {if (err) throw err;});
+    }
 };
 
 

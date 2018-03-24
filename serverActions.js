@@ -176,7 +176,7 @@ module.exports = {
         var thisEquipment = player['equip' + targetEquipSlot];
         var equipToInventorySlot = null;
         var shouldStack = false;
-        var stackAmount = 0;
+        var stackAmount = 1;
 
         if(thisEquipment != 1){
             if(thisItemAmount == 1){
@@ -190,7 +190,7 @@ module.exports = {
                     var itemSlot = parseInt(i) + 1;
                     if (item.itemId == 1){
                         //place item here
-                        chosenSlot = itemSlot;
+                        equipToInventorySlot = itemSlot;
                     }
                     if(item.itemId == thisEquipment && item.amount < 99){
                         //Already holding that item, and holding less than 99
@@ -204,12 +204,38 @@ module.exports = {
         }
 
         //If thisEquipment == Nothing, just remove item from inventory and place into equip slot
-
-        //If thisEquipment != Nothing, remove item from inventory, remove thisEquipment, place item into thisEquipment, place thisEquipment into targetslot
-        
-        console.log(thisItemData);
-        console.log(thisEquipment);
-        console.log(equipToInventorySlot);
-        console.log(thisItemAmount);
+        if(equipToInventorySlot == null){
+            thisItemAmount--;
+            if(thisItemAmount == 0){
+                //remove what that item was and replace with NOTHING
+                player.equipQuery("UPDATE playerInv SET slot" + targetInventorySlot + "=" + thisEquipment + ", slot" + targetInventorySlot + "Amount = 1, equip" + targetEquipSlot + "=" + thisItemId + " WHERE username = '" + player.username + "'");
+                thisEquipment = thisItemId;
+                thisItemId = 1; //Nothing
+                thisItemAmount = 1;
+            }
+            else{
+                //decrement the amount of the stacked item
+                player.equipQuery("UPDATE playerInv SET slot" + targetInventorySlot + "Amount=" + thisItemAmount + ", equip" + targetEquipSlot + "=" + thisItemId + " WHERE username = '" + player.username + "'");
+                thisEquipment = thisItemId;
+            }
+        }
+        else{
+            //If thisEquipment != Nothing, remove item from inventory, remove thisEquipment, place item into thisEquipment, place thisEquipment into targetslot
+            thisItemAmount--;
+            if(thisItemAmount == 0){
+                //remove what that item was and replace with item that was equipped
+                player.equipQuery("UPDATE playerInv SET slot" + targetInventorySlot + "=" + thisEquipment + ", slot" + targetInventorySlot + "Amount = 1, equip" + targetEquipSlot + "=" + thisItemId + " WHERE username = '" + player.username + "'");
+                var temp = thisEquipment;
+                thisEquipment = thisItemId;
+                thisItemId = temp;
+                thisItemAmount = 1;
+            }
+            else{
+                //decrement the amount of the stacked item and place the item that was equipped into inventory
+                player.equipQuery("UPDATE playerInv SET slot" + equipToInventorySlot + "=" + thisEquipment + ", slot" + targetInventorySlot + "Amount=" + thisItemAmount + ", slot" + equipToInventorySlot + "Amount=" + stackAmount + ", equip" + targetEquipSlot + "=" + thisItemId + " WHERE username = '" + player.username + "'");
+                player.inventory[equipToInventorySlot - 1] = {itemId: thisEquipment, amount: stackAmount};
+                thisEquipment = thisItemId;
+            }
+        }
     }
 }
