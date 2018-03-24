@@ -633,7 +633,7 @@ openContextMenu = function(index){
     console.log(itemEquipSlot);
     console.log(inventoryContext);
 
-    var useButton = game.make.text( 0, inventoryContext.children.length * 20, "USE   ", {font:"bold 14px Arial", fill:"purple", backgroundColor: "black"});
+    var useButton = game.make.text( 0, inventoryContext.children.length * 20, "USE   ", {font:"bold 12px Arial", fill:"purple", backgroundColor: "black"});
     useButton.inputEnabled = true;
     useButton.events.onInputDown.add(function(){closeContextMenu()});
     inventoryContext.addChild(useButton);
@@ -641,29 +641,29 @@ openContextMenu = function(index){
     if(itemCanEquip){
         var equipButton = null;
         if(itemEquipSlot == 'Arms'){
-            equipButton = game.make.text( 0, inventoryContext.children.length * 20, "Equip: Right", {font:"bold 10px Arial", fill:"purple", backgroundColor: "black"});
+            equipButton = game.make.text( 0, inventoryContext.children.length * 20, "Equip: Right", {font:"bold 12px Arial", fill:"purple", backgroundColor: "black"});
             equipButton.inputEnabled = true;
             equipButton.events.onInputDown.add(function(){closeContextMenu()});
             inventoryContext.addChild(equipButton);
-            var otherArmSlot = game.make.text( 0, inventoryContext.children.length * 20, "Equip: Left", {font:"bold 10px Arial", fill:"purple", backgroundColor: "black"});
+            var otherArmSlot = game.make.text( 0, inventoryContext.children.length * 18, "Equip: Left", {font:"bold 12px Arial", fill:"purple", backgroundColor: "black"});
             otherArmSlot.inputEnabled = true;
             otherArmSlot.events.onInputDown.add(function(){closeContextMenu()});
             inventoryContext.addChild(otherArmSlot);
         }
         else{
-            equipButton = game.make.text( 0, inventoryContext.children.length * 20, "Equip: " + itemEquipSlot, {font:"bold 10px Arial", fill:"purple", backgroundColor: "black"});
+            equipButton = game.make.text( 0, inventoryContext.children.length * 20, "Equip: " + itemEquipSlot, {font:"bold 12px Arial", fill:"purple", backgroundColor: "black"});
             equipButton.inputEnabled = true;
             equipButton.events.onInputDown.add(function(){closeContextMenu()});
             inventoryContext.addChild(equipButton);
         }
     }
 
-    var dropButton = game.make.text( 0, inventoryContext.children.length * 18, "DROP", {font:"bold 14px Arial", fill:"purple", backgroundColor: "black"});
+    var dropButton = game.make.text( 0, inventoryContext.children.length * 18, "DROP", {font:"bold 12px Arial", fill:"purple", backgroundColor: "black"});
     dropButton.inputEnabled = true;
     dropButton.events.onInputDown.add(function(){closeContextMenu()});
     inventoryContext.addChild(dropButton);
 
-    var cancelButton = game.make.text( 0, inventoryContext.children.length * 20, "CANCEL", {font:"bold 14px Arial", fill:"purple", backgroundColor: "black"});
+    var cancelButton = game.make.text( 0, inventoryContext.children.length * 20, "CANCEL", {font:"bold 12px Arial", fill:"purple", backgroundColor: "black"});
     cancelButton.inputEnabled = true;
     cancelButton.events.onInputDown.add(function(){closeContextMenu()});
     inventoryContext.addChild(cancelButton);
