@@ -149,7 +149,16 @@ var mainState = {
         //Inventory Page
         inventoryPage = game.add.group();
         inventoryPage.add(game.add.sprite(game.world.width * 0.785, game.world.centerY * 0.95, 'equipmentPanel'));
-
+        for( var i = 0; i < 4; i++){
+            for( var j = 0; j < 4; j++){
+                //calculate offset
+                var offsetX = j * 30;
+                var offsetY = i * 30;
+                var item = game.add.sprite((game.world.width * 0.725) + offsetX, (game.world.centerY * 0.4) + offsetY, 'knife');
+                item.anchor.setTo(0.5);
+                inventoryPage.add(item);
+            }
+        }
         inventoryPage.alpha = 0;
 
         //ChatBox
