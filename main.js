@@ -199,7 +199,17 @@ var mainState = {
         playerEquipment.left.anchor.setTo(0.5);
         playerEquipment.extra.anchor.setTo(0.5);
         var unequipHead = game.add.sprite(game.world.width * 0.775, game.world.centerY * 1.01, 'xButton');
+        var unequipRight = game.add.sprite(game.world.width * 0.775, game.world.centerY * 1.14, 'xButton');
+        var unequipLegs = game.add.sprite(game.world.width * 0.775, game.world.centerY * 1.27, 'xButton');
+        var unequipTorso = game.add.sprite(game.world.width * 0.965, game.world.centerY * 1.01, 'xButton');
+        var unequipLeft = game.add.sprite(game.world.width * 0.965, game.world.centerY * 1.14, 'xButton');
+        var unequipExtra = game.add.sprite(game.world.width * 0.965, game.world.centerY * 1.27, 'xButton');
         unequipHead.anchor.setTo(0.5);
+        unequipRight.anchor.setTo(0.5);
+        unequipLegs.anchor.setTo(0.5);
+        unequipTorso.anchor.setTo(0.5);
+        unequipLeft.anchor.setTo(0.5);
+        unequipExtra.anchor.setTo(0.5);
         inventoryPage.addChild(playerEquipment.head);
         inventoryPage.addChild(playerEquipment.right);
         inventoryPage.addChild(playerEquipment.legs);
@@ -207,6 +217,11 @@ var mainState = {
         inventoryPage.addChild(playerEquipment.left);
         inventoryPage.addChild(playerEquipment.extra);
         inventoryPage.addChild(unequipHead);
+        inventoryPage.addChild(unequipRight);
+        inventoryPage.addChild(unequipLegs);
+        inventoryPage.addChild(unequipTorso);
+        inventoryPage.addChild(unequipLeft);
+        inventoryPage.addChild(unequipExtra);
         inventoryPage.alpha = 0;
 
         //ChatBox
