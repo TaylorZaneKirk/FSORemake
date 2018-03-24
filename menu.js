@@ -24,6 +24,7 @@ var menuState = {
             myId: 0, //Id for server
             myMap: null, //Tiles for current screen
             mapManager: null, //Reference to mapManager for tilemap
+            itemManager: null,
             items: {}, //Likely to be factored to 2nd or 3rd layer
             easystar: null,
             localPlayerObject: null, //reference to the Player object of "your" character. Mostly for quick indexing

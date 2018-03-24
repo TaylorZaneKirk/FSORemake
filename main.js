@@ -26,6 +26,8 @@ var statusBars = {
     }
 }
 
+var playerInventory = {};
+
 var mainState = {
     create: function(){
 
@@ -38,6 +40,7 @@ var mainState = {
 
         //Maps and layers
         game.global.mapManager = new MapManager(game);
+        game.global.itemManager = new itemManager();
 
         //GUI
         var leftPanel = game.add.sprite(0, game.world.bottom * 0.099, 'leftPanel');
@@ -149,16 +152,20 @@ var mainState = {
         //Inventory Page
         inventoryPage = game.add.group();
         inventoryPage.add(game.add.sprite(game.world.width * 0.785, game.world.centerY * 0.95, 'equipmentPanel'));
+        var inventoryIndex = 0;
         for( var i = 0; i < 4; i++){
             for( var j = 0; j < 4; j++){
                 //calculate offset
                 var offsetX = j * 45;
                 var offsetY = i * 35;
-                var item = game.add.sprite((game.world.width * 0.7825) + offsetX, (game.world.centerY * 0.45) + offsetY, 'knife');
+                var item = game.add.sprite((game.world.width * 0.7825) + offsetX, (game.world.centerY * 0.45) + offsetY, 'NOTHING');
                 var itemAmount = game.make.text(15, 11.5, "1", {font:"bold 10px Arial", fill:"white"});
+                itemAmount.alpha = 0;
                 item.addChild(itemAmount);
                 item.anchor.setTo(0.5);
                 inventoryPage.add(item);
+                playerInventory[inventoryIndex] = {sprite: item, amount: itemAmount};
+                inventoryIndex++;
             }
         }
         inventoryPage.alpha = 0;
@@ -433,6 +440,7 @@ function initMultiPlayer(game, globals){
             ];
 
             updateSkillsPage(playerSkills);
+            updateInventoryPage(state.inventory);
 
             statusBars.hp.healthBarText.setText( state.health );
             statusBars.fp.focusBarText.setText( state.focus );
@@ -478,6 +486,7 @@ function initMultiPlayer(game, globals){
             ];
 
             updateSkillsPage(playerSkills);
+            updateInventoryPage(state.inventory);
             
             statusBars.hp.healthBarText.setText( state.health );
             statusBars.fp.focusBarText.setText( state.focus );
@@ -562,6 +571,14 @@ updateStatsPage = function(values){
 updateSkillsPage = function(skills){
     for(var i = 0; i < 28; i++){
         skillsPage.getAt(i + 28).setText(skills[i].level + " (" + skills[i].current + " / " + skills[i].next + ")");
+    }
+}
+
+updateInventoryPage = function(inventory){
+    for(var i = 0; i < 16; i++){
+        //Need to be able to get itemName by itemId client side
+        playerInventory[i].sprite.loadTexture(game.global.itemManager.getItemName(inventory[i].itemId, 0));
+        playerInventory[i].sprite.getChildAt(0).setText(inventory[i].amount);
     }
 }
 
