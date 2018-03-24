@@ -645,7 +645,7 @@ openContextMenu = function(index){
             equipButton.inputEnabled = true;
             equipButton.events.onInputDown.add(function(){closeContextMenu()});
             inventoryContext.addChild(equipButton);
-            var otherArmSlot = game.make.text( 0, inventoryContext.children.length * 18, "Equip: Left", {font:"bold 12px Arial", fill:"purple", backgroundColor: "black"});
+            var otherArmSlot = game.make.text( 0, inventoryContext.children.length * 20, "Equip: Left", {font:"bold 12px Arial", fill:"purple", backgroundColor: "black"});
             otherArmSlot.inputEnabled = true;
             otherArmSlot.events.onInputDown.add(function(){closeContextMenu()});
             inventoryContext.addChild(otherArmSlot);
@@ -658,7 +658,7 @@ openContextMenu = function(index){
         }
     }
 
-    var dropButton = game.make.text( 0, inventoryContext.children.length * 18, "DROP", {font:"bold 12px Arial", fill:"purple", backgroundColor: "black"});
+    var dropButton = game.make.text( 0, inventoryContext.children.length * 20, "DROP", {font:"bold 12px Arial", fill:"purple", backgroundColor: "black"});
     dropButton.inputEnabled = true;
     dropButton.events.onInputDown.add(function(){closeContextMenu()});
     inventoryContext.addChild(dropButton);
