@@ -6,6 +6,7 @@ var chatBox;
 var chatLog = "TestMessage says: TeStTeStTeStTeStTeSt TeStTeSt TeStTeStTeSt";
 var statsPage;
 var skillsPage;
+var inventoryPage;
 var pageButtons;
 
 var statusBars = {
@@ -145,6 +146,12 @@ var mainState = {
         skillsPage.start();
         skillsPage.alpha = 0;
 
+        //Inventory Page
+        inventoryPage = game.add.group();
+        inventoryPage.add(game.add.sprite(game.world.width * 0.725, game.world.centerY * 0.4, 'equipmentPanel'));
+
+        inventoryPage.alpha = 0;
+
         //ChatBox
         chatBox = game.add.existing(new ScrollableArea(game.world.width * 0.022, game.world.bottom * 0.625, 762, 88));
         chatBox.maskGraphics.input.useHandCursor = true;
@@ -159,13 +166,16 @@ var mainState = {
             fill: 'white',
             width: 762,
             height: 20,
-            max: 95,
+            max: 180,
         });
         $(chatInput.domElement.element).on('keyup', function (e) {
             if (e.keyCode == 13) {
                 if(chatInput.value != undefined && chatInput.value != ''){
                     if(chatInput.value.charAt(0) == "'"){
-                        game.global.actionQueue.push({action: {type: 'broadcast', payload: chatInput.value.substring(1)}, target: 'all'});
+                        var bInput = chatInput.value.substring(1);
+                        if(bInput.length){
+                            game.global.actionQueue.push({action: {type: 'broadcast', payload: bInput}, target: 'all'});
+                        }
                     }
                     else{
                         game.global.actionQueue.push({action: {type: 'broadcast', payload: chatInput.value}, target: 'local'});
@@ -234,8 +244,6 @@ var mainState = {
         statusBars.sp.spBar.size._1p = statusBars.sp.spBar.size.w * 0.01; ///// 1% of width ///
         
         statusBars.sp.staminaBarObject = game.add.graphics( statusBars.sp.spBar.pos.x, statusBars.sp.spBar.pos.y );
-
-        console.log(skillsPage);
 
     },
 
@@ -556,7 +564,9 @@ managePageButtons = function(index){
     }
     
     statsPage.alpha = 0;
+    inventoryPage.alpha = 0;
     skillsPage.alpha = 0;
     if(index == 0){ statsPage.alpha = 1; skillsPage.maskGraphics.input.useHandCursor = false;}
+    else if(index == 1){ inventoryPage.alpha = 1; inventoryPage.maskGraphics.input.useHandCursor = true;}
     else if(index == 2){ skillsPage.alpha = 1; skillsPage.maskGraphics.input.useHandCursor = true;}
 }

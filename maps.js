@@ -31,7 +31,6 @@ var MapManager = class MapManager {
 
     setMapData(mapData){
         this.mapData = mapData;
-        console.log(this.mapData);
         this.changeMap();
     }
 

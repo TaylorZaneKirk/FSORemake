@@ -105,7 +105,7 @@ class Item{
     }
 }
 
-//Player state needs to have Health implemented
+
 class PlayerState
 {
     constructor(idString, data){
@@ -337,6 +337,7 @@ class PlayerState
         var chosenSlot = null;
         var stackAmount = 0;
 
+        //Find Slot to place item
         for(var i = 0; i < this.inventory.length; i++){
             var item = this.inventory[i];
             var itemSlot = parseInt(i) + 1;
@@ -345,6 +346,7 @@ class PlayerState
                 chosenSlot = itemSlot;
             }
             if(item.itemId == thisItem.itemId && item.amount < 99){
+                //Already holding that item, and holding less than 99
                 shouldStack = true;
                 stackAmount = item.amount;
                 chosenSlot = itemSlot;
@@ -353,7 +355,7 @@ class PlayerState
         }
 
         if(chosenSlot != null){
-            //chosenSlot = parseInt(chosenSlot);
+            
             this.inventory[chosenSlot - 1].itemId = thisItem.itemId;
             this.inventory[chosenSlot - 1].amount = thisItem.amount;
             thisItem.remove();
