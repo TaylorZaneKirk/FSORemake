@@ -658,6 +658,11 @@ openContextMenu = function(index){
         }
     }
 
+    var dropButton = game.make.text( 0, inventoryContext.children.length * 18, "DROP", {font:"bold 14px Arial", fill:"purple", backgroundColor: "black"});
+    dropButton.inputEnabled = true;
+    dropButton.events.onInputDown.add(function(){closeContextMenu()});
+    inventoryContext.addChild(dropButton);
+
     var cancelButton = game.make.text( 0, inventoryContext.children.length * 20, "CANCEL", {font:"bold 14px Arial", fill:"purple", backgroundColor: "black"});
     cancelButton.inputEnabled = true;
     cancelButton.events.onInputDown.add(function(){closeContextMenu()});
