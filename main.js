@@ -162,14 +162,14 @@ var mainState = {
                 var offsetY = i * 35;
                 var item = game.add.sprite((game.world.width * 0.7825) + offsetX, (game.world.centerY * 0.45) + offsetY, 'NOTHING');
                 var itemAmount = game.make.text(15, 11, "1", {font:"bold 10px Arial", fill:"white"});
-                item.inputEnabled = true;
                 itemAmount.alpha = 0;
                 item.addChild(itemAmount);
                 item.anchor.setTo(0.5);
                 inventoryPage.add(item);
                 var itemObj = {sprite: item, amount: itemAmount, index: inventoryIndex};
+
                 playerInventory[inventoryIndex] = itemObj
-                playerInventory[inventoryIndex].sprite.events.onInputDown.add(function(){openContextMenu(itemObj.index)});
+                playerInventory[inventoryIndex].sprite.events.onInputDown.add(function(item){openContextMenu(itemObj.index)});
                 inventoryIndex++;
             }
         }
