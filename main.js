@@ -176,6 +176,8 @@ var mainState = {
         }
         inventoryContext = game.add.group();
         inventoryContext.addChild(game.make.text(0 , 0, "CANCEL", {font:"bold 14px Arial", fill:"purple", backgroundColor: "black"}));
+        inventoryContext.children[0].inputEnabled = true;
+        inventoryContext.children[0].events.onInputDown.add(function(){closeContextMenu()});
         inventoryContext.alpha = 0;
         inventoryPage.addChild(inventoryContext);
         inventoryPage.alpha = 0;
@@ -626,4 +628,9 @@ openContextMenu = function(index){
     console.log(itemCanEquip);
     console.log(itemEquipSlot);
     console.log(inventoryContext);
+    inventoryContext.alpha = 1;
+}
+
+closeContextMenu = function(){
+    inventoryContext.alpha = 0;
 }
