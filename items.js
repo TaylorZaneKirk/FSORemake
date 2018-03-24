@@ -11,19 +11,19 @@ var itemManager = class itemManager{
     getEquipSlot(itemId){
         switch(this.itemData[itemId].equipSlot){
             case 0: {
-                return 'head';
+                return 'Head';
             }
             case 1: {
-                return 'torso';
+                return 'Torso';
             }
             case 2: {
-                return 'arms';
+                return 'Arms';
             }
             case 3: {
-                return 'legs';
+                return 'Legs';
             }
             case 4: {
-                return 'extra';
+                return 'Extra';
             }
             default: {
                 return null;

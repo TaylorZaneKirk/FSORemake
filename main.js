@@ -619,6 +619,7 @@ openContextMenu = function(index){
     var itemName = game.global.itemManager.getItemName(inventory[index].itemId);
     var itemCanEquip = game.global.itemManager.canEquip(inventory[index].itemId);
     var itemEquipSlot = game.global.itemManager.getEquipSlot(inventory[index].itemId);
+    inventoryContext.removeAll();
 
     if(itemName == 'NOTHING'){
         return;
@@ -632,10 +633,30 @@ openContextMenu = function(index){
     console.log(itemEquipSlot);
     console.log(inventoryContext);
 
-    var useButton = game.make.text( 0, inventoryContext.children.length * 20, "USE", {font:"bold 14px Arial", fill:"purple", backgroundColor: "black"});
+    var useButton = game.make.text( 0, inventoryContext.children.length * 20, "USE   ", {font:"bold 14px Arial", fill:"purple", backgroundColor: "black"});
     useButton.inputEnabled = true;
     useButton.events.onInputDown.add(function(){closeContextMenu()});
     inventoryContext.addChild(useButton);
+
+    if(itemCanEquip){
+        var equipButton = null;
+        if(itemEquipSlot == 'arms'){
+            equipButton = game.make.text( 0, inventoryContext.children.length * 20, "Equip: Right", {font:"bold 10px Arial", fill:"purple", backgroundColor: "black"});
+            equipButton.inputEnabled = true;
+            equipButton.events.onInputDown.add(function(){closeContextMenu()});
+            inventoryContext.addChild(equipButton);
+            var otherArmSlot = game.make.text( 0, inventoryContext.children.length * 20, "Equip: Left", {font:"bold 10px Arial", fill:"purple", backgroundColor: "black"});
+            otherArmSlot.inputEnabled = true;
+            otherArmSlot.events.onInputDown.add(function(){closeContextMenu()});
+            inventoryContext.addChild(otherArmSlot);
+        }
+        else{
+            equipButton = game.make.text( 0, inventoryContext.children.length * 20, "Equip: " + itemEquipSlot, {font:"bold 10px Arial", fill:"purple", backgroundColor: "black"});
+            equipButton.inputEnabled = true;
+            equipButton.events.onInputDown.add(function(){closeContextMenu()});
+            inventoryContext.addChild(equipButton);
+        }
+    }
 
     var cancelButton = game.make.text( 0, inventoryContext.children.length * 20, "CANCEL", {font:"bold 14px Arial", fill:"purple", backgroundColor: "black"});
     cancelButton.inputEnabled = true;
@@ -647,5 +668,4 @@ openContextMenu = function(index){
 
 closeContextMenu = function(){
     inventoryContext.alpha = 0;
-    inventoryContext.removeAll();
 }
