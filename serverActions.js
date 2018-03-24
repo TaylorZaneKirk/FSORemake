@@ -191,7 +191,7 @@ module.exports = {
                     //place item here
                     chosenSlot = itemSlot;
                 }
-                if(item.itemId == thisItem.itemId && item.amount < 99){
+                if(item.itemId == thisItemData.itemId && item.amount < 99){
                     //Already holding that item, and holding less than 99
                     shouldStack = true;
                     stackAmount = item.amount;
