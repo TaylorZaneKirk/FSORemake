@@ -174,6 +174,10 @@ var mainState = {
                 inventoryIndex++;
             }
         }
+        inventoryContext = game.add.group();
+        inventoryContext.addChild(game.make.text(0 , 0, "CANCEL", {font:"bold 14px Arial", fill:"purple", backgroundColor: "black"}));
+        inventoryContext.alpha = 0;
+        inventoryPage.addChild(inventoryContext);
         inventoryPage.alpha = 0;
 
         //ChatBox
@@ -612,10 +616,13 @@ managePageButtons = function(index){
 
 openContextMenu = function(index){
     var inventory = game.global.player.inventory;
+    var inventorySprite = playerInventory[index];
     var itemName = game.global.itemManager.getItemName(inventory[index].itemId);
     var itemCanEquip = game.global.itemManager.canEquip(inventory[index].itemId);
     var itemEquipSlot = game.global.itemManager.getEquipSlot(inventory[index].itemId);
+    console.log(inventorySprite);
     console.log(itemName);
     console.log(itemCanEquip);
     console.log(itemEquipSlot);
+    console.log(inventoryContext);
 }
