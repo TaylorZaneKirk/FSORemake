@@ -476,7 +476,15 @@ function initMultiPlayer(game, globals){
             ];
 
             updateSkillsPage(playerSkills);
-            updateInventoryPage(state.inventory);
+            var equipment = {
+                head: state.equipHead,
+                torso: state.equipTorso,
+                right: state.equipRight,
+                left: state.equipLeft,
+                legs: state.equipLegs,
+                extra: state.equipExtra,
+            };
+            updateInventoryPage(state.inventory, equipment);
 
             statusBars.hp.healthBarText.setText( state.health );
             statusBars.fp.focusBarText.setText( state.focus );
