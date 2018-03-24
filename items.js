@@ -3,6 +3,7 @@ var itemManager = class itemManager{
         this.itemData = itemData;
     }
     getItemName(itemId){
-        return this.itemData[itemId].itemName;
+        console.log(this.itemData);
+        //return this.itemData[itemId].itemName;
     }
 }
