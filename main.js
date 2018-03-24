@@ -643,17 +643,17 @@ openContextMenu = function(index){
         if(itemEquipSlot == 'Arms'){
             equipButton = game.make.text( 0, inventoryContext.children.length * 20, "EQUIP: Right", {font:"bold 12px Arial", fill:"purple", backgroundColor: "black"});
             equipButton.inputEnabled = true;
-            equipButton.events.onInputDown.add(function(){closeContextMenu()});
+            equipButton.events.onInputDown.add(function(){ closeContextMenu(); equipItem(index + 1, 'Right'); });
             inventoryContext.addChild(equipButton);
             var otherArmSlot = game.make.text( 0, inventoryContext.children.length * 20, "EQUIP: Left", {font:"bold 12px Arial", fill:"purple", backgroundColor: "black"});
             otherArmSlot.inputEnabled = true;
-            otherArmSlot.events.onInputDown.add(function(){closeContextMenu()});
+            otherArmSlot.events.onInputDown.add(function(){ closeContextMenu(); equipItem(index + 1, 'Left'); });
             inventoryContext.addChild(otherArmSlot);
         }
         else{
             equipButton = game.make.text( 0, inventoryContext.children.length * 20, "EQUIP: " + itemEquipSlot, {font:"bold 12px Arial", fill:"purple", backgroundColor: "black"});
             equipButton.inputEnabled = true;
-            equipButton.events.onInputDown.add(function(){closeContextMenu()});
+            equipButton.events.onInputDown.add(function(){ closeContextMenu(); equipItem(index + 1, itemEquipSlot); });
             inventoryContext.addChild(equipButton);
         }
     }
@@ -673,4 +673,9 @@ openContextMenu = function(index){
 
 closeContextMenu = function(){
     inventoryContext.alpha = 0;
+    inventoryContext.removeAll();
+}
+
+equipItem = function(itemSlot, equipSlot){
+    game.global.actionQueue.push({action: {type: 'equipItem', payload: itemSlot}, target: equipSlot});
 }

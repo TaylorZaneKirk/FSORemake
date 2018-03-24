@@ -166,4 +166,42 @@ module.exports = {
             }
         }
     },
+
+    equipItem(player, message, itemData){
+        var targetInventorySlot = message.action.payload;
+        var targetEquipSlot = message.target;
+        var thisItemId = player.inventory[targetInventorySlot - 1].itemId;
+        var thisItemAmount = player.inventory[targetInventorySlot - 1].amount;
+        var thisItemData = itemData[thisItemId];
+        var thisEquipment = player['equip' + targetEquipSlot];
+        var equipToInventorySlot = null;
+        var shouldStack = false;
+        var stackAmount = 0;
+
+        if(thisItemAmount == 1){
+            //just swap items
+            equipToInventorySlot = targetInventorySlot;
+        }
+        else{
+            //Find Slot to place item
+            for(var i = 0; i < player.inventory.length; i++){
+                var item = player.inventory[i];
+                var itemSlot = parseInt(i) + 1;
+                if (item.itemId == 1){
+                    //place item here
+                    chosenSlot = itemSlot;
+                }
+                if(item.itemId == thisItem.itemId && item.amount < 99){
+                    //Already holding that item, and holding less than 99
+                    shouldStack = true;
+                    stackAmount = item.amount;
+                    equipToInventorySlot = itemSlot;
+                    break;
+                }
+            }
+        }
+        console.log(thisItemData);
+        console.log(thisEquipment);
+        console.log(equipToInventorySlot);
+    }
 }
