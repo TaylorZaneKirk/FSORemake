@@ -152,9 +152,9 @@ var mainState = {
         for( var i = 0; i < 4; i++){
             for( var j = 0; j < 4; j++){
                 //calculate offset
-                var offsetX = j * 30;
-                var offsetY = i * 30;
-                var item = game.add.sprite((game.world.width * 0.725) + offsetX, (game.world.centerY * 0.4) + offsetY, 'knife');
+                var offsetX = j * 45;
+                var offsetY = i * 35;
+                var item = game.add.sprite((game.world.width * 0.73) + offsetX, (game.world.centerY * 0.45) + offsetY, 'knife');
                 item.anchor.setTo(0.5);
                 inventoryPage.add(item);
             }
