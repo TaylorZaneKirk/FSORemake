@@ -155,6 +155,8 @@ var mainState = {
                 var offsetX = j * 45;
                 var offsetY = i * 35;
                 var item = game.add.sprite((game.world.width * 0.7825) + offsetX, (game.world.centerY * 0.45) + offsetY, 'knife');
+                var itemAmount = game.make.text(45, 35, "1", {font:"10px Arial", fill:"white"});
+                item.addChild(itemAmount);
                 item.anchor.setTo(0.5);
                 inventoryPage.add(item);
             }
