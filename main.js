@@ -40,7 +40,7 @@ var mainState = {
 
         //Maps and layers
         game.global.mapManager = new MapManager(game);
-        game.global.itemManager = new itemManager();
+        
 
         //GUI
         var leftPanel = game.add.sprite(0, game.world.bottom * 0.099, 'leftPanel');
@@ -159,7 +159,7 @@ var mainState = {
                 var offsetX = j * 45;
                 var offsetY = i * 35;
                 var item = game.add.sprite((game.world.width * 0.7825) + offsetX, (game.world.centerY * 0.45) + offsetY, 'NOTHING');
-                var itemAmount = game.make.text(15, 11.5, "1", {font:"bold 10px Arial", fill:"white"});
+                var itemAmount = game.make.text(15, 11, "1", {font:"bold 10px Arial", fill:"white"});
                 itemAmount.alpha = 0;
                 item.addChild(itemAmount);
                 item.anchor.setTo(0.5);
@@ -576,7 +576,6 @@ updateSkillsPage = function(skills){
 
 updateInventoryPage = function(inventory){
     for(var i = 0; i < 16; i++){
-        //Need to be able to get itemName by itemId client side
         var itemName = game.global.itemManager.getItemName(inventory[i].itemId);
         playerInventory[i].sprite.loadTexture(itemName, 0);
         playerInventory[i].sprite.getChildAt(0).setText(inventory[i].amount);

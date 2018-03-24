@@ -424,12 +424,12 @@ function queryCreate() {
         serverProxy.createPlayer(inputUsername.value, inputPassword.value, {gender: chosenGender, class: chosenClass, strength: chosenStrength, dexterity: chosenDexterity, endurance: chosenEndurance, agility: chosenAgility, arcane: chosenArcane, luck: chosenLuck});
     });
 
-    client.exports.setId = function(id){
+    client.exports.setId = function(id, itemData){
         console.log("Setting Id:" + id);
 
         // Assign my new connection Id
         game.global.myId = id;
-
+        game.global.itemManager = new itemManager(itemData);
         //tell server client is ready
         //globals.eurecaProxy.initPlayer(id);
         game.state.start('main');

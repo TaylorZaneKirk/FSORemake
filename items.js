@@ -1,16 +1,8 @@
 var itemManager = class itemManager{
-    constructor(){}
+    constructor(itemData){
+        this.itemData = itemData;
+    }
     getItemName(itemId){
-        switch(itemId){
-            case 1: {
-                return 'NOTHING';
-            }
-            case 2: {
-                return 'knife';
-            }
-            default: {
-                return 'NOTHING';
-            }
-        }
+        return this.itemData[itemId].itemName;
     }
 }

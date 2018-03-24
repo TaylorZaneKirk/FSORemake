@@ -64,12 +64,12 @@ function queryLogin() {
         serverProxy.login(inputUsername.value, inputPassword.value);
     });
 
-    client.exports.setId = function(id){
+    client.exports.setId = function(id, itemData){
         console.log("Setting Id:" + id);
 
         // Assign my new connection Id
         game.global.myId = id;
-
+        game.global.itemManager = new itemManager(itemData);
         //tell server client is ready
         //globals.eurecaProxy.initPlayer(id);
         game.state.start('main');

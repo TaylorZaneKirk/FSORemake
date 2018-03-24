@@ -448,7 +448,7 @@ eurecaServer.exports.login = function (username, password){
             console.log(username + " has logged in");
             players[id].state = new PlayerState(id, result[0]);
             worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players[id] = players[id].state;
-            remote.setId(id);
+            remote.setId(id, itemData);
         }
         else{
             remote.errorAndDisconnect('Wrong username or password!');
