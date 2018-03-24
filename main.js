@@ -148,7 +148,7 @@ var mainState = {
 
         //Inventory Page
         inventoryPage = game.add.group();
-        inventoryPage.add(game.add.sprite(game.world.width * 0.785, game.world.centerY * 1.0, 'equipmentPanel'));
+        inventoryPage.add(game.add.sprite(game.world.width * 0.785, game.world.centerY * 0.95, 'equipmentPanel'));
 
         inventoryPage.alpha = 0;
 
