@@ -134,8 +134,8 @@ var PlayerObject = function(idRef, gameRef){
         playerLeft.frame = playerSprite.frame;
 
         playerTween = game.add.tween(playerSprite);
-        playerImage = game.add.sprite(game.world.width * 0.845, game.world.centerY * 1.075, playerSprite.generateTexture());
-        console.log(playerImage);
+        playerImage = game.add.sprite(game.world.width * 0.8425, game.world.centerY * 1.075, playerSprite.generateTexture());
+        playerImage.alpha = 0;
         //playerImage.position = {x: game.world.width * 0.875, y: game.world.centerY * 1.14};
         //playerImage.play('idle-S');
     }
@@ -168,6 +168,7 @@ var PlayerObject = function(idRef, gameRef){
                 playerTween: playerTween,
                 movePlayer: movePlayer,
                 changeEquipmentSprites: changeEquipmentSprites,
+                playerImage: playerImage,
             };
 
             game.global.localPlayerObject = game.global.playerList[idLocal].localPlayerObject;
@@ -348,6 +349,7 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite: playerSprite,
         playerTween: playerTween,
         movePlayer: movePlayer,
-        changeEquipmentSprites: changeEquipmentSprites
+        changeEquipmentSprites: changeEquipmentSprites,
+        playerImage: playerImage,
     };
 }
