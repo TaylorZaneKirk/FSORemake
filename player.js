@@ -117,6 +117,20 @@ var PlayerObject = function(idRef, gameRef){
         playerRight.animations.add('idle-S', [13], 1, false);
         playerRight.frame = playerSprite.frame;
 
+        playerLeft.animations.add('walk-E', [0,1,2], 6, true);
+        playerLeft.animations.add('walk-W', [4,5,6], 6, true);
+        playerLeft.animations.add('walk-N', [8,9,10], 6, true);
+        playerLeft.animations.add('walk-S', [12,13,14], 6, true);
+        playerLeft.animations.add('attack-E', [1,3,1], 3, false);
+        playerLeft.animations.add('attack-W', [5,7,5], 3, false);
+        playerLeft.animations.add('attack-N', [9,11,9], 3, false);
+        playerLeft.animations.add('attack-S', [13,15,13], 3, false);
+        playerLeft.animations.add('idle-E', [1], 1, false);
+        playerLeft.animations.add('idle-W', [5], 1, false);
+        playerLeft.animations.add('idle-N', [9], 1, false);
+        playerLeft.animations.add('idle-S', [13], 1, false);
+        playerLeft.frame = playerSprite.frame;
+
         playerTween = game.add.tween(playerSprite);
     }
 
@@ -267,6 +281,7 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
         playerHead.frame = playerSprite.frame;
         playerRight.frame = playerSprite.frame;
+        playerLeft.frame = playerSprite.frame;
     }
 
     //Function to handle moving the sprites, if the tween
