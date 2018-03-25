@@ -35,27 +35,39 @@ var PlayerObject = function(idRef, gameRef){
         if(playerState.gender == 'm'){
             //playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player');
             playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'defaultBody');
+            playerImage.torso = game.add.sprite(game.world.width * 0.8425, game.world.centerY * 1.075, 'defaultBody');
             playerHead = game.add.sprite(-6.5, -7, 'maleHead1');
+            playerImage.head = game.add.sprite(-6.5, -7, 'maleHead1');
             playerSprite.addChild(playerHead);
+            playerImage.torso.addChild(playerImage.head);
         }
         else{
             //playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player2');
             playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'defaultBody');
+            playerImage.torso = game.add.sprite(game.world.width * 0.8425, game.world.centerY * 1.075, 'defaultBody');
             playerHead = game.add.sprite(-6.5, -7, 'femaleHead1');
+            playerImage.head = game.add.sprite(-6.5, -7, 'femaleHead1');
             playerSprite.addChild(playerHead);
+            playerImage.torso.addChild(playerImage.head);
         }
 
         //Right Arm Sprite
         var equipRightName = game.global.itemManager.getItemName(playerState.equipRight);
         playerRight = game.add.sprite(17, 17, equipRightName + "Right");
+        playerImage.right = game.add.sprite(17, 17, equipRightName + "Right");
         playerRight.anchor.setTo(0.5);
+        playerImage.right.anchor.setTo(0.5);
         playerSprite.addChild(playerRight);
+        playerImage.torso.addChild(playerImage.right);
 
         //Left Arm Sprite
         var equipLeftName = game.global.itemManager.getItemName(playerState.equipLeft);
         playerLeft = game.add.sprite(17, 17, equipLeftName + "Left");
+        playerImage.left = game.add.sprite(17, 17, equipLeftName + "Left");
         playerLeft.anchor.setTo(0.5);
+        playerImage.left.anchor.setTo(0.5);
         playerSprite.addChild(playerLeft);
+        playerImage.torso.addChild(playerImage.left);
         
         playerSprite.inputEnabled = true;
         playerName = game.add.text(15, -10, playerState.username, { font: "14px Ariel", fill: '#ffffff'});
@@ -134,7 +146,11 @@ var PlayerObject = function(idRef, gameRef){
         playerLeft.frame = playerSprite.frame;
 
         playerTween = game.add.tween(playerSprite);
-        playerImage = game.add.sprite(game.world.width * 0.8425, game.world.centerY * 1.075, playerSprite.generateTexture());
+        playerImage.head.animations = playerHead.animations;
+        playerImage.torso.animations = playerSprite.animations;
+        playerImage.right.animations = playerRight.animations;
+        playerImage.left.animations = playerLeft.animations;
+        playerImage.torso.play('idle-S');
         playerImage.alpha = 0;
         //playerImage.position = {x: game.world.width * 0.875, y: game.world.centerY * 1.14};
         //playerImage.play('idle-S');
@@ -336,13 +352,9 @@ var PlayerObject = function(idRef, gameRef){
         var extraName = game.global.itemManager.getItemName(equipment.extra);
 
         playerRight.loadTexture(rightName + "Right", 0);
+        playerImage.right.loadTexture(rightName + "Right", 0);
         playerLeft.loadTexture(leftName + "Left", 0);
-
-        var tempFrame = 0 + playerSprite.frame;
-        playerSprite.frame = 13;
-        playerImage.destroy();
-        playerImage = game.add.sprite(game.world.width * 0.8425, game.world.centerY * 1.075, playerSprite.generateTexture());
-        playerSprite.frame = tempFrame;
+        playerImage.left.loadTexture(rightName + "Left", 0);
     }
 
     init(idRef, gameRef);
