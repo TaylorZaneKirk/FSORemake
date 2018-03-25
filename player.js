@@ -29,6 +29,7 @@ var PlayerObject = function(idRef, gameRef){
         altKey = game.input.keyboard.addKey(Phaser.Keyboard.ALT);
         shiftKey = game.input.keyboard.addKey(Phaser.Keyboard.SHIFT);
 
+        //Head Sprite (and Body)
         if(playerState.gender == 'm'){
             //playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player');
             playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'defaultBody');
@@ -42,10 +43,17 @@ var PlayerObject = function(idRef, gameRef){
             playerSprite.addChild(playerHead);
         }
 
+        //Right Arm Sprite
         var equipRightName = game.global.itemManager.getItemName(playerState.equipRight);
         playerRight = game.add.sprite(17, 17, equipRightName + "Right");
         playerRight.anchor.setTo(0.5);
         playerSprite.addChild(playerRight);
+
+        //Left Arm Sprite
+        var equipLeftName = game.global.itemManager.getItemName(playerState.equipLeft);
+        playerLeft = game.add.sprite(33, 17, equipLeftName + "Left");
+        playerLeft.anchor.setTo(0.5);
+        playerSprite.addChild(playerLeft);
         
         playerSprite.inputEnabled = true;
         playerName = game.add.text(15, -10, playerState.username, { font: "14px Ariel", fill: '#ffffff'});

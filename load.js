@@ -38,6 +38,7 @@ var loadState = {
         game.load.spritesheet('maleHead1', 'assets/MaleHead1.png', 46, 45, 16);
         game.load.spritesheet('femaleHead1', 'assets/FemaleHead1.png', 46, 45, 16);
         game.load.spritesheet('knifeRight', 'assets/items/knifeRight.png', 46, 45, 16);
+        game.load.spritesheet('knifeLeft', 'assets/items/knifeLeft.png', 46, 45, 16);
 
         game.load.image('knife', 'assets/items/Knife.png');
         game.load.image('NOTHING', 'assets/items/NOTHING.png');
