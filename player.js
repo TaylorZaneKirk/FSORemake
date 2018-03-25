@@ -44,6 +44,7 @@ var PlayerObject = function(idRef, gameRef){
 
         var equipRightName = game.global.itemManager.getItemName(playerState.equipRight);
         playerRight = game.add.sprite(0, 0, equipRightName + "Right");
+        playerSprite.addChild(playerRight);
         
         playerSprite.inputEnabled = true;
         playerName = game.add.text(15, -10, playerState.username, { font: "14px Ariel", fill: '#ffffff'});
