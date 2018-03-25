@@ -42,7 +42,7 @@ var PlayerObject = function(idRef, gameRef){
         if(playerState.gender == 'm'){
             //playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player');
             playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'defaultBody');
-            playerImage.torso = game.add.sprite(game.world.width * 0.8475, game.world.centerY * 1.0775, 'defaultBody');
+            playerImage.torso = game.add.sprite(game.world.width * 0.85, game.world.centerY * 1.08, 'defaultBody');
             playerHead = game.add.sprite(-6.5, -7, 'maleHead1');
             playerImage.head = game.add.sprite(-6.5, -7, 'maleHead1');
             playerSprite.addChild(playerHead);
@@ -362,8 +362,10 @@ var PlayerObject = function(idRef, gameRef){
 
         playerRight.loadTexture(rightName + "Right", 0);
         playerImage.right.loadTexture(rightName + "Right", 0);
+        playerImage.right.frame = 13;
         playerLeft.loadTexture(leftName + "Left", 0);
         playerImage.left.loadTexture(rightName + "Left", 0);
+        playerImage.left.frame = 13;
     }
 
     init(idRef, gameRef);
