@@ -192,24 +192,42 @@ var mainState = {
         playerEquipment.torso = game.add.sprite(game.world.width * 0.9325, game.world.centerY * 1.01, 'NOTHING');
         playerEquipment.left = game.add.sprite(game.world.width * 0.9325, game.world.centerY * 1.14, 'NOTHING');
         playerEquipment.extra = game.add.sprite(game.world.width * 0.9325, game.world.centerY * 1.27, 'NOTHING');
+        
         playerEquipment.head.anchor.setTo(0.5);
         playerEquipment.right.anchor.setTo(0.5);
         playerEquipment.legs.anchor.setTo(0.5);
         playerEquipment.torso.anchor.setTo(0.5);
         playerEquipment.left.anchor.setTo(0.5);
         playerEquipment.extra.anchor.setTo(0.5);
+
         var unequipHead = game.add.sprite(game.world.width * 0.775, game.world.centerY * 1.01, 'xButton');
         var unequipRight = game.add.sprite(game.world.width * 0.775, game.world.centerY * 1.14, 'xButton');
         var unequipLegs = game.add.sprite(game.world.width * 0.775, game.world.centerY * 1.27, 'xButton');
         var unequipTorso = game.add.sprite(game.world.width * 0.965, game.world.centerY * 1.01, 'xButton');
         var unequipLeft = game.add.sprite(game.world.width * 0.965, game.world.centerY * 1.14, 'xButton');
         var unequipExtra = game.add.sprite(game.world.width * 0.965, game.world.centerY * 1.27, 'xButton');
+
+        unequipHead.inputEnabled = true;
+        unequipRight.inputEnabled = true;
+        unequipLegs.inputEnabled = true;
+        unequipTorso.inputEnabled = true;
+        unequipLeft.inputEnabled = true;
+        unequipExtra.inputEnabled = true;
+
+        unequipHead.inputEnabled.events.onInputDown.add(function(){unequipItem('Head')});
+        unequipRight.inputEnabled.events.onInputDown.add(function(){unequipItem('Right')});
+        unequipLegs.inputEnabled.events.onInputDown.add(function(){unequipItem('Legs')});
+        unequipTorso.inputEnabled.events.onInputDown.add(function(){unequipItem('Torso')});
+        unequipLeft.inputEnabled.events.onInputDown.add(function(){unequipItem('Left')});
+        unequipExtra.inputEnabled.events.onInputDown.add(function(){unequipItem('Extra')});
+
         unequipHead.anchor.setTo(0.5);
         unequipRight.anchor.setTo(0.5);
         unequipLegs.anchor.setTo(0.5);
         unequipTorso.anchor.setTo(0.5);
         unequipLeft.anchor.setTo(0.5);
         unequipExtra.anchor.setTo(0.5);
+
         inventoryPage.addChild(playerEquipment.head);
         inventoryPage.addChild(playerEquipment.right);
         inventoryPage.addChild(playerEquipment.legs);
@@ -754,4 +772,7 @@ closeContextMenu = function(){
 
 equipItem = function(itemSlot, equipSlot){
     game.global.actionQueue.push({action: {type: 'equipItem', payload: itemSlot}, target: equipSlot});
+}
+unequipItem = function(equipSlot){
+    game.global.actionQueue.push({action: {type: 'unequipItem', payload: 'N/A'}, target: equipSlot});
 }

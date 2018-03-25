@@ -374,6 +374,11 @@ class PlayerState
         console.log(queryString);
         con.query(queryString, function (err, result, fields) {if (err) throw err;});
     }
+
+    unequipQuery(queryString){
+        console.log(queryString);
+        con.query(queryString, function (err, result, fields) {if (err) throw err;});
+    }
 };
 
 

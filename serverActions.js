@@ -247,5 +247,44 @@ module.exports = {
                 player.inventory[targetInventorySlot - 1].amount -= 1;
             }
         }
-    }
+    },
+
+    unequipItem = function(player, equipSlot){
+        var thisItemId = player['equip' + equipSlot];
+        //Stackable logic...
+        var shouldStack = false;
+        var chosenSlot = null;
+        var stackAmount = 0;
+
+        //Find Slot to place item
+        for(var i = 0; i < this.inventory.length; i++){
+            var item = this.inventory[i];
+            var itemSlot = parseInt(i) + 1;
+            if (item.itemId == 1){
+                //place item here
+                chosenSlot = itemSlot;
+            }
+            if(item.itemId == thisItemId && item.amount < 99){
+                //Already holding that item, and holding less than 99
+                shouldStack = true;
+                stackAmount = item.amount;
+                chosenSlot = itemSlot;
+                break;
+            }
+        }
+
+        if(chosenSlot != null){
+            
+            this.inventory[chosenSlot - 1].itemId = thisItem.itemId;
+            this.inventory[chosenSlot - 1].amount = 1;
+
+            if(shouldStack){
+                this.inventory[chosenSlot - 1].amount += stackAmount;
+                player.unequipQuery("UPDATE playerInv SET slot" + chosenSlot + "=" + thisItemId + ", slot" + chosenSlot + "Amount=" + this.inventory[chosenSlot - 1].amount + ", equip" + equipSlot + "=1 WHERE username = '" + player.username + "'");
+            }
+            else{
+                player.unequipQuery("UPDATE playerInv SET slot" + chosenSlot + "=" + thisItemId + ", slot" + chosenSlot + "Amount=1, equip" + equipSlot + "=1 WHERE username = '" + player.username + "'");
+            }
+        }
+    } 
 }
