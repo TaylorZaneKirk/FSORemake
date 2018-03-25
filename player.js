@@ -42,7 +42,7 @@ var PlayerObject = function(idRef, gameRef){
             playerSprite.addChild(playerHead);
         }
 
-        var equipRightName = game.global.itemManager.getItemName(player.equipRight);
+        var equipRightName = game.global.itemManager.getItemName(playerState.equipRight);
         console.log(equipRightName);
         
         playerSprite.inputEnabled = true;
