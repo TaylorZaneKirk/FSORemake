@@ -364,7 +364,7 @@ var PlayerObject = function(idRef, gameRef){
         playerImage.right.loadTexture(rightName + "Right", 0);
         playerImage.right.frame = 13;
         playerLeft.loadTexture(leftName + "Left", 0);
-        playerImage.left.loadTexture(rightName + "Left", 0);
+        playerImage.left.loadTexture(leftName + "Left", 0);
         playerImage.left.frame = 13;
     }
 
