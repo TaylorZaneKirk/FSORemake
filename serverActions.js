@@ -275,7 +275,7 @@ module.exports = {
 
         if(chosenSlot != null){
             
-            player.inventory[chosenSlot - 1].itemId = thisItem.itemId;
+            player.inventory[chosenSlot - 1].itemId = thisItemId;
             player.inventory[chosenSlot - 1].amount = 1;
 
             if(shouldStack){
