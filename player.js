@@ -16,7 +16,14 @@ var PlayerObject = function(idRef, gameRef){
     var ready = null;
     var playerTween = null;
     var playerName = null;
-    var playerImage = null;
+    var playerImage = {
+        head: null,
+        torso: null,
+        right: null,
+        left: null,
+        legs: null,
+        extra: null,
+    };
 
     function init(idRef, gameRef){
         game = gameRef;
