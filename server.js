@@ -614,6 +614,10 @@ eurecaServer.exports.message = function(id, message){
             serverActions.equipItem(players[id].state, message, itemData);
             break;
         }
+        case 'unequipItem': {
+            serverActions.unequipItem(players[id].state, message.target);
+            break;
+        }
         default: {
             console.log("ERROR: Recieved invalid message");
             return;
