@@ -44,6 +44,7 @@ var PlayerObject = function(idRef, gameRef){
 
         var equipRightName = game.global.itemManager.getItemName(playerState.equipRight);
         playerRight = game.add.sprite(0, 0, equipRightName + "Right");
+        playerRight.anchor.setTo(0.5);
         playerSprite.addChild(playerRight);
         
         playerSprite.inputEnabled = true;
