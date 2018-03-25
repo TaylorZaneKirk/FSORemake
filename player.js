@@ -51,7 +51,7 @@ var PlayerObject = function(idRef, gameRef){
 
         //Left Arm Sprite
         var equipLeftName = game.global.itemManager.getItemName(playerState.equipLeft);
-        playerLeft = game.add.sprite(33, 17, equipLeftName + "Left");
+        playerLeft = game.add.sprite(25, 17, equipLeftName + "Left");
         playerLeft.anchor.setTo(0.5);
         playerSprite.addChild(playerLeft);
         
