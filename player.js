@@ -16,6 +16,7 @@ var PlayerObject = function(idRef, gameRef){
     var ready = null;
     var playerTween = null;
     var playerName = null;
+    var playerImage = null;
 
     function init(idRef, gameRef){
         game = gameRef;
@@ -133,6 +134,9 @@ var PlayerObject = function(idRef, gameRef){
         playerLeft.frame = playerSprite.frame;
 
         playerTween = game.add.tween(playerSprite);
+        playerImage = playerSprite;
+        playerImage.worldPosition = {x: game.world.width * 0.875, y: game.world.centerY * 1.14};
+        playerImage.play('idle-S');
     }
 
     function showPlayerName(state){
