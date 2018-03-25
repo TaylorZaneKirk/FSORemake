@@ -249,7 +249,7 @@ module.exports = {
         }
     },
 
-    unequipItem = function(player, equipSlot){
+    unequipItem(player, equipSlot){
         var thisItemId = player['equip' + equipSlot];
         //Stackable logic...
         var shouldStack = false;
