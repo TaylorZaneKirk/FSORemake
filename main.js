@@ -192,7 +192,7 @@ var mainState = {
         playerEquipment.torso = game.add.sprite(game.world.width * 0.9325, game.world.centerY * 1.01, 'NOTHING');
         playerEquipment.left = game.add.sprite(game.world.width * 0.9325, game.world.centerY * 1.14, 'NOTHING');
         playerEquipment.extra = game.add.sprite(game.world.width * 0.9325, game.world.centerY * 1.27, 'NOTHING');
-        
+
         playerEquipment.head.anchor.setTo(0.5);
         playerEquipment.right.anchor.setTo(0.5);
         playerEquipment.legs.anchor.setTo(0.5);
@@ -214,12 +214,12 @@ var mainState = {
         unequipLeft.inputEnabled = true;
         unequipExtra.inputEnabled = true;
 
-        unequipHead.inputEnabled.events.onInputDown.add(function(){unequipItem('Head')});
-        unequipRight.inputEnabled.events.onInputDown.add(function(){unequipItem('Right')});
-        unequipLegs.inputEnabled.events.onInputDown.add(function(){unequipItem('Legs')});
-        unequipTorso.inputEnabled.events.onInputDown.add(function(){unequipItem('Torso')});
-        unequipLeft.inputEnabled.events.onInputDown.add(function(){unequipItem('Left')});
-        unequipExtra.inputEnabled.events.onInputDown.add(function(){unequipItem('Extra')});
+        unequipHead.events.onInputDown.add(function(){unequipItem('Head')});
+        unequipRight.events.onInputDown.add(function(){unequipItem('Right')});
+        unequipLegs.events.onInputDown.add(function(){unequipItem('Legs')});
+        unequipTorso.events.onInputDown.add(function(){unequipItem('Torso')});
+        unequipLeft.events.onInputDown.add(function(){unequipItem('Left')});
+        unequipExtra.events.onInputDown.add(function(){unequipItem('Extra')});
 
         unequipHead.anchor.setTo(0.5);
         unequipRight.anchor.setTo(0.5);
