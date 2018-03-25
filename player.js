@@ -85,6 +85,7 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite.addChild(playerName);
         game.physics.arcade.enable(playerSprite);
         playerSprite.anchor.setTo(0.1430,0.15);
+        playerImage.torso.anchor.setTo(0.1430,0.15);
         playerSprite.enableBody = true;
         //playerSprite.body.enable = true;
         playerSprite.body.collideWorldBounds = true;
