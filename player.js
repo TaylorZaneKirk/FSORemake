@@ -134,7 +134,7 @@ var PlayerObject = function(idRef, gameRef){
         playerLeft.frame = playerSprite.frame;
 
         playerTween = game.add.tween(playerSprite);
-        playerImage = game.add.sprite(game.world.width * 0.86, game.world.centerY * 1.05, playerSprite.generateTexture());
+        playerImage = game.add.sprite(game.world.width * 0.85, game.world.centerY * 1.075, playerSprite.generateTexture());
         console.log(playerImage);
         //playerImage.position = {x: game.world.width * 0.875, y: game.world.centerY * 1.14};
         //playerImage.play('idle-S');
