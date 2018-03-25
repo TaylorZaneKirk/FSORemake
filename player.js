@@ -340,7 +340,7 @@ var PlayerObject = function(idRef, gameRef){
 
         var tempFrame = playerSprite.frame;
         playerSprite.frame = 13;
-        playerImage.loadTexture(playerSprite.generateTexture(), 0);
+        playerImage = game.add.sprite(game.world.width * 0.8425, game.world.centerY * 1.075, playerSprite.generateTexture());
         playerSprite.frame = tempFrame;
     }
 
