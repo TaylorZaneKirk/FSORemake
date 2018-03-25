@@ -721,11 +721,6 @@ openContextMenu = function(index){
 
     inventoryContext.position.y = inventorySprite.sprite.children[0].worldPosition.y;
     inventoryContext.position.x = inventorySprite.sprite.children[0].worldPosition.x - 50;
-    console.log(inventorySprite);
-    console.log(itemName);
-    console.log(itemCanEquip);
-    console.log(itemEquipSlot);
-    console.log(inventoryContext);
 
     var useButton = game.make.text( 0, inventoryContext.children.length * 20, "USE   ", {font:"bold 12px Arial", fill:"purple", backgroundColor: "black"});
     useButton.inputEnabled = true;

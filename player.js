@@ -6,6 +6,7 @@ var PlayerObject = function(idRef, gameRef){
     var playerState = null; //player's current state
     var playerSprite = null;
     var playerHead = null;
+    var playerRight = null;
     var currentAction = null;
     var upKey = null;
     var downKey = null;
@@ -40,6 +41,9 @@ var PlayerObject = function(idRef, gameRef){
             playerHead = game.add.sprite(-6.5, -7, 'femaleHead1');
             playerSprite.addChild(playerHead);
         }
+
+        var equipRightName = game.global.itemManager.getItemName(player.equipRight);
+        console.log(equipRightName);
         
         playerSprite.inputEnabled = true;
         playerName = game.add.text(15, -10, playerState.username, { font: "14px Ariel", fill: '#ffffff'});

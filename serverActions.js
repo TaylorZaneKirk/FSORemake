@@ -251,6 +251,9 @@ module.exports = {
 
     unequipItem(player, equipSlot){
         var thisItemId = player['equip' + equipSlot];
+        if (thisItemId == 1){
+            return; //Can't unequip NOTHING
+        }
         //Stackable logic...
         var shouldStack = false;
         var chosenSlot = null;
