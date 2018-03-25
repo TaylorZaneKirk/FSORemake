@@ -460,6 +460,15 @@ function initMultiPlayer(game, globals){
             //Just logged in, create sprites and map
             globals.mapManager.setMapData(state.mapData);
             //Local player
+            var equipment = {
+                head: state.equipHead,
+                torso: state.equipTorso,
+                right: state.equipRight,
+                left: state.equipLeft,
+                legs: state.equipLegs,
+                extra: state.equipExtra,
+            };
+
             globals.player = state;
             globals.playerList[state.playerId] = {player: state, localPlayerObject: null};
             globals.localPlayerObject = new PlayerObject(state.playerId, game);
@@ -512,6 +521,13 @@ function initMultiPlayer(game, globals){
             ];
 
             updateSkillsPage(playerSkills);
+            updateInventoryPage(state.inventory, equipment);
+
+            statusBars.hp.healthBarText.setText( state.health );
+            statusBars.fp.focusBarText.setText( state.focus );
+        }
+        else{
+            //just update references
             var equipment = {
                 head: state.equipHead,
                 torso: state.equipTorso,
@@ -520,13 +536,17 @@ function initMultiPlayer(game, globals){
                 legs: state.equipLegs,
                 extra: state.equipExtra,
             };
-            updateInventoryPage(state.inventory, equipment);
 
-            statusBars.hp.healthBarText.setText( state.health );
-            statusBars.fp.focusBarText.setText( state.focus );
-        }
-        else{
-            //just update references
+            //Check if we need to update equipment sprites
+            if(globals.player.equipHead != state.equipHead
+                || globals.player.equipTorso != state.equipTorso
+                || globals.player.equipRight != state.equipRight
+                || globals.player.equipLeft != state.equipLeft
+                || globals.player.equipLegs != state.equipLegs
+                || globals.player.equipExtra != state.equipExtra){
+
+                globals.playerList[state.playersVisible[i].playerId].localPlayerObject.changeEquipmentSprites(equipment);
+            }
 
             globals.player = state;
             globals.playerList[state.playerId].player = state;
@@ -566,15 +586,6 @@ function initMultiPlayer(game, globals){
             ];
 
             updateSkillsPage(playerSkills);
-
-            var equipment = {
-                head: state.equipHead,
-                torso: state.equipTorso,
-                right: state.equipRight,
-                left: state.equipLeft,
-                legs: state.equipLegs,
-                extra: state.equipExtra,
-            };
             updateInventoryPage(state.inventory, equipment);
             
             statusBars.hp.healthBarText.setText( state.health );

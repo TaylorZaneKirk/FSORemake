@@ -7,6 +7,7 @@ var PlayerObject = function(idRef, gameRef){
     var playerSprite = null;
     var playerHead = null;
     var playerRight = null;
+    var playerLeft = null;
     var currentAction = null;
     var upKey = null;
     var downKey = null;
@@ -317,6 +318,18 @@ var PlayerObject = function(idRef, gameRef){
         otherSprite.play(otherPlayer.playerAction + '-' + otherPlayer.playerFacing);
         otherSprite.children[0].frame = otherSprite.frame;
         
+    }
+
+    changeEquipmentSprites = function(equipment){
+        var headName = game.global.itemManager.getItemName(equipment.head);
+        var torsoName = game.global.itemManager.getItemName(equipment.torso);
+        var rightName = game.global.itemManager.getItemName(equipment.right);
+        var leftName = game.global.itemManager.getItemName(equipment.left);
+        var legsName = game.global.itemManager.getItemName(equipment.legs);
+        var extraName = game.global.itemManager.getItemName(equipment.extra);
+
+        playerRight.loadTexture(rightName + "Right", 0);
+        playerLeft.loadTexture(leftName + "Left", 0);
     }
 
     init(idRef, gameRef);
