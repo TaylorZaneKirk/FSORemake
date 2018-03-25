@@ -157,7 +157,7 @@ var PlayerObject = function(idRef, gameRef){
         playerImage.torso.animations = playerSprite.animations;
         playerImage.right.animations = playerRight.animations;
         playerImage.left.animations = playerLeft.animations;
-        playerImage.torso.play('idle-S');
+        //playerImage.torso.play('idle-S');
         playerImage.torso.alpha = 0;
         console.log(playerImage);
         //playerImage.position = {x: game.world.width * 0.875, y: game.world.centerY * 1.14};
