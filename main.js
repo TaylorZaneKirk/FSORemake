@@ -715,7 +715,7 @@ managePageButtons = function(index){
     skillsPage.maskGraphics.input.useHandCursor = false;
     game.global.localPlayerObject.playerImage.alpha = 0;
     if(index == 0){ statsPage.alpha = 1; }
-    else if(index == 1){ inventoryPage.alpha = 1; game.global.localPlayerObject.playerImage.alpha = 1; }
+    else if(index == 1){ inventoryPage.alpha = 1; game.global.localPlayerObject.playerImage.torso.alpha = 1; }
     else if(index == 2){ skillsPage.alpha = 1; skillsPage.maskGraphics.input.useHandCursor = true; }
 }
 

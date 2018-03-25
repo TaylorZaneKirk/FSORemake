@@ -158,7 +158,8 @@ var PlayerObject = function(idRef, gameRef){
         playerImage.right.animations = playerRight.animations;
         playerImage.left.animations = playerLeft.animations;
         playerImage.torso.play('idle-S');
-        playerImage.alpha = 0;
+        playerImage.torso.alpha = 0;
+        console.log(playerImage);
         //playerImage.position = {x: game.world.width * 0.875, y: game.world.centerY * 1.14};
         //playerImage.play('idle-S');
     }
