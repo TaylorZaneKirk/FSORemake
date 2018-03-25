@@ -153,10 +153,10 @@ var PlayerObject = function(idRef, gameRef){
         playerLeft.frame = playerSprite.frame;
 
         playerTween = game.add.tween(playerSprite);
-        playerImage.head.animations = playerHead.animations;
-        playerImage.torso.animations = playerSprite.animations;
-        playerImage.right.animations = playerRight.animations;
-        playerImage.left.animations = playerLeft.animations;
+        playerImage.head.frame = 13;
+        playerImage.torso.frame = 13;
+        playerImage.right.frame = 13;
+        playerImage.left.frame = 13;
         //playerImage.torso.play('idle-S');
         playerImage.torso.alpha = 0;
         console.log(playerImage);
