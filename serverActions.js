@@ -277,6 +277,7 @@ module.exports = {
             
             player.inventory[chosenSlot - 1].itemId = thisItemId;
             player.inventory[chosenSlot - 1].amount = 1;
+            player['equip' + equipSlot] = 1;
 
             if(shouldStack){
                 player.inventory[chosenSlot - 1].amount += stackAmount;
