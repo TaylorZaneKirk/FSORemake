@@ -545,7 +545,7 @@ function initMultiPlayer(game, globals){
                 || globals.player.equipLegs != state.equipLegs
                 || globals.player.equipExtra != state.equipExtra){
 
-                globals.player.localPlayerObject.changeEquipmentSprites(equipment);
+                globals.localPlayerObject.changeEquipmentSprites(equipment);
             }
 
             globals.player = state;
