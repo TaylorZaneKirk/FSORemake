@@ -45,12 +45,12 @@ var PlayerObject = function(idRef, gameRef){
             playerImage.torso = game.add.sprite(game.world.width * 0.851, game.world.centerY * 1.1, 'defaultBody');
             var equipHeadName = game.global.itemManager.getItemName(playerState.equipHead);
             if (equipHeadName == 'NOTHING'){
-                playerHead = game.add.sprite(-6.5, -7, 'maleHead1');
-                playerImage.head = game.add.sprite(-6.5, -7, 'maleHead1');
+                playerHead = game.add.sprite(-6.5, -5, 'maleHead1');
+                playerImage.head = game.add.sprite(-6.5, -5, 'maleHead1');
             }
             else{
-                playerHead = game.add.sprite(-6.5, -6, equipHeadName + "Head");
-                playerImage.head = game.add.sprite(-6.5, -6, equipHeadName + "Head");
+                playerHead = game.add.sprite(-6.5, -5, equipHeadName + "Head");
+                playerImage.head = game.add.sprite(-6.5, -5, equipHeadName + "Head");
             }
             playerSprite.addChild(playerHead);
             playerImage.torso.addChild(playerImage.head);
