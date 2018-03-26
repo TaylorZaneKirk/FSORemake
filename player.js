@@ -374,7 +374,7 @@ var PlayerObject = function(idRef, gameRef){
         playerImage.left.loadTexture(leftName + "Left", 0);
         playerImage.left.frame = 13;
 
-        if (equipHeadName == 'NOTHING'){
+        if (headName == 'NOTHING'){
             if(playerState.gender == 'm'){
                 playerHead.loadTexture('maleHead1', 0);
                 playerImage.head.loadTexture('maleHead1', 0);
