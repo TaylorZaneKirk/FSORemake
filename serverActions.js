@@ -185,8 +185,10 @@ module.exports = {
                 var itemSlot = parseInt(i) + 1;
                 if (item.itemId == 1){
                     //place item here
-                    if(equipToInventorySlot == null || equipToInventorySlot > itemSlot)
-                    equipToInventorySlot = itemSlot;
+                    if(equipToInventorySlot == null || equipToInventorySlot > itemSlot){
+                        equipToInventorySlot = itemSlot;
+                    }
+                    
                 }
                 if(item.itemId == thisEquipment && item.amount < 99){
                     //Already holding that item, and holding less than 99
