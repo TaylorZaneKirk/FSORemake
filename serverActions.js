@@ -183,10 +183,12 @@ module.exports = {
             for(var i = 0; i < player.inventory.length; i++){
                 var item = player.inventory[i];
                 var itemSlot = parseInt(i) + 1;
+                console.log(itemSlot);
                 if (item.itemId == 1){
                     //place item here
                     if(equipToInventorySlot == null){
                         equipToInventorySlot = itemSlot;
+                        console.log("should place here");
                     }
                     
                 }
