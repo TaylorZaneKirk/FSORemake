@@ -415,6 +415,7 @@ var PlayerObject = function(idRef, gameRef){
             playerSprite.loadTexture(torsoName + "Torso", 0);
             playerImage.torso.loadTexture(torsoName + "Torso", 0);
         }
+        playerImage.torso.frame = 13;
     }
 
     init(idRef, gameRef);
