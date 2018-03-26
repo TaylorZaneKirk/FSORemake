@@ -183,12 +183,10 @@ module.exports = {
             for(var i = 0; i < player.inventory.length; i++){
                 var item = player.inventory[i];
                 var itemSlot = parseInt(i) + 1;
-                console.log(itemSlot);
                 if (item.itemId == 1){
                     //place item here
                     if(equipToInventorySlot == null){
                         equipToInventorySlot = itemSlot;
-                        console.log("should place here");
                     }
                     
                 }
@@ -270,7 +268,9 @@ module.exports = {
             var itemSlot = parseInt(i) + 1;
             if (item.itemId == 1){
                 //place item here
-                chosenSlot = itemSlot;
+                if(chosenSlot == null){
+                    chosenSlot = itemSlot;
+                }
             }
             if(item.itemId == thisItemId && item.amount < 99){
                 //Already holding that item, and holding less than 99
