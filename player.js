@@ -165,11 +165,7 @@ var PlayerObject = function(idRef, gameRef){
         playerImage.torso.frame = 13;
         playerImage.right.frame = 13;
         playerImage.left.frame = 13;
-        //playerImage.torso.play('idle-S');
         playerImage.torso.alpha = 0;
-        console.log(playerImage);
-        //playerImage.position = {x: game.world.width * 0.875, y: game.world.centerY * 1.14};
-        //playerImage.play('idle-S');
     }
 
     function showPlayerName(state){
