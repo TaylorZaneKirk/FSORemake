@@ -373,8 +373,22 @@ var PlayerObject = function(idRef, gameRef){
         playerLeft.loadTexture(leftName + "Left", 0);
         playerImage.left.loadTexture(leftName + "Left", 0);
         playerImage.left.frame = 13;
-        playerHead.loadTexture(headName + "Head", 0);
-        playerImage.head.loadTexture(headName + "Head", 0);
+
+        if (equipHeadName == 'NOTHING'){
+            if(playerState.gender == 'm'){
+                playerHead.loadTexture('maleHead1', 0);
+                playerImage.head.loadTexture('maleHead1', 0);
+            }
+            else{
+                playerHead.loadTexture('femaleHead1', 0);
+                playerImage.head.loadTexture('femaleHead1', 0);
+            }
+            
+        }
+        else{
+            playerHead.loadTexture(headName + "Head", 0);
+            playerImage.head.loadTexture(headName + "Head", 0);
+        }
         playerImage.head.frame = 13;
     }
 
