@@ -185,7 +185,7 @@ module.exports = {
                 var itemSlot = parseInt(i) + 1;
                 if (item.itemId == 1){
                     //place item here
-                    if(equipToInventorySlot == null || equipToInventorySlot > itemSlot){
+                    if(equipToInventorySlot == null){
                         equipToInventorySlot = itemSlot;
                     }
                     
