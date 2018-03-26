@@ -408,11 +408,11 @@ var PlayerObject = function(idRef, gameRef){
         playerImage.head.frame = 13;
 
         if (torsoName == 'NOTHING'){
-            playerTorso.loadTexture('defaultBody', 0);
+            playerSprite.loadTexture('defaultBody', 0);
             playerImage.torso.loadTexture('defaultBody', 0);
         }
         else{
-            playerTorso.loadTexture(torsoName + "Torso", 0);
+            playerSprite.loadTexture(torsoName + "Torso", 0);
             playerImage.torso.loadTexture(torsoName + "Torso", 0);
         }
     }
