@@ -40,9 +40,16 @@ var PlayerObject = function(idRef, gameRef){
 
         //Head Sprite (and Body)
         if(playerState.gender == 'm'){
-            //playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player');
-            playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'defaultBody');
-            playerImage.torso = game.add.sprite(game.world.width * 0.851, game.world.centerY * 1.1, 'defaultBody');
+            var equipTorsoName = game.global.itemManager.getItemName(playerState.equipTorso);
+            if (equipTorsoName == 'NOTHING'){
+                playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'defaultBody');
+                playerImage.torso = game.add.sprite(game.world.width * 0.851, game.world.centerY * 1.1, 'defaultBody');
+            }
+            else{
+                playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, equipTorsoName + "Torso");
+                playerImage.torso = game.add.sprite(game.world.width * 0.851, game.world.centerY * 1.1, equipTorsoName + "Torso");
+            }
+            
             var equipHeadName = game.global.itemManager.getItemName(playerState.equipHead);
             if (equipHeadName == 'NOTHING'){
                 playerHead = game.add.sprite(-6.5, -6, 'maleHead1');
@@ -56,11 +63,24 @@ var PlayerObject = function(idRef, gameRef){
             playerImage.torso.addChild(playerImage.head);
         }
         else{
-            //playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player2');
-            playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'defaultBody');
-            playerImage.torso = game.add.sprite(game.world.width * 0.8425, game.world.centerY * 1.075, 'defaultBody');
-            playerHead = game.add.sprite(-6.5, -7, 'femaleHead1');
-            playerImage.head = game.add.sprite(-6.5, -7, 'femaleHead1');
+            var equipTorsoName = game.global.itemManager.getItemName(playerState.equipTorso);
+            if (equipTorsoName == 'NOTHING'){
+                playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'defaultBody');
+                playerImage.torso = game.add.sprite(game.world.width * 0.851, game.world.centerY * 1.1, 'defaultBody');
+            }
+            else{
+                playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, equipTorsoName + "Torso");
+                playerImage.torso = game.add.sprite(game.world.width * 0.851, game.world.centerY * 1.1, equipTorsoName + "Torso");
+            }
+            var equipHeadName = game.global.itemManager.getItemName(playerState.equipHead);
+            if (equipHeadName == 'NOTHING'){
+                playerHead = game.add.sprite(-6.5, -7, 'femaleHead1');
+                playerImage.head = game.add.sprite(-6.5, -7, 'femaleHead1');
+            }
+            else{
+                playerHead = game.add.sprite(-6.5, -6, equipHeadName + "Head");
+                playerImage.head = game.add.sprite(-6.5, -6, equipHeadName + "Head");
+            }
             playerSprite.addChild(playerHead);
             playerImage.torso.addChild(playerImage.head);
         }
@@ -386,6 +406,15 @@ var PlayerObject = function(idRef, gameRef){
             playerImage.head.loadTexture(headName + "Head", 0);
         }
         playerImage.head.frame = 13;
+
+        if (torsoName == 'NOTHING'){
+            playerTorso.loadTexture('defaultBody', 0);
+            playerImage.torso.loadTexture('defaultBody', 0);
+        }
+        else{
+            playerTorso.loadTexture(torsoName + "Torso", 0);
+            playerImage.torso.loadTexture(torsoName + "Torso", 0);
+        }
     }
 
     init(idRef, gameRef);
