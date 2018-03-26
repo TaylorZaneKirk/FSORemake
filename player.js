@@ -49,8 +49,8 @@ var PlayerObject = function(idRef, gameRef){
                 playerImage.head = game.add.sprite(-6.5, -7, 'maleHead1');
             }
             else{
-                playerHead = game.add.sprite(-6.5, -7, equipHeadName);
-                playerImage.head = game.add.sprite(-6.5, -7, equipHeadName);
+                playerHead = game.add.sprite(-6.5, -7, equipHeadName + "Head");
+                playerImage.head = game.add.sprite(-6.5, -7, equipHeadName + "Head");
             }
             playerSprite.addChild(playerHead);
             playerImage.torso.addChild(playerImage.head);
