@@ -43,8 +43,15 @@ var PlayerObject = function(idRef, gameRef){
             //playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'player');
             playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, 'defaultBody');
             playerImage.torso = game.add.sprite(game.world.width * 0.851, game.world.centerY * 1.1, 'defaultBody');
-            playerHead = game.add.sprite(-6.5, -7, 'maleHead1');
-            playerImage.head = game.add.sprite(-6.5, -7, 'maleHead1');
+            var equipHeadName = game.global.itemManager.getItemName(playerState.equipHead);
+            if (equipHeadName == 'NOTHING'){
+                playerHead = game.add.sprite(-6.5, -7, 'maleHead1');
+                playerImage.head = game.add.sprite(-6.5, -7, 'maleHead1');
+            }
+            else{
+                playerHead = game.add.sprite(-6.5, -7, equipHeadName);
+                playerImage.head = game.add.sprite(-6.5, -7, equipHeadName);
+            }
             playerSprite.addChild(playerHead);
             playerImage.torso.addChild(playerImage.head);
         }
@@ -366,6 +373,9 @@ var PlayerObject = function(idRef, gameRef){
         playerLeft.loadTexture(leftName + "Left", 0);
         playerImage.left.loadTexture(leftName + "Left", 0);
         playerImage.left.frame = 13;
+        playerHead.loadTexture(headName + "Head", 0);
+        playerImage.head.loadTexture(headName + "Head", 0);
+        playerImage.head.frame = 13;
     }
 
     init(idRef, gameRef);
