@@ -738,6 +738,7 @@ eurecaServer.exports.message = function(id, message){
         }
         default: {
             console.log("ERROR: Recieved invalid message");
+            console.log(message);
             return;
         }
     }
