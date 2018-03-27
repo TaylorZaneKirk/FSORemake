@@ -528,6 +528,8 @@ class PlayerState
             this.inventory[slotNumber - 1].amount -= 1;
             worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath.locationId].amount += 1;
             console.log("decrease and increase");
+            console.log(worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath.locationId]);
+            console.log(itemUnderneath.locationId)
             con.query("UPDATE worldItems SET amount=" +
                 "'" + worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath.locationId].amount + 
                 "' WHERE locationId='" + itemUnderneath.locationId + "'", function (err, result, fields) {
