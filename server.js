@@ -525,7 +525,7 @@ class PlayerState
         //Query for if the player is holding more than one AND there is an item underneath the player AND that item IS the same as the item being dropped
             //Decrement from inventory and Increase the Amount of that item on the ground
         if(shouldRemoveItem == false && shouldStackItem == true && isItemUnderneath == true){
-            this.inventory[slotNumber - 1].amount = inventorySlotAmount - 1;
+            this.inventory[slotNumber - 1].amount -= 1;
             worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath.locationId].amount += 1;
             console.log("decrease and increase");
             con.query("UPDATE worldItems SET amount=" +
@@ -533,6 +533,7 @@ class PlayerState
                 "' WHERE locationId='" + itemUnderneath.locationId + "'", function (err, result, fields) {
                     if (err) throw err;
                     //remove from inventory
+                    console.log(this.inventory[slotNumber - 1]);
                     con.query("UPDATE playerInv SET slot" + slotNumber + "Amount=" + this.inventory[slotNumber - 1].amount + " WHERE username = '" + this.username + "'", function (err, result, fields){if (err) throw err;});
             });
         }
