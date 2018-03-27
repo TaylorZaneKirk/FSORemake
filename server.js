@@ -442,7 +442,7 @@ class PlayerState
             worldMap[this.worldX + '-' + this.worldY].items[newWorldItem.locationId] = newWorldItem;
             newWorldItem.placeItem();
             console.log("Remove and drop");
-            con.query('INSERT INTO worldItems VALUES(' +
+            con.query('INSERT INTO worldItems(locationId, itemId, itemName, amount, worldX, worldY, localX, localY, respawnable, isSpawned, respawnTimer) VALUES(' +
                 newWorldItem.locationId + ', ' +
                 newWorldItem.itemId + ', ' +
                 newWorldItem.itemName + ', ' +
