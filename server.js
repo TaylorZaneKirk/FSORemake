@@ -533,7 +533,7 @@ class PlayerState
                 " WHERE locationId='" + itemUnderneath.locationId + "'", function (err, result, fields) {
                     if (err) throw err;
                     //remove from inventory
-                    console.log(this.inventory[slotNumber - 1]);
+                    console.log(this.inventory);
                     console.log(slotNumber);
                     //con.query("UPDATE playerInv SET slot" + slotNumber + "Amount=" + this.inventory[slotNumber - 1].amount + " WHERE username = '" + this.username + "'", function (err, result, fields){if (err) throw err;});
             });
