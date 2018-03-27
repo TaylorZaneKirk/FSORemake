@@ -395,7 +395,7 @@ class PlayerState
         var shouldStackItem = false;
         var stackAmount = 0;
         var itemUnderneath = null;
-        console.log(this.mapData.items.length);
+        
         for( var i = 0; i < this.mapData.items.length; i++ ){
             var item = this.mapData.items[i];
             if(item.localX == this.pos.x && item.localY == this.pos.y){
@@ -419,9 +419,9 @@ class PlayerState
         });
         
         //If so, is that item the same thing as the item trying to be dropped?
-        if(itemUnderneath.length > 0){
+        if(itemUnderneath != null){
             isItemUnderneath = true;
-            if(itemUnderneath[0].itemId == inventorySlotId){
+            if(itemUnderneath.itemId == inventorySlotId){
                 shouldStackItem = true;
                 stackAmount = itemUnderneath.amount;
             }
@@ -455,7 +455,7 @@ class PlayerState
         if(shouldRemoveItem == false && shouldStackItem == true && isItemUnderneath == true){
             this.inventory[slotNumber - 1].itemId = 1;
             this.inventory[slotNumber - 1].amount = 1;
-            worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath[0].locationId].amount += 1;
+            worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath.locationId].amount += 1;
             console.log("remove and increase");
         }
 
@@ -479,7 +479,7 @@ class PlayerState
             //Decrement from inventory and Increase the Amount of that item on the ground
         if(shouldRemoveItem == true && shouldStackItem == true && isItemUnderneath == true){
             this.inventory[slotNumber - 1].amount = inventorySlotAmount - 1;
-            worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath[0].locationId].amount += 1;
+            worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath.locationId].amount += 1;
             console.log("decrease and increase");
         }
     }
