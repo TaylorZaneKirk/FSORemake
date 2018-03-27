@@ -399,7 +399,6 @@ var PlayerObject = function(idRef, gameRef){
                 playerHead.loadTexture('femaleHead1', 0);
                 playerImage.head.loadTexture('femaleHead1', 0);
             }
-            
         }
         else{
             playerHead.loadTexture(headName + "Head", 0);

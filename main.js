@@ -761,7 +761,7 @@ openContextMenu = function(index){
 
     var dropButton = game.make.text( 0, inventoryContext.children.length * 20, "DROP", {font:"bold 12px Arial", fill:"yellow", backgroundColor: "black"});
     dropButton.inputEnabled = true;
-    dropButton.events.onInputDown.add(function(){closeContextMenu()});
+    dropButton.events.onInputDown.add(function(){ closeContextMenu(); dropItem(index + 1); });
     inventoryContext.addChild(dropButton);
 
     var cancelButton = game.make.text( 0, inventoryContext.children.length * 20, "CANCEL", {font:"bold 12px Arial", fill:"yellow", backgroundColor: "black"});
@@ -782,4 +782,7 @@ equipItem = function(itemSlot, equipSlot){
 }
 unequipItem = function(equipSlot){
     game.global.actionQueue.push({action: {type: 'unequipItem', payload: 'N/A'}, target: equipSlot});
+}
+dropItem = function(itemSlot){
+    game.global.actionQueue.push({action: {type: 'dropItem', payload: 'N/A'}, target: itemSlot});
 }

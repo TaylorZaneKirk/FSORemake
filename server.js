@@ -73,6 +73,18 @@ class WorldItem{
             visiblePlayer.remote.placeItem(this);  
         }
     }
+
+    placeItem(){
+        //Register in worldMap
+        //Query to place this item into worldItems
+        //update players
+        for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
+            var index = worldMap[this.worldX + '-' + this.worldY].players[i].playerId;
+            var visiblePlayer = players[index];
+            visiblePlayer.remote.placeItem(this);
+           
+        }
+    }
 }
 
 class Item{
@@ -370,6 +382,100 @@ class PlayerState
         }
     }
 
+    dropItem(slotNumber){
+        //What item is in that slot?
+        var inventorySlotId = this.inventory[slotNumber - 1].itemId;
+        var inventorySlotName = itemData[inventorySlotId].itemName;
+
+        //How many of that item are in that slot?
+        var inventorySlotAmount = this.inventory[slotNumber - 1].amount;
+
+        //Is there an item underneath the player already?
+        var isItemUnderneath = false;
+        var shouldStackItem = false;
+        var stackAmount = 0;
+        var itemUnderneath = this.mapData.items.filter(item => item.localX == this.pos.x && item.localY == this.pos.y);
+
+        //New WorldItem;
+        var newWorldItem = new WorldItem({
+            locationId: ++locationIdMaxIndex,
+            itemId: inventorySlotId,
+            itemName: inventorySlotName,
+            worldX: this.worldX,
+            worldY: this.worldY,
+            pos: this.pos,
+            amount: 1,
+            respawnable: false,
+            isSpawned: true,
+            respawnTimer: null
+        });
+        
+        //If so, is that item the same thing as the item trying to be dropped?
+        if(itemUnderneath.length > 0){
+            isItemUnderneath = true;
+            if(itemUnderneath[0].itemId == inventorySlotId){
+                shouldStackItem = true;
+                stackAmount = itemUnderneath.amount;
+            }
+        }
+
+        //Is the player holding more than one of that item?
+        var shouldRemoveItem = false;
+        if(inventorySlotAmount == 1){
+            shouldRemoveItem = true;
+        }
+
+        //Query for if the player is only holding one AND there is no item underneath the player
+            //remove from inventory and just place it
+        if(shouldRemoveItem == false && shouldStackItem == false && isItemUnderneath == false){
+            this.inventory[slotNumber - 1].itemId = 1;
+            this.inventory[slotNumber - 1].amount = 1;
+            worldMap[this.worldX + '-' + this.worldY].items[newWorldItem.locationId] = newWorldItem;
+            newWorldItem.placeItem();
+            console.log("Remove and drop");
+        }
+
+        //Query for if the player is only holding one AND there is an item underneath the player AND that item IS NOT the same as the item being dropped
+            //Cant do That
+        if(shouldRemoveItem == false && shouldStackItem == false && isItemUnderneath == true){
+            delete newWorldItem;
+            console.log("Cant do that");
+        }
+
+        //Query for if the player is only holding one AND there is an item underneath the player AND that item IS the same as the item being dropped
+            //remove from inventory and Increase the Amount of that item on the ground
+        if(shouldRemoveItem == false && shouldStackItem == true && isItemUnderneath == true){
+            this.inventory[slotNumber - 1].itemId = 1;
+            this.inventory[slotNumber - 1].amount = 1;
+            worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath[0].locationId].amount += 1;
+            console.log("remove and increase");
+        }
+
+        //Query for if the player is holding more than one AND there is no item underneath the player
+            //decrement from inventory and Just place it
+        if(shouldRemoveItem == true && shouldStackItem == false && isItemUnderneath == false){
+            this.inventory[slotNumber - 1].amount = inventorySlotAmount - 1;
+            worldMap[this.worldX + '-' + this.worldY].items[newWorldItem.locationId] = newWorldItem;
+            newWorldItem.placeItem();
+            console.log("decrease and drop");
+        }
+
+        //Query for if the player is holding more than one AND there is an item underneath the player AND that item IS NOT the same as the item being dropped
+            //Can't do that
+        if(shouldRemoveItem == true && shouldStackItem == false && isItemUnderneath == true){
+            delete newWorldItem;
+            console.log("Cant do that");
+        }
+
+        //Query for if the player is holding more than one AND there is an item underneath the player AND that item IS the same as the item being dropped
+            //Decrement from inventory and Increase the Amount of that item on the ground
+        if(shouldRemoveItem == true && shouldStackItem == true && isItemUnderneath == true){
+            this.inventory[slotNumber - 1].amount = inventorySlotAmount - 1;
+            worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath[0].locationId].amount += 1;
+            console.log("decrease and increase");
+        }
+    }
+
     equipQuery(queryString){
         console.log(queryString);
         con.query(queryString, function (err, result, fields) {if (err) throw err;});
@@ -387,6 +493,7 @@ var players = {};
 var worldMap = {};
 var worldItems = [];
 var itemData = {};
+var locationIdMaxIndex = 0;
 
 //detect client connection
 eurecaServer.onConnect(function (conn) {
@@ -618,6 +725,9 @@ eurecaServer.exports.message = function(id, message){
             serverActions.unequipItem(players[id].state, message.target);
             break;
         }
+        case 'dropItem': {
+            players[id].state.dropItem(message.target);
+        }
         default: {
             console.log("ERROR: Recieved invalid message");
             return;
@@ -691,9 +801,13 @@ loadMapData = function(){
                         index++;
                     }
                 }
+
                 worldItems.forEach((item) => {
                     if(mapName == (item.worldX + "-" + item.worldY)){
                         worldMap[mapName].items[item.locationId] = new WorldItem(item);
+                        if (locationIdMaxIndex < item.locationId){
+                            locationIdMaxIndex = item.locationId; //Need the highest index so that we can properly create new worldItems for when players drop items
+                        }
                     }
                 });
                 filesRead++;
