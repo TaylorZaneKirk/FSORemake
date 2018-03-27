@@ -531,12 +531,12 @@ class PlayerState
             console.log(worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath.locationId]);
             console.log(itemUnderneath.locationId)
             con.query("UPDATE worldItems SET amount=" +
-                "'" + worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath.locationId].amount + 
-                "' WHERE locationId='" + itemUnderneath.locationId + "'", function (err, result, fields) {
+                + worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath.locationId].amount + 
+                " WHERE locationId='" + itemUnderneath.locationId + "'", function (err, result, fields) {
                     if (err) throw err;
                     //remove from inventory
-                    console.log(this.inventory[slotNumber - 1]);
-                    con.query("UPDATE playerInv SET slot" + slotNumber + "Amount=" + this.inventory[slotNumber - 1].amount + " WHERE username = '" + this.username + "'", function (err, result, fields){if (err) throw err;});
+                    //console.log(this.inventory[slotNumber - 1]);
+                    //con.query("UPDATE playerInv SET slot" + slotNumber + "Amount=" + this.inventory[slotNumber - 1].amount + " WHERE username = '" + this.username + "'", function (err, result, fields){if (err) throw err;});
             });
         }
     }
