@@ -396,6 +396,7 @@ class PlayerState
         var stackAmount = 0;
         var itemUnderneath = null;
         
+        console.log(this.mapData.items.length);
         for( var i = 0; i < this.mapData.items.length; i++ ){
             var item = this.mapData.items[i];
             console.log(item.pos + " " + this.pos);
