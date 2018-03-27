@@ -442,6 +442,20 @@ class PlayerState
             worldMap[this.worldX + '-' + this.worldY].items[newWorldItem.locationId] = newWorldItem;
             newWorldItem.placeItem();
             console.log("Remove and drop");
+            con.query('INSERT INTO worldItems VALUES(' +
+                newWorldItem.locationId + ', ' +
+                newWorldItem.itemId + ', ' +
+                newWorldItem.itemName + ', ' +
+                newWorldItem.amount + ', ' +
+                newWorldItem.worldX + ', ' +
+                newWorldItem.worldY + ', ' +
+                newWorldItem.pos.x + ', ' +
+                newWorldItem.pos.y + ', ' +
+                newWorldItem.respawnable + ', ' +
+                newWorldItem.isSpawned + ', ' +
+                newWorldItem.respawnTimer
+            + ')', function (err, result, fields) {if (err) throw err;});
+            
         }
 
         //Query for if the player is only holding one AND there is an item underneath the player AND that item IS NOT the same as the item being dropped
