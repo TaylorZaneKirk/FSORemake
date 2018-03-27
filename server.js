@@ -442,6 +442,7 @@ class PlayerState
             worldMap[this.worldX + '-' + this.worldY].items[newWorldItem.locationId] = newWorldItem;
             newWorldItem.placeItem();
             console.log("Remove and drop");
+            //Place item
             con.query("INSERT INTO worldItems(locationId, itemId, name, amount, worldX, worldY, localX, localY, respawnable, isSpawned, respawnTimer) VALUES(" +
                 "'" + newWorldItem.locationId + "', " +
                 "'" + newWorldItem.itemId + "', " +
@@ -451,10 +452,14 @@ class PlayerState
                 "'" + newWorldItem.worldY + "', " +
                 "'" + newWorldItem.pos.x + "', " +
                 "'" + newWorldItem.pos.y + "', " +
-                "'" + newWorldItem.respawnable + "', " +
+                newWorldItem.respawnable + ", " +
                 newWorldItem.isSpawned + ", " +
                 "'" + newWorldItem.respawnTimer + "'"
-            + ")", function (err, result, fields) {if (err) throw err;});
+            + ")", function (err, result, fields) {
+                if (err) throw err;
+                //remove from inventory
+                con.query("UPDATE playerInv SET slot" + slotNumber + "=1", function (err, result, fields){if (err) throw err;});
+            });
             
         }
 
