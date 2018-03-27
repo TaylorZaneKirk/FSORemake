@@ -396,7 +396,6 @@ class PlayerState
         var stackAmount = 0;
         var itemUnderneath = null;
         
-        this.mapData.items.filter(item => item.localX == this.pos.x && item.localY == this.pos.y);
         for( var i = 0; i < this.mapData.items.length; i++ ){
             var item = this.mapData.items[i];
             if(item.localX == this.pos.x && item.localY == this.pos.y){
