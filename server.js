@@ -398,6 +398,7 @@ class PlayerState
         
         for( var i = 0; i < this.mapData.items.length; i++ ){
             var item = this.mapData.items[i];
+            console.log(item.pos + " " + this.pos);
             if(item.pos.x == this.pos.x && item.pos.y == this.pos.y){
                 itemUnderneath = item;
                 console.log("item underneath");
