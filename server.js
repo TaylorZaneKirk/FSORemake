@@ -468,6 +468,7 @@ class PlayerState
         if(shouldRemoveItem == true && shouldStackItem == false && isItemUnderneath == true){
             newWorldItem = null;
             console.log("Cant do that");
+            players[this.playerId].remote.recieveBroadcast("You think: I cannot drop this here...", '#ffffff');
         }
 
         //Query for if the player is only holding one AND there is an item underneath the player AND that item IS the same as the item being dropped
@@ -482,7 +483,7 @@ class PlayerState
                 "' WHERE locationId='" + itemUnderneath.locationId + "'", function (err, result, fields) {
                     if (err) throw err;
                     //remove from inventory
-                    //con.query("UPDATE playerInv SET slot" + slotNumber + "=1 WHERE username = '" + this.username + "'", function (err, result, fields){if (err) throw err;});
+                    con.query("UPDATE playerInv SET slot" + slotNumber + "=1 WHERE username = '" + this.username + "'", function (err, result, fields){if (err) throw err;});
             });
         }
 
@@ -493,6 +494,24 @@ class PlayerState
             worldMap[this.worldX + '-' + this.worldY].items[newWorldItem.locationId] = newWorldItem;
             newWorldItem.placeItem();
             console.log("decrease and drop");
+            //Place item
+            con.query("INSERT INTO worldItems(locationId, itemId, name, amount, worldX, worldY, localX, localY, respawnable, isSpawned, respawnTimer) VALUES(" +
+                "'" + newWorldItem.locationId + "', " +
+                "'" + newWorldItem.itemId + "', " +
+                "'" + newWorldItem.itemName + "', " +
+                "'" + newWorldItem.amount + "', " +
+                "'" + newWorldItem.worldX + "', " +
+                "'" + newWorldItem.worldY + "', " +
+                "'" + newWorldItem.pos.x + "', " +
+                "'" + newWorldItem.pos.y + "', " +
+                newWorldItem.respawnable + ", " +
+                newWorldItem.isSpawned + ", " +
+                "'" + newWorldItem.respawnTimer + "'"
+            + ")", function (err, result, fields) {
+                if (err) throw err;
+                //remove from inventory
+                con.query("UPDATE playerInv SET slot" + slotNumber + "Amount=" + this.inventory[slotNumber - 1].amount + " WHERE username = '" + this.username + "'", function (err, result, fields){if (err) throw err;});
+            });
         }
 
         //Query for if the player is holding more than one AND there is an item underneath the player AND that item IS NOT the same as the item being dropped
@@ -500,6 +519,7 @@ class PlayerState
         if(shouldRemoveItem == false && shouldStackItem == false && isItemUnderneath == true){
             newWorldItem = null;
             console.log("Cant do that");
+            players[this.playerId].remote.recieveBroadcast("You think: I cannot drop this here...", '#ffffff');
         }
 
         //Query for if the player is holding more than one AND there is an item underneath the player AND that item IS the same as the item being dropped
@@ -508,6 +528,13 @@ class PlayerState
             this.inventory[slotNumber - 1].amount = inventorySlotAmount - 1;
             worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath.locationId].amount += 1;
             console.log("decrease and increase");
+            con.query("UPDATE worldItems SET amount=" +
+                "'" + worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath.locationId].amount + 
+                "' WHERE locationId='" + itemUnderneath.locationId + "'", function (err, result, fields) {
+                    if (err) throw err;
+                    //remove from inventory
+                    con.query("UPDATE playerInv SET slot" + slotNumber + "Amount=" + this.inventory[slotNumber - 1].amount + " WHERE username = '" + this.username + "'", function (err, result, fields){if (err) throw err;});
+            });
         }
     }
 
