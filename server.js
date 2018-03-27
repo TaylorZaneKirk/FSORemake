@@ -400,6 +400,7 @@ class PlayerState
             var item = this.mapData.items[i];
             if(item.localX == this.pos.x && item.localY == this.pos.y){
                 itemUnderneath = item;
+                console.log("item underneath");
                 break;
             }
         }
@@ -422,9 +423,11 @@ class PlayerState
         //If so, is that item the same thing as the item trying to be dropped?
         if(itemUnderneath != null){
             isItemUnderneath = true;
+            console.log( itemUnderneath.itemId + " " + inventorySlotId );
             if(itemUnderneath.itemId == inventorySlotId){
                 shouldStackItem = true;
                 stackAmount = itemUnderneath.amount;
+                console.log("should stack");
             }
         }
 
