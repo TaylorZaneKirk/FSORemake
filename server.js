@@ -442,19 +442,19 @@ class PlayerState
             worldMap[this.worldX + '-' + this.worldY].items[newWorldItem.locationId] = newWorldItem;
             newWorldItem.placeItem();
             console.log("Remove and drop");
-            con.query('INSERT INTO worldItems(locationId, itemId, name, amount, worldX, worldY, localX, localY, respawnable, isSpawned, respawnTimer) VALUES(' +
-                newWorldItem.locationId + ', ' +
-                newWorldItem.itemId + ', ' +
-                newWorldItem.itemName + ', ' +
-                newWorldItem.amount + ', ' +
-                newWorldItem.worldX + ', ' +
-                newWorldItem.worldY + ', ' +
-                newWorldItem.pos.x + ', ' +
-                newWorldItem.pos.y + ', ' +
-                newWorldItem.respawnable + ', ' +
-                newWorldItem.isSpawned + ', ' +
-                newWorldItem.respawnTimer
-            + ')', function (err, result, fields) {if (err) throw err;});
+            con.query("INSERT INTO worldItems(locationId, itemId, name, amount, worldX, worldY, localX, localY, respawnable, isSpawned, respawnTimer) VALUES(" +
+                "'" + newWorldItem.locationId + "', " +
+                "'" + newWorldItem.itemId + "', " +
+                "'" + newWorldItem.itemName + "', " +
+                "'" + newWorldItem.amount + "', " +
+                "'" + newWorldItem.worldX + "', " +
+                "'" + newWorldItem.worldY + "', " +
+                "'" + newWorldItem.pos.x + "', " +
+                "'" + newWorldItem.pos.y + "', " +
+                "'" + newWorldItem.respawnable + "', " +
+                "'" + newWorldItem.isSpawned + "', " +
+                "'" + newWorldItem.respawnTimer + "'"
+            + ")", function (err, result, fields) {if (err) throw err;});
             
         }
 
