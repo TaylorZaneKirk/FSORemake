@@ -386,6 +386,8 @@ class PlayerState
         //What item is in that slot?
         var inventorySlotId = this.inventory[slotNumber - 1].itemId;
         var inventorySlotName = itemData[inventorySlotId].itemName;
+        console.log(itemData[inventorySlotId]);
+        console.log(inventorySlotName);
 
         //How many of that item are in that slot?
         var inventorySlotAmount = this.inventory[slotNumber - 1].amount;
