@@ -452,7 +452,7 @@ class PlayerState
                 "'" + newWorldItem.pos.x + "', " +
                 "'" + newWorldItem.pos.y + "', " +
                 "'" + newWorldItem.respawnable + "', " +
-                "'" + newWorldItem.isSpawned + "', " +
+                newWorldItem.isSpawned + ", " +
                 "'" + newWorldItem.respawnTimer + "'"
             + ")", function (err, result, fields) {if (err) throw err;});
             
