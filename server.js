@@ -477,10 +477,9 @@ class PlayerState
             this.inventory[slotNumber - 1].amount = 1;
             worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath.locationId].amount += 1;
             console.log("remove and increase");
-            console.log(worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath.locationId].amount);
             con.query("UPDATE worldItems SET amount=" +
                 "'" + worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath.locationId].amount + 
-                "' WHERE locationId='" + newWorldItem.locationId + "'", function (err, result, fields) {
+                "' WHERE locationId='" + itemUnderneath.locationId + "'", function (err, result, fields) {
                     if (err) throw err;
                     //remove from inventory
                     //con.query("UPDATE playerInv SET slot" + slotNumber + "=1 WHERE username = '" + this.username + "'", function (err, result, fields){if (err) throw err;});
