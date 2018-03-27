@@ -70,11 +70,11 @@ var MapManager = class MapManager {
     }
 
     spawnItem(newItem){
-        this.mapData.items[newItem.locationId] = item;
         var thisTile = this.map.getTile(newItem.pos.x+1, newItem.pos.y+1, this.layers[0], true);
         var item = game.add.sprite(thisTile.worldX+16, thisTile.worldY+16, newItem.itemName); //adjust position
         item.anchor.setTo(0.5);
         this.game.global.items[newItem.locationId] = item;
+        this.mapData.items[newItem.locationId] = item;
     }
 
 
