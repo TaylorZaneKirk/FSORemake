@@ -436,7 +436,7 @@ class PlayerState
 
         //Query for if the player is only holding one AND there is no item underneath the player
             //remove from inventory and just place it
-        if(shouldRemoveItem == false && shouldStackItem == false && isItemUnderneath == false){
+        if(shouldRemoveItem == true && shouldStackItem == false && isItemUnderneath == false){
             this.inventory[slotNumber - 1].itemId = 1;
             this.inventory[slotNumber - 1].amount = 1;
             worldMap[this.worldX + '-' + this.worldY].items[newWorldItem.locationId] = newWorldItem;
@@ -446,14 +446,14 @@ class PlayerState
 
         //Query for if the player is only holding one AND there is an item underneath the player AND that item IS NOT the same as the item being dropped
             //Cant do That
-        if(shouldRemoveItem == false && shouldStackItem == false && isItemUnderneath == true){
+        if(shouldRemoveItem == true && shouldStackItem == false && isItemUnderneath == true){
             newWorldItem = null;
             console.log("Cant do that");
         }
 
         //Query for if the player is only holding one AND there is an item underneath the player AND that item IS the same as the item being dropped
             //remove from inventory and Increase the Amount of that item on the ground
-        if(shouldRemoveItem == false && shouldStackItem == true && isItemUnderneath == true){
+        if(shouldRemoveItem == true && shouldStackItem == true && isItemUnderneath == true){
             this.inventory[slotNumber - 1].itemId = 1;
             this.inventory[slotNumber - 1].amount = 1;
             worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath.locationId].amount += 1;
@@ -462,7 +462,7 @@ class PlayerState
 
         //Query for if the player is holding more than one AND there is no item underneath the player
             //decrement from inventory and Just place it
-        if(shouldRemoveItem == true && shouldStackItem == false && isItemUnderneath == false){
+        if(shouldRemoveItem == false && shouldStackItem == false && isItemUnderneath == false){
             this.inventory[slotNumber - 1].amount = inventorySlotAmount - 1;
             worldMap[this.worldX + '-' + this.worldY].items[newWorldItem.locationId] = newWorldItem;
             newWorldItem.placeItem();
@@ -471,14 +471,14 @@ class PlayerState
 
         //Query for if the player is holding more than one AND there is an item underneath the player AND that item IS NOT the same as the item being dropped
             //Can't do that
-        if(shouldRemoveItem == true && shouldStackItem == false && isItemUnderneath == true){
+        if(shouldRemoveItem == false && shouldStackItem == false && isItemUnderneath == true){
             newWorldItem = null;
             console.log("Cant do that");
         }
 
         //Query for if the player is holding more than one AND there is an item underneath the player AND that item IS the same as the item being dropped
             //Decrement from inventory and Increase the Amount of that item on the ground
-        if(shouldRemoveItem == true && shouldStackItem == true && isItemUnderneath == true){
+        if(shouldRemoveItem == false && shouldStackItem == true && isItemUnderneath == true){
             this.inventory[slotNumber - 1].amount = inventorySlotAmount - 1;
             worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath.locationId].amount += 1;
             console.log("decrease and increase");
