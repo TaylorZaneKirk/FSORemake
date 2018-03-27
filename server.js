@@ -78,6 +78,7 @@ class WorldItem{
         //Register in worldMap
         //Query to place this item into worldItems
         //update players
+        console.log(this.itemName);
         for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
             var index = worldMap[this.worldX + '-' + this.worldY].players[i].playerId;
             var visiblePlayer = players[index];
@@ -386,8 +387,6 @@ class PlayerState
         //What item is in that slot?
         var inventorySlotId = this.inventory[slotNumber - 1].itemId;
         var inventorySlotName = itemData[inventorySlotId].itemName;
-        console.log(itemData[inventorySlotId]);
-        console.log(inventorySlotName);
 
         //How many of that item are in that slot?
         var inventorySlotAmount = this.inventory[slotNumber - 1].amount;
@@ -410,7 +409,7 @@ class PlayerState
         var newWorldItem = new WorldItem({
             locationId: ++locationIdMaxIndex,
             itemId: inventorySlotId,
-            itemName: inventorySlotName,
+            itemName: itemData[inventorySlotId].itemName,
             worldX: this.worldX,
             worldY: this.worldY,
             localX: this.pos.x,
