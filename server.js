@@ -526,6 +526,7 @@ class PlayerState
             //Decrement from inventory and Increase the Amount of that item on the ground
         if(shouldRemoveItem == false && shouldStackItem == true && isItemUnderneath == true){
             this.inventory[slotNumber - 1].amount -= 1;
+            var inventoryAmount = this.inventory[slotNumber - 1].amount;
             worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath.locationId].amount += 1;
             console.log("decrease and increase");
             con.query("UPDATE worldItems SET amount=" +
@@ -533,7 +534,7 @@ class PlayerState
                 " WHERE locationId='" + itemUnderneath.locationId + "'", function (err, result, fields) {
                     if (err) throw err;
                     //remove from inventory
-                    console.log(this.inventory);
+                    console.log(inventoryAmount);
                     console.log(slotNumber);
                     //con.query("UPDATE playerInv SET slot" + slotNumber + "Amount=" + this.inventory[slotNumber - 1].amount + " WHERE username = '" + this.username + "'", function (err, result, fields){if (err) throw err;});
             });
