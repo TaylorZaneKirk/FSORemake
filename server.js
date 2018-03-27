@@ -438,7 +438,7 @@ class PlayerState
         //Query for if the player is only holding one AND there is an item underneath the player AND that item IS NOT the same as the item being dropped
             //Cant do That
         if(shouldRemoveItem == false && shouldStackItem == false && isItemUnderneath == true){
-            delete newWorldItem;
+            newWorldItem = null;
             console.log("Cant do that");
         }
 
@@ -463,7 +463,7 @@ class PlayerState
         //Query for if the player is holding more than one AND there is an item underneath the player AND that item IS NOT the same as the item being dropped
             //Can't do that
         if(shouldRemoveItem == true && shouldStackItem == false && isItemUnderneath == true){
-            delete newWorldItem;
+            newWorldItem = null;
             console.log("Cant do that");
         }
 
