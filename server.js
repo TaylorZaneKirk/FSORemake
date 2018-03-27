@@ -395,7 +395,7 @@ class PlayerState
         var shouldStackItem = false;
         var stackAmount = 0;
         var itemUnderneath = null;
-        
+        console.log(this.mapData);
         for( var i = 0; i < this.mapData.items.length; i++ ){
             var item = this.mapData.items[i];
             if(item.localX == this.pos.x && item.localY == this.pos.y){
