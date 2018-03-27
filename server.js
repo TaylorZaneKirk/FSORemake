@@ -736,6 +736,7 @@ eurecaServer.exports.message = function(id, message){
         }
         case 'dropItem': {
             players[id].state.dropItem(message.target);
+            break;
         }
         default: {
             console.log("ERROR: Recieved invalid message");
