@@ -356,7 +356,10 @@ class PlayerState
             var itemSlot = parseInt(i) + 1;
             if (item.itemId == 1){
                 //place item here
-                chosenSlot = itemSlot;
+                if(chosenSlot == null){
+                    chosenSlot = itemSlot;
+                }
+                
             }
             if(item.itemId == thisItem.itemId && item.amount < 99){
                 //Already holding that item, and holding less than 99
