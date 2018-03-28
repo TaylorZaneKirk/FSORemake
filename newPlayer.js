@@ -291,7 +291,7 @@ var newPlayerState = {
         playerModel.frame = 13;
         playerHead.frame = 13;
 
-        leftArrow = game.add.sprite(game.world.centerX * 1.05, game.world.centerY * 1.145, 'leftArrow');
+        leftArrow = game.add.sprite(game.world.centerX * 1.05, game.world.centerY * 1.1475, 'leftArrow');
     }
 }
 
