@@ -54,6 +54,8 @@ var chosenArcane = 1;
 var chosenLuck = 1;
 var availablePoints = 50;
 var availablePointsText;
+var leftArrow = null;
+var rightArrow = null;
 
 var newPlayerState = {
     create: function(){
@@ -289,6 +291,7 @@ var newPlayerState = {
         playerModel.frame = 13;
         playerHead.frame = 13;
 
+        leftArrow = game.add.sprite(game.world.centerX * 1.04, game.world.centerY * 1.04, 'leftArrow');
     }
 }
 
