@@ -294,10 +294,10 @@ var newPlayerState = {
 
         leftArrow = game.add.sprite(game.world.centerX * 1.055, game.world.centerY * 1.1475, 'leftArrow');
         leftArrow.inputEnabled = true;
-        leftArrow.events.onInputDown.add(function(){ prevHeadOption(); console.log("helloo??"); });
+        leftArrow.events.onInputDown.add(function(){ prevHeadOption(); });
         rightArrow = game.add.sprite(game.world.centerX * 1.125, game.world.centerY * 1.1475, 'rightArrow');
         rightArrow.inputEnabled = true;
-        rightArrow.events.onInputDown.add(function(){ nextHeadOption(); console.log("helloo??");});
+        rightArrow.events.onInputDown.add(function(){ nextHeadOption(); });
     }
 }
 
@@ -306,12 +306,28 @@ function nextHeadOption(){
     if(chosenHead = 4){
         chosenHead = 1;
     }
+    if(isFemale){
+        playerHead.loadTexture('femaleHead' + chosenHead, 0);
+        playerHead.frame = 13;
+    }
+    else{
+        playerHead.loadTexture('maleHead' + chosenHead, 0);
+        playerHead.frame = 13;
+    }
 }
 
 function prevHeadOption(){
     chosenHead -= 1;
     if(chosenHead = 0){
         chosenHead = 3;
+    }
+    if(isFemale){
+        playerHead.loadTexture('femaleHead' + chosenHead, 0);
+        playerHead.frame = 13;
+    }
+    else{
+        playerHead.loadTexture('maleHead' + chosenHead, 0);
+        playerHead.frame = 13;
     }
 }
 
