@@ -52,6 +52,7 @@ var chosenEndurance = 1;
 var chosenAgility = 1;
 var chosenArcane = 1;
 var chosenLuck = 1;
+var chosenHead = 1;
 var availablePoints = 50;
 var availablePointsText;
 var leftArrow = null;
@@ -286,13 +287,31 @@ var newPlayerState = {
         chosenGender = 'm';
 
         playerModel = game.add.sprite(game.world.centerX * 1.07, game.world.centerY, 'defaultBody');
-        playerHead = game.add.sprite(0, 0, 'maleHead1');
+        playerHead = game.add.sprite(0, 0, 'maleHead' + chosenHead);
         playerModel.addChild(playerHead);
         playerModel.frame = 13;
         playerHead.frame = 13;
 
         leftArrow = game.add.sprite(game.world.centerX * 1.055, game.world.centerY * 1.1475, 'leftArrow');
+        leftArrow.inputEnabled = true;
+        leftArrow.events.onInputDown.add(function(){ prevHeadOption(); });
         rightArrow = game.add.sprite(game.world.centerX * 1.125, game.world.centerY * 1.1475, 'rightArrow');
+        rightArrow.inputEnabled = true;
+        rightArrow.events.onInputDown.add(function(){ nextHeadOption(); });
+    }
+}
+
+function nextHeadOption(){
+    chosenHead += 1;
+    if(chosenHead = 4){
+        chosenHead = 1;
+    }
+}
+
+function prevHeadOption(){
+    chosenHead -= 1;
+    if(chosenHead = 0){
+        chosenHead = 3;
     }
 }
 
@@ -301,14 +320,14 @@ function changeGender(isFemale){
         maleButton.loadTexture('inactiveRadioButton', 0);
         femaleButton.loadTexture('activeRadioButton', 0);
         chosenGender = 'f';
-        playerHead.loadTexture('femaleHead1', 0);
+        playerHead.loadTexture('femaleHead' + chosenHead, 0);
         playerHead.frame = 13;
     }
     else{
         maleButton.loadTexture('activeRadioButton', 0);
         femaleButton.loadTexture('inactiveRadioButton', 0);
         chosenGender = 'm';
-        playerHead.loadTexture('maleHead1', 0);
+        playerHead.loadTexture('maleHead' + chosenHead, 0);
         playerHead.frame = 13;
     }
 }
@@ -429,7 +448,7 @@ function queryCreate() {
         console.log(serverProxy);
         game.global.eurecaProxy = serverProxy;
         //game.state.start('main');
-        serverProxy.createPlayer(inputUsername.value, inputPassword.value, {gender: chosenGender, class: chosenClass, strength: chosenStrength, dexterity: chosenDexterity, endurance: chosenEndurance, agility: chosenAgility, arcane: chosenArcane, luck: chosenLuck});
+        serverProxy.createPlayer(inputUsername.value, inputPassword.value, {gender: chosenGender, class: chosenClass, headType: chosenHead, strength: chosenStrength, dexterity: chosenDexterity, endurance: chosenEndurance, agility: chosenAgility, arcane: chosenArcane, luck: chosenLuck});
     });
 
     client.exports.setId = function(id, itemData){
