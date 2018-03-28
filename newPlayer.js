@@ -294,10 +294,10 @@ var newPlayerState = {
 
         leftArrow = game.add.sprite(game.world.centerX * 1.055, game.world.centerY * 1.1475, 'leftArrow');
         leftArrow.inputEnabled = true;
-        leftArrow.events.onInputDown.add(function(){ prevHeadOption(); });
+        leftArrow.events.onInputDown.add(function(){ prevHeadOption(); console.log("helloo??"); });
         rightArrow = game.add.sprite(game.world.centerX * 1.125, game.world.centerY * 1.1475, 'rightArrow');
         rightArrow.inputEnabled = true;
-        rightArrow.events.onInputDown.add(function(){ nextHeadOption(); });
+        rightArrow.events.onInputDown.add(function(){ nextHeadOption(); console.log("helloo??");});
     }
 }
 
