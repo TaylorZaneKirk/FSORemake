@@ -30,6 +30,15 @@ var loadState = {
         game.load.image('spellsButtonActive', 'assets/gui/gui_SpellsButton_Active.png');
         game.load.image('equipmentPanel', 'assets/gui/gui_Equipment.png');
         game.load.image('xButton', 'assets/gui/gui_XButton.png');
+        game.load.image('contextUse', 'assets/gui/gui_Context_Use.png');
+        game.load.image('contextDrop', 'assets/gui/gui_Context_Drop.png');
+        game.load.image('contextCancel', 'assets/gui/gui_Context_Cancel.png');
+        game.load.image('contextEquipHead', 'assets/gui/gui_Context_EquipHead.png');
+        game.load.image('contextEquipTorso', 'assets/gui/gui_Context_EquipTorso.png');
+        game.load.image('contextEquipRight', 'assets/gui/gui_Context_EquipRight.png');
+        game.load.image('contextEquipLeft', 'assets/gui/gui_Context_EquipLeft.png');
+        game.load.image('contextEquipLegs', 'assets/gui/gui_Context_EquipLegs.png');
+        game.load.image('contextEquipExtra', 'assets/gui/gui_Context_EquipExtra.png');
         game.load.spritesheet('player', 'assets/PlayerSheet.png', 46, 45, 16);
         game.load.spritesheet('player2', 'assets/PlayerSheet2.png', 46, 45, 16);
         game.load.spritesheet('goldSprites', 'assets/GoldSheet.png', 32, 32, 10);
