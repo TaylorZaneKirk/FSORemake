@@ -303,7 +303,7 @@ var newPlayerState = {
 
 function nextHeadOption(){
     chosenHead += 1;
-    if(chosenHead = 4){
+    if(chosenHead == 4){
         chosenHead = 1;
     }
     if(chosenGender == 'f'){
@@ -318,7 +318,7 @@ function nextHeadOption(){
 
 function prevHeadOption(){
     chosenHead -= 1;
-    if(chosenHead = 0){
+    if(chosenHead == 0){
         chosenHead = 3;
     }
     if(chosenGender == 'f'){
