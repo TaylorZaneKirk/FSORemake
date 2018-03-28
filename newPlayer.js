@@ -285,6 +285,7 @@ var newPlayerState = {
 
         playerModel = game.add.sprite(game.world.centerX * 1.07, game.world.centerY, 'defaultBody');
         playerHead = game.add.sprite(-6.5, -6, 'maleHead1');
+        playerModel.addChild(playerHead);
         playerModel.frame = 13;
         playerHead.frame = 13;
 
