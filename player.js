@@ -52,12 +52,12 @@ var PlayerObject = function(idRef, gameRef){
             
             var equipHeadName = game.global.itemManager.getItemName(playerState.equipHead);
             if (equipHeadName == 'NOTHING'){
-                playerHead = game.add.sprite(-6.5, -6, 'maleHead' + playerState.headType);
-                playerImage.head = game.add.sprite(-6.5, -6, 'maleHead' + playerState.headType);
+                playerHead = game.add.sprite(-6.5, -7, 'maleHead' + playerState.headType);
+                playerImage.head = game.add.sprite(-6.5, -7, 'maleHead' + playerState.headType);
             }
             else{
-                playerHead = game.add.sprite(-6.5, -6, equipHeadName + "Head");
-                playerImage.head = game.add.sprite(-6.5, -6, equipHeadName + "Head");
+                playerHead = game.add.sprite(-6.5, -7, equipHeadName + "Head");
+                playerImage.head = game.add.sprite(-6.5, -7, equipHeadName + "Head");
             }
             playerSprite.addChild(playerHead);
             playerImage.torso.addChild(playerImage.head);
@@ -78,8 +78,8 @@ var PlayerObject = function(idRef, gameRef){
                 playerImage.head = game.add.sprite(-6.5, -7, 'femaleHead' + playerState.headType);
             }
             else{
-                playerHead = game.add.sprite(-6.5, -6, equipHeadName + "Head");
-                playerImage.head = game.add.sprite(-6.5, -6, equipHeadName + "Head");
+                playerHead = game.add.sprite(-6.5, -7, equipHeadName + "Head");
+                playerImage.head = game.add.sprite(-6.5, -7, equipHeadName + "Head");
             }
             playerSprite.addChild(playerHead);
             playerImage.torso.addChild(playerImage.head);
