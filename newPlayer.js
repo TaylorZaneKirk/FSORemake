@@ -292,6 +292,7 @@ var newPlayerState = {
         playerHead.frame = 13;
 
         leftArrow = game.add.sprite(game.world.centerX * 1.05, game.world.centerY * 1.1475, 'leftArrow');
+        rightArrow = game.add.sprite(game.world.centerX * 1.1, game.world.centerY * 1.1475, 'rightArrow');
     }
 }
 
