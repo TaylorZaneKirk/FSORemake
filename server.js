@@ -126,6 +126,7 @@ class PlayerState
         this.playerId = idString;
         this.username = data.username;
         this.gender = data.gender;
+        this.headType = data.headType;
         this.class = data.class;
         this.level = data.level;
         this.gold = data.gold;
@@ -675,8 +676,8 @@ eurecaServer.exports.createPlayer = function (username, password, params){
                 params.arcane += 5;
             }
 
-            con.query("INSERT INTO users(username, password, gender, class, worldX, worldY, localX, localY, level, gold, maxHealth, health, maxFocus, focus, stamina, strength, dexterity, endurance, agility, arcane, luck) VALUES ('" 
-                + username + "', '" + password + "', '" + params.gender + "', '" + params.class + "', 0, 0, 1, 1, 1, 0, 100, 100, 25, 25, 100, '" + params.strength + "', '" + params.dexterity + "', '" + params.endurance + "', '" + params.agility + "', '" + params.arcane + "', '" + params.luck + "')", function (err, result, fields) {
+            con.query("INSERT INTO users(username, password, gender, headType, class, worldX, worldY, localX, localY, level, gold, maxHealth, health, maxFocus, focus, stamina, strength, dexterity, endurance, agility, arcane, luck) VALUES ('" 
+                + username + "', '" + password + "', '" + params.gender + "', '" + params.headType + "', '" + params.class + "', 0, 0, 1, 1, 1, 0, 100, 100, 25, 25, 100, '" + params.strength + "', '" + params.dexterity + "', '" + params.endurance + "', '" + params.agility + "', '" + params.arcane + "', '" + params.luck + "')", function (err, result, fields) {
 
                 if (err){ 
                     throw err;

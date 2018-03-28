@@ -52,8 +52,8 @@ var PlayerObject = function(idRef, gameRef){
             
             var equipHeadName = game.global.itemManager.getItemName(playerState.equipHead);
             if (equipHeadName == 'NOTHING'){
-                playerHead = game.add.sprite(-6.5, -6, 'maleHead1');
-                playerImage.head = game.add.sprite(-6.5, -6, 'maleHead1');
+                playerHead = game.add.sprite(-6.5, -6, 'maleHead' + playerState.headType);
+                playerImage.head = game.add.sprite(-6.5, -6, 'maleHead' + playerState.headType);
             }
             else{
                 playerHead = game.add.sprite(-6.5, -6, equipHeadName + "Head");
@@ -74,8 +74,8 @@ var PlayerObject = function(idRef, gameRef){
             }
             var equipHeadName = game.global.itemManager.getItemName(playerState.equipHead);
             if (equipHeadName == 'NOTHING'){
-                playerHead = game.add.sprite(-6.5, -7, 'femaleHead1');
-                playerImage.head = game.add.sprite(-6.5, -7, 'femaleHead1');
+                playerHead = game.add.sprite(-6.5, -7, 'femaleHead' + playerState.headType);
+                playerImage.head = game.add.sprite(-6.5, -7, 'femaleHead' + playerState.headType);
             }
             else{
                 playerHead = game.add.sprite(-6.5, -6, equipHeadName + "Head");
@@ -392,12 +392,12 @@ var PlayerObject = function(idRef, gameRef){
 
         if (headName == 'NOTHING'){
             if(playerState.gender == 'm'){
-                playerHead.loadTexture('maleHead1', 0);
-                playerImage.head.loadTexture('maleHead1', 0);
+                playerHead.loadTexture('maleHead' + playerState.headType, 0);
+                playerImage.head.loadTexture('maleHead' + playerState.headType, 0);
             }
             else{
-                playerHead.loadTexture('femaleHead1', 0);
-                playerImage.head.loadTexture('femaleHead1', 0);
+                playerHead.loadTexture('femaleHead' + playerState.headType, 0);
+                playerImage.head.loadTexture('femaleHead' + playerState.headType, 0);
             }
         }
         else{
