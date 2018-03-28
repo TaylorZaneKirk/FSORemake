@@ -321,7 +321,7 @@ function prevHeadOption(){
     if(chosenHead = 0){
         chosenHead = 3;
     }
-    if(isFemale){
+    if(chosenGender == 'f'){
         playerHead.loadTexture('femaleHead' + chosenHead, 0);
         playerHead.frame = 13;
     }
