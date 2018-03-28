@@ -45,7 +45,11 @@ var loadState = {
 
         game.load.spritesheet('defaultBody', 'assets/DefaultBody.png', 46, 45, 16);
         game.load.spritesheet('maleHead1', 'assets/MaleHead1.png', 46, 45, 16);
+        game.load.spritesheet('maleHead2', 'assets/MaleHead2.png', 46, 45, 16);
+        game.load.spritesheet('maleHead3', 'assets/MaleHead3.png', 46, 45, 16);
         game.load.spritesheet('femaleHead1', 'assets/FemaleHead1.png', 46, 45, 16);
+        game.load.spritesheet('femaleHead2', 'assets/FemaleHead2.png', 46, 45, 16);
+        game.load.spritesheet('femaleHead3', 'assets/FemaleHead3.png', 46, 45, 16);
         game.load.spritesheet('knifeRight', 'assets/items/knifeRight.png', 46, 45, 16);
         game.load.spritesheet('knifeLeft', 'assets/items/knifeLeft.png', 46, 45, 16);
         game.load.spritesheet('leatherCapHead', 'assets/items/leatherCapHead.png', 46, 45, 16);
