@@ -6,6 +6,7 @@ var mageButton;
 var chosenClass;
 var chosenGender;
 var playerModel;
+var playerHead;
 var skillBars = {
     strength:{
         strengthBar: null,
@@ -282,8 +283,10 @@ var newPlayerState = {
 
         chosenGender = 'm';
 
-        playerModel = game.add.sprite(game.world.centerX * 1.07, game.world.centerY, 'player');
+        playerModel = game.add.sprite(game.world.centerX * 1.07, game.world.centerY, 'defaultBody');
+        playerHead = game.add.sprite(-6.5, -6, 'maleHead1');
         playerModel.frame = 13;
+        playerHead.frame = 13;
 
     }
 }
@@ -293,15 +296,15 @@ function changeGender(isFemale){
         maleButton.loadTexture('inactiveRadioButton', 0);
         femaleButton.loadTexture('activeRadioButton', 0);
         chosenGender = 'f';
-        playerModel.loadTexture('player2', 0);
-        playerModel.frame = 13;
+        playerHead.loadTexture('femaleHead1', 0);
+        playerHead.frame = 13;
     }
     else{
         maleButton.loadTexture('activeRadioButton', 0);
         femaleButton.loadTexture('inactiveRadioButton', 0);
         chosenGender = 'm';
-        playerModel.loadTexture('player', 0);
-        playerModel.frame = 13;
+        playerHead.loadTexture('maleHead1', 0);
+        playerHead.frame = 13;
     }
 }
 

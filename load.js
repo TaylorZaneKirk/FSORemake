@@ -14,6 +14,8 @@ var loadState = {
         game.load.image('inactiveRadioButton', 'assets/gui/gui_InactiveRadio.png');
         game.load.image('plusButton', 'assets/gui/gui_PlusButton.png');
         game.load.image('minusButton', 'assets/gui/gui_MinusButton.png');
+        game.load.image('leftArrow', 'assets/gui/gui_LeftArrow.png');
+        game.load.image('rightArrow', 'assets/gui/gui_RightArrow.png');
         game.load.image('topPanel', 'assets/gui/gui_TopPanel.png');
         game.load.image('rightPanel', 'assets/gui/gui_RightPanel.png');
         game.load.image('leftPanel', 'assets/gui/gui_LeftPanel.png');
