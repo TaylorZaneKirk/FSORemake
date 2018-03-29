@@ -464,25 +464,25 @@ var PlayerObject = function(idRef, gameRef){
 
         if(id == game.global.player.playerId){
             var localObject = game.global.playerList[id].localPlayerObject;
-            localObject.playerImage.right.loadTexture(rightName + "Right", 0);
-            localObject.playerImage.left.loadTexture(leftName + "Left", 0);
+            localObject.playerImage.right.loadTexture(rightName + "Right", 13);
+            localObject.playerImage.left.loadTexture(leftName + "Left", 13);
             if (headName == 'NOTHING'){
                 if(otherPlayer.gender == 'm'){
-                    localObject.playerImage.head.loadTexture('maleHead' + otherPlayer.headType, 0);
+                    localObject.playerImage.head.loadTexture('maleHead' + otherPlayer.headType, 13);
                 }
                 else{
-                    localObject.playerImage.head.loadTexture('femaleHead' + otherPlayer.headType, 0);
+                    localObject.playerImage.head.loadTexture('femaleHead' + otherPlayer.headType, 13);
                 }
             }
             else{
-                localObject.playerImage.head.loadTexture(headName + "Head", 0);
+                localObject.playerImage.head.loadTexture(headName + "Head", 13);
             }
     
             if (torsoName == 'NOTHING'){
-                localObject.playerImage.torso.loadTexture('defaultBody', 0);
+                localObject.playerImage.torso.loadTexture('defaultBody', 13);
             }
             else{
-                localObject.playerImage.torso.loadTexture(torsoName + "Torso", 0);
+                localObject.playerImage.torso.loadTexture(torsoName + "Torso", 13);
             }
             
         }
