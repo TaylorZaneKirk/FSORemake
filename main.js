@@ -631,7 +631,7 @@ function initMultiPlayer(game, globals){
                         console.log(globals.playerList[state.playersVisible[i].playerId].player.equipLeft + " " + state.playersVisible[i].equipLeft);
                         console.log(globals.playerList[state.playersVisible[i].playerId].player.equipLegs + " " + state.playersVisible[i].equipLegs);
                         console.log(globals.playerList[state.playersVisible[i].playerId].player.equipExtra + " " + state.playersVisible[i].equipExtra);
-                        globals.playerList[state.playersVisible[i].playerId].localPlayerObject.changeEquipmentSprites(otherEquipment);
+                        globals.playerList[state.playersVisible[i].playerId].localPlayerObject.changeEquipmentForOther(state.playersVisible[i].playerId, otherEquipment);
                 }
             }
         }
