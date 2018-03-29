@@ -395,6 +395,9 @@ var mainState = {
                     thisPlayer.localPlayerObject.movePlayer(thisPlayer.player.playerId); //update other players
                 }
                 thisPlayer.localPlayerObject.playerSprite.play(thisPlayer.player.playerAction + '-' + thisPlayer.player.playerFacing);
+                thisPlayer.localPlayerObject.playerSprite.children[0].frame = thisPlayer.localPlayerObject.playerSprite.frame;
+                thisPlayer.localPlayerObject.playerSprite.children[1].frame = thisPlayer.localPlayerObject.playerSprite.frame;
+                thisPlayer.localPlayerObject.playerSprite.children[2].frame = thisPlayer.localPlayerObject.playerSprite.frame;
             }
         }
     },
