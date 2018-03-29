@@ -355,10 +355,10 @@ var PlayerObject = function(idRef, gameRef){
     movePlayer = function(id){
         //Get references
         var otherPlayer = game.global.playerList[id].player;
-        var otherSprite = game.global.playerList[id].localPlayerObject.children[0];
-        var otherHead = game.global.playerList[id].localPlayerObject.children[1];
-        var otherRight = game.global.playerList[id].localPlayerObject.children[2];
-        var otherLeft = game.global.playerList[id].localPlayerObject.children[3];
+        var otherSprite = game.global.playerList[id].localPlayerObject.playerSprite;
+        var otherHead = otherSprite.children[0];
+        var otherRight = otherSprite.children[1];
+        var otherLeft = otherSprite.children[2];
         var otherTween = game.global.playerList[id].localPlayerObject.playerTween;
 
         if(otherPlayer.playerAction == 'walk'){
