@@ -707,8 +707,6 @@ eurecaServer.exports.createPlayer = function (username, password, params){
                         return;
                     }
 
-                    console.log(result[0]);
-
                     if(result[0]){
                         players[id].state = new PlayerState(id, result[0]);
                         worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players[id] = players[id].state;
@@ -821,7 +819,6 @@ eurecaServer.updateClients = function (id) {
     players[id].state.playersVisible = Object.filter(worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players, player => player.playerId != id);
     players[id].state.mapData.players = players[id].state.playersVisible;
     players[id].state.readyToUpdate = true;
-    console.log(players[id].state); //Might need to delete the mapData of playersVisible
     newRemote.recieveStateFromServer(players[id].state);
 
     for(var i in players[id].state.playersVisible) {
