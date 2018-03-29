@@ -549,14 +549,16 @@ class PlayerState
         console.log(queryString);
         var worldMapString = this.worldX + "-" + this.worldY;
         var playerId = this.playerId;
-        con.query(queryString, function (err, result, fields) {if (err) throw err; worldMap[worldMapString].players[playerId] = this});
+        var myState = this;
+        con.query(queryString, function (err, result, fields) {if (err) throw err; worldMap[worldMapString].players[playerId] = myState});
     }
 
     unequipQuery(queryString){
         console.log(queryString);
         var worldMapString = this.worldX + "-" + this.worldY;
         var playerId = this.playerId;
-        con.query(queryString, function (err, result, fields) {if (err) throw err; worldMap[worldMapString].players[playerId] = this});
+        var myState = this;
+        con.query(queryString, function (err, result, fields) {if (err) throw err; worldMap[worldMapString].players[playerId] = myState});
     }
 };
 
