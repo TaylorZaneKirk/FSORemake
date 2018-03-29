@@ -552,7 +552,7 @@ function initMultiPlayer(game, globals){
                 || globals.player.equipLegs != state.equipLegs
                 || globals.player.equipExtra != state.equipExtra){
 
-                globals.localPlayerObject.changeEquipmentForOther(state.playerId, equipment);
+                globals.localPlayerObject.changeEquipmentSprites(state.playerId, equipment);
             }
 
             globals.player = state;
@@ -622,7 +622,7 @@ function initMultiPlayer(game, globals){
                         || globals.playerList[state.playersVisible[i].playerId].player.equipExtra != otherEquipment.extra){
 
                             
-                            globals.playerList[state.playersVisible[i].playerId].localPlayerObject.changeEquipmentForOther(state.playersVisible[i].playerId, otherEquipment);
+                            globals.playerList[state.playersVisible[i].playerId].localPlayerObject.changeEquipmentSprites(state.playersVisible[i].playerId, otherEquipment);
                     }
                     globals.playerList[state.playersVisible[i].playerId].player = state.playersVisible[i];
                 }
