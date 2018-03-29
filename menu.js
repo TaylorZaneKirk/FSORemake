@@ -25,7 +25,8 @@ var menuState = {
             myMap: null, //Tiles for current screen
             mapManager: null, //Reference to mapManager for tilemap
             itemManager: null,
-            items: {}, //Likely to be factored to 2nd or 3rd layer
+            itemLayer: null, //Likely to be factored to 2nd or 3rd layer
+            playerLayer: null,
             easystar: null,
             localPlayerObject: null, //reference to the Player object of "your" character. Mostly for quick indexing
             eurecaProxy: null, //For our (limited) communication with the server

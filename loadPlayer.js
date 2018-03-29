@@ -70,6 +70,8 @@ function queryLogin() {
         // Assign my new connection Id
         game.global.myId = id;
         game.global.itemManager = new itemManager(itemData);
+        game.global.itemLayer = game.group.add();
+        game.global.playerLayer = game.group.add();
         //tell server client is ready
         //globals.eurecaProxy.initPlayer(id);
         game.state.start('main');
