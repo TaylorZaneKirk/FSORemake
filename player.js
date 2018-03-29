@@ -181,6 +181,7 @@ var PlayerObject = function(idRef, gameRef){
         playerLeft.frame = playerSprite.frame;
 
         playerTween = game.add.tween(playerSprite);
+        game.global.playerLayer.add(playerSprite);
         
         playerImage.head.frame = 13;
         playerImage.torso.frame = 13;
