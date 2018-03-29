@@ -547,12 +547,12 @@ class PlayerState
 
     equipQuery(queryString){
         console.log(queryString);
-        con.query(queryString, function (err, result, fields) {if (err) throw err; worldMap[this.worldX + "-" + this.worldY].players[this.playerId] = this});
+        con.query(queryString, function (err, result, fields) {if (err) throw err; console.log(worldMap[this.worldX + "-" + this.worldY]);});
     }
 
     unequipQuery(queryString){
         console.log(queryString);
-        con.query(queryString, function (err, result, fields) {if (err) throw err; worldMap[this.worldX + "-" + this.worldY].players[this.playerId] = this});
+        con.query(queryString, function (err, result, fields) {if (err) throw err; console.log(worldMap[this.worldX + "-" + this.worldY]);});
     }
 };
 
