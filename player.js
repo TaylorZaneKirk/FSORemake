@@ -356,6 +356,9 @@ var PlayerObject = function(idRef, gameRef){
         //Get references
         var otherPlayer = game.global.playerList[id].player;
         var otherSprite = game.global.playerList[id].localPlayerObject.playerSprite;
+        var otherHead = game.global.playerList[id].localPlayerObject.playerHead;
+        var otherRight = game.global.playerList[id].localPlayerObject.playerRight;
+        var otherLeft = game.global.playerList[id].localPlayerObject.playerLeft;
         var otherTween = game.global.playerList[id].localPlayerObject.playerTween;
 
         if(otherPlayer.playerAction == 'walk'){
@@ -374,9 +377,9 @@ var PlayerObject = function(idRef, gameRef){
         game.global.playerList[id].localPlayerObject.playerTween = otherTween;
         otherSprite.play(otherPlayer.playerAction + '-' + otherPlayer.playerFacing);
         //otherSprite.children[0].frame = otherSprite.frame;
-        otherSprite.frame = otherSprite.frame;
-        otherSprite.frame = otherSprite.frame;
-        otherSprite.frame = otherSprite.frame;
+        otherHead.frame = otherSprite.frame;
+        otherRight.frame = otherSprite.frame;
+        otherLeft.frame = otherSprite.frame;
         
     }
 
