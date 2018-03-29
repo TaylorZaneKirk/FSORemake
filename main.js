@@ -617,20 +617,20 @@ function initMultiPlayer(game, globals){
                 }
 
                 //Check if we need to update equipment sprites
-                if(globals.playerList[state.playersVisible[i].playerId].player.equipHead != state.playersVisible[i].equipHead
-                    || globals.playerList[state.playersVisible[i].playerId].player.equipTorso != state.playersVisible[i].equipTorso
-                    || globals.playerList[state.playersVisible[i].playerId].player.equipRight != state.playersVisible[i].equipRight
-                    || globals.playerList[state.playersVisible[i].playerId].player.equipLeft != state.playersVisible[i].equipLeft
-                    || globals.playerList[state.playersVisible[i].playerId].player.equipLegs != state.playersVisible[i].equipLegs
-                    || globals.playerList[state.playersVisible[i].playerId].player.equipExtra != state.playersVisible[i].equipExtra){
+                if(globals.playerList[state.playersVisible[i].playerId].player.equipHead != otherEquipment.head
+                    || globals.playerList[state.playersVisible[i].playerId].player.equipTorso != otherEquipment.torso
+                    || globals.playerList[state.playersVisible[i].playerId].player.equipRight != otherEquipment.right
+                    || globals.playerList[state.playersVisible[i].playerId].player.equipLeft != otherEquipment.left
+                    || globals.playerList[state.playersVisible[i].playerId].player.equipLegs != otherEquipment.legs
+                    || globals.playerList[state.playersVisible[i].playerId].player.equipExtra != otherEquipment.extra){
 
                         console.log(globals.playerList[state.playersVisible[i].playerId].player.playerId + " " + state.playersVisible[i].playerId);
-                        console.log(globals.playerList[state.playersVisible[i].playerId].player.equipHead + " " + state.playersVisible[i].equipHead);
-                        console.log(globals.playerList[state.playersVisible[i].playerId].player.equipTorso + " " + state.playersVisible[i].equipTorso);
-                        console.log(globals.playerList[state.playersVisible[i].playerId].player.equipRight + " " + state.playersVisible[i].equipRight);
-                        console.log(globals.playerList[state.playersVisible[i].playerId].player.equipLeft + " " + state.playersVisible[i].equipLeft);
-                        console.log(globals.playerList[state.playersVisible[i].playerId].player.equipLegs + " " + state.playersVisible[i].equipLegs);
-                        console.log(globals.playerList[state.playersVisible[i].playerId].player.equipExtra + " " + state.playersVisible[i].equipExtra);
+                        console.log(globals.playerList[state.playersVisible[i].playerId].player.equipHead + " " + otherEquipment.head);
+                        console.log(globals.playerList[state.playersVisible[i].playerId].player.equipTorso + " " + otherEquipment.torso);
+                        console.log(globals.playerList[state.playersVisible[i].playerId].player.equipRight + " " + otherEquipment.right);
+                        console.log(globals.playerList[state.playersVisible[i].playerId].player.equipLeft + " " + otherEquipment.left);
+                        console.log(globals.playerList[state.playersVisible[i].playerId].player.equipLegs + " " + otherEquipment.legs);
+                        console.log(globals.playerList[state.playersVisible[i].playerId].player.equipExtra + " " + otherEquipment.extra);
                         globals.playerList[state.playersVisible[i].playerId].localPlayerObject.changeEquipmentForOther(state.playersVisible[i].playerId, otherEquipment);
                 }
             }
