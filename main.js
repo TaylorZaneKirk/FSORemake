@@ -614,13 +614,6 @@ function initMultiPlayer(game, globals){
                 }
                 else{
                     //Check if we need to update equipment sprites
-                    console.log(globals.playerList[state.playersVisible[i].playerId].player.playerId + " " + state.playersVisible[i].playerId);
-                    console.log(globals.playerList[state.playersVisible[i].playerId].player.equipHead + " " + otherEquipment.head);
-                    console.log(globals.playerList[state.playersVisible[i].playerId].player.equipTorso + " " + otherEquipment.torso);
-                    console.log(globals.playerList[state.playersVisible[i].playerId].player.equipRight + " " + otherEquipment.right);
-                    console.log(globals.playerList[state.playersVisible[i].playerId].player.equipLeft + " " + otherEquipment.left);
-                    console.log(globals.playerList[state.playersVisible[i].playerId].player.equipLegs + " " + otherEquipment.legs);
-                    console.log(globals.playerList[state.playersVisible[i].playerId].player.equipExtra + " " + otherEquipment.extra);
                     if(globals.playerList[state.playersVisible[i].playerId].player.equipHead != otherEquipment.head
                         || globals.playerList[state.playersVisible[i].playerId].player.equipTorso != otherEquipment.torso
                         || globals.playerList[state.playersVisible[i].playerId].player.equipRight != otherEquipment.right
@@ -631,7 +624,7 @@ function initMultiPlayer(game, globals){
                             
                             globals.playerList[state.playersVisible[i].playerId].localPlayerObject.changeEquipmentForOther(state.playersVisible[i].playerId, otherEquipment);
                     }
-                    globals.playerList[state.playersVisible[i].playerId].player = state.playersVisible[i]; //stupid github
+                    globals.playerList[state.playersVisible[i].playerId].player = state.playersVisible[i];
                 }
 
             }

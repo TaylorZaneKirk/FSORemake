@@ -427,9 +427,7 @@ var PlayerObject = function(idRef, gameRef){
     }
 
     changeEquipmentForOther = function(id, equipment){
-        /* if(id == game.global.player.playerId){
-            changeEquipmentSprites(equipment);
-        } */
+        
         var otherPlayer = game.global.playerList[id].player;
         var otherSprite = game.global.playerList[id].localPlayerObject.playerSprite;
         var otherHead = otherSprite.children[0];
@@ -462,6 +460,31 @@ var PlayerObject = function(idRef, gameRef){
         }
         else{
             otherSprite.loadTexture(torsoName + "Torso", 0);
+        }
+
+        if(id == game.global.player.playerId){
+            var localObject = game.global.playerList[id].localPlayerObject;
+            localObject.playerImage.right.loadTexture(rightName + "Right", 0);
+            localObject.playerImage.left.loadTexture(leftName + "Left", 0);
+            if (headName == 'NOTHING'){
+                if(otherPlayer.gender == 'm'){
+                    localObject.playerImage.head.loadTexture('maleHead' + otherPlayer.headType, 0);
+                }
+                else{
+                    localObject.playerImage.head.loadTexture('femaleHead' + otherPlayer.headType, 0);
+                }
+            }
+            else{
+                localObject.playerImage.head.loadTexture(headName + "Head", 0);
+            }
+    
+            if (torsoName == 'NOTHING'){
+                localObject.playerImage.torso.loadTexture('defaultBody', 0);
+            }
+            else{
+                localObject.playerImage.torso.loadTexture(torsoName + "Torso", 0);
+            }
+            
         }
     }
 
