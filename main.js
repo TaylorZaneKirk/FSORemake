@@ -631,7 +631,7 @@ function initMultiPlayer(game, globals){
                             
                             globals.playerList[state.playersVisible[i].playerId].localPlayerObject.changeEquipmentForOther(state.playersVisible[i].playerId, otherEquipment);
                     }
-                    globals.playerList[state.playersVisible[i].playerId].player = state.playersVisible[i];
+                    globals.playerList[state.playersVisible[i].playerId].player = state.playersVisible[i]; //stupid github
                 }
 
             }
