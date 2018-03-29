@@ -18,6 +18,7 @@ game.global = {
     myMap: null, //Tiles for current screen
     mapManager: null, //Reference to mapManager for tilemap
     itemManager: null,
+    items: {},
     itemLayer: null, //Likely to be factored to 2nd or 3rd layer
     playerLayer: null,
     easystar: null,
