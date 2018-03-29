@@ -373,7 +373,10 @@ var PlayerObject = function(idRef, gameRef){
         game.global.playerList[id].localPlayerObject.playerSprite = otherSprite;
         game.global.playerList[id].localPlayerObject.playerTween = otherTween;
         otherSprite.play(otherPlayer.playerAction + '-' + otherPlayer.playerFacing);
-        otherSprite.children[0].frame = otherSprite.frame;
+        //otherSprite.children[0].frame = otherSprite.frame;
+        otherSprite.frame = otherSprite.frame;
+        otherSprite.frame = otherSprite.frame;
+        otherSprite.frame = otherSprite.frame;
         
     }
 
