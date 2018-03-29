@@ -497,6 +497,7 @@ class PlayerState
         if(shouldRemoveItem == false && shouldStackItem == false && isItemUnderneath == false){
             this.inventory[slotNumber - 1].amount = inventorySlotAmount - 1;
             worldMap[this.worldX + '-' + this.worldY].items[newWorldItem.locationId] = newWorldItem;
+            var inventoryAmount = this.inventory[slotNumber - 1].amount;
             newWorldItem.placeItem();
             console.log("decrease and drop");
             //Place item
@@ -515,7 +516,7 @@ class PlayerState
             + ")", function (err, result, fields) {
                 if (err) throw err;
                 //remove from inventory
-                con.query("UPDATE playerInv SET slot" + slotNumber + "Amount=" + this.inventory[slotNumber - 1].amount + " WHERE username = '" + this.username + "'", function (err, result, fields){if (err) throw err;});
+                con.query("UPDATE playerInv SET slot" + slotNumber + "Amount=" + inventoryAmount + " WHERE username = '" + this.username + "'", function (err, result, fields){if (err) throw err;});
             });
         }
 
