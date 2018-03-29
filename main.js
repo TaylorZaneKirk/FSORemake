@@ -476,11 +476,33 @@ function initMultiPlayer(game, globals){
             globals.lastActionTimestamp = new Date().getTime();
             loadTime = globals.lastActionTimestamp;
 
+            updateInventoryPage(state.inventory, equipment);
+
             //Create the new players
             for(var i in state.playersVisible){
+                equipment = {
+                    head: state.playersVisible[i].equipHead,
+                    torso: state.playersVisible[i].equipTorso,
+                    right: state.playersVisible[i].equipRight,
+                    left: state.playersVisible[i].equipLeft,
+                    legs: state.playersVisible[i].equipLegs,
+                    extra: state.playersVisible[i].equipExtra,
+                };
+                
                 globals.playerList[state.playersVisible[i].playerId] = {player: state.playersVisible[i], localPlayerObject: null};
                 globals.playerList[state.playersVisible[i].playerId].player = state.playersVisible[i];
                 globals.playerList[state.playersVisible[i].playerId].localPlayerObject = new PlayerObject(state.playersVisible[i].playerId, game);
+
+                //Check if we need to update equipment sprites
+                if(globals.playerList[state.playersVisible[i].playerId].equipHead != state.playersVisible[i].equipHead
+                    || globals.playerList[state.playersVisible[i].playerId].equipTorso != state.playersVisible[i].equipTorso
+                    || globals.playerList[state.playersVisible[i].playerId].equipRight != state.playersVisible[i].equipRight
+                    || globals.playerList[state.playersVisible[i].playerId].equipLeft != state.playersVisible[i].equipLeft
+                    || globals.playerList[state.playersVisible[i].playerId].equipLegs != state.playersVisible[i].equipLegs
+                    || globals.playerList[state.playersVisible[i].playerId].equipExtra != state.playersVisible[i].equipExtra){
+
+                        globals.playerList[state.playersVisible[i].playerId].localPlayerObject.changeEquipmentSprites(equipment);
+                }
             }
 
             game.global.ready = true;
@@ -521,7 +543,7 @@ function initMultiPlayer(game, globals){
             ];
 
             updateSkillsPage(playerSkills);
-            updateInventoryPage(state.inventory, equipment);
+            
 
             statusBars.hp.healthBarText.setText( state.health );
             statusBars.fp.focusBarText.setText( state.focus );
@@ -592,12 +614,32 @@ function initMultiPlayer(game, globals){
             statusBars.fp.focusBarText.setText( state.focus );
 
             for(var i in state.playersVisible){
+                equipment = {
+                    head: state.playersVisible[i].equipHead,
+                    torso: state.playersVisible[i].equipTorso,
+                    right: state.playersVisible[i].equipRight,
+                    left: state.playersVisible[i].equipLeft,
+                    legs: state.playersVisible[i].equipLegs,
+                    extra: state.playersVisible[i].equipExtra,
+                };
+
                 if(globals.playerList[state.playersVisible[i].playerId] == undefined){
                     globals.playerList[state.playersVisible[i].playerId] = {player: state.playersVisible[i], localPlayerObject: null};
                     globals.playerList[state.playersVisible[i].playerId].localPlayerObject = new PlayerObject(state.playersVisible[i].playerId, game);
                 }
                 else{
                     globals.playerList[state.playersVisible[i].playerId].player = state.playersVisible[i];
+                }
+
+                //Check if we need to update equipment sprites
+                if(globals.playerList[state.playersVisible[i].playerId].equipHead != state.playersVisible[i].equipHead
+                    || globals.playerList[state.playersVisible[i].playerId].equipTorso != state.playersVisible[i].equipTorso
+                    || globals.playerList[state.playersVisible[i].playerId].equipRight != state.playersVisible[i].equipRight
+                    || globals.playerList[state.playersVisible[i].playerId].equipLeft != state.playersVisible[i].equipLeft
+                    || globals.playerList[state.playersVisible[i].playerId].equipLegs != state.playersVisible[i].equipLegs
+                    || globals.playerList[state.playersVisible[i].playerId].equipExtra != state.playersVisible[i].equipExtra){
+
+                        globals.playerList[state.playersVisible[i].playerId].localPlayerObject.changeEquipmentSprites(equipment);
                 }
             }
         }
