@@ -218,7 +218,7 @@ var PlayerObject = function(idRef, gameRef){
                 playerTween: playerTween,
                 movePlayer: movePlayer,
                 playerImage: playerImage,
-                changeEquipmentForOther: changeEquipmentForOther
+                changeEquipmentSprites: changeEquipmentSprites
             };
 
             game.global.localPlayerObject = game.global.playerList[idLocal].localPlayerObject;
@@ -456,6 +456,6 @@ var PlayerObject = function(idRef, gameRef){
         playerTween: playerTween,
         movePlayer: movePlayer,
         playerImage: playerImage,
-        changeEquipmentForOther: changeEquipmentForOther
+        changeEquipmentSprites: changeEquipmentSprites
     };
 }
