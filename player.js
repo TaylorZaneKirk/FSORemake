@@ -219,6 +219,7 @@ var PlayerObject = function(idRef, gameRef){
                 movePlayer: movePlayer,
                 changeEquipmentSprites: changeEquipmentSprites,
                 playerImage: playerImage,
+                changeEquipmentForOther: changeEquipmentForOther
             };
 
             game.global.localPlayerObject = game.global.playerList[idLocal].localPlayerObject;
@@ -425,6 +426,42 @@ var PlayerObject = function(idRef, gameRef){
         playerImage.torso.frame = 13;
     }
 
+    changeEquipmentForOther = function(id, equipment){
+        var otherPlayer = game.global.playerList[id].player;
+        var otherSprite = game.global.playerList[id].localPlayerObject.playerSprite;
+        var otherHead = otherSprite.children[0];
+        var otherRight = otherSprite.children[1];
+        var otherLeft = otherSprite.children[2];
+        var headName = game.global.itemManager.getItemName(equipment.head);
+        var torsoName = game.global.itemManager.getItemName(equipment.torso);
+        var rightName = game.global.itemManager.getItemName(equipment.right);
+        var leftName = game.global.itemManager.getItemName(equipment.left);
+        var legsName = game.global.itemManager.getItemName(equipment.legs);
+        var extraName = game.global.itemManager.getItemName(equipment.extra);
+
+        otherRight.loadTexture(rightName + "Right", 0);
+        otherLeft.loadTexture(leftName + "Left", 0);
+
+        if (headName == 'NOTHING'){
+            if(otherPlayer.gender == 'm'){
+                otherHead.loadTexture('maleHead' + otherPlayer.headType, 0);
+            }
+            else{
+                otherHead.loadTexture('femaleHead' + otherPlayer.headType, 0);
+            }
+        }
+        else{
+            otherHead.loadTexture(headName + "Head", 0);
+        }
+
+        if (torsoName == 'NOTHING'){
+            otherSprite.loadTexture('defaultBody', 0);
+        }
+        else{
+            otherSprite.loadTexture(torsoName + "Torso", 0);
+        }
+    }
+
     init(idRef, gameRef);
     
     return {
@@ -437,5 +474,6 @@ var PlayerObject = function(idRef, gameRef){
         movePlayer: movePlayer,
         changeEquipmentSprites: changeEquipmentSprites,
         playerImage: playerImage,
+        changeEquipmentForOther: changeEquipmentForOther
     };
 }
