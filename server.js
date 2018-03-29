@@ -815,7 +815,7 @@ eurecaServer.updateClients = function (id) {
     players[id].state.playersVisible = Object.filter(worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players, player => player.playerId != id);
     players[id].state.mapData.players = players[id].state.playersVisible;
     players[id].state.readyToUpdate = true;
-    console.log(players[id].state);
+    console.log(players[id].state); //Might need to delete the mapData of playersVisible
     newRemote.recieveStateFromServer(players[id].state);
 
     for(var i in players[id].state.playersVisible) {
@@ -898,7 +898,7 @@ Object.filter = (obj, predicate) =>
         .filter( key => predicate(obj[key]) )
         .reduce(function(res, key){
             props = Object.keys(obj[key])
-                .filter(prop => prop != 'playersVisible')
+                .filter(prop => prop != 'playersVisible' && prop != 'mapData')
             objCopy = {};
             for(var i in props){
                 objCopy[props[i]] = obj[key][props[i]];
