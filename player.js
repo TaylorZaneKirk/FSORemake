@@ -46,7 +46,7 @@ var PlayerObject = function(idRef, gameRef){
                 playerImage.torso = game.add.sprite(game.world.width * 0.851, game.world.centerY * 1.1, 'defaultBody');
             }
             else{
-                playerSprite = game.add.sprite((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, equipTorsoName + "Torso");
+                playerSprite = game.global.playerLayer.create((playerState.pos.x+1)*32, (playerState.pos.y+1)*32, equipTorsoName + "Torso");
                 playerImage.torso = game.add.sprite(game.world.width * 0.851, game.world.centerY * 1.1, equipTorsoName + "Torso");
             }
             
@@ -181,8 +181,7 @@ var PlayerObject = function(idRef, gameRef){
         playerLeft.frame = playerSprite.frame;
 
         playerTween = game.add.tween(playerSprite);
-        game.global.playerLayer.add(playerSprite);
-
+        
         playerImage.head.frame = 13;
         playerImage.torso.frame = 13;
         playerImage.right.frame = 13;
