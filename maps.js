@@ -19,6 +19,8 @@ var MapManager = class MapManager {
         this.layers.push(this.map.create('map', 18, 13, 32, 32));
         this.layers.push(this.map.createBlankLayer('items', 18, 13, 32, 32));
         this.mapData = null;
+        game.global.itemLayer = game.add.group();
+        game.global.playerLayer = game.add.group();
     }
 
     get getMap(){
@@ -48,6 +50,7 @@ var MapManager = class MapManager {
                 var item = game.add.sprite(thisTile.worldX+16, thisTile.worldY+16, this.mapData.items[i].itemName); //adjust position
                 item.anchor.setTo(0.5);
                 this.game.global.items[this.mapData.items[i].locationId] = item;
+                this.game.global.itemLayer.add(item);
             }
             
         }
@@ -75,6 +78,7 @@ var MapManager = class MapManager {
         item.anchor.setTo(0.5);
         this.game.global.items[newItem.locationId] = item;
         this.mapData.items[newItem.locationId] = item;
+        this.game.global.itemLayer.add(item);
     }
 
 
