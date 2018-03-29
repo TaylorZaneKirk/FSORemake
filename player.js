@@ -427,9 +427,9 @@ var PlayerObject = function(idRef, gameRef){
     }
 
     changeEquipmentForOther = function(id, equipment){
-        if(id == game.global.player.playerId){
+        /* if(id == game.global.player.playerId){
             changeEquipmentSprites(equipment);
-        }
+        } */
         var otherPlayer = game.global.playerList[id].player;
         var otherSprite = game.global.playerList[id].localPlayerObject.playerSprite;
         var otherHead = otherSprite.children[0];
