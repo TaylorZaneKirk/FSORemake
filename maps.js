@@ -46,6 +46,7 @@ var MapManager = class MapManager {
             if (this.mapData.items[i].isSpawned){
                 var thisTile = this.map.getTile(this.mapData.items[i].pos.x+1, this.mapData.items[i].pos.y+1, this.layers[0], true);
                 var item = game.add.sprite(thisTile.worldX+16, thisTile.worldY+16, this.mapData.items[i].itemName); //adjust position
+                game.global.itemLayer.add(item);
                 item.anchor.setTo(0.5);
                 this.game.global.items[this.mapData.items[i].locationId] = item;
             }
@@ -71,7 +72,8 @@ var MapManager = class MapManager {
 
     spawnItem(newItem){
         var thisTile = this.map.getTile(newItem.pos.x+1, newItem.pos.y+1, this.layers[0], true);
-        var item = game.global.itemLayer.create(thisTile.worldX+16, thisTile.worldY+16, newItem.itemName); //adjust position
+        var item = game.add.sprite(thisTile.worldX+16, thisTile.worldY+16, newItem.itemName); //adjust position
+        game.global.itemLayer.add(item);
         item.anchor.setTo(0.5);
         this.game.global.items[newItem.locationId] = item;
         this.mapData.items[newItem.locationId] = item;
