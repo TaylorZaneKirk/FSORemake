@@ -591,6 +591,7 @@ class NPC{
         this.aggroRange = data.aggroRange;
         this.isPassive = data.isPassive;
         this.baseExp = data.baseExp;
+        this.isSpawned = data.isSpawned;
         this.respawnable = data.respawnable;
         this.respawnTimer = data.respawnTimer;
         this.faction = data.faction;
@@ -728,7 +729,7 @@ server.listen(process.env.PORT || 55555, function () {
 eurecaServer.exports.login = function (username, password){
     var id = this.connection.id;
     var remote = players[id].remote;
-    con.query("SELECT * FROM users INNER JOIN skillLevels ON users.username = skillLevels.username INNER JOIN playerInv on users.username = playerInv.username WHERE users.username = '" + username + "'", function (err, result, fields) {
+    con.query("SELECT * FROM users INNER JOIN skillLevels ON users.username = skillLevels.username INNER JOIN playerInv on users.username = playerInv.username INNER JOIN playerSpells on users.username = playerSpells.username WHERE users.username = '" + username + "'", function (err, result, fields) {
         if (err){ 
             throw err;
             remote.errorAndDisconnect('An unexpected error occured.');
@@ -799,7 +800,7 @@ eurecaServer.exports.createPlayer = function (username, password, params){
                 //con.query("INSERT INTO skillLevels(username) VALUES('" + username + "')", function (err, result, fields) {if (err) throw err; });
 
                 //con.query("SELECT * FROM users WHERE username = '" + username + "'", function (err, result, fields) 
-                con.query("SELECT * FROM users INNER JOIN skillLevels ON users.username = skillLevels.username INNER JOIN playerInv on users.username = playerInv.username WHERE users.username = '" + username + "'", function (err, result, fields) {
+                con.query("SELECT * FROM users INNER JOIN skillLevels ON users.username = skillLevels.username INNER JOIN playerInv on users.username = playerInv.username INNER JOIN playerSpells on users.username = playerSpells.username WHERE users.username = '" + username + "'", function (err, result, fields) {
                     if (err){ 
                         throw err;
                         remote.errorAndDisconnect('An unexpected error occured.');
