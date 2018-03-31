@@ -986,7 +986,7 @@ loadMapData = function(){
                     }
                 });
 
-                npcs.forEach((npc) => {
+                for(var npc of npcs) {
                     if(mapName == (npc.worldX + "-" + npc.worldY)){
                         worldMap[mapName].npcs[npc.npcId] = npc;
                         /* if (locationIdMaxIndex < item.locationId){
