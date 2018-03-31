@@ -37,6 +37,8 @@ var MapManager = class MapManager {
     }
 
     changeMap(){
+        console.log(this.mapData);
+
         for (var x = 0; x < 12; x++){
             for (var y = 0; y < 17; y++) {
                 
@@ -60,6 +62,7 @@ var MapManager = class MapManager {
                 game.global.npcList[thisNPC.npcId] = {npc: thisNPC, npcObject: new NPCObject(thisNPC.npcId, game)};
             }
         }
+        console.log(game.global.npcList);
     }
 
     isSpotAvailable(x, y, originPos){
