@@ -109,6 +109,7 @@ var NPCObject = function(idRef, gameRef){
             npcLeft.frame = npcSprite.frame;
         }
 
+        npcSprite.inputEnabled = true;
         npcName = game.add.text(15, -10, npcState.npcName, { font: "14px Ariel", fill: '#ffffff'});
         npcName.alpha = 0;
         npcSprite.events.onInputOver.add(showNPCName, this);
