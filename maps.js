@@ -59,7 +59,8 @@ var MapManager = class MapManager {
         for(var i in this.mapData.npcs){
             if(this.mapData.npcs[i].isSpawned){
                 var thisNPC = this.mapData.npcs[i];
-                game.global.npcList[thisNPC.npcId] = {npc: thisNPC, npcObject: new NPCObject(thisNPC.npcId, game)};
+                game.global.npcList[thisNPC.npcId] = {npc: thisNPC, npcObject: null};
+                game.global.npcList[thisNPC.npcId].npcObject = new NPCObject(thisNPC.npcId, game);
             }
         }
         console.log(game.global.npcList);
@@ -91,7 +92,8 @@ var MapManager = class MapManager {
     }
 
     spawnNPC(newNPC){
-        game.global.npcList[newNPC.npcId] = {npc: newNPC, npcObject: new NPCObject(newNPC.npcId, game)};
+        game.global.npcList[newNPC.npcId] = {npc: newNPC, npcObject: null};
+        game.global.npcList[newNPC.npcId].npcObject = new NPCObject(newNPC.npcId, game);
         this.mapData.npcs[newNPC.npcId] = newNPC;
     }
 
