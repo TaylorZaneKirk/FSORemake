@@ -90,6 +90,11 @@ var MapManager = class MapManager {
         this.game.global.itemLayer.add(item);
     }
 
+    spawnNPC(newNPC){
+        game.global.npcList[newNPC.npcId] = {npc: newNPC, npcObject: new NPCObject(newNPC.npcId, game)};
+        this.mapData.npcs[newNPC.npcId] = newNPC;
+    }
+
 
     
 }

@@ -652,6 +652,21 @@ class NPC{
                 this.spells[thisSpellId] = spellData[thisSpellId];
             }
         }
+
+        if(this.respawnable && !this.isSpawned){
+            setTimeout(() => this.respawn(), this.respawnTimer);
+        }
+    }
+
+    respawn(){
+        this.isSpawned = true;
+        con.query("UPDATE npcs SET isSpawned = 1 WHERE npcId = '" + this.npcId + "'", function (err, result, fields) {});
+        worldMap[this.worldX + '-' + this.worldY].npcs[this.npcId] = this;
+        for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
+            var index = worldMap[this.worldX + '-' + this.worldY].players[i].playerId;
+            var visiblePlayer = players[index];
+            visiblePlayer.remote.placeNPC(this);  
+        }
     }
 }
 

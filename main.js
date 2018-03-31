@@ -418,6 +418,10 @@ function initMultiPlayer(game, globals){
         globals.mapManager.spawnItem(item);
     }
 
+    client.exports.placeNPC = function(npc){
+        globals.mapManager.spawnNPC(npc)
+    }
+
     //Recieve Message to add to chatBox
     client.exports.recieveBroadcast = function(message, color) {
         var textStyle = {font: "14px Arial", fill: color};
