@@ -644,6 +644,7 @@ class NPC{
 
 
 var players = {};
+var npcs = {};
 var worldMap = {};
 var worldItems = [];
 var itemData = {};
@@ -692,7 +693,16 @@ server.listen(process.env.PORT || 55555, function () {
 
             worldItems = result;
             console.log("World Items loaded");
-            loadMapData();
+
+            con.query("SELECT * FROM npcs", function (err, result, fields){
+                if (err) throw err;
+    
+                for(var npc of result){
+                    npcs[npc.npcId] = new NPC(npc);
+                }
+                console.log("NPC Data loaded");
+                loadMapData();
+            });
         });
 
         con.query("SELECT * FROM itemData", function (err, result, fields){
