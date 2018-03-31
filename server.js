@@ -993,7 +993,7 @@ loadMapData = function(){
                             locationIdMaxIndex = item.locationId; //Need the highest index so that we can properly create new worldItems for when players drop items
                         } */
                     }
-                })
+                }
                 filesRead++;
                 
                 if(filesRead != 0 && filesRead == totalFiles){
