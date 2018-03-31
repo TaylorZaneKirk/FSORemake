@@ -628,7 +628,16 @@ class NPC{
             {itemId: data.slot3, dropRate: data.slot3DropRate}, {itemId: data.slot4, dropRate: data.slot4DropRate},
             {itemId: data.slot5, dropRate: data.slot5DropRate}, {itemId: data.slot6, dropRate: data.slot6DropRate}
         ];
+
+        this.spells = {};
         
+        for(var i = 0; i < 5; i++){
+            var spellSlot = parseInt(i) + 1;
+            if(data['spell' + spellSlot] != 0){
+                var thisSpellId = data['spell' + spellSlot];
+                this.spells[thisSpellId] = spellData[thisSpellId];
+            }
+        }
     }
 }
 

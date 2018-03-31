@@ -285,6 +285,7 @@ var newPlayerState = {
         updateLuckBar(1);
 
         chosenGender = 'm';
+        chosenClass = 'warrior';
 
         playerModel = game.add.sprite(game.world.centerX * 1.07, game.world.centerY, 'defaultBody');
         playerHead = game.add.sprite(0, 0, 'maleHead' + chosenHead);
