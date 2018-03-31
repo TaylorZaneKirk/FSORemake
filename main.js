@@ -439,6 +439,11 @@ function initMultiPlayer(game, globals){
                 delete globals.playerList[i]
             }
 
+            for(var i in globals.npcList){
+                globals.npcList[i].npcObject.npcSprite.kill();
+                delete globals.npcList[i]
+            }
+
             for(var i in globals.items){
                 globals.items[i].kill();
                 delete globals.items[i]

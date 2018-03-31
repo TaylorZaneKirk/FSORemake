@@ -132,6 +132,8 @@ class Item{
         this.equipSlot = data.equipSlot;
         this.effectLength = data.effectLength;
         this.itemType = data.itemType;
+        this.levelReqStat = data.levelReqStat;
+        this.levelReqSkill = data.levelReqSkill;
     }
 }
 
@@ -252,6 +254,17 @@ class PlayerState
             {itemId: data.slot9, amount: data.slot9Amount}, {itemId: data.slot10, amount: data.slot10Amount}, {itemId: data.slot11, amount: data.slot11Amount}, {itemId: data.slot12, amount: data.slot12Amount},
             {itemId: data.slot13, amount: data.slot13Amount}, {itemId: data.slot14, amount: data.slot14Amount}, {itemId: data.slot15, amount: data.slot15Amount}, {itemId: data.slot16, amount: data.slot16Amount},
         ];
+
+        this.spells = {};
+
+        //How many spells are in the game?
+        for(var i = 0; i < 1; i++){
+            var spellSlot = parseInt(i) + 1;
+            if(data['spell' + spellSlot] != 0){
+                var thisSpellId = data['spell' + spellSlot];
+                this.spells[thisSpellId] = spellData[thisSpellId];
+            }
+        }
 
         this.equipHead = data.equipHead;
         this.equipTorso = data.equipTorso;

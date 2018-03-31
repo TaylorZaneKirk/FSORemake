@@ -52,7 +52,13 @@ var MapManager = class MapManager {
                 this.game.global.items[this.mapData.items[i].locationId] = item;
                 this.game.global.itemLayer.add(item);
             }
-            
+        }
+
+        for(var i in this.mapData.npcs){
+            if(this.mapData.npcs[i].isSpawned){
+                var thisNPC = this.mapData.npcs[i];
+                game.global.npcList[thisNPC.npcId] = {npc: thisNPC, npcObject: new NPCObject(thisNPC.npcId, game)};
+            }
         }
     }
 
