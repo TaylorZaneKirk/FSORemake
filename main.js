@@ -460,7 +460,6 @@ function initMultiPlayer(game, globals){
             }
         }
         else if(state.playerId == globals.myId && globals.localPlayerObject == null && game.global.ready == false){
-            console.log(state.mapData);
             //Just logged in, create sprites and map
             globals.mapManager.setMapData(state.mapData);
             //Local player
@@ -742,7 +741,7 @@ managePageButtons = function(index){
     inventoryPage.alpha = 0;
     skillsPage.alpha = 0;
     skillsPage.maskGraphics.input.useHandCursor = false;
-    game.global.localPlayerObject.playerImage.alpha = 0;
+    game.global.localPlayerObject.playerImage.torso.alpha = 0;
     if(index == 0){ statsPage.alpha = 1; }
     else if(index == 1){ inventoryPage.alpha = 1; game.global.localPlayerObject.playerImage.torso.alpha = 1; }
     else if(index == 2){ skillsPage.alpha = 1; skillsPage.maskGraphics.input.useHandCursor = true; }
