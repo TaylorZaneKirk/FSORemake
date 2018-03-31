@@ -700,7 +700,7 @@ server.listen(process.env.PORT || 55555, function () {
                 for(var npc of result){
                     npcs[npc.npcId] = new NPC(npc);
                 }
-                console.log("NPC Data loaded");
+                console.log("NPCs loaded");
                 loadMapData();
             });
         });
@@ -985,6 +985,15 @@ loadMapData = function(){
                         }
                     }
                 });
+
+                npcs.forEach((npc) => {
+                    if(mapName == (npc.worldX + "-" + npc.worldY)){
+                        worldMap[mapName].npcs[npc.npcId] = npc;
+                        /* if (locationIdMaxIndex < item.locationId){
+                            locationIdMaxIndex = item.locationId; //Need the highest index so that we can properly create new worldItems for when players drop items
+                        } */
+                    }
+                })
                 filesRead++;
                 
                 if(filesRead != 0 && filesRead == totalFiles){
