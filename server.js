@@ -26,6 +26,23 @@ var con = mysql.createConnection({
   database: "FSORemake"
 });
 
+class Spell{
+    constructor(data){
+        this.spellId = data.spellId;
+        this.spellName = data.spellName;
+        this.spellType = data.spellType;
+        this.spellAffinity = data.spellAffinity;
+        this.spellTarget = data.spellTarget;
+        this.spellPower = data.spellPower;
+        this.isBuff = data.isBuff;
+        this.effectLength = data.effectLength;
+        this.spellCost = data.spellCost;
+        this.spellSprite = data.spellSprite;
+        this.levelReqArcane = data.levelReqArcane;
+        this.levelReqAffinity = data.levelReqAffinity;
+    }
+}
+
 class WorldItem{
     constructor(data){
         this.locationId = data.locationId;
@@ -562,12 +579,66 @@ class PlayerState
     }
 };
 
+class NPC{
+    constructor(data){
+        this.npcId = data.npcId;
+        this.npcName = data.npcName;
+        this.worldX = data.worldX;
+        this.worldY = data.worldY;
+        this.pos = {x: data.localX, y: data.localY};
+        this.level = data.level;
+        this.class = data.class;
+        this.aggroRange = data.aggroRange;
+        this.isPassive = data.isPassive;
+        this.baseExp = data.baseExp;
+        this.respawnable = data.respawnable;
+        this.respawnTimer = data.respawnTimer;
+        this.faction = data.faction;
+        this.doesRoam = data.doesRoam;
+        this.npcAction = 'idle';
+        this.npcFacing = 'S';
+        this.target = null;
+        this.isHuman = data.isHuman;
+        this.maxHealth = data.maxHealth;
+        this.health = data.health;
+        this.maxFocus = data.maxFocus;
+        this.focus = data.focus;
+        this.maxStamina = data.maxStamina;
+        this.stamina = data.stamina;
+        this.strength = data.strength;
+        this.dexterity = data.dexterity;
+        this.endurance = data.endurance;
+        this.agility = data.agility;
+        this.arcane = data.arcane;
+        this.luck = data.luck;
+        this.physicalAttack = data.physicalAttack;
+        this.physicalDefense = data.physicalDefense;
+        this.physicalEvasion = data.physicalEvasion;
+        this.magicalAttack = data.magicalAttack;
+        this.magicalDefense = data.magicalDefense;
+        this.magicalEvasion = data.magicalEvasion;
+        this.gender = data.gender;
+        this.headType = data.headType;
+        this.equipHead = data.equipHead;
+        this.equipTorso = data.equipTorso;
+        this.equipRight = data.equipRight;
+        this.equipLeft = data.equipLeft;
+        this.inventory = [
+            {itemId: data.slot1, dropRate: data.slot1DropRate}, {itemId: data.slot2, dropRate: data.slot2DropRate},
+            {itemId: data.slot3, dropRate: data.slot3DropRate}, {itemId: data.slot4, dropRate: data.slot4DropRate},
+            {itemId: data.slot5, dropRate: data.slot5DropRate}, {itemId: data.slot6, dropRate: data.slot6DropRate}
+        ];
+        
+    }
+}
+
 
 
 var players = {};
 var worldMap = {};
 var worldItems = [];
 var itemData = {};
+var spellData = {};
 var locationIdMaxIndex = 0;
 
 //detect client connection
@@ -622,6 +693,15 @@ server.listen(process.env.PORT || 55555, function () {
                 itemData[item.itemId] = new Item(item);
             }
             console.log("Item Data loaded");
+        });
+
+        con.query("SELECT * FROM spellData", function (err, result, fields){
+            if (err) throw err;
+
+            for(var spell of result){
+                spellData[spell.spellId] = new Spell(spell);
+            }
+            console.log("Spell Data loaded");
         });
     });
 });
