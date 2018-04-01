@@ -1056,7 +1056,7 @@ loadMapData = function(){
                 if(filesRead != 0 && filesRead == totalFiles){
                     console.log("World Map Generated");
 
-                    manageNPCInterval = setInterval(manageActiveNPCs, 500)
+                    manageNPCInterval = setInterval(() => manageActiveNPCs(), 500)
                 }
             });
         });
@@ -1064,10 +1064,11 @@ loadMapData = function(){
 }
 
 manageActiveNPCs = function (){
+    console.log("managing npcs...")
     if(!activeNPCs.length){
         return;
     }
-    console.log("managing npcs...")
+    
     for(var i in activeNPCs){
         var thisNPC = activeNPCs[i];
         thisNPC.decideAction();
