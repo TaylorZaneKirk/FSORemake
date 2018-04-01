@@ -407,6 +407,12 @@ var mainState = {
                 if(((thisNPC.npc.pos.x + 1) * 32) != thisNPC.npcObject.npcSprite.x || ((thisNPC.npc.pos.y + 1) * 32) != thisNPC.npcObject.npcSprite.y){
                     thisNPC.npcObject.moveNPC(thisNPC.npc.npcId); //update npcs
                 }
+                thisNPC.npcObject.npcSprite.play(thisNPC.npc.npcAction + '-' + thisNPC.npc.npcFacing);
+                if(thisNPC.npc.isHuman){
+                    thisNPC.npcObject.npcSprite.children[0].frame = thisNPC.npcObject.npcSprite.frame;
+                    thisNPC.npcObject.npcSprite.children[1].frame = thisNPC.npcObject.npcSprite.frame;
+                    thisNPC.npcObject.npcSprite.children[2].frame = thisNPC.npcObject.npcSprite.frame;
+                }
             }
         }
     },
