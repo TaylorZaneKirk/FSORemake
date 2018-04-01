@@ -282,9 +282,11 @@ class PlayerState
 
         for(var i in this.mapData.npcs){
             var thisNPC = this.mapData.npcs[i];
-            thisNPC.isActive = true;
-            activeNPCs[thisNPC.npcId] = thisNPC;
-            console.log(thisNPC.npcName + " is now active");
+            if(thisNPC.isActive == false){
+                thisNPC.isActive = true;
+                activeNPCs[thisNPC.npcId] = thisNPC;
+                console.log(thisNPC.npcName + " is now active");
+            }
         }
     }
     /* 
@@ -318,12 +320,14 @@ class PlayerState
         this.worldX = worldXNew;
         this.worldY = worldYNew;
         con.query("UPDATE users SET worldX='" + this.worldX + "', worldY='" + this.worldY + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
-        
+
         for(var i in this.mapData.npcs){
             var thisNPC = this.mapData.npcs[i];
-            thisNPC.isActive = true;
-            activeNPCs[thisNPC.npcId] = thisNPC;
-            console.log(thisNPC.npcName + " is now active");
+            if(thisNPC.isActive == false){
+                thisNPC.isActive = true;
+                activeNPCs[thisNPC.npcId] = thisNPC;
+                console.log(thisNPC.npcName + " is now active");
+            }
         }
     }
 
@@ -705,10 +709,63 @@ class NPC{
             console.log(this.npcName + " is now inactive");
             return;
         }
+        else{
+            //just make them wander around for now
+            this.npcAction = 'idle';
+            var directionToMove = Math.floor(Math.random() * Math.floor(4));
+            if(directionToMove == 0){ //East
+                var nextX = this.pos.x + 1;
+                var nextY = this.pos.y;
+                if(nextX < 16){
+                    var nextTile = worldMap[this.worldX + "-" + this.worldY].mapData[nextY][nextX];
+                    if(nextTile == 0){ //acceptableTiles
+                        this.pos.x = nextX;
+                        this.pos.y = nextY;
+                        this.npcAction = 'walk'
+                    }
+                }  
+            }
+            if(directionToMove == 1){ //West
+                var nextX = this.pos.x - 1;
+                var nextY = this.pos.y;
+                if(nextX > 0){
+                    var nextTile = worldMap[this.worldX + "-" + this.worldY].mapData[nextY][nextX];
+                    if(nextTile == 0){ //acceptableTiles
+                        this.pos.x = nextX;
+                        this.pos.y = nextY;
+                        this.npcAction = 'walk'
+                    }
+                }  
+            }
+            if(directionToMove == 2){ //North
+                var nextX = this.pos.x;
+                var nextY = this.pos.y - 1;
+                if(nextY > 0){
+                    var nextTile = worldMap[this.worldX + "-" + this.worldY].mapData[nextY][nextX];
+                    if(nextTile == 0){ //acceptableTiles
+                        this.pos.x = nextX;
+                        this.pos.y = nextY;
+                        this.npcAction = 'walk'
+                    }
+                }  
+            }
+            if(directionToMove == 3){ //South
+                var nextX = this.pos.x;
+                var nextY = this.pos.y + 1;
+                if(nextY < 16){
+                    var nextTile = worldMap[this.worldX + "-" + this.worldY].mapData[nextY][nextX];
+                    if(nextTile == 0){ //acceptableTiles
+                        this.pos.x = nextX;
+                        this.pos.y = nextY;
+                        this.npcAction = 'walk'
+                    }
+                }  
+            }
+        }
     }
 }
 
-
+ 
 
 var players = {};
 var npcs = {};
@@ -1069,7 +1126,7 @@ loadMapData = function(){
                 if(filesRead != 0 && filesRead == totalFiles){
                     console.log("World Map Generated");
 
-                    manageNPCInterval = setInterval(() => manageActiveNPCs(), 500)
+                    manageNPCInterval = setInterval(() => manageActiveNPCs(), 1000)
                 }
             });
         });
