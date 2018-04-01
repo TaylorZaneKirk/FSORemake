@@ -685,11 +685,10 @@ class NPC{
     }
 
     decideAction(){
-        console.log(worldMap[this.worldX + '-' + this.worldY].players)
         var shouldStayActive = false;
         for(var i in worldMap[this.worldX + '-' + this.worldY].players){
-            if(this.shouldStayActive == false){
-                this.shouldStayActive = true;
+            if(shouldStayActive == false){
+                shouldStayActive = true;
             }
         }
 
