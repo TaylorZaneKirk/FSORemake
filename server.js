@@ -1064,11 +1064,6 @@ loadMapData = function(){
 }
 
 manageActiveNPCs = function (){
-    console.log(activeNPCs.length);
-    if(!activeNPCs.length){
-        return;
-    }
-    console.log("managing npcs...")
     for(var i in activeNPCs){
         var thisNPC = activeNPCs[i];
         thisNPC.decideAction();
