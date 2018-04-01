@@ -721,7 +721,8 @@ class NPC{
                     if(nextTile == 0){ //acceptableTiles
                         this.pos.x = nextX;
                         this.pos.y = nextY;
-                        this.npcAction = 'walk'
+                        this.npcAction = 'walk';
+                        console.log(this.npcName + " moved");
                     }
                 }  
             }
@@ -733,7 +734,8 @@ class NPC{
                     if(nextTile == 0){ //acceptableTiles
                         this.pos.x = nextX;
                         this.pos.y = nextY;
-                        this.npcAction = 'walk'
+                        this.npcAction = 'walk';
+                        console.log(this.npcName + " moved");
                     }
                 }  
             }
@@ -745,7 +747,8 @@ class NPC{
                     if(nextTile == 0){ //acceptableTiles
                         this.pos.x = nextX;
                         this.pos.y = nextY;
-                        this.npcAction = 'walk'
+                        this.npcAction = 'walk';
+                        console.log(this.npcName + " moved");
                     }
                 }  
             }
@@ -757,7 +760,8 @@ class NPC{
                     if(nextTile == 0){ //acceptableTiles
                         this.pos.x = nextX;
                         this.pos.y = nextY;
-                        this.npcAction = 'walk'
+                        this.npcAction = 'walk';
+                        console.log(this.npcName + " moved");
                     }
                 }  
             }
