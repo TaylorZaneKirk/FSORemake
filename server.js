@@ -693,13 +693,7 @@ class NPC{
 
     becomeActive(){
         this.isActive = true;
-        //worldMap[this.worldX + '-' + this.worldY].npcs[this.npcId].isActive = true;
-        this.actionInterval = setInterval(decideAction, 1000);
-        /* for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
-            var index = worldMap[this.worldX + '-' + this.worldY].players[i].playerId;
-            var visiblePlayer = players[index];
-            visiblePlayer.mapData.npcs[this.npcId].isActive = true;
-        } */
+        startNPCIntervals();
         console.log(this.npcName + " is now active");
     }
 
@@ -1084,6 +1078,14 @@ loadMapData = function(){
             });
         });
     });
+}
+
+startNPCIntervals = function(id){
+    var thisNPC = npcs[id];
+    if(thisNPC.isActive){
+        thisNPC.actionInterval = setInterval(thisNPC.decideAction, 1000);
+    }
+    
 }
 
 Object.filter = (obj, predicate) => 
