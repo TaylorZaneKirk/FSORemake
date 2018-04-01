@@ -318,6 +318,13 @@ class PlayerState
         this.worldX = worldXNew;
         this.worldY = worldYNew;
         con.query("UPDATE users SET worldX='" + this.worldX + "', worldY='" + this.worldY + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
+        
+        for(var i in this.mapData.npcs){
+            var thisNPC = this.mapData.npcs[i];
+            thisNPC.isActive = true;
+            activeNPCs[thisNPC.npcId] = thisNPC;
+            console.log(thisNPC.npcName + " is now active");
+        }
     }
 
     takeStep(x, y){
