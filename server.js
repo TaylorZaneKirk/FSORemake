@@ -687,7 +687,9 @@ class NPC{
             this.isActive = false;
             delete activeNPCs[this.npcId];
             console.log(this.npcName + " is now inactive");
+            return;
         }
+        console.log(worldMap[this.worldX + '-' + this.worldY].players)
     }
 }
 
