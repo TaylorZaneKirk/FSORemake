@@ -727,7 +727,6 @@ class NPC{
                             this.pos.y = nextY;
                             //this.npcAction = 'walk';
                             this.npcFacing = 'E';
-                            console.log(this.npcName + " moved east");
                             visiblePlayers.forEach((player) => {
                                 player.mapData.npcs[this.npcId] = this;
                             });
@@ -744,7 +743,6 @@ class NPC{
                             this.pos.y = nextY;
                             //this.npcAction = 'walk';
                             this.npcFacing = 'W';
-                            console.log(this.npcName + " moved west");
                             visiblePlayers.forEach((player) => {
                                 player.mapData.npcs[this.npcId] = this;
                             });
@@ -761,7 +759,6 @@ class NPC{
                             this.pos.y = nextY;
                             //this.npcAction = 'walk';
                             this.npcFacing = 'N';
-                            console.log(this.npcName + " moved north");
                             visiblePlayers.forEach((player) => {
                                 player.mapData.npcs[this.npcId] = this;
                             });
@@ -778,7 +775,6 @@ class NPC{
                             this.pos.y = nextY;
                             //this.npcAction = 'walk';
                             this.npcFacing = 'S';
-                            console.log(this.npcName + " moved south");
                             visiblePlayers.forEach((player) => {
                                 player.mapData.npcs[this.npcId] = this;
                             });
