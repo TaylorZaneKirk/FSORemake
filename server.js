@@ -693,7 +693,7 @@ class NPC{
 
     becomeActive(){
         this.isActive = true;
-        startNPCIntervals();
+        startNPCIntervals(this.npcId);
         console.log(this.npcName + " is now active");
     }
 
