@@ -693,8 +693,8 @@ class NPC{
 
     becomeActive(){
         this.isActive = true;
-        worldMap[this.worldX + '-' + this.worldY].npcs[this.npcId].isActive = true;
-        this.actionInterval = setInterval(() => this.decideAction(), 1000);
+        //worldMap[this.worldX + '-' + this.worldY].npcs[this.npcId].isActive = true;
+        //this.actionInterval = setInterval(() => this.decideAction(), 1000);
         /* for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
             var index = worldMap[this.worldX + '-' + this.worldY].players[i].playerId;
             var visiblePlayer = players[index];
