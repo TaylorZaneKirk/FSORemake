@@ -279,6 +279,14 @@ class PlayerState
         this.readyToUpdate = true;
         this.playersVisible = {};
         this.mapData = worldMap[this.worldX + '-' + this.worldY];
+
+        //Check mapData's npcs, if any are found set them to be Active
+        for(var i in this.mapData.npcs){
+            var thisNPC = this.mapData.npcs[i];
+            if(thisNPC.isSpawned){
+                thisNPC.becomeActive();
+            }
+        }
     }
     /* 
     copy(other)
@@ -311,6 +319,13 @@ class PlayerState
         this.worldX = worldXNew;
         this.worldY = worldYNew;
         con.query("UPDATE users SET worldX='" + this.worldX + "', worldY='" + this.worldY + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
+
+        for(var i in this.mapData.npcs){
+            var thisNPC = this.mapData.npcs[i];
+            if(thisNPC.isSpawned){
+                thisNPC.becomeActive();
+            }
+        }
     }
 
     takeStep(x, y){
@@ -644,6 +659,9 @@ class NPC{
         ];
 
         this.spells = {};
+
+        this.isActive = false; //Set to true when a player is on the same map
+        this.actionInterval = null;
         
         for(var i = 0; i < 5; i++){
             var spellSlot = parseInt(i) + 1;
@@ -665,7 +683,41 @@ class NPC{
         for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
             var index = worldMap[this.worldX + '-' + this.worldY].players[i].playerId;
             var visiblePlayer = players[index];
-            visiblePlayer.remote.placeNPC(this);  
+
+            if(!this.isActive){
+                this.becomeActive();
+            }
+            visiblePlayer.remote.placeNPC(this);
+        }
+    }
+
+    becomeActive(){
+        this.isActive = true;
+        worldMap[this.worldX + '-' + this.worldY].npcs[this.npcId].isActive = true;
+        this.actionInterval = setInterval(() => this.decideAction(), 1000);
+        for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
+            var index = worldMap[this.worldX + '-' + this.worldY].players[i].playerId;
+            var visiblePlayer = players[index];
+            visiblePlayer.mapData.npcs[this.npcId].isActive = true;
+        }
+        console.log(this.npcName + " is now active");
+    }
+
+    becomeInactive(){
+        this.isActive = false;
+        worldMap[this.worldX + '-' + this.worldY].npcs[this.npcId].isActive = false;
+        clearInterval(this.actionInterval);
+        for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
+            var index = worldMap[this.worldX + '-' + this.worldY].players[i].playerId;
+            var visiblePlayer = players[index];
+            visiblePlayer.mapData.npcs[this.npcId].isActive = false;
+        }
+        console.log(this.npcName + " is now inactive");
+    }
+
+    decideAction(){
+        if(!worldMap[this.worldX + '-' + this.worldY].players.length){
+            this.becomeInactive();
         }
     }
 }

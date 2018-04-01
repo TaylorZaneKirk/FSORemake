@@ -127,7 +127,7 @@ var NPCObject = function(idRef, gameRef){
         }
 
         npcSprite.inputEnabled = true;
-        npcName = game.add.text(15, -10, npcState.npcName, { font: "14px Ariel", fill: '#ffffff'});
+        npcName = game.add.text(15, -10, '[NPC] ' + npcState.npcName + ' Lv.' + npcState.level, { font: "14px Ariel", fill: '#ffffff'});
         npcName.alpha = 0;
         npcSprite.events.onInputOver.add(showNPCName, this);
         npcSprite.events.onInputOut.add(hideNPCName, this);
