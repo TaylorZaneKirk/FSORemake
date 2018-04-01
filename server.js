@@ -697,7 +697,9 @@ class NPC{
 
     decideAction(){
         var shouldStayActive = false;
+        var visiblePlayers = [];
         for(var i in worldMap[this.worldX + '-' + this.worldY].players){
+            visiblePlayers.push(worldMap[this.worldX + '-' + this.worldY].players[i]);
             if(shouldStayActive == false){
                 shouldStayActive = true;
             }
@@ -722,7 +724,10 @@ class NPC{
                         this.pos.x = nextX;
                         this.pos.y = nextY;
                         this.npcAction = 'walk';
-                        console.log(this.npcName + " moved");
+                        console.log(this.npcName + " moved east");
+                        visiblePlayers.forEach((player) => {
+                            player.mapData.npcs[this.npcId].pos = this.pos;
+                        });
                     }
                 }  
             }
@@ -735,7 +740,10 @@ class NPC{
                         this.pos.x = nextX;
                         this.pos.y = nextY;
                         this.npcAction = 'walk';
-                        console.log(this.npcName + " moved");
+                        console.log(this.npcName + " moved west");
+                        visiblePlayers.forEach((player) => {
+                            player.mapData.npcs[this.npcId].pos = this.pos;
+                        });
                     }
                 }  
             }
@@ -748,7 +756,10 @@ class NPC{
                         this.pos.x = nextX;
                         this.pos.y = nextY;
                         this.npcAction = 'walk';
-                        console.log(this.npcName + " moved");
+                        console.log(this.npcName + " moved north");
+                        visiblePlayers.forEach((player) => {
+                            player.mapData.npcs[this.npcId].pos = this.pos;
+                        });
                     }
                 }  
             }
@@ -761,7 +772,10 @@ class NPC{
                         this.pos.x = nextX;
                         this.pos.y = nextY;
                         this.npcAction = 'walk';
-                        console.log(this.npcName + " moved");
+                        console.log(this.npcName + " moved south");
+                        visiblePlayers.forEach((player) => {
+                            player.mapData.npcs[this.npcId].pos = this.pos;
+                        });
                     }
                 }  
             }
@@ -1130,7 +1144,7 @@ loadMapData = function(){
                 if(filesRead != 0 && filesRead == totalFiles){
                     console.log("World Map Generated");
 
-                    manageNPCInterval = setInterval(() => manageActiveNPCs(), 1000)
+                    manageNPCInterval = setInterval(() => manageActiveNPCs(), 1500)
                 }
             });
         });

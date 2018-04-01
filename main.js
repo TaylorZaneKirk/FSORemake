@@ -543,6 +543,9 @@ function initMultiPlayer(game, globals){
             statusBars.fp.focusBarText.setText( state.focus );
         }
         else{
+
+            console.log(state);
+            
             //just update references
             var equipment = {
                 head: state.equipHead,
