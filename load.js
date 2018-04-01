@@ -66,6 +66,8 @@ var loadState = {
         game.load.image('NOTHING', 'assets/items/NOTHING.png');
         game.load.image('leatherCap', 'assets/items/LeatherCap.png');
         game.load.image('leatherArmor', 'assets/items/LeatherArmor.png');
+
+        game.load.spritesheet('slime', 'assets/monsters/slime.png', 32, 27, 16);
     },
 
     create: function(){

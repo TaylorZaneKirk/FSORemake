@@ -108,6 +108,23 @@ var NPCObject = function(idRef, gameRef){
             npcLeft.animations.add('idle-S', [13], 1, false);
             npcLeft.frame = npcSprite.frame;
         }
+        else{
+            npcSprite = game.add.sprite((npcState.pos.x+1)*32, (npcState.pos.y+1)*32, npcState.npcName);
+            npcSprite.anchor.setTo(0.1430,0.15);
+            npcSprite.animations.add('walk-E', [0,1,2], 6, true);
+            npcSprite.animations.add('walk-W', [4,5,6], 6, true);
+            npcSprite.animations.add('walk-N', [8,9,10], 6, true);
+            npcSprite.animations.add('walk-S', [12,13,14], 6, true);
+            npcSprite.animations.add('attack-E', [1,3,1], 3, false);
+            npcSprite.animations.add('attack-W', [5,7,5], 3, false);
+            npcSprite.animations.add('attack-N', [9,11,9], 3, false);
+            npcSprite.animations.add('attack-S', [13,15,13], 3, false);
+            npcSprite.animations.add('idle-E', [1], 1, false);
+            npcSprite.animations.add('idle-W', [5], 1, false);
+            npcSprite.animations.add('idle-N', [9], 1, false);
+            npcSprite.animations.add('idle-S', [13], 1, false);
+            npcSprite.play('idle-' + npcState.npcFacing);
+        }
 
         npcSprite.inputEnabled = true;
         npcName = game.add.text(15, -10, npcState.npcName, { font: "14px Ariel", fill: '#ffffff'});
@@ -129,6 +146,50 @@ var NPCObject = function(idRef, gameRef){
         npcName.alpha = 0;
     }
 
+    //Function to handle moving the sprites, if the tween
+    //  is already running simply return it so that it can
+    //  complete. Otherwise, replace the old tween data with new tween
+    moveSprite = function(tween, pos, sprite){
+        if(tween != undefined && !tween.isRunning){
+            tween = game.add.tween(sprite).to({x: ((pos.x+1)) * 32, y: (pos.y+1) * 32}, 1000, null, true);
+        }
+        return tween;
+    }
+
+    moveNPC = function(id){
+        //Get references
+        var thisNPC = game.global.npcList[id].npc;
+        var thisSprite = game.global.npcList[id].npcObject.npcSprite;
+        var thisTween = game.global.npcList[id].npcObject.npcTween;
+
+        if(thisNPC.npcAction == 'walk'){
+            //server told us the player is moving
+            thisTween = moveSprite(thisTween, thisNPC.pos, thisSprite);
+        }
+        else if(((thisNPC.pos.x+1) * 32) != Math.ceil(thisSprite.x) || ((thisNPC.pos.y+1) * 32) != Math.ceil(thisSprite.y)){
+            //Server says the player is idle, put their coordinates don't match ours,
+            //  so we'll "infer" the movement locally
+            thisNPC.npcAction = "walk";
+            thisTween = moveSprite(thisTween, thisNPC.pos, thisSprite);
+        }
+
+        //Set references
+        game.global.npcList[id].npcObject.npcSprite = thisSprite;
+        game.global.npcList[id].npcObject.npcTween = thisTween;
+        thisSprite.play(thisNPC.npcAction + '-' + thisNPC.npcFacing);
+
+        if(thisNPC.isHuman){
+            var thisHead = thisSprite.children[0];
+            var thisRight = thisSprite.children[1];
+            var thisLeft = thisSprite.children[2];
+
+            //otherSprite.children[0].frame = otherSprite.frame;
+            thisHead.frame = thisSprite.frame;
+            thisRight.frame = thisSprite.frame;
+            thisLeft.frame = thisSprite.frame;
+        }
+    }
+
     init(idRef, gameRef);
     
     return {
@@ -137,5 +198,6 @@ var NPCObject = function(idRef, gameRef){
         npcState: npcState,
         npcSprite: npcSprite,
         npcTween: npcTween,
+        moveNPC: moveNPC
     };
 }
