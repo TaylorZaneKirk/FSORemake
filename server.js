@@ -685,13 +685,19 @@ class NPC{
     }
 
     decideAction(){
-        if(!worldMap[this.worldX + '-' + this.worldY].players.length){
+        var shouldStayActive = false;
+        for(var i in worldMap[this.worldX + '-' + this.worldY].players){
+            if(this.shouldStayActive == false){
+                this.shouldStayActive = true;
+            }
+        }
+
+        if(!shouldStayActive){
             this.isActive = false;
             delete activeNPCs[this.npcId];
             console.log(this.npcName + " is now inactive");
             return;
         }
-        console.log(worldMap[this.worldX + '-' + this.worldY].players)
     }
 }
 
