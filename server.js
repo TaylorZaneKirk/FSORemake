@@ -665,10 +665,6 @@ class NPC{
         if(this.respawnable && !this.isSpawned){
             setTimeout(() => this.respawn(), this.respawnTimer);
         }
-
-        if(this.isSpawned){
-            setTimeout(() => this.decideAction(), this.respawnTimer);
-        }
     }
 
     respawn(){
@@ -678,7 +674,13 @@ class NPC{
         for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
             var index = worldMap[this.worldX + '-' + this.worldY].players[i].playerId;
             var visiblePlayer = players[index];
-            visiblePlayer.remote.placeNPC(this);  
+
+            if(this.isActive == false){
+                this.isActive = true;
+                activeNPCs[thisNPC.npcId] = thisNPC;
+                console.log(thisNPC.npcName + " is now active");
+            }
+            visiblePlayer.remote.placeNPC(this); 
         }
     }
 
@@ -1064,6 +1066,7 @@ manageActiveNPCs = function (){
     if(!activeNPCs.length){
         return;
     }
+    console.log("managing npcs...")
     for(var i in activeNPCs){
         var thisNPC = activeNPCs[i];
         thisNPC.decideAction();
