@@ -284,7 +284,7 @@ class PlayerState
         for(var i in this.mapData.npcs){
             var thisNPC = this.mapData.npcs[i];
             if(thisNPC.isSpawned){
-                thisNPC.becomeActive();
+                //thisNPC.becomeActive();
             }
         }
     }
