@@ -400,6 +400,15 @@ var mainState = {
                 thisPlayer.localPlayerObject.playerSprite.children[2].frame = thisPlayer.localPlayerObject.playerSprite.frame;
             }
         }
+
+        for(var i in game.global.npcList){
+            var thisNPC = game.global.npcList[i];
+            if(thisNPC.npc != undefined && thisNPC.npcObject != undefined){
+                if(((thisNPC.npc.pos.x + 1) * 32) != thisNPC.npcObject.npcSprite.x || ((thisNPC.npc.pos.y + 1) * 32) != thisNPC.npcObject.npcSprite.y){
+                    thisNPC.npcObject.moveNPC(thisNPC.npc.npcId); //update npcs
+                }
+            }
+        }
     },
 
     render: function(){
@@ -545,7 +554,7 @@ function initMultiPlayer(game, globals){
         else{
 
             console.log(state);
-            
+
             //just update references
             var equipment = {
                 head: state.equipHead,
@@ -639,6 +648,15 @@ function initMultiPlayer(game, globals){
                     globals.playerList[state.playersVisible[i].playerId].player = state.playersVisible[i];
                 }
 
+            }
+
+            for(var i in state.mapData.npcs){
+                if(globals.npcList[state.mapData.npcs[i].npcId] == undefined){
+                    placeNPC(state.mapData.npcs[i]);
+                }
+                else{
+                    globals.npcList[state.mapData.npcs[i].npcId].npc = state.mapData.npcs[i];
+                }
             }
         }
     }
