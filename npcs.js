@@ -110,7 +110,7 @@ var NPCObject = function(idRef, gameRef){
         }
         else{
             npcSprite = game.add.sprite((npcState.pos.x+1)*32, (npcState.pos.y+1)*32, npcState.npcName);
-            npcSprite.anchor.setTo(0.5);
+            //npcSprite.anchor.setTo(0.5);
             npcSprite.animations.add('walk-E', [0,1,2], 6, true);
             npcSprite.animations.add('walk-W', [4,5,6], 6, true);
             npcSprite.animations.add('walk-N', [8,9,10], 6, true);
