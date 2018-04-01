@@ -710,6 +710,7 @@ class NPC{
     }
 
     decideAction(){
+        console.log(this.worldX + '-' + this.worldY);
         if(!worldMap[this.worldX + '-' + this.worldY].players.length){
             this.becomeInactive();
         }
@@ -1083,7 +1084,7 @@ loadMapData = function(){
 startNPCIntervals = function(id){
     var thisNPC = npcs[id];
     if(thisNPC.isActive){
-        thisNPC.actionInterval = setInterval(thisNPC.decideAction, 1000);
+        thisNPC.actionInterval = setInterval(() => thisNPC.decideAction(), 1000);
     }
     
 }
