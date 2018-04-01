@@ -715,7 +715,7 @@ class NPC{
             var randomTimeout = Math.floor(Math.random() * Math.floor(1000));
             setTimeout(() => {
                 //just make them wander around for now
-                this.npcAction = 'idle';
+                //this.npcAction = 'idle';
                 var directionToMove = Math.floor(Math.random() * Math.floor(4));
                 if(directionToMove == 0){ //East
                     var nextX = this.pos.x + 1;
@@ -725,7 +725,7 @@ class NPC{
                         if(nextTile == 0){ //acceptableTiles
                             this.pos.x = nextX;
                             this.pos.y = nextY;
-                            this.npcAction = 'walk';
+                            //this.npcAction = 'walk';
                             this.npcFacing = 'E';
                             console.log(this.npcName + " moved east");
                             visiblePlayers.forEach((player) => {
@@ -742,7 +742,7 @@ class NPC{
                         if(nextTile == 0){ //acceptableTiles
                             this.pos.x = nextX;
                             this.pos.y = nextY;
-                            this.npcAction = 'walk';
+                            //this.npcAction = 'walk';
                             this.npcFacing = 'W';
                             console.log(this.npcName + " moved west");
                             visiblePlayers.forEach((player) => {
@@ -759,7 +759,7 @@ class NPC{
                         if(nextTile == 0){ //acceptableTiles
                             this.pos.x = nextX;
                             this.pos.y = nextY;
-                            this.npcAction = 'walk';
+                            //this.npcAction = 'walk';
                             this.npcFacing = 'N';
                             console.log(this.npcName + " moved north");
                             visiblePlayers.forEach((player) => {
@@ -776,7 +776,7 @@ class NPC{
                         if(nextTile == 0){ //acceptableTiles
                             this.pos.x = nextX;
                             this.pos.y = nextY;
-                            this.npcAction = 'walk';
+                            //this.npcAction = 'walk';
                             this.npcFacing = 'S';
                             console.log(this.npcName + " moved south");
                             visiblePlayers.forEach((player) => {
