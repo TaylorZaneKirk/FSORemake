@@ -700,6 +700,7 @@ class NPC{
 var players = {};
 var npcs = {};
 var activeNPCs = {};
+var manageNPCInterval = null;
 var worldMap = {};
 var worldItems = [];
 var itemData = {};
@@ -1055,7 +1056,7 @@ loadMapData = function(){
                 if(filesRead != 0 && filesRead == totalFiles){
                     console.log("World Map Generated");
 
-                    setInterval(manageActiveNPCs, 500)
+                    manageNPCInterval = setInterval(manageActiveNPCs, 500)
                 }
             });
         });
