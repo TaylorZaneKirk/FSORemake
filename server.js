@@ -284,7 +284,7 @@ class PlayerState
         for(var i in this.mapData.npcs){
             var thisNPC = this.mapData.npcs[i];
             if(thisNPC.isSpawned){
-                //thisNPC.becomeActive();
+                thisNPC.becomeActive();
             }
         }
     }
@@ -695,11 +695,11 @@ class NPC{
         this.isActive = true;
         worldMap[this.worldX + '-' + this.worldY].npcs[this.npcId].isActive = true;
         this.actionInterval = setInterval(() => this.decideAction(), 1000);
-        for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
+        /* for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
             var index = worldMap[this.worldX + '-' + this.worldY].players[i].playerId;
             var visiblePlayer = players[index];
             visiblePlayer.mapData.npcs[this.npcId].isActive = true;
-        }
+        } */
         console.log(this.npcName + " is now active");
     }
 
