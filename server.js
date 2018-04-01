@@ -1064,6 +1064,7 @@ loadMapData = function(){
 }
 
 manageActiveNPCs = function (){
+    console.log(activeNPCs.length);
     if(!activeNPCs.length){
         return;
     }
