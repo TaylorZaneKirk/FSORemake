@@ -712,7 +712,7 @@ class NPC{
             return;
         }
         else{
-            var randomTimeout = Math.floor(Math.random() * Math.floor(100));
+            var randomTimeout = Math.floor(Math.random() * Math.floor(1000));
             setTimeout(() => {
                 //just make them wander around for now
                 this.npcAction = 'idle';
@@ -726,9 +726,10 @@ class NPC{
                             this.pos.x = nextX;
                             this.pos.y = nextY;
                             this.npcAction = 'walk';
+                            this.npcFacing = 'E';
                             console.log(this.npcName + " moved east");
                             visiblePlayers.forEach((player) => {
-                                player.mapData.npcs[this.npcId].pos = this.pos;
+                                player.mapData.npcs[this.npcId] = this;
                             });
                         }
                     }  
@@ -742,9 +743,10 @@ class NPC{
                             this.pos.x = nextX;
                             this.pos.y = nextY;
                             this.npcAction = 'walk';
+                            this.npcFacing = 'W';
                             console.log(this.npcName + " moved west");
                             visiblePlayers.forEach((player) => {
-                                player.mapData.npcs[this.npcId].pos = this.pos;
+                                player.mapData.npcs[this.npcId] = this;
                             });
                         }
                     }  
@@ -758,9 +760,10 @@ class NPC{
                             this.pos.x = nextX;
                             this.pos.y = nextY;
                             this.npcAction = 'walk';
+                            this.npcFacing = 'N';
                             console.log(this.npcName + " moved north");
                             visiblePlayers.forEach((player) => {
-                                player.mapData.npcs[this.npcId].pos = this.pos;
+                                player.mapData.npcs[this.npcId] = this;
                             });
                         }
                     }  
@@ -774,9 +777,10 @@ class NPC{
                             this.pos.x = nextX;
                             this.pos.y = nextY;
                             this.npcAction = 'walk';
+                            this.npcFacing = 'S';
                             console.log(this.npcName + " moved south");
                             visiblePlayers.forEach((player) => {
-                                player.mapData.npcs[this.npcId].pos = this.pos;
+                                player.mapData.npcs[this.npcId] = this;
                             });
                         }
                     }  
@@ -1148,7 +1152,7 @@ loadMapData = function(){
                 if(filesRead != 0 && filesRead == totalFiles){
                     console.log("World Map Generated");
 
-                    manageNPCInterval = setInterval(() => manageActiveNPCs(), 1500)
+                    manageNPCInterval = setInterval(() => manageActiveNPCs(), 3500)
                 }
             });
         });
