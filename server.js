@@ -752,7 +752,7 @@ class NPC{
             if(directionToMove == 3){ //South
                 var nextX = this.pos.x;
                 var nextY = this.pos.y + 1;
-                if(nextY < 16){
+                if(nextY < 11){
                     var nextTile = worldMap[this.worldX + "-" + this.worldY].mapData[nextY][nextX];
                     if(nextTile == 0){ //acceptableTiles
                         this.pos.x = nextX;
