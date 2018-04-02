@@ -713,10 +713,21 @@ class NPC{
         }
         else{
             var randomTimeout = Math.floor(Math.random() * Math.floor(1000));
+            
+            //If isPassive == false,
+                //if target == null, try to find a target within the AggroRange
+                    //if no target exists, just wander around
+
+                //if target != null
+                    //if next to the target: ATTACK
+                    //else try to find a path to the target, or cast spell
+                        //if no path exists, set target to null and just wander
+                        //else if path does exsit, move toward the target
+
             setTimeout(() => {
                 //just make them wander around for now
                 //this.npcAction = 'idle';
-                var directionToMove = Math.floor(Math.random() * Math.floor(4));
+                var directionToMove = Math.floor(Math.random() * Math.floor(5)); //if 4, we just idle on this cycle
                 if(directionToMove == 0){ //East
                     var nextX = this.pos.x + 1;
                     var nextY = this.pos.y;
