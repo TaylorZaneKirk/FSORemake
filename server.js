@@ -1079,7 +1079,7 @@ eurecaServer.updateClients = function (id) {
     players[id].state.readyToUpdate = true;
 
     newRemote.recieveStateFromServer(players[id].state);
-    console.log(players[id].state);
+    
     for(var i in players[id].state.playersVisible) {
         var index = players[id].state.playersVisible[i].playerId;
         var visiblePlayer = players[index];
