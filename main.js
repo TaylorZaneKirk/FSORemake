@@ -559,6 +559,8 @@ function initMultiPlayer(game, globals){
         }
         else{
 
+            console.log(state);
+
             //just update references
             var equipment = {
                 head: state.equipHead,
