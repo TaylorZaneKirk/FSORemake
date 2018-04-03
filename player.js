@@ -226,7 +226,9 @@ var PlayerObject = function(idRef, gameRef){
 
 
         if (((playerState.pos.x+1)*32 == Math.ceil(playerSprite.x) 
-            && (playerState.pos.y+1)*32 == Math.ceil(playerSprite.y))){
+            && (playerState.pos.y+1)*32 == Math.ceil(playerSprite.y))
+            && (playerState.playerAction == 'walk' || playerState.playerAction == 'attack')
+            && !playerTween.isRunning){
             //Player reached their intended location. Set them to idle and update server
             if((playerState.playerAction == 'walk' || playerState.playerAction == 'attack') && !playerTween.isRunning){
                 playerState.playerAction = 'idle';
