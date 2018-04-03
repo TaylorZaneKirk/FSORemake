@@ -326,7 +326,7 @@ var PlayerObject = function(idRef, gameRef){
             }
         }
         else if(playerState.playerAction == 'attack'){
-            if(playerState.playerTween != undefined && !playerState.playerTween.isRunning){
+            if(playerTween != undefined && !playerTween.isRunning){
                 playerState.playerAction = 'idle'
             }
         }
