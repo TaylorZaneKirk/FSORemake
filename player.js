@@ -124,10 +124,10 @@ var PlayerObject = function(idRef, gameRef){
             playerSprite.body.width * 0.2,
             playerSprite.body.height * 0.5
         );
-        playerSprite.animations.add('walk-E', [0,1,2], 6, true);
-        playerSprite.animations.add('walk-W', [4,5,6], 6, true);
-        playerSprite.animations.add('walk-N', [8,9,10], 6, true);
-        playerSprite.animations.add('walk-S', [12,13,14], 6, true);
+        playerSprite.animations.add('walk-E', [0,1,2], 6, false);
+        playerSprite.animations.add('walk-W', [4,5,6], 6, false);
+        playerSprite.animations.add('walk-N', [8,9,10], 6, false);
+        playerSprite.animations.add('walk-S', [12,13,14], 6, false);
         playerSprite.animations.add('attack-E', [1,3,1], 3, false);
         playerSprite.animations.add('attack-W', [5,7,5], 3, false);
         playerSprite.animations.add('attack-N', [9,11,9], 3, false);
@@ -138,10 +138,10 @@ var PlayerObject = function(idRef, gameRef){
         playerSprite.animations.add('idle-S', [13], 1, false);
         playerSprite.play('idle-' + playerState.playerFacing);
 
-        playerHead.animations.add('walk-E', [0,1,2], 6, true);
-        playerHead.animations.add('walk-W', [4,5,6], 6, true);
-        playerHead.animations.add('walk-N', [8,9,10], 6, true);
-        playerHead.animations.add('walk-S', [12,13,14], 6, true);
+        playerHead.animations.add('walk-E', [0,1,2], 6, false);
+        playerHead.animations.add('walk-W', [4,5,6], 6, false);
+        playerHead.animations.add('walk-N', [8,9,10], 6, false);
+        playerHead.animations.add('walk-S', [12,13,14], 6, false);
         playerHead.animations.add('attack-E', [1,3,1], 3, false);
         playerHead.animations.add('attack-W', [5,7,5], 3, false);
         playerHead.animations.add('attack-N', [9,11,9], 3, false);
@@ -152,10 +152,10 @@ var PlayerObject = function(idRef, gameRef){
         playerHead.animations.add('idle-S', [13], 1, false);
         playerHead.frame = playerSprite.frame;
 
-        playerRight.animations.add('walk-E', [0,1,2], 6, true);
-        playerRight.animations.add('walk-W', [4,5,6], 6, true);
-        playerRight.animations.add('walk-N', [8,9,10], 6, true);
-        playerRight.animations.add('walk-S', [12,13,14], 6, true);
+        playerRight.animations.add('walk-E', [0,1,2], 6, false);
+        playerRight.animations.add('walk-W', [4,5,6], 6, false);
+        playerRight.animations.add('walk-N', [8,9,10], 6, false);
+        playerRight.animations.add('walk-S', [12,13,14], 6, false);
         playerRight.animations.add('attack-E', [1,3,1], 3, false);
         playerRight.animations.add('attack-W', [5,7,5], 3, false);
         playerRight.animations.add('attack-N', [9,11,9], 3, false);
@@ -166,10 +166,10 @@ var PlayerObject = function(idRef, gameRef){
         playerRight.animations.add('idle-S', [13], 1, false);
         playerRight.frame = playerSprite.frame;
 
-        playerLeft.animations.add('walk-E', [0,1,2], 6, true);
-        playerLeft.animations.add('walk-W', [4,5,6], 6, true);
-        playerLeft.animations.add('walk-N', [8,9,10], 6, true);
-        playerLeft.animations.add('walk-S', [12,13,14], 6, true);
+        playerLeft.animations.add('walk-E', [0,1,2], 6, false);
+        playerLeft.animations.add('walk-W', [4,5,6], 6, false);
+        playerLeft.animations.add('walk-N', [8,9,10], 6, false);
+        playerLeft.animations.add('walk-S', [12,13,14], 6, false);
         playerLeft.animations.add('attack-E', [1,3,1], 3, false);
         playerLeft.animations.add('attack-W', [5,7,5], 3, false);
         playerLeft.animations.add('attack-N', [9,11,9], 3, false);
@@ -327,10 +327,9 @@ var PlayerObject = function(idRef, gameRef){
         }
         else if(playerState.playerAction == 'attack'){
             if(playerSprite.animations.currentAnim.isPlaying){
-                playerSprite.animations.stop();
                 /* setTimeout(() => {
                     playerState.playerAction = 'idle';
-                    
+                    playerSprite.animations.stop();
                     playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
                     playerHead.frame = playerSprite.frame;
                     playerRight.frame = playerSprite.frame;
