@@ -325,11 +325,6 @@ var PlayerObject = function(idRef, gameRef){
                 game.global.actionQueue.push({action: {type: 'pickup', payload: 'N/A'}, target: 'self'});
             }
         }
-        else if(playerState.playerAction == 'attack'){
-            if(playerTween != undefined && !playerTween.isRunning){
-                playerState.playerAction = 'idle'
-            }
-        }
         
         if((((playerState.pos.x+1) * 32) != Math.ceil(playerSprite.x) || ((playerState.pos.y+1) * 32) != Math.ceil(playerSprite.y)) ){
             //Player is moving and we're waiting for a response from server
@@ -340,6 +335,12 @@ var PlayerObject = function(idRef, gameRef){
         playerHead.frame = playerSprite.frame;
         playerRight.frame = playerSprite.frame;
         playerLeft.frame = playerSprite.frame;
+        
+        if(playerState.playerAction == 'attack'){
+            if(playerTween != undefined && !playerTween.isRunning){
+                playerState.playerAction = 'idle'
+            }
+        }
     }
 
     //Function to handle moving the sprites, if the tween
