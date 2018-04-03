@@ -329,6 +329,7 @@ var PlayerObject = function(idRef, gameRef){
             if(playerSprite.animations.currentAnim.isPlaying){
                 setTimeout(() => {
                     playerState.playerAction = 'idle';
+                    playerSprite.animations.stop();
                     playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
                     playerHead.frame = playerSprite.frame;
                     playerRight.frame = playerSprite.frame;
