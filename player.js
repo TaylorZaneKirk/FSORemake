@@ -335,9 +335,9 @@ var PlayerObject = function(idRef, gameRef){
         playerHead.frame = playerSprite.frame;
         playerRight.frame = playerSprite.frame;
         playerLeft.frame = playerSprite.frame;
-        
+
         if(playerState.playerAction == 'attack'){
-            if(playerTween != undefined && !playerTween.isRunning){
+            if(!playerSprite.animations.currentAnim.isPlaying){
                 playerState.playerAction = 'idle'
             }
         }
