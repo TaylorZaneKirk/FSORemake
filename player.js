@@ -327,8 +327,13 @@ var PlayerObject = function(idRef, gameRef){
         }
         else if(playerState.playerAction == 'attack'){
             if(playerSprite.animations.currentAnim.isPlaying){
-                setTimeout(() => {playerState.playerAction = 'idle'}, 500);
-                
+                setTimeout(() => {
+                    playerState.playerAction = 'idle';
+                    playerSprite.play(playerState.playerAction + '-' + playerState.playerFacing);
+                    playerHead.frame = playerSprite.frame;
+                    playerRight.frame = playerSprite.frame;
+                    playerLeft.frame = playerSprite.frame;
+                }, 500);
             }
         }
         
