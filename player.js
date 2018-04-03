@@ -327,7 +327,8 @@ var PlayerObject = function(idRef, gameRef){
         }
         else if(playerState.playerAction == 'attack'){
             if(playerSprite.animations.currentAnim.isPlaying){
-                playerState.playerAction = 'idle'
+                setTimeout(() => {playerState.playerAction = 'idle'}, 500);
+                
             }
         }
         
