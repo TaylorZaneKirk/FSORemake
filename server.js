@@ -19,6 +19,8 @@ eurecaServer.attach(server);
 
 var mysql = require('mysql');
 
+var aStar = require('a-star-search');
+
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -714,13 +716,58 @@ class NPC{
         else{
             var randomTimeout = Math.floor(Math.random() * Math.floor(1000));
             
+            var randomTimeout = Math.floor(Math.random() * Math.floor(1000));
+            var willWander = false;
+            var willAttack = false;
+            var willFollow = false;
+            var targetPos = {x: null, y: null};
+            var nextPos = {x: null, y: null};
+            
             //If isPassive == false,
-                //if target == null, try to find a target within the AggroRange
-                    //if no target exists, just wander around
+            if(!this.isPassive){
 
+                //if target == null, try to find a target within the AggroRange
+                if(this.target == null){
+                    var minX = this.pos.x - this.aggroRange;
+                    var minY = this.pos.y - this.aggroRange;
+                    var maxX = this.pos.x + this.aggroRange;
+                    var maxY = this.pos.y + this.aggroRange;
+
+                    for(var i in worldMap[this.worldX + '-' + this.worldY].players){
+                        var thisPlayer = worldMap[this.worldX + '-' + this.worldY].players[i];
+                        if(this.target == null && thisPlayer.pos.x >= minX && thisPlayer.pos.x <= maxX && thisPlayer.pos.y >= minY && thisPlayer.pos.x){
+                            //Player is within range
+                            this.target = thisPlayer.playerId;
+                            targetPos = thisPlayer.pos;
+                        }
+                    }
+
+                }
+            }
+
+
+            //if no target exists, just wander around
+            if(this.target == null){
+                willWander = true;
+            }
+            else{
                 //if target != null
+                if((this.pos.x + 1 == targetPos.x || this.pos.x - 1 == targetPos.x)
+                    && (this.pos.y + 1 == targetPos.y || this.pos.y - 1 == targetPos.x)){
                     //if next to the target: ATTACK
+                    willAttack = true;
+                }
+                else{
                     //else try to find a path to the target, or cast spell
+                    willFollow = true;
+                    var path = aStar.run({xAxis: this.pos.x, yAxis: this.pos.y}, {xAxis: targetPos.x, yAxis: targetPos.y}, worldGrid[this.worldX + '-' + this.worldY]);
+                    console.log(path);
+                }
+            }
+
+                
+                    
+                    
                         //if no path exists, set target to null and just wander
                         //else if path does exsit, move toward the target
 
@@ -805,6 +852,7 @@ var npcs = {};
 var activeNPCs = {};
 var manageNPCInterval = null;
 var worldMap = {};
+var worldGrid = {};
 var worldItems = [];
 var itemData = {};
 var spellData = {};
@@ -1122,6 +1170,8 @@ loadMapData = function(){
                     items: {},
                 };
 
+                worldGrid[mapName] = {blockedLocations: [], worldSize: {xAxis: 12, yAxis: 17}};
+
                 var index = 0;
 
                 for (var x = 0; x < 12; x++){
@@ -1132,6 +1182,9 @@ loadMapData = function(){
                         }
                         else if(content[index] != '\n' && content[index] != ';'){
                             worldMap[mapName].mapData[x][y] = content[index];
+                            if(content[index] == 1){ //blocked tiles
+                                worldGrid[mapName].blockedLocations.push({xAxis: x, yAxis: y});
+                            }
                         }
                         index++;
                     }
