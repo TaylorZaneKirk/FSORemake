@@ -1199,7 +1199,7 @@ loadMapData = function(){
                         else if(content[index] != '\n' && content[index] != ';'){
                             worldMap[mapName].mapData[x][y] = content[index];
                             if(content[index] == 1){ //blocked tiles
-                                worldGrid[mapName].blockedLocations.push({xAxis: x, yAxis: y});
+                                worldGrid[mapName].blockedLocations.push({xAxis: y, yAxis: x});
                             }
                         }
                         index++;
