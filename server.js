@@ -746,7 +746,12 @@ class NPC{
                 }
                 else{
                     //update targetPos
-                    targetPos = worldMap[this.worldX + '-' + this.worldY].players[this.target].pos;
+                    if(worldMap[this.worldX + '-' + this.worldY].players[this.target] != undefined){
+                        targetPos = worldMap[this.worldX + '-' + this.worldY].players[this.target].pos;
+                    }
+                    else{
+                        this.target = null;
+                    }
                 }
             }
 
@@ -765,11 +770,13 @@ class NPC{
                 else{
                     //else try to find a path to the target, or cast spell
                     willFollow = true;
-                    console.log(worldGrid[this.worldX + '-' + this.worldY]);
                     console.log(this.pos.x + "," + this.pos.y);
                     console.log(targetPos.x + "," + targetPos.y);
                     var path = aStar.run({xAxis: this.pos.x, yAxis: this.pos.y}, {xAxis: targetPos.x, yAxis: targetPos.y}, worldGrid[this.worldX + '-' + this.worldY]);
-                    console.log(path);
+                    if(path != undefined && path != null){
+                        this.pos.x = path[1].xAxis;
+                        this.pos.y = path[1].yAxis;
+                    }
                 }
             }
 
@@ -778,76 +785,77 @@ class NPC{
                     
                         //if no path exists, set target to null and just wander
                         //else if path does exsit, move toward the target
-
-            setTimeout(() => {
-                //just make them wander around for now
-                //this.npcAction = 'idle';
-                var directionToMove = Math.floor(Math.random() * Math.floor(5)); //if 4, we just idle on this cycle
-                if(directionToMove == 0){ //East
-                    var nextX = this.pos.x + 1;
-                    var nextY = this.pos.y;
-                    if(nextX < 16){
-                        var nextTile = worldMap[this.worldX + "-" + this.worldY].mapData[nextY][nextX];
-                        if(nextTile == 0){ //acceptableTiles
-                            this.pos.x = nextX;
-                            this.pos.y = nextY;
-                            //this.npcAction = 'walk';
-                            this.npcFacing = 'E';
-                            visiblePlayers.forEach((player) => {
-                                player.mapData.npcs[this.npcId] = this;
-                            });
-                        }
-                    }  
-                }
-                if(directionToMove == 1){ //West
-                    var nextX = this.pos.x - 1;
-                    var nextY = this.pos.y;
-                    if(nextX > 0){
-                        var nextTile = worldMap[this.worldX + "-" + this.worldY].mapData[nextY][nextX];
-                        if(nextTile == 0){ //acceptableTiles
-                            this.pos.x = nextX;
-                            this.pos.y = nextY;
-                            //this.npcAction = 'walk';
-                            this.npcFacing = 'W';
-                            visiblePlayers.forEach((player) => {
-                                player.mapData.npcs[this.npcId] = this;
-                            });
-                        }
-                    }  
-                }
-                if(directionToMove == 2){ //North
-                    var nextX = this.pos.x;
-                    var nextY = this.pos.y - 1;
-                    if(nextY > 0){
-                        var nextTile = worldMap[this.worldX + "-" + this.worldY].mapData[nextY][nextX];
-                        if(nextTile == 0){ //acceptableTiles
-                            this.pos.x = nextX;
-                            this.pos.y = nextY;
-                            //this.npcAction = 'walk';
-                            this.npcFacing = 'N';
-                            visiblePlayers.forEach((player) => {
-                                player.mapData.npcs[this.npcId] = this;
-                            });
-                        }
-                    }  
-                }
-                if(directionToMove == 3){ //South
-                    var nextX = this.pos.x;
-                    var nextY = this.pos.y + 1;
-                    if(nextY < 11){
-                        var nextTile = worldMap[this.worldX + "-" + this.worldY].mapData[nextY][nextX];
-                        if(nextTile == 0){ //acceptableTiles
-                            this.pos.x = nextX;
-                            this.pos.y = nextY;
-                            //this.npcAction = 'walk';
-                            this.npcFacing = 'S';
-                            visiblePlayers.forEach((player) => {
-                                player.mapData.npcs[this.npcId] = this;
-                            });
-                        }
-                    }  
-                }
-            }, randomTimeout);
+            if(willWander){
+                setTimeout(() => {
+                    //just make them wander around for now
+                    //this.npcAction = 'idle';
+                    var directionToMove = Math.floor(Math.random() * Math.floor(5)); //if 4, we just idle on this cycle
+                    if(directionToMove == 0){ //East
+                        var nextX = this.pos.x + 1;
+                        var nextY = this.pos.y;
+                        if(nextX < 16){
+                            var nextTile = worldMap[this.worldX + "-" + this.worldY].mapData[nextY][nextX];
+                            if(nextTile == 0){ //acceptableTiles
+                                this.pos.x = nextX;
+                                this.pos.y = nextY;
+                                //this.npcAction = 'walk';
+                                this.npcFacing = 'E';
+                                visiblePlayers.forEach((player) => {
+                                    player.mapData.npcs[this.npcId] = this;
+                                });
+                            }
+                        }  
+                    }
+                    if(directionToMove == 1){ //West
+                        var nextX = this.pos.x - 1;
+                        var nextY = this.pos.y;
+                        if(nextX > 0){
+                            var nextTile = worldMap[this.worldX + "-" + this.worldY].mapData[nextY][nextX];
+                            if(nextTile == 0){ //acceptableTiles
+                                this.pos.x = nextX;
+                                this.pos.y = nextY;
+                                //this.npcAction = 'walk';
+                                this.npcFacing = 'W';
+                                visiblePlayers.forEach((player) => {
+                                    player.mapData.npcs[this.npcId] = this;
+                                });
+                            }
+                        }  
+                    }
+                    if(directionToMove == 2){ //North
+                        var nextX = this.pos.x;
+                        var nextY = this.pos.y - 1;
+                        if(nextY > 0){
+                            var nextTile = worldMap[this.worldX + "-" + this.worldY].mapData[nextY][nextX];
+                            if(nextTile == 0){ //acceptableTiles
+                                this.pos.x = nextX;
+                                this.pos.y = nextY;
+                                //this.npcAction = 'walk';
+                                this.npcFacing = 'N';
+                                visiblePlayers.forEach((player) => {
+                                    player.mapData.npcs[this.npcId] = this;
+                                });
+                            }
+                        }  
+                    }
+                    if(directionToMove == 3){ //South
+                        var nextX = this.pos.x;
+                        var nextY = this.pos.y + 1;
+                        if(nextY < 11){
+                            var nextTile = worldMap[this.worldX + "-" + this.worldY].mapData[nextY][nextX];
+                            if(nextTile == 0){ //acceptableTiles
+                                this.pos.x = nextX;
+                                this.pos.y = nextY;
+                                //this.npcAction = 'walk';
+                                this.npcFacing = 'S';
+                                visiblePlayers.forEach((player) => {
+                                    player.mapData.npcs[this.npcId] = this;
+                                });
+                            }
+                        }  
+                    }
+                }, randomTimeout);
+            }
             
         }
     }
