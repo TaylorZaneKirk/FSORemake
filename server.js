@@ -762,8 +762,8 @@ class NPC{
             }
             else{
                 //if target != null
-                if((this.pos.x + 1 == targetPos.x || this.pos.x - 1 == targetPos.x || this.pos.x == targetPos.x)
-                    && (this.pos.y + 1 == targetPos.y || this.pos.y - 1 == targetPos.y || this.pos.y == targetPos.y)){
+                if(((this.pos.x + 1 == targetPos.x || this.pos.x - 1 == targetPos.x) && this.pos.y == targetPos.y)
+                    || ((this.pos.y + 1 == targetPos.y || this.pos.y - 1 == targetPos.y) && this.pos.x == targetPos.x)){
                     //if next to the target: ATTACK
                     willAttack = true;
                 }
