@@ -266,7 +266,7 @@ var PlayerObject = function(idRef, gameRef){
 
                     for(var i in game.global.npcList){
                         var player = game.global.npcList[i].npc;
-                        if(player.pos.x == playerState.pos.x && player.pos.y == playerState.pos.y + 1){
+                        if(player.pos.x == playerState.pos.x - 1 && player.pos.y == playerState.pos.y){
                             canMove = false;
                         }
                     }
@@ -291,7 +291,7 @@ var PlayerObject = function(idRef, gameRef){
 
                     for(var i in game.global.npcList){
                         var player = game.global.npcList[i].npc;
-                        if(player.pos.x == playerState.pos.x && player.pos.y == playerState.pos.y + 1){
+                        if(player.pos.x == playerState.pos.x + 1 && player.pos.y == playerState.pos.y){
                             canMove = false;
                         }
                     }
@@ -316,7 +316,7 @@ var PlayerObject = function(idRef, gameRef){
 
                     for(var i in game.global.npcList){
                         var player = game.global.npcList[i].npc;
-                        if(player.pos.x == playerState.pos.x && player.pos.y == playerState.pos.y + 1){
+                        if(player.pos.x == playerState.pos.x && player.pos.y == playerState.pos.y - 1){
                             canMove = false;
                         }
                     }
