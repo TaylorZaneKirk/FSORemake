@@ -265,12 +265,12 @@ var PlayerObject = function(idRef, gameRef){
                     }
 
                     for(var i in game.global.npcList){
-                        var player = game.global.npcList[i];
+                        var player = game.global.npcList[i].npc;
                         if(player.pos.x == playerState.pos.x && player.pos.y == playerState.pos.y + 1){
                             canMove = false;
                         }
                     }
-                    
+
                     if(canMove) {
                         playerState.pos.x--;
                         game.global.actionQueue.push({action: {type: 'move', payload: 'W'}, target: 'self'});
