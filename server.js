@@ -761,6 +761,7 @@ class NPC{
                 else{
                     //else try to find a path to the target, or cast spell
                     willFollow = true;
+                    console.log(worldGrid[this.worldX + '-' + this.worldY]);
                     var path = aStar.run({xAxis: this.pos.x, yAxis: this.pos.y}, {xAxis: targetPos.x, yAxis: targetPos.y}, worldGrid[this.worldX + '-' + this.worldY]);
                     console.log(path);
                 }
@@ -1184,7 +1185,7 @@ loadMapData = function(){
                         else if(content[index] != '\n' && content[index] != ';'){
                             worldMap[mapName].mapData[x][y] = content[index];
                             if(content[index] == 1){ //blocked tiles
-                                worldGrid[mapName].blockedLocations.push({xAxis: y, yAxis: x});
+                                worldGrid[mapName].blockedLocations.push({xAxis: x, yAxis: y});
                             }
                         }
                         index++;
