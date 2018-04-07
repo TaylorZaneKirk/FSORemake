@@ -766,6 +766,19 @@ class NPC{
                     || ((this.pos.y + 1 == targetPos.y || this.pos.y - 1 == targetPos.y) && this.pos.x == targetPos.x)){
                     //if next to the target: ATTACK
                     willAttack = true;
+                    this.npcAction = 'attack';
+                    if(this.pos.x < targetPos.x){
+                        this.npcFacing = 'E'
+                    }
+                    else if(this.pos.x > targetPos.x){
+                        this.npcFacing = 'W'
+                    }
+                    else if(this.pos.y < targetPos.y){
+                        this.npcFacing = 'S'
+                    }
+                    else if(this.pos.y > targetPos.y){
+                        this.npcFacing = 'N'
+                    }
                 }
                 else{
                     //else try to find a path to the target, or cast spell
@@ -774,8 +787,26 @@ class NPC{
                     var path = aStar.run({xAxis: this.pos.x, yAxis: this.pos.y}, {xAxis: targetPos.x, yAxis: targetPos.y}, worldGrid[this.worldX + '-' + this.worldY]);
                     if(path != undefined && path != null){
                         console.log(path);
+                        if(this.pos.x < path[1].xAxis){
+                            this.npcFacing = 'E'
+                        }
+                        else if(this.pos.x > path[1].xAxis){
+                            this.npcFacing = 'W'
+                        }
+                        else if(this.pos.y < path[1].yAxis){
+                            this.npcFacing = 'S'
+                        }
+                        else if(this.pos.y > path[1].yAxis){
+                            this.npcFacing = 'N'
+                        }
                         this.pos.x = path[1].xAxis;
                         this.pos.y = path[1].yAxis;
+                        this.npcAction = 'idle';
+                    }
+                    else{
+                        //if no path exists, set target to null and just wander
+                        willFollow = false;
+                        willWander = true;
                     }
                 }
             }
@@ -783,7 +814,7 @@ class NPC{
                 
                     
                     
-                        //if no path exists, set target to null and just wander
+                        
                         //else if path does exsit, move toward the target
             if(willWander){
                 setTimeout(() => {
@@ -1186,7 +1217,7 @@ loadMapData = function(){
                     items: {},
                 };
 
-                worldGrid[mapName] = {blockedLocations: [], worldSize: {xAxis: 12, yAxis: 17}};
+                worldGrid[mapName] = {blockedLocations: [], worldSize: {xAxis: 17, yAxis: 12}};
 
                 var index = 0;
 
