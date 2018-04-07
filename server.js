@@ -336,9 +336,32 @@ class PlayerState
     takeStep(x, y){
         if((x + 1 == this.pos.x || x - 1 == this.pos.x || x == this.pos.x)
             && (y + 1 == this.pos.y || y - 1 == this.pos.y || y == this.pos.y)){
+
+            var visiblePlayers = [];
+            for(var i in worldMap[this.worldX + '-' + this.worldY].players){
+                if(worldMap[this.worldX + '-' + this.worldY].players[i].playerId != this.playerId){
+                    visiblePlayers.push(worldMap[this.worldX + '-' + this.worldY].players[i]);
+                }
+            }
+            for(var i in worldMap[this.worldX + '-' + this.worldY].npcs){
+                visiblePlayers.push(worldMap[this.worldX + '-' + this.worldY].npcs[i]);
+            }
+            var isOpenSpace = true;
+            for(var player of visiblePlayers){
+                if(player.pos.x == x && player.pos.y == y){
+                    isOpenSpace = false;
+                }
+            }
+
+            if(isOpenSpace){
+                con.query("UPDATE users SET localX='" + this.pos.x + "', localY='" + this.pos.y + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
+                return worldMap[this.worldX + '-' + this.worldY].mapData[y][x] == 0; //acceptable tiles
+            }
+            else{
+                return false;
+            }
             
-            con.query("UPDATE users SET localX='" + this.pos.x + "', localY='" + this.pos.y + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
-            return worldMap[this.worldX + '-' + this.worldY].mapData[y][x] == 0; //acceptable tiles
+            
         }
         return false;
     }
