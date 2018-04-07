@@ -770,8 +770,7 @@ class NPC{
                 else{
                     //else try to find a path to the target, or cast spell
                     willFollow = true;
-                    console.log(this.pos.x + "," + this.pos.y);
-                    console.log(targetPos.x + "," + targetPos.y);
+                    console.log(worldGrid[this.worldX + '-' + this.worldY]);
                     var path = aStar.run({xAxis: this.pos.x, yAxis: this.pos.y}, {xAxis: targetPos.x, yAxis: targetPos.y}, worldGrid[this.worldX + '-' + this.worldY]);
                     if(path != undefined && path != null){
                         console.log(path);
