@@ -774,6 +774,7 @@ class NPC{
                     console.log(targetPos.x + "," + targetPos.y);
                     var path = aStar.run({xAxis: this.pos.x, yAxis: this.pos.y}, {xAxis: targetPos.x, yAxis: targetPos.y}, worldGrid[this.worldX + '-' + this.worldY]);
                     if(path != undefined && path != null){
+                        console.log(path);
                         this.pos.x = path[1].xAxis;
                         this.pos.y = path[1].yAxis;
                     }
