@@ -263,6 +263,14 @@ var PlayerObject = function(idRef, gameRef){
                             canMove = false;
                         }
                     }
+
+                    for(var i in game.global.npcList){
+                        var player = game.global.npcList[i];
+                        if(player.pos.x == playerState.pos.x && player.pos.y == playerState.pos.y + 1){
+                            canMove = false;
+                        }
+                    }
+                    
                     if(canMove) {
                         playerState.pos.x--;
                         game.global.actionQueue.push({action: {type: 'move', payload: 'W'}, target: 'self'});
@@ -280,6 +288,14 @@ var PlayerObject = function(idRef, gameRef){
                             canMove = false;
                         }
                     }
+
+                    for(var i in game.global.npcList){
+                        var player = game.global.npcList[i];
+                        if(player.pos.x == playerState.pos.x && player.pos.y == playerState.pos.y + 1){
+                            canMove = false;
+                        }
+                    }
+
                     if(canMove) {
                         playerState.pos.x++;
                         game.global.actionQueue.push({action: {type: 'move', payload: 'E'}, target: 'self'});
@@ -297,6 +313,14 @@ var PlayerObject = function(idRef, gameRef){
                             canMove = false;
                         }
                     }
+
+                    for(var i in game.global.npcList){
+                        var player = game.global.npcList[i];
+                        if(player.pos.x == playerState.pos.x && player.pos.y == playerState.pos.y + 1){
+                            canMove = false;
+                        }
+                    }
+
                     if(canMove) {
                         playerState.pos.y--;
                         game.global.actionQueue.push({action: {type: 'move', payload: 'N'}, target: 'self'});
