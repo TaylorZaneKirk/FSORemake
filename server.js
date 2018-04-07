@@ -698,6 +698,7 @@ class NPC{
     }
 
     decideAction(){
+        console.log(this.npcName + " is thinking");
         var shouldStayActive = false;
         var visiblePlayers = [];
         for(var i in worldMap[this.worldX + '-' + this.worldY].players){
