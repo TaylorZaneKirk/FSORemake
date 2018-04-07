@@ -434,7 +434,6 @@ function initMultiPlayer(game, globals){
     }
 
     client.exports.placeNPC = function(npc){
-        console.log("SPAWNING NPC");
         globals.mapManager.spawnNPC(npc)
     }
 
@@ -461,8 +460,7 @@ function initMultiPlayer(game, globals){
 
             for(var i in globals.npcList){
                 globals.npcList[i].npcObject.npcSprite.kill();
-                delete globals.npcList[i]
-                console.log("DESTORYING NPC");
+                delete globals.npcList[i];
             }
 
             for(var i in globals.items){
