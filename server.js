@@ -783,10 +783,8 @@ class NPC{
                 else{
                     //else try to find a path to the target, or cast spell
                     willFollow = true;
-                    console.log(worldGrid[this.worldX + '-' + this.worldY]);
                     var path = aStar.run({xAxis: this.pos.x, yAxis: this.pos.y}, {xAxis: targetPos.x, yAxis: targetPos.y}, worldGrid[this.worldX + '-' + this.worldY]);
                     if(path != undefined && path != null){
-                        console.log(path);
                         if(this.pos.x < path[1].xAxis){
                             this.npcFacing = 'E'
                         }
@@ -826,7 +824,13 @@ class NPC{
                         var nextY = this.pos.y;
                         if(nextX < 16){
                             var nextTile = worldMap[this.worldX + "-" + this.worldY].mapData[nextY][nextX];
-                            if(nextTile == 0){ //acceptableTiles
+                            var isOpenSpace = true;
+                            for(var player of visiblePlayers){
+                                if(player.pos.x == nextX && player.pos.y == nextY){
+                                    isOpenSpace = false;
+                                }
+                            }
+                            if(nextTile == 0 && isOpenSpace){ //acceptableTiles
                                 this.pos.x = nextX;
                                 this.pos.y = nextY;
                                 //this.npcAction = 'walk';
@@ -842,7 +846,13 @@ class NPC{
                         var nextY = this.pos.y;
                         if(nextX > 0){
                             var nextTile = worldMap[this.worldX + "-" + this.worldY].mapData[nextY][nextX];
-                            if(nextTile == 0){ //acceptableTiles
+                            var isOpenSpace = true;
+                            for(var player of visiblePlayers){
+                                if(player.pos.x == nextX && player.pos.y == nextY){
+                                    isOpenSpace = false;
+                                }
+                            }
+                            if(nextTile == 0 && isOpenSpace){ //acceptableTiles
                                 this.pos.x = nextX;
                                 this.pos.y = nextY;
                                 //this.npcAction = 'walk';
@@ -858,7 +868,13 @@ class NPC{
                         var nextY = this.pos.y - 1;
                         if(nextY > 0){
                             var nextTile = worldMap[this.worldX + "-" + this.worldY].mapData[nextY][nextX];
-                            if(nextTile == 0){ //acceptableTiles
+                            var isOpenSpace = true;
+                            for(var player of visiblePlayers){
+                                if(player.pos.x == nextX && player.pos.y == nextY){
+                                    isOpenSpace = false;
+                                }
+                            }
+                            if(nextTile == 0 && isOpenSpace){ //acceptableTiles
                                 this.pos.x = nextX;
                                 this.pos.y = nextY;
                                 //this.npcAction = 'walk';
@@ -874,7 +890,13 @@ class NPC{
                         var nextY = this.pos.y + 1;
                         if(nextY < 11){
                             var nextTile = worldMap[this.worldX + "-" + this.worldY].mapData[nextY][nextX];
-                            if(nextTile == 0){ //acceptableTiles
+                            var isOpenSpace = true;
+                            for(var player of visiblePlayers){
+                                if(player.pos.x == nextX && player.pos.y == nextY){
+                                    isOpenSpace = false;
+                                }
+                            }
+                            if(nextTile == 0 && isOpenSpace){ //acceptableTiles
                                 this.pos.x = nextX;
                                 this.pos.y = nextY;
                                 //this.npcAction = 'walk';
