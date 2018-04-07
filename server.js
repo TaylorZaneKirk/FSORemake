@@ -744,6 +744,10 @@ class NPC{
                     }
 
                 }
+                else{
+                    //update targetPos
+                    targetPos = worldMap[this.worldX + '-' + this.worldY].players[this.target].pos;
+                }
             }
 
 
