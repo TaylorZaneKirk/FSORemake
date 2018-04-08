@@ -111,7 +111,7 @@ module.exports = {
 
                 if(player.pos.x == targetCoords.x && player.pos.y == targetCoords.y){
                     var playerAttacked = playersArray[player.playerId];
-                    playerAttacked.state.takeDamage(5, id); //Should pass a parameter containing the weapon being used?
+                    playerAttacked.state.takeDamage(5, id, 'player'); //Should pass a parameter containing the weapon being used?
                 }
             }
         }

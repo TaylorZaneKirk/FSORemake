@@ -366,7 +366,7 @@ class PlayerState
         return false;
     }
 
-    takeDamage(damage, attackerId){ //attackerId can be null if player is taking damage from not a player
+    takeDamage(damage, attackerId, npcOrPlayer){ //attackerId can be null if player is taking damage from not a player
         this.health -= damage;
         if(this.health > 0){
             con.query("UPDATE users SET health='" + this.health + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
@@ -393,9 +393,12 @@ class PlayerState
                 "', localX='" + this.pos.x + 
                 "', localY='" + this.pos.y + 
                 "' WHERE username='" + this.username + "'", function (err, result, fields) {if (err) throw err; });
-            if(attackerId != undefined){
+            if(npcOrPlayer == 'player' && attackerId != undefined){
                 var winner = players[attackerId].state;
                 //winner.getExp(5); //5 experience for killing a player
+            }
+            else if(npcOrPlayer == 'npc' && attackerId != undefined){
+                var winner = npcs[attackerId];
             }
         }
     }
@@ -642,6 +645,7 @@ class NPC{
         this.worldX = data.worldX;
         this.worldY = data.worldY;
         this.pos = {x: data.localX, y: data.localY};
+        this.spawnLoc = {x: data.localX, y: data.localY};
         this.level = data.level;
         this.class = data.class;
         this.aggroRange = data.aggroRange;
@@ -705,6 +709,7 @@ class NPC{
 
     respawn(){
         this.isSpawned = true;
+        this.pos = this.spawnLoc;
         con.query("UPDATE npcs SET isSpawned = 1 WHERE npcId = '" + this.npcId + "'", function (err, result, fields) {});
         worldMap[this.worldX + '-' + this.worldY].npcs[this.npcId] = this;
         for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
@@ -801,6 +806,8 @@ class NPC{
                     else if(this.pos.y > targetPos.y){
                         this.npcFacing = 'N'
                     }
+                    var damage = ((this.stength / 100) * this.physicalAttack) + Math.floor(Math.random() * Math.floor(6));
+                    players[this.target].state.takeDamage(damage, this.npcId, 'npc');
                 }
                 else{
                     //else try to find a path to the target, or cast spell
@@ -949,6 +956,7 @@ class NPC{
                 //here we call kill() method defined in the client side
                 remote.removeNPC(this.npcId)
             }
+            con.query("UPDATE npcs SET isSpawned = 0 WHERE npcId = '" + this.npcId + "'", function (err, result, fields) {});
             
             if(attackerId != undefined){
                 var winner = players[attackerId].state;
