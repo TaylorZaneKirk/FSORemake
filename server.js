@@ -942,6 +942,7 @@ class NPC{
         }
         else{
             delete worldMap[this.worldX + '-' + this.worldY].npcs[this.npcId];
+            this.isSpawned = false;
             for (var c in worldMap[this.worldX + '-' + this.worldY].players){
                 var remote = players[c].remote;
     
@@ -952,6 +953,9 @@ class NPC{
             if(attackerId != undefined){
                 var winner = players[attackerId].state;
                 //winner.getExp(5); //5 experience for killing a player
+            }
+            if(this.respawnable){
+                setTimeout(() => this.respawn(), this.respawnTimer);
             }
         }
     }
