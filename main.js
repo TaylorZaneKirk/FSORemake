@@ -429,6 +429,14 @@ function initMultiPlayer(game, globals){
         delete globals.items[locationId];
     }
 
+    client.exports.removeNPC = function(npcId){
+        if(globals.npcList[npcId] != undefined){
+            console.log('killing: ', npcId, globals.npcList[npcId]);
+            globals.npcList[npcId].npcObject.npcSprite.kill();
+            delete globals.npcList[npcId];
+        }
+    }
+
     client.exports.placeItem = function(item){
         globals.mapManager.spawnItem(item);
     }

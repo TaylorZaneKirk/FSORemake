@@ -251,6 +251,13 @@ var PlayerObject = function(idRef, gameRef){
                         game.global.actionQueue.push({action: {type: 'attack', payload: targetCoords}, target:'player'});
                     }
                 }
+
+                for(var i in game.global.npcList){
+                    var npc = game.global.npcList[i].npc;
+                    if(npc.pos.x == targetCoords.x && npc.pos.y == targetCoords.y){
+                        game.global.actionQueue.push({action: {type: 'attack', payload: targetCoords}, target:'npc'});
+                    }
+                }
             }
             else if (leftKey.isDown){
                 playerState.playerAction = 'walk';

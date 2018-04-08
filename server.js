@@ -12,7 +12,7 @@ var Eureca = require('eureca.io');
 
 
 //create an instance of EurecaServer
-var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill', 'disconnect', 'errorAndDisconnect', 'recieveBroadcast', 'removeItem', 'placeItem', 'placeNPC']});
+var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill', 'disconnect', 'errorAndDisconnect', 'recieveBroadcast', 'removeItem', 'placeItem', 'placeNPC', 'removeNPC']});
 
 //attach eureca.io to our http server
 eurecaServer.attach(server);
@@ -932,6 +932,27 @@ class NPC{
                 }, randomTimeout);
             }
             
+        }
+    }
+
+    takeDamage(damage, attackerId){ //attackerId can be null if player is taking damage from not a player
+        this.health -= damage;
+        if(this.health > 0){
+            con.query("UPDATE npcs SET health='" + this.health + "' WHERE npcId = '" + this.npcId + "'", function (err, result, fields) {});
+        }
+        else{
+            delete worldMap[this.worldX + '-' + this.worldY].npcs[this.npcId];
+            for (var c in worldMap[this.worldX + '-' + this.worldY].players){
+                var remote = players[c].remote;
+    
+                //here we call kill() method defined in the client side
+                remote.removeNPC(this.npcId)
+            }
+            
+            if(attackerId != undefined){
+                var winner = players[attackerId].state;
+                //winner.getExp(5); //5 experience for killing a player
+            }
         }
     }
 }

@@ -115,6 +115,18 @@ module.exports = {
                 }
             }
         }
+
+        if(target == 'npc'){
+            var targetCoords = payload;
+
+            for(var i in attackingPlayer.state.mapData.npcs){
+                var npc = attackingPlayer.state.mapData.npcs[i];
+
+                if(npc.pos.x == targetCoords.x && npc.pos.y == targetCoords.y){
+                    npc.takeDamage(5, id); //Should pass a parameter containing the weapon being used?
+                }
+            }
+        }
     },
 
     pickUpItem: function(state){
