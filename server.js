@@ -772,8 +772,8 @@ class NPC{
 
             if(this.isActive == false){
                 this.isActive = true;
-                activeNPCs[thisNPC.npcId] = thisNPC;
-                console.log(thisNPC.npcName + " is now active");
+                activeNPCs[this.npcId] = this;
+                console.log(this.npcName + " is now active");
             }
             visiblePlayer.remote.placeNPC(this); 
         }
