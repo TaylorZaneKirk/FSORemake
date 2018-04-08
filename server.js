@@ -888,15 +888,12 @@ class NPC{
                         //if no path exists, set target to null and just wander
                         willFollow = false;
                         willWander = true;
+                        this.target = null;
                     }
                 }
             }
-
-                
-                    
-                    
                         
-                        //else if path does exsit, move toward the target
+            //else if path does exsit, move toward the target
             if(willWander){
                 setTimeout(() => {
                     //just make them wander around for now
