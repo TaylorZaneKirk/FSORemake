@@ -763,6 +763,7 @@ class NPC{
         this.pos = this.spawnLoc;
         this.target = null;
         this.isActive = false;
+        this.health = this.maxHealth;
         con.query("UPDATE npcs SET isSpawned = 1 WHERE npcId = '" + this.npcId + "'", function (err, result, fields) {});
         worldMap[this.worldX + '-' + this.worldY].npcs[this.npcId] = this;
         for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
@@ -1001,10 +1002,12 @@ class NPC{
             if(this.target == null){
                 this.target = attackerId;
             }
-            con.query("UPDATE npcs SET health='" + this.health + "' WHERE npcId = '" + this.npcId + "'", function (err, result, fields) {});
         }
         else{
             delete worldMap[this.worldX + '-' + this.worldY].npcs[this.npcId];
+            this.isActive = false;
+            delete activeNPCs[this.npcId];
+            console.log(this.npcName + " is now inactive");
             this.isSpawned = false;
             for (var c in worldMap[this.worldX + '-' + this.worldY].players){
                 var remote = players[c].remote;

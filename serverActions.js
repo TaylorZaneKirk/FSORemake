@@ -171,7 +171,12 @@ module.exports = {
                         if(attackingPlayer.state.equipLeft != 1){
                             switch(itemData[attackingPlayer.state.equipLeft].itemType){
                                 case 'knife':{
-                                    skillBonus = attackingPlayer.state.knifeplay;
+                                    if(skillBonus == 0){
+                                        skillBonus = attackingPlayer.state.knifeplay;
+                                    }
+                                    else{
+                                        skillBonus = (skillBonus + attackingPlayer.state.knifeplay) / 2;
+                                    }
                                     break;
                                 }
                                 default:{
@@ -181,7 +186,7 @@ module.exports = {
                         }
                     }
                     var damage = Math.floor((((attackingPlayer.state.strength + skillBonus) / 10) * (attackingPlayer.state.equipRight.physicalAttack + attackingPlayer.state.equipLeft.physicalAttack)) + Math.floor(Math.random() * Math.floor(6)));
-                    npc.takeDamage(5, id); //Should pass a parameter containing the weapon being used?
+                    npc.takeDamage(damage, id); //Should pass a parameter containing the weapon being used?
                 }
             }
         }
