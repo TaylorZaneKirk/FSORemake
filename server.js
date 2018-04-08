@@ -369,6 +369,14 @@ class PlayerState
     takeDamage(damage, attackerId, npcOrPlayer){ //attackerId can be null if player is taking damage from not a player
         this.health -= damage;
         if(this.health > 0){
+            if(this.equipTorso != 1 || this.equipHead != 1 || this.equipLegs != 1){
+                if(npcOrPlayer == 'player'){
+                    var attackingPlayer = players[attackerId].state;
+                    if(attackingPlayer.level - this.level >= 0){
+                        this.getExp(attackingPlayer.level - this.level, ['mediumArmor']);
+                    }
+                }
+            }
             con.query("UPDATE users SET health='" + this.health + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
         }
         else{
@@ -395,29 +403,65 @@ class PlayerState
                 "' WHERE username='" + this.username + "'", function (err, result, fields) {if (err) throw err; });
             if(npcOrPlayer == 'player' && attackerId != undefined){
                 var winner = players[attackerId].state;
-                //winner.getExp(5); //5 experience for killing a player
+                var exp = this.baseExp + (winner.level - this.level);
+                var equipItems = [];
+                if(winner.equipRight == 1 && winner.equipLeft == 1){
+                    equipItems.push('fists');
+                }
+                else{
+                    equipItems = [itemData[winner.equipRight].itemType, itemData[winner.equipLeft].itemType];
+                }
+                winner.getExp(exp, equipItems);
+                players.forEach((player) => player.remote.recieveBroadcast(this.username + " was killed by " + winner.username, '#ffff00'));
             }
             else if(npcOrPlayer == 'npc' && attackerId != undefined){
                 var winner = npcs[attackerId];
+                players.forEach((player) => player.remote.recieveBroadcast(this.username + " was killed by " + winner.npcName, '#ffff00'));
             }
         }
     }
 
-    /* getExp(expAmount){
-        this.exp += expAmount;
-        if(this.exp >= 100){
-            this.exp -= 100;
-            this.gainLevel();
-
+    getExp(expAmount, expTargets){
+        var expToGive = expAmount / expTargets.length;
+        for(var i = 0; i < expTargets.length; i++){
+            var exp = expTargets[i];
+            switch(exp){
+                case 'knife':{
+                    this.knifeplayCurrent += expToGive;
+                    if(this.knifeplayCurrent >= this.knifeplayNext){
+                        this.knifeplay++;
+                        this.knifeplayNext = (this.knifeplay + this.knifeplayNext) * 1.1;
+                        players[this.playerId].remote.recieveBroadcast("[LEVEL UP]: " + this.username + "'s knifeplay is now level: " + this.knifeplay, '#ffffff');
+                    }
+                    con.query("UPDATE skillLevels SET knifeplayCurrent='" + this.knifeplayCurrent + "', knifeplay='" + this.knifeplay + "', knifeplayNext='" + this.knifeplayNext + "' WHERE username='" + this.username + "'", function (err, result, fields) {if (err) throw err; });
+                    break;
+                }
+                case 'fists':{
+                    this.pugilism += expToGive;
+                    if(this.pugilismCurrent >= this.pugilismNext){
+                        this.pugilism++;
+                        this.pugilismNext = (this.pugilism + this.pugilismNext) * 1.1;
+                        players[this.playerId].remote.recieveBroadcast("[LEVEL UP]: " + this.username + "'s pugilism is now level: " + this.pugilism, '#ffffff');
+                    }
+                    con.query("UPDATE skillLevels SET pugilismCurrent='" + this.pugilismCurrent + "', pugilism='" + this.pugilism + "', pugilismNext='" + this.pugilismNext + "' WHERE username='" + this.username + "'", function (err, result, fields) {if (err) throw err; });
+                    break;
+                }
+                case 'mediumArmor':{
+                    this.blockingCurrent += expToGive;
+                    if(this.blockingCurrent >= this.blockingNext){
+                        this.knifeplay++;
+                        this.blockingNext = (this.blocking + this.blockingNext) * 1.1;
+                        players[this.playerId].remote.recieveBroadcast("[LEVEL UP]: " + this.username + "'s blocking is now level: " + this.blocking, '#ffffff');
+                    }
+                    con.query("UPDATE skillLevels SET blockingCurrent='" + this.blockingCurrent + "', blocking='" + this.blocking + "', blockingNext='" + this.blockingNext + "' WHERE username='" + this.username + "'", function (err, result, fields) {if (err) throw err; });
+                    break;
+                }
+                default:{
+                    //nothing
+                }
+            }
         }
-        con.query("UPDATE users SET exp='" + this.exp + "' WHERE username='" + this.username + "'", function (err, result, fields) {if (err) throw err; });
     }
-
-    gainLevel(){
-        //Calculate Bonuses here
-        this.level++;
-        con.query("UPDATE users SET level='" + this.level + "' WHERE username='" + this.username + "'", function (err, result, fields) {if (err) throw err; });
-    } */
 
     getItem(locationId){
         var thisItem = worldMap[this.worldX + '-' + this.worldY].items[locationId];
@@ -710,6 +754,8 @@ class NPC{
     respawn(){
         this.isSpawned = true;
         this.pos = this.spawnLoc;
+        this.target = null;
+        this.isActive = false;
         con.query("UPDATE npcs SET isSpawned = 1 WHERE npcId = '" + this.npcId + "'", function (err, result, fields) {});
         worldMap[this.worldX + '-' + this.worldY].npcs[this.npcId] = this;
         for(var i in worldMap[this.worldX + '-' + this.worldY].players) {
@@ -807,7 +853,6 @@ class NPC{
                         this.npcFacing = 'N'
                     }
                     var damage = Math.floor(((this.strength / 10) * this.physicalAttack) + Math.floor(Math.random() * Math.floor(6)));
-                    console.log(damage);
                     players[this.target].state.takeDamage(damage, this.npcId, 'npc');
                 }
                 else{
@@ -946,6 +991,9 @@ class NPC{
     takeDamage(damage, attackerId){ //attackerId can be null if player is taking damage from not a player
         this.health -= damage;
         if(this.health > 0){
+            if(this.target == null){
+                this.target = attackerId;
+            }
             con.query("UPDATE npcs SET health='" + this.health + "' WHERE npcId = '" + this.npcId + "'", function (err, result, fields) {});
         }
         else{
@@ -961,7 +1009,15 @@ class NPC{
             
             if(attackerId != undefined){
                 var winner = players[attackerId].state;
-                //winner.getExp(5); //5 experience for killing a player
+                var exp = this.baseExp + (winner.level - this.level);
+                var equipItems = [];
+                if(winner.equipRight == 1 && winner.equipLeft == 1){
+                    equipItems.push('fists');
+                }
+                else{
+                    equipItems = [itemData[winner.equipRight].itemType, itemData[winner.equipLeft].itemType];
+                }
+                winner.getExp(exp, equipItems);
             }
             if(this.respawnable){
                 setTimeout(() => this.respawn(), this.respawnTimer);
@@ -1210,7 +1266,7 @@ eurecaServer.exports.message = function(id, message){
             break;
         }
         case 'attack': {
-            serverActions.playerAttack(players, id, message.action.payload, message.target);
+            serverActions.playerAttack(players, items, id, message.action.payload, message.target);
             break;
         }
         case 'broadcast': {

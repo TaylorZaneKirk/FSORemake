@@ -99,7 +99,7 @@ module.exports = {
         
     },
 
-    playerAttack: function(playersArray, id, payload, target){
+    playerAttack: function(playersArray, itemData, id, payload, target){
         var attackingPlayer = playersArray[id];
         attackingPlayer.state.playerAction = 'attack';
         
@@ -111,7 +111,36 @@ module.exports = {
 
                 if(player.pos.x == targetCoords.x && player.pos.y == targetCoords.y){
                     var playerAttacked = playersArray[player.playerId];
-                    playerAttacked.state.takeDamage(5, id, 'player'); //Should pass a parameter containing the weapon being used?
+                    var skillBonus = 0;
+                    if(attackingPlayer.state.equipLeft == 1 && attackingPlayer.state.equipLeft == 1){
+                        skillBonus = attackingPlayer.state.pugilism;
+                    }
+                    else{
+                        if(attackingPlayer.state.equipRight != 1){
+                            switch(itemData[attackingPlayer.state.equipRight].itemType){
+                                case 'knife':{
+                                    skillBonus = attackingPlayer.state.knifeplay;
+                                    break;
+                                }
+                                default:{
+                                    //nothing
+                                }
+                            }
+                        }
+                        if(attackingPlayer.state.equipLeft != 1){
+                            switch(itemData[attackingPlayer.state.equipLeft].itemType){
+                                case 'knife':{
+                                    skillBonus = attackingPlayer.state.knifeplay;
+                                    break;
+                                }
+                                default:{
+                                    //nothing
+                                }
+                            }
+                        }
+                    }
+                    var damage = Math.floor((((attackingPlayer.state.strength + skillBonus) / 10) * (attackingPlayer.state.equipRight.physicalAttack + attackingPlayer.state.equipLeft.physicalAttack)) + Math.floor(Math.random() * Math.floor(6)));
+                    playerAttacked.state.takeDamage(damage, id, 'player'); //Should pass a parameter containing the weapon being used?
                 }
             }
         }
@@ -123,6 +152,35 @@ module.exports = {
                 var npc = attackingPlayer.state.mapData.npcs[i];
 
                 if(npc.pos.x == targetCoords.x && npc.pos.y == targetCoords.y){
+                    var skillBonus = 0;
+                    if(attackingPlayer.state.equipLeft == 1 && attackingPlayer.state.equipLeft == 1){
+                        skillBonus = attackingPlayer.state.pugilism;
+                    }
+                    else{
+                        if(attackingPlayer.state.equipRight != 1){
+                            switch(itemData[attackingPlayer.state.equipRight].itemType){
+                                case 'knife':{
+                                    skillBonus = attackingPlayer.state.knifeplay;
+                                    break;
+                                }
+                                default:{
+                                    //nothing
+                                }
+                            }
+                        }
+                        if(attackingPlayer.state.equipLeft != 1){
+                            switch(itemData[attackingPlayer.state.equipLeft].itemType){
+                                case 'knife':{
+                                    skillBonus = attackingPlayer.state.knifeplay;
+                                    break;
+                                }
+                                default:{
+                                    //nothing
+                                }
+                            }
+                        }
+                    }
+                    var damage = Math.floor((((attackingPlayer.state.strength + skillBonus) / 10) * (attackingPlayer.state.equipRight.physicalAttack + attackingPlayer.state.equipLeft.physicalAttack)) + Math.floor(Math.random() * Math.floor(6)));
                     npc.takeDamage(5, id); //Should pass a parameter containing the weapon being used?
                 }
             }
