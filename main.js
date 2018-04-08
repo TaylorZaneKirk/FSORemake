@@ -664,7 +664,7 @@ function initMultiPlayer(game, globals){
 
             for(var i in state.mapData.npcs){
                 if(globals.npcList[state.mapData.npcs[i].npcId] == undefined){
-                    placeNPC(state.mapData.npcs[i]);
+                    globals.mapManager.spawnNPC(state.mapData.npcs[i]);
                 }
                 else{
                     globals.npcList[state.mapData.npcs[i].npcId].npc = state.mapData.npcs[i];
