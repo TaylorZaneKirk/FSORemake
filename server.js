@@ -919,7 +919,9 @@ class NPC{
                                 //this.npcAction = 'walk';
                                 this.npcFacing = 'E';
                                 visiblePlayers.forEach((player) => {
-                                    player.mapData.npcs[this.npcId] = this;
+                                    if(players[player.playerId] != undefined){
+                                        player.mapData.npcs[this.npcId] = this;
+                                    }
                                 });
                             }
                         }  
@@ -941,7 +943,9 @@ class NPC{
                                 //this.npcAction = 'walk';
                                 this.npcFacing = 'W';
                                 visiblePlayers.forEach((player) => {
-                                    player.mapData.npcs[this.npcId] = this;
+                                    if(players[player.playerId] != undefined){
+                                        player.mapData.npcs[this.npcId] = this;
+                                    }
                                 });
                             }
                         }  
@@ -963,7 +967,9 @@ class NPC{
                                 //this.npcAction = 'walk';
                                 this.npcFacing = 'N';
                                 visiblePlayers.forEach((player) => {
-                                    player.mapData.npcs[this.npcId] = this;
+                                    if(players[player.playerId] != undefined){
+                                        player.mapData.npcs[this.npcId] = this;
+                                    }
                                 });
                             }
                         }  
@@ -985,7 +991,9 @@ class NPC{
                                 //this.npcAction = 'walk';
                                 this.npcFacing = 'S';
                                 visiblePlayers.forEach((player) => {
-                                    player.mapData.npcs[this.npcId] = this;
+                                    if(players[player.playerId] != undefined){
+                                        player.mapData.npcs[this.npcId] = this;
+                                    }
                                 });
                             }
                         }  
