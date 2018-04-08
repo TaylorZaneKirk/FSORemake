@@ -806,7 +806,7 @@ class NPC{
                     else if(this.pos.y > targetPos.y){
                         this.npcFacing = 'N'
                     }
-                    var damage = ((this.strength / 100) * this.physicalAttack) + Math.floor(Math.random() * Math.floor(6));
+                    var damage = Math.floor(((this.strength / 10) * this.physicalAttack) + Math.floor(Math.random() * Math.floor(6)));
                     console.log(damage);
                     players[this.target].state.takeDamage(damage, this.npcId, 'npc');
                 }
