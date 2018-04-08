@@ -412,11 +412,18 @@ class PlayerState
                     equipItems = [itemData[winner.equipRight].itemType, itemData[winner.equipLeft].itemType];
                 }
                 winner.getExp(exp, equipItems);
-                players.forEach((player) => player.remote.recieveBroadcast(this.username + " was killed by " + winner.username, '#ffff00'));
+                for(var i in players){
+                    var player = players[i];
+                    player.remote.recieveBroadcast(this.username + " was killed by " + winner.username, '#ffff00');
+                }
+                
             }
             else if(npcOrPlayer == 'npc' && attackerId != undefined){
                 var winner = npcs[attackerId];
-                players.forEach((player) => player.remote.recieveBroadcast(this.username + " was killed by " + winner.npcName, '#ffff00'));
+                for(var i in players){
+                    var player = players[i];
+                    player.remote.recieveBroadcast(this.username + " was killed by " + winner.npcName, '#ffff00');
+                }
             }
         }
     }
