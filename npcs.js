@@ -146,7 +146,7 @@ var NPCObject = function(idRef, gameRef){
         var thisTween = game.add.tween(myDamage).to({alpha: 0}, 1250, null, true);
         thisTween.onComplete.add(() => {
             npcSprite.children.forEach(child => {
-                if(child.alpha == 0){
+                if(child != npcName && child.alpha == 0){
                     npcSprite.removeChild(child);
                     console.log("child removed");
                 }

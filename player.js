@@ -206,7 +206,7 @@ var PlayerObject = function(idRef, gameRef){
         var thisTween = game.add.tween(myDamage).to({alpha: 0}, 1250, null, true);
         thisTween.onComplete.add(() => {
             playerSprite.children.forEach(child => {
-                if(child.alpha == 0){
+                if(child != playerName && child.alpha == 0){
                     playerSprite.removeChild(child);
                     console.log("child removed");
                 }
