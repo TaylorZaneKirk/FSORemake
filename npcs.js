@@ -139,11 +139,19 @@ var NPCObject = function(idRef, gameRef){
     }
 
     function showDamageText(damage){
-        var myDamage = game.add.text(15, -15, damage, { font: "12px Ariel", fill: '#ffffff'});
+        const myDamage = game.add.text(15, -15, damage, { font: "12px Ariel", fill: '#ffffff'});
         myDamage.anchor.setTo(0.5);
         npcSprite.addChild(myDamage);
         game.add.tween(myDamage).to({y: -25}, 1000, null, true);
-        game.add.tween(myDamage).to({alpha: 0}, 1250, null, true);
+        var thisTween = game.add.tween(myDamage).to({alpha: 0}, 1250, null, true);
+        thisTween.onComplete.add(() => {
+            npcSprite.children.forEach(child => {
+                if(child.alpha == 0){
+                    npcSprite.removeChild(child);
+                    console.log("child removed");
+                }
+            });
+        });
     }
 
     function showNPCName(state){

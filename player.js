@@ -203,7 +203,15 @@ var PlayerObject = function(idRef, gameRef){
         myDamage.anchor.setTo(0.5);
         playerSprite.addChild(myDamage);
         game.add.tween(myDamage).to({y: -25}, 1000, null, true);
-        game.add.tween(myDamage).to({alpha: 0}, 1250, null, true);
+        var thisTween = game.add.tween(myDamage).to({alpha: 0}, 1250, null, true);
+        thisTween.onComplete.add(() => {
+            playerSprite.children.forEach(child => {
+                if(child.alpha == 0){
+                    playerSprite.removeChild(child);
+                    console.log("child removed");
+                }
+            });
+        });
     }
 
     function update(){
