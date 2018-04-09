@@ -812,6 +812,8 @@ class NPC{
             }
         }
 
+        console.log(visiblePlayers);
+
         if(!shouldStayActive){
             this.isActive = false;
             delete activeNPCs[this.npcId];
