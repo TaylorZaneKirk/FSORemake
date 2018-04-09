@@ -453,6 +453,9 @@ class PlayerState
                         this.knifeplayNext = (this.knifeplay + this.knifeplayNext) * 1.1;
                         players[this.playerId].remote.recieveBroadcast("[LEVEL UP]: " + this.username + "'s knifeplay is now level: " + this.knifeplay, '#ffffff');
                     }
+                    else{
+                        players[this.playerId].remote.recieveBroadcast('[EXP] You gained ' + expToGive + ' exp in knifeplay!', '#ffffff');
+                    }
                     con.query("UPDATE skillLevels SET knifeplayCurrent='" + this.knifeplayCurrent + "', knifeplay='" + this.knifeplay + "', knifeplayNext='" + this.knifeplayNext + "' WHERE username='" + this.username + "'", function (err, result, fields) {if (err) throw err; });
                     break;
                 }
@@ -462,6 +465,9 @@ class PlayerState
                         this.pugilism++;
                         this.pugilismNext = (this.pugilism + this.pugilismNext) * 1.1;
                         players[this.playerId].remote.recieveBroadcast("[LEVEL UP]: " + this.username + "'s pugilism is now level: " + this.pugilism, '#ffffff');
+                    }
+                    else{
+                        players[this.playerId].remote.recieveBroadcast('[EXP] You gained ' + expToGive + ' exp in pugilism!', '#ffffff');
                     }
                     con.query("UPDATE skillLevels SET pugilismCurrent='" + this.pugilismCurrent + "', pugilism='" + this.pugilism + "', pugilismNext='" + this.pugilismNext + "' WHERE username='" + this.username + "'", function (err, result, fields) {if (err) throw err; });
                     break;
@@ -473,6 +479,9 @@ class PlayerState
                         this.blockingNext = (this.blocking + this.blockingNext) * 1.1;
                         players[this.playerId].remote.recieveBroadcast("[LEVEL UP]: " + this.username + "'s blocking is now level: " + this.blocking, '#ffffff');
                     }
+                    else{
+                        players[this.playerId].remote.recieveBroadcast('[EXP] You gained ' + expToGive + ' exp in blocking!', '#ffffff');
+                    }
                     con.query("UPDATE skillLevels SET blockingCurrent='" + this.blockingCurrent + "', blocking='" + this.blocking + "', blockingNext='" + this.blockingNext + "' WHERE username='" + this.username + "'", function (err, result, fields) {if (err) throw err; });
                     break;
                 }
@@ -481,6 +490,7 @@ class PlayerState
                 }
             }
         }
+        
     }
 
     getItem(locationId){
