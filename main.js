@@ -445,6 +445,19 @@ function initMultiPlayer(game, globals){
         globals.mapManager.spawnNPC(npc)
     }
 
+    client.exports.showDamage = function(damage, npcOrPlayer, id){
+        if(npcOrPlayer == 'npc'){
+            if(globals.npcList[id] != undefined){
+                globals.npcList[id].npcObject.showDamageText(damage)
+            }
+        }
+        else{
+            if(globals.playerList[id] != undefined){
+                globals.playerList[id].localPlayerObject.showDamageText(damage)
+            }
+        }
+    }
+
     //Recieve Message to add to chatBox
     client.exports.recieveBroadcast = function(message, color) {
         var textStyle = {font: "14px Arial", fill: color};

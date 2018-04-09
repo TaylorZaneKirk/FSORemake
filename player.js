@@ -198,6 +198,14 @@ var PlayerObject = function(idRef, gameRef){
         playerName.alpha = 0;
     }
 
+    function showDamageText(damage){
+        var myDamage = game.add.text(15, -15, damage, { font: "12px Ariel", fill: '#ffffff'});
+        myDamage.anchor.setTo(0.5);
+        playerSprite.addChild(myDamage);
+        game.add.tween(myDamage).to({y: -25}, 1000, null, true);
+        game.add.tween(myDamage).to({alpha: 0}, 1250, null, true);
+    }
+
     function update(){
 
         if(game.global.playerList[idLocal].player == undefined){
@@ -218,7 +226,8 @@ var PlayerObject = function(idRef, gameRef){
                 playerTween: playerTween,
                 movePlayer: movePlayer,
                 playerImage: playerImage,
-                changeEquipmentSprites: changeEquipmentSprites
+                changeEquipmentSprites: changeEquipmentSprites,
+                showDamageText: showDamageText
             };
 
             game.global.localPlayerObject = game.global.playerList[idLocal].localPlayerObject;
@@ -495,6 +504,7 @@ var PlayerObject = function(idRef, gameRef){
         playerTween: playerTween,
         movePlayer: movePlayer,
         playerImage: playerImage,
-        changeEquipmentSprites: changeEquipmentSprites
+        changeEquipmentSprites: changeEquipmentSprites,
+        showDamageText: showDamageText
     };
 }

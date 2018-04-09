@@ -12,7 +12,7 @@ var Eureca = require('eureca.io');
 
 
 //create an instance of EurecaServer
-var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill', 'disconnect', 'errorAndDisconnect', 'recieveBroadcast', 'removeItem', 'placeItem', 'placeNPC', 'removeNPC']});
+var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill', 'disconnect', 'errorAndDisconnect', 'recieveBroadcast', 'removeItem', 'placeItem', 'placeNPC', 'removeNPC', 'showDamage']});
 
 //attach eureca.io to our http server
 eurecaServer.attach(server);
@@ -370,6 +370,10 @@ class PlayerState
         var damageMitigated = Math.floor((((this.endurance + this.blocking) / 10) * (itemData[this.equipHead].physicalDefense + itemData[this.equipTorso].physicalDefense + itemData[this.equipLegs].physicalDefense)) + Math.floor(Math.random() * Math.floor(3)));
         if(damage - damageMitigated <= 0){
             //0 damage
+            for (var c in worldMap[this.worldX + '-' + this.worldY].players){
+                var remote = players[c].remote;
+                remote.showDamage(0, 'player', this.playerId);
+            }
             return
         }
         this.health -= (damage - damageMitigated);
@@ -381,6 +385,10 @@ class PlayerState
                         this.getExp(attackingPlayer.level - this.level, ['mediumArmor']);
                     }
                 }
+            }
+            for (var c in worldMap[this.worldX + '-' + this.worldY].players){
+                var remote = players[c].remote;
+                remote.showDamage((damage - damageMitigated), 'player', this.playerId);
             }
             con.query("UPDATE users SET health='" + this.health + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
         }
@@ -1010,12 +1018,20 @@ class NPC{
         var damageMitigated = Math.floor(((this.endurance / 10) * this.physicalDefense) + Math.floor(Math.random() * Math.floor(3)));
         if(damage - damageMitigated <= 0){
             //0 damage
+            for (var c in worldMap[this.worldX + '-' + this.worldY].players){
+                var remote = players[c].remote;
+                remote.showDamage(0, 'npc', this.npcId);
+            }
             return
         }
         this.health -= (damage - damageMitigated);
         if(this.health > 0){
             if(this.target == null){
                 this.target = attackerId;
+            }
+            for (var c in worldMap[this.worldX + '-' + this.worldY].players){
+                var remote = players[c].remote;
+                remote.showDamage((damage - damageMitigated), 'npc', this.npcId);
             }
         }
         else{

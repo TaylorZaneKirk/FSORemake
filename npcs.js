@@ -138,6 +138,14 @@ var NPCObject = function(idRef, gameRef){
         game.global.playerLayer.add(npcSprite);
     }
 
+    function showDamageText(damage){
+        var myDamage = game.add.text(15, -15, damage, { font: "12px Ariel", fill: '#ffffff'});
+        myDamage.anchor.setTo(0.5);
+        npcSprite.addChild(myDamage);
+        game.add.tween(myDamage).to({y: -25}, 1000, null, true);
+        game.add.tween(myDamage).to({alpha: 0}, 1250, null, true);
+    }
+
     function showNPCName(state){
         npcName.alpha = 1;
     }
