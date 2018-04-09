@@ -140,6 +140,7 @@ var NPCObject = function(idRef, gameRef){
     }
 
     function showNPCName(state){
+        console.log("show name");
         npcName.alpha = 1;
     }
 
