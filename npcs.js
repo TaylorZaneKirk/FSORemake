@@ -136,6 +136,7 @@ var NPCObject = function(idRef, gameRef){
 
         npcTween = game.add.tween(npcSprite);
         game.global.playerLayer.add(npcSprite);
+        console.log(npcSprite.children);
         game.global.textLayer.add(npcSprite.children[3]);
     }
 
