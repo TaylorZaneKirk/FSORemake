@@ -367,7 +367,12 @@ class PlayerState
     }
 
     takeDamage(damage, attackerId, npcOrPlayer){ //attackerId can be null if player is taking damage from not a player
-        this.health -= damage;
+        var damageMitigated = Math.floor((((this.endurance + this.blocking) / 10) * (itemData[this.equipHead].physicalDefense + itemData[this.equipTorso].physicalDefense + itemData[this.equipLegs].physicalDefense)) + Math.floor(Math.random() * Math.floor(3)));
+        if(damage - damageMitigated <= 0){
+            //0 damage
+            return
+        }
+        this.health -= (damage - damageMitigated);
         if(this.health > 0){
             if(this.equipTorso != 1 || this.equipHead != 1 || this.equipLegs != 1){
                 if(npcOrPlayer == 'player'){
@@ -1002,7 +1007,12 @@ class NPC{
     }
 
     takeDamage(damage, attackerId){ //attackerId can be null if player is taking damage from not a player
-        this.health -= damage;
+        var damageMitigated = Math.floor(((this.endurance / 10) * this.physicalDefense) + Math.floor(Math.random() * Math.floor(3)));
+        if(damage - damageMitigated <= 0){
+            //0 damage
+            return
+        }
+        this.health -= (damage - damageMitigated);
         if(this.health > 0){
             if(this.target == null){
                 this.target = attackerId;
