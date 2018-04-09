@@ -21,6 +21,7 @@ var MapManager = class MapManager {
         this.mapData = null;
         game.global.itemLayer = game.add.group();
         game.global.playerLayer = game.add.group();
+        game.global.textLayer = game.add.group();
     }
 
     get getMap(){

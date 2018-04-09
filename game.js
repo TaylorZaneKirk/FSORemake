@@ -21,6 +21,7 @@ game.global = {
     items: {},
     itemLayer: null, //Likely to be factored to 2nd or 3rd layer
     playerLayer: null,
+    textLayer: null,
     easystar: null,
     localPlayerObject: null, //reference to the Player object of "your" character. Mostly for quick indexing
     eurecaProxy: null, //For our (limited) communication with the server
