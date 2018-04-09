@@ -182,7 +182,6 @@ var PlayerObject = function(idRef, gameRef){
 
         playerTween = game.add.tween(playerSprite);
         game.global.playerLayer.add(playerSprite);
-        game.global.textLayer.add(playerName);
         
         playerImage.head.frame = 13;
         playerImage.torso.frame = 13;
