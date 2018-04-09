@@ -214,6 +214,7 @@ var NPCObject = function(idRef, gameRef){
         npcState: npcState,
         npcSprite: npcSprite,
         npcTween: npcTween,
-        moveNPC: moveNPC
+        moveNPC: moveNPC,
+        showDamageText: showDamageText
     };
 }
