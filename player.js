@@ -214,6 +214,22 @@ var PlayerObject = function(idRef, gameRef){
         });
     }
 
+    function showStatusText(text){
+        var myStatus = game.add.text(15, -15, text, { font: "12px Ariel", fill: '#ffffff'}); //should be yellow
+        myStatus.anchor.setTo(0.5);
+        playerSprite.addChild(myStatus);
+        game.add.tween(myStatus).to({y: -25}, 1000, null, true);
+        var thisTween = game.add.tween(myStatus).to({alpha: 0}, 1250, null, true);
+        thisTween.onComplete.add(() => {
+            playerSprite.children.forEach(child => {
+                if(child != playerName && child.alpha == 0){
+                    playerSprite.removeChild(child);
+                    console.log("child removed");
+                }
+            });
+        });
+    }
+
     function update(){
 
         if(game.global.playerList[idLocal].player == undefined){

@@ -12,7 +12,7 @@ var Eureca = require('eureca.io');
 
 
 //create an instance of EurecaServer
-var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill', 'disconnect', 'errorAndDisconnect', 'recieveBroadcast', 'removeItem', 'placeItem', 'placeNPC', 'removeNPC', 'showDamage']});
+var eurecaServer = new Eureca.Server({allow:['setId', 'recieveStateFromServer', 'kill', 'disconnect', 'errorAndDisconnect', 'recieveBroadcast', 'removeItem', 'placeItem', 'placeNPC', 'removeNPC', 'showDamage', 'showStatus']});
 
 //attach eureca.io to our http server
 eurecaServer.attach(server);
@@ -372,7 +372,16 @@ class PlayerState
             //0 damage
             for (var c in worldMap[this.worldX + '-' + this.worldY].players){
                 var remote = players[c].remote;
-                remote.showDamage(0, 'player', this.playerId);
+                remote.showStatus('BLOCK', 'player', this.playerId);
+            }
+            return
+        }
+        var chanceToDodge = Math.floor(Math.random() * Math.floor(100 - ((this.agility / 2) + (itemData[this.equipHead].physicalEvasion + itemData[this.equipTorso].physicalEvasion + itemData[this.equipLegs].physicalEvasion))));
+        if(chanceToDodge == 0){
+            //dodged it
+            for (var c in worldMap[this.worldX + '-' + this.worldY].players){
+                var remote = players[c].remote;
+                remote.showStatus('MISS', 'player', this.playerId);
             }
             return
         }
@@ -1030,7 +1039,17 @@ class NPC{
             //0 damage
             for (var c in worldMap[this.worldX + '-' + this.worldY].players){
                 var remote = players[c].remote;
-                remote.showDamage(0, 'npc', this.npcId);
+                //remote.showDamage(0, 'npc', this.npcId);
+                remote.showStatus('BLOCK', 'npc', this.npcId);
+            }
+            return
+        }
+        var chanceToDodge = Math.floor(Math.random() * Math.floor(100 - ((this.agility / 2) + this.physicalEvasion)));
+        if(chanceToDodge == 0){
+            //dodged it
+            for (var c in worldMap[this.worldX + '-' + this.worldY].players){
+                var remote = players[c].remote;
+                remote.showStatus('MISS', 'npc', this.npcId);
             }
             return
         }

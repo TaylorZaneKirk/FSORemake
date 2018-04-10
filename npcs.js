@@ -154,6 +154,22 @@ var NPCObject = function(idRef, gameRef){
         });
     }
 
+    function showStatusText(text){
+        const myStatus = game.add.text(15, -15, text, { font: "12px Ariel", fill: '#ffffff'}); //Should be yellow
+        myStatus.anchor.setTo(0.5);
+        npcSprite.addChild(myStatus);
+        game.add.tween(myStatus).to({y: -25}, 1000, null, true);
+        var thisTween = game.add.tween(myStatus).to({alpha: 0}, 1250, null, true);
+        thisTween.onComplete.add(() => {
+            npcSprite.children.forEach(child => {
+                if(child != npcName && child.alpha == 0){
+                    npcSprite.removeChild(child);
+                    console.log("child removed");
+                }
+            });
+        });
+    }
+
     function showNPCName(state){
         npcName.alpha = 1;
     }

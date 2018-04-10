@@ -458,6 +458,19 @@ function initMultiPlayer(game, globals){
         }
     }
 
+    client.exports.showStatus = function(status, npcOrPlayer, id){
+        if(npcOrPlayer == 'npc'){
+            if(globals.npcList[id] != undefined){
+                globals.npcList[id].npcObject.showStatusText(status);
+            }
+        }
+        else{
+            if(globals.playerList[id] != undefined){
+                globals.playerList[id].localPlayerObject.showStatusText(status);
+            }
+        }
+    }
+
     //Recieve Message to add to chatBox
     client.exports.recieveBroadcast = function(message, color) {
         var textStyle = {font: "14px Arial", fill: color};
