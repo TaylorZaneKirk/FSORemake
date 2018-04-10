@@ -838,7 +838,7 @@ class NPC{
                         if(this.target == null && thisPlayer.pos.x >= minX && thisPlayer.pos.x <= maxX && thisPlayer.pos.y >= minY && thisPlayer.pos.x){
                             //Player is within range
                             this.target = thisPlayer.playerId;
-                            targetPos = thisPlayer.pos;
+                            //targetPos = thisPlayer.pos;
                         }
                     }
 
@@ -861,6 +861,7 @@ class NPC{
             }
             else{
                 //if target != null
+                targetPos = worldMap[this.worldX + '-' + this.worldY].players[this.target].pos;
                 if(((this.pos.x + 1 == targetPos.x || this.pos.x - 1 == targetPos.x) && this.pos.y == targetPos.y)
                     || ((this.pos.y + 1 == targetPos.y || this.pos.y - 1 == targetPos.y) && this.pos.x == targetPos.x)){
                     //if next to the target: ATTACK
