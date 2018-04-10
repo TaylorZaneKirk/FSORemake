@@ -215,7 +215,7 @@ var PlayerObject = function(idRef, gameRef){
     }
 
     function showStatusText(text){
-        var myStatus = game.add.text(15, -15, text, { font: "12px Ariel", fill: '#ffffff'}); //should be yellow
+        var myStatus = game.add.text(15, -15, text, { font: "12px Ariel", fill: '#e6e600'}); //should be yellow
         myStatus.anchor.setTo(0.5);
         playerSprite.addChild(myStatus);
         game.add.tween(myStatus).to({y: -25}, 1000, null, true);
@@ -251,7 +251,8 @@ var PlayerObject = function(idRef, gameRef){
                 movePlayer: movePlayer,
                 playerImage: playerImage,
                 changeEquipmentSprites: changeEquipmentSprites,
-                showDamageText: showDamageText
+                showDamageText: showDamageText,
+                showStatusText: showStatusText
             };
 
             game.global.localPlayerObject = game.global.playerList[idLocal].localPlayerObject;
@@ -529,6 +530,7 @@ var PlayerObject = function(idRef, gameRef){
         movePlayer: movePlayer,
         playerImage: playerImage,
         changeEquipmentSprites: changeEquipmentSprites,
-        showDamageText: showDamageText
+        showDamageText: showDamageText,
+        showStatusText, showStatusText
     };
 }

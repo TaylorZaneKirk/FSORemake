@@ -155,7 +155,7 @@ var NPCObject = function(idRef, gameRef){
     }
 
     function showStatusText(text){
-        const myStatus = game.add.text(15, -15, text, { font: "12px Ariel", fill: '#ffffff'}); //Should be yellow
+        const myStatus = game.add.text(15, -15, text, { font: "12px Ariel", fill: '#e6e600'}); //Should be yellow
         myStatus.anchor.setTo(0.5);
         npcSprite.addChild(myStatus);
         game.add.tween(myStatus).to({y: -25}, 1000, null, true);
@@ -231,6 +231,7 @@ var NPCObject = function(idRef, gameRef){
         npcSprite: npcSprite,
         npcTween: npcTween,
         moveNPC: moveNPC,
-        showDamageText: showDamageText
+        showDamageText: showDamageText,
+        showStatusText: showStatusText
     };
 }

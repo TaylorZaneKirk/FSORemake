@@ -291,20 +291,6 @@ class PlayerState
             }
         }
     }
-    /* 
-    copy(other)
-    {
-        this.pos = other.pos;
-        this.playerFacing = other.playerFacing;
-        this.playerId = other.playerId;
-        this.playerAction = other.playerAction;
-        this.worldX = other.worldX;
-        this.worldY = other.worldY;
-        this.lastUpdated = other.lastUpdated;
-        this.readyToUpdate = other.readyToUpdate;
-        this.playersVisible = other.playersVisible;
-        this.mapData = other.mapData;
-    } */
 
     changeMapData(worldXNew, worldYNew){
         worldMap[worldXNew + '-' + worldYNew].players[this.playerId] = this;
