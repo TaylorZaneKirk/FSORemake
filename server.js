@@ -859,7 +859,11 @@ class NPC{
                 }
             }
             else{
-                if(this.npcName == 'Wenslas' && worldMap[this.worldX + '-' + this.worldY].players[0] != undefined){
+                console.log(this.npcName)
+                var whichPlayerIndex = Math.floor(Math.random() * (Object.keys(worldMap[this.worldX + '-' + this.worldY].players).length + 1));
+                console.log(Object.keys(whichPlayerIndex));
+                var whichPlayer = worldMap[this.worldX + '-' + this.worldY].players[Object.keys(worldMap[this.worldX + '-' + this.worldY].players)[whichPlayerIndex]];
+                if(this.npcName == 'Wenslas' && whichPlayer != undefined){
                     this.target = worldMap[this.worldX + '-' + this.worldY].players[0].playerId;
                 }
             }
@@ -898,7 +902,7 @@ class NPC{
                     willFollow = true;
                     console.log(this.npcName);
                     console.log(this.spells)
-                    if(this.spells != {}){ //&& Math.floor(Math.random() * Math.floor(3)) <= 2
+                    if(Object.keys(this.spells).length != 0){ //&& Math.floor(Math.random() * Math.floor(3)) <= 2
                         console.log('gonna cast a spell!');
                         var whichSpellIndex = Math.floor(Math.random() * Object.keys(this.spells).length);
                         console.log(Object.keys(this.spells));
