@@ -867,8 +867,8 @@ class NPC{
             else{
                 //if target != null
                 targetPos = worldMap[this.worldX + '-' + this.worldY].players[this.target].pos;
-                if(((this.pos.x + 1 == targetPos.x || this.pos.x - 1 == targetPos.x) && this.pos.y == targetPos.y)
-                    || ((this.pos.y + 1 == targetPos.y || this.pos.y - 1 == targetPos.y) && this.pos.x == targetPos.x)){
+                if(!this.isPassive && (((this.pos.x + 1 == targetPos.x || this.pos.x - 1 == targetPos.x) && this.pos.y == targetPos.y)
+                    || ((this.pos.y + 1 == targetPos.y || this.pos.y - 1 == targetPos.y) && this.pos.x == targetPos.x))){
                     //if next to the target: ATTACK
                     willAttack = true;
                     this.npcAction = 'attack';
@@ -891,6 +891,13 @@ class NPC{
                 else{
                     //else try to find a path to the target, or cast spell
                     willFollow = true;
+                    if(this.spells != {} && Math.floor(Math.random() * Math.floor(3)) == 0){
+                        console.log('gonna cast a spell!');
+                        var whichSpellIndex = Math.floor(Math.random() * Object.keys(this.spells).length);
+                        var whichSpell = this.spells[whichSpellIndex];
+                        console.log(whichSpell);
+                    }
+                    
                     var path = aStar.run({xAxis: this.pos.x, yAxis: this.pos.y}, {xAxis: targetPos.x, yAxis: targetPos.y}, worldGrid[this.worldX + '-' + this.worldY]);
                     if(path != undefined && path != null){
                         if(this.pos.x < path[1].xAxis){
@@ -1122,7 +1129,10 @@ eurecaServer.onDisconnect(function (conn) {
             var remote = players[c].remote;
     
             //here we call kill() method defined in the client side
-            remote.kill(conn.id);
+            if(players[c].state.worldX == players[conn.id].state.worldX && players[c].state.worldY == players[conn.id].state.worldY){
+                remote.kill(conn.id);
+            }
+            remote.recieveBroadcast(this.username + " has logged out", '#ffff00');
         }
         delete worldMap[players[conn.id].state.worldX + '-' + players[conn.id].state.worldY].players[conn.id];
     }
@@ -1198,6 +1208,10 @@ eurecaServer.exports.login = function (username, password){
             players[id].state = new PlayerState(id, result[0]);
             worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players[id] = players[id].state;
             remote.setId(id, itemData);
+            for(var i in players){
+                var player = players[i];
+                player.remote.recieveBroadcast(this.username + " has logged in", '#ffff00');
+            }
         }
         else{
             remote.errorAndDisconnect('Wrong username or password!');
@@ -1268,6 +1282,10 @@ eurecaServer.exports.createPlayer = function (username, password, params){
                         players[id].state = new PlayerState(id, result[0]);
                         worldMap[players[id].state.worldX + '-' + players[id].state.worldY].players[id] = players[id].state;
                         remote.setId(id);
+                        for(var i in players){
+                            var player = players[i];
+                            player.remote.recieveBroadcast(this.username + " has logged in", '#ffff00');
+                        }
                     }
                 });
             });

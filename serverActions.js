@@ -190,7 +190,7 @@ module.exports = {
                         }
                     }
                     var damage = Math.floor((((attackingPlayer.state.strength + skillBonus) / 10) * (itemData[attackingPlayer.state.equipRight].physicalAttack + itemData[attackingPlayer.state.equipLeft].physicalAttack)) + ((attackingPlayer.state.agility / 3) * (attackingPlayer.state.stamina / attackingPlayer.state.maxStamina)) + Math.floor(Math.random() * Math.floor(6)));
-                    npc.takeDamage(damage, id); //Should pass a parameter containing the weapon being used?
+                    npc.takeDamage(damage, id);
                 }
             }
         }
