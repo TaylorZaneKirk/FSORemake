@@ -43,6 +43,41 @@ class Spell{
         this.levelReqArcane = data.levelReqArcane;
         this.levelReqAffinity = data.levelReqAffinity;
     }
+
+    cast(casterId, targetId, casterType, targetType){
+        var caster = null;
+        var target = null;
+        if(casterType == 'npc'){
+            caster = npcs[casterId]
+        }
+        else if(casterType == 'player'){
+            caster = players[casterId].state;
+        }
+        if(targetType == 'npc'){
+            target = npcs[targetId];
+        }
+        else if(targetType == 'player'){
+            target = players[targetId].state;
+        }
+
+        if(caster.focus - this.spellCost >= 0){
+            caster.focus -= this.spellCost;
+            if(this.spellType == 2){ //target
+                if(this.isBuff){
+                    if(this.spellTarget == 'health'){
+                        target.health = target.health + this.spellPower <= target.maxHealth ? target.health + this.spellPower : target.maxHealth;
+                    }
+                    
+                }
+                else{
+                    if(this.spellTarget == 'health'){
+                        target.health = target.health - this.spellPower >= 0 ? target.health - this.spellPower : 0;
+                    }
+                }
+            }
+            
+        }
+    }
 }
 
 class WorldSpell{
@@ -859,9 +894,7 @@ class NPC{
                 }
             }
             else{
-                console.log(this.npcName)
                 var whichPlayerIndex = Math.floor(Math.random() * (Object.keys(worldMap[this.worldX + '-' + this.worldY].players).length + 1));
-                console.log(Object.keys(worldMap[this.worldX + '-' + this.worldY].players));
                 var whichPlayer = worldMap[this.worldX + '-' + this.worldY].players[Object.keys(worldMap[this.worldX + '-' + this.worldY].players)[whichPlayerIndex]];
                 if(this.npcName == 'Wenslas' && whichPlayer != undefined){
                     this.target = whichPlayer.playerId;
@@ -900,14 +933,10 @@ class NPC{
                 else{
                     //else try to find a path to the target, or cast spell
                     willFollow = true;
-                    console.log(this.npcName);
-                    console.log(this.spells)
-                    if(Object.keys(this.spells).length != 0){ //&& Math.floor(Math.random() * Math.floor(3)) <= 2
-                        console.log('gonna cast a spell!');
+                    if(Object.keys(this.spells).length != 0 && Math.floor(Math.random() * Math.floor(3)) <= 1){ //&& Math.floor(Math.random() * Math.floor(3)) <= 2
                         var whichSpellIndex = Math.floor(Math.random() * Object.keys(this.spells).length);
-                        console.log(Object.keys(this.spells));
                         var whichSpell = this.spells[Object.keys(this.spells)[whichSpellIndex]];
-                        console.log(whichSpell);
+                        whichSpell.cast(this.npcId, this.target, 'npc', 'player');
                     }
                     
                     var path = aStar.run({xAxis: this.pos.x, yAxis: this.pos.y}, {xAxis: targetPos.x, yAxis: targetPos.y}, worldGrid[this.worldX + '-' + this.worldY]);
