@@ -861,10 +861,10 @@ class NPC{
             else{
                 console.log(this.npcName)
                 var whichPlayerIndex = Math.floor(Math.random() * (Object.keys(worldMap[this.worldX + '-' + this.worldY].players).length + 1));
-                console.log(Object.keys(whichPlayerIndex));
+                console.log(Object.keys(worldMap[this.worldX + '-' + this.worldY].players));
                 var whichPlayer = worldMap[this.worldX + '-' + this.worldY].players[Object.keys(worldMap[this.worldX + '-' + this.worldY].players)[whichPlayerIndex]];
                 if(this.npcName == 'Wenslas' && whichPlayer != undefined){
-                    this.target = worldMap[this.worldX + '-' + this.worldY].players[0].playerId;
+                    this.target = whichPlayer.playerId;
                 }
             }
 
