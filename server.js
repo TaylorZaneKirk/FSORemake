@@ -858,6 +858,11 @@ class NPC{
                     }
                 }
             }
+            else{
+                if(this.npcName == 'Wenslas' && worldMap[this.worldX + '-' + this.worldY].players[0]){
+                    this.target = worldMap[this.worldX + '-' + this.worldY].players[0];
+                }
+            }
 
 
             //if no target exists, just wander around
@@ -1057,6 +1062,9 @@ class NPC{
         if(this.health > 0){
             if(this.target == null){
                 this.target = attackerId;
+            }
+            if(this.isPassive){
+                this.isPassive = false;
             }
             for (var c in worldMap[this.worldX + '-' + this.worldY].players){
                 var remote = players[c].remote;
