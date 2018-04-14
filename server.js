@@ -859,8 +859,8 @@ class NPC{
                 }
             }
             else{
-                if(this.npcName == 'Wenslas' && worldMap[this.worldX + '-' + this.worldY].players[0]){
-                    this.target = worldMap[this.worldX + '-' + this.worldY].players[0];
+                if(this.npcName == 'Wenslas' && worldMap[this.worldX + '-' + this.worldY].players[0] != undefined){
+                    this.target = worldMap[this.worldX + '-' + this.worldY].players[0].playerId;
                 }
             }
 
