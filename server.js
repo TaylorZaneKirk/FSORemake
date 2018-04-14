@@ -938,30 +938,31 @@ class NPC{
                         var whichSpell = this.spells[Object.keys(this.spells)[whichSpellIndex]];
                         whichSpell.cast(this.npcId, this.target, 'npc', 'player');
                     }
-                    
-                    var path = aStar.run({xAxis: this.pos.x, yAxis: this.pos.y}, {xAxis: targetPos.x, yAxis: targetPos.y}, worldGrid[this.worldX + '-' + this.worldY]);
-                    if(path != undefined && path != null){
-                        if(this.pos.x < path[1].xAxis){
-                            this.npcFacing = 'E'
-                        }
-                        else if(this.pos.x > path[1].xAxis){
-                            this.npcFacing = 'W'
-                        }
-                        else if(this.pos.y < path[1].yAxis){
-                            this.npcFacing = 'S'
-                        }
-                        else if(this.pos.y > path[1].yAxis){
-                            this.npcFacing = 'N'
-                        }
-                        this.pos.x = path[1].xAxis;
-                        this.pos.y = path[1].yAxis;
-                        this.npcAction = 'idle';
-                    }
                     else{
-                        //if no path exists, set target to null and just wander
-                        willFollow = false;
-                        willWander = true;
-                        this.target = null;
+                        var path = aStar.run({xAxis: this.pos.x, yAxis: this.pos.y}, {xAxis: targetPos.x, yAxis: targetPos.y}, worldGrid[this.worldX + '-' + this.worldY]);
+                        if(path != undefined && path != null){
+                            if(this.pos.x < path[1].xAxis){
+                                this.npcFacing = 'E'
+                            }
+                            else if(this.pos.x > path[1].xAxis){
+                                this.npcFacing = 'W'
+                            }
+                            else if(this.pos.y < path[1].yAxis){
+                                this.npcFacing = 'S'
+                            }
+                            else if(this.pos.y > path[1].yAxis){
+                                this.npcFacing = 'N'
+                            }
+                            this.pos.x = path[1].xAxis;
+                            this.pos.y = path[1].yAxis;
+                            this.npcAction = 'idle';
+                        }
+                        else{
+                            //if no path exists, set target to null and just wander
+                            willFollow = false;
+                            willWander = true;
+                            this.target = null;
+                        }
                     }
                 }
             }
