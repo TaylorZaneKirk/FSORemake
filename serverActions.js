@@ -156,14 +156,14 @@ module.exports = {
                     var skillBonus = 0;
                     if(attackingPlayer.state.equipLeft == 1 && attackingPlayer.state.equipLeft == 1){
                         skillBonus = attackingPlayer.state.pugilism;
-                        staminaCost += 1;
+                        staminaCost += 4;
                     }
                     else{
                         if(attackingPlayer.state.equipRight != 1){
                             switch(itemData[attackingPlayer.state.equipRight].itemType){
                                 case 'knife':{
                                     skillBonus = attackingPlayer.state.knifeplay;
-                                    staminaCost += 2;
+                                    staminaCost += 3;
                                     break;
                                 }
                                 default:{
@@ -174,13 +174,12 @@ module.exports = {
                         if(attackingPlayer.state.equipLeft != 1){
                             switch(itemData[attackingPlayer.state.equipLeft].itemType){
                                 case 'knife':{
+                                    staminaCost += 3;
                                     if(skillBonus == 0){
                                         skillBonus = attackingPlayer.state.knifeplay;
-                                        staminaCost += 2;
                                     }
                                     else{
                                         skillBonus = (skillBonus + attackingPlayer.state.knifeplay) / 2;
-                                        staminaCost = (staminaCost + 2) / 2;
                                     }
                                     break;
                                 }
@@ -196,6 +195,7 @@ module.exports = {
             }
         }
 
+        staminaCost = Math.floor(staminaCost - (attackingPlayer.state.agility / 3)) <= 1 ? 1 : Math.floor(staminaCost - (attackingPlayer.state.agility / 3));
         attackingPlayer.state.stamina = attackingPlayer.state.stamina == 0 ? 0 : attackingPlayer.state.stamina - staminaCost;
     },
 
