@@ -45,6 +45,19 @@ class Spell{
     }
 }
 
+class WorldSpell{
+    constructor(spell, caster, target){
+        this.locationId = spellLocIdMaxIndex++;
+        this.spellId = spell.spellId;
+        this.spellData = spellData[spell.spellId];
+        this.worldX = caster.worldX;
+        this.worldY = caster.worldY;
+        this.pos = {x: null, y: null};
+        this.target = target;
+        this.isActive = true;
+    }
+}
+
 class WorldItem{
     constructor(data){
         this.locationId = data.locationId;
@@ -156,6 +169,7 @@ class PlayerState
         this.health = data.health;
         this.maxFocus = data.maxFocus;
         this.focus = data.focus;
+        this.maxStamina = data.maxStamina;
         this.stamina = data.stamina;
         this.strength = data.strength;
         this.dexterity = data.dexterity;
@@ -591,7 +605,6 @@ class PlayerState
             this.inventory[slotNumber - 1].amount = 1;
             worldMap[this.worldX + '-' + this.worldY].items[newWorldItem.locationId] = newWorldItem;
             newWorldItem.placeItem();
-            console.log("Remove and drop");
             //Place item
             con.query("INSERT INTO worldItems(locationId, itemId, name, amount, worldX, worldY, localX, localY, respawnable, isSpawned, respawnTimer) VALUES(" +
                 "'" + newWorldItem.locationId + "', " +
@@ -617,7 +630,6 @@ class PlayerState
             //Cant do That
         if(shouldRemoveItem == true && shouldStackItem == false && isItemUnderneath == true){
             newWorldItem = null;
-            console.log("Cant do that");
             players[this.playerId].remote.recieveBroadcast("You think: I cannot drop this here...", '#ffffff');
         }
 
@@ -627,7 +639,6 @@ class PlayerState
             this.inventory[slotNumber - 1].itemId = 1;
             this.inventory[slotNumber - 1].amount = 1;
             worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath.locationId].amount += 1;
-            console.log("remove and increase");
             con.query("UPDATE worldItems SET amount=" +
                 "'" + worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath.locationId].amount + 
                 "' WHERE locationId='" + itemUnderneath.locationId + "'", function (err, result, fields) {
@@ -644,7 +655,6 @@ class PlayerState
             worldMap[this.worldX + '-' + this.worldY].items[newWorldItem.locationId] = newWorldItem;
             var inventoryAmount = this.inventory[slotNumber - 1].amount;
             newWorldItem.placeItem();
-            console.log("decrease and drop");
             //Place item
             con.query("INSERT INTO worldItems(locationId, itemId, name, amount, worldX, worldY, localX, localY, respawnable, isSpawned, respawnTimer) VALUES(" +
                 "'" + newWorldItem.locationId + "', " +
@@ -669,7 +679,6 @@ class PlayerState
             //Can't do that
         if(shouldRemoveItem == false && shouldStackItem == false && isItemUnderneath == true){
             newWorldItem = null;
-            console.log("Cant do that");
             players[this.playerId].remote.recieveBroadcast("You think: I cannot drop this here...", '#ffffff');
         }
 
@@ -679,7 +688,6 @@ class PlayerState
             this.inventory[slotNumber - 1].amount -= 1;
             var inventoryAmount = this.inventory[slotNumber - 1].amount;
             worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath.locationId].amount += 1;
-            console.log("decrease and increase");
             con.query("UPDATE worldItems SET amount=" +
                 + worldMap[this.worldX + '-' + this.worldY].items[itemUnderneath.locationId].amount + 
                 " WHERE locationId='" + itemUnderneath.locationId + "'", function (err, result, fields) {
@@ -691,7 +699,6 @@ class PlayerState
     }
 
     equipQuery(queryString){
-        console.log(queryString);
         var worldMapString = this.worldX + "-" + this.worldY;
         var playerId = this.playerId;
         var myState = this;
@@ -699,7 +706,6 @@ class PlayerState
     }
 
     unequipQuery(queryString){
-        console.log(queryString);
         var worldMapString = this.worldX + "-" + this.worldY;
         var playerId = this.playerId;
         var myState = this;
@@ -912,8 +918,7 @@ class NPC{
                 }
             }
                         
-            //else if path does exsit, move toward the target
-            if(willWander){
+            if(willWander && this.doesRoam){
                 setTimeout(() => {
                     //just make them wander around for now
                     //this.npcAction = 'idle';
@@ -1095,6 +1100,7 @@ var worldItems = [];
 var itemData = {};
 var spellData = {};
 var locationIdMaxIndex = 0;
+var spellLocIdMaxIndex = 0;
 
 //detect client connection
 eurecaServer.onConnect(function (conn) {
@@ -1173,6 +1179,13 @@ server.listen(process.env.PORT || 55555, function () {
 eurecaServer.exports.login = function (username, password){
     var id = this.connection.id;
     var remote = players[id].remote;
+
+    //make sure that player isn't logged on already
+    for(var i in players){
+        if(players[i].state.username == username){
+            remote.errorAndDisconnect('Sorry, this player is already logged in.');
+        }
+    }
     con.query("SELECT * FROM users INNER JOIN skillLevels ON users.username = skillLevels.username INNER JOIN playerInv on users.username = playerInv.username INNER JOIN playerSpells on users.username = playerSpells.username WHERE users.username = '" + username + "'", function (err, result, fields) {
         if (err){ 
             throw err;
@@ -1231,8 +1244,8 @@ eurecaServer.exports.createPlayer = function (username, password, params){
                 params.arcane += 5;
             }
 
-            con.query("INSERT INTO users(username, password, gender, headType, class, worldX, worldY, localX, localY, level, gold, maxHealth, health, maxFocus, focus, stamina, strength, dexterity, endurance, agility, arcane, luck) VALUES ('" 
-                + username + "', '" + password + "', '" + params.gender + "', '" + params.headType + "', '" + params.class + "', 0, 0, 1, 1, 1, 0, 100, 100, 25, 25, 100, '" + params.strength + "', '" + params.dexterity + "', '" + params.endurance + "', '" + params.agility + "', '" + params.arcane + "', '" + params.luck + "')", function (err, result, fields) {
+            con.query("INSERT INTO users(username, password, gender, headType, class, worldX, worldY, localX, localY, level, gold, maxHealth, health, maxFocus, focus, maxStamina, stamina, strength, dexterity, endurance, agility, arcane, luck) VALUES ('" 
+                + username + "', '" + password + "', '" + params.gender + "', '" + params.headType + "', '" + params.class + "', 0, 0, 1, 1, 1, 0, 100, 100, 25, 25, 25, 25, '" + params.strength + "', '" + params.dexterity + "', '" + params.endurance + "', '" + params.agility + "', '" + params.arcane + "', '" + params.luck + "')", function (err, result, fields) {
 
                 if (err){ 
                     throw err;
@@ -1288,6 +1301,7 @@ eurecaServer.exports.requestUpdate = function (id) {
     var currentServerTime = new Date().getTime();
     if(players[id] && players[id].state.lastUpdated + 250 < currentServerTime){
         players[id].state.lastUpdated = currentServerTime;
+        players[id].state.stamina = players[id].state.stamina == players[id].state.maxStamina ? players[id].state.stamina : players[id].state.stamina + 1;
         
         eurecaServer.updateClients(id);
     } 

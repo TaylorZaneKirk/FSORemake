@@ -551,7 +551,7 @@ function initMultiPlayer(game, globals){
             game.global.ready = true;
             updateHealthBar((state.health / state.maxHealth) * 100);
             updateFocusBar((state.focus / state.maxFocus) * 100);
-            updateStaminaBar(state.stamina);
+            updateStaminaBar((state.stamina / state.maxStamina) * 100);
             updateStatsPage([state.gold, state.strength, state.dexterity, state.endurance, state.agility, state.arcane, state.luck, state.exp]);
 
             var playerSkills = [

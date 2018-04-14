@@ -101,6 +101,7 @@ module.exports = {
 
     playerAttack: function(playersArray, itemData, id, payload, target){
         var attackingPlayer = playersArray[id];
+        var staminaCost = 0;
         attackingPlayer.state.playerAction = 'attack';
         
         if(target == 'player'){
@@ -155,12 +156,14 @@ module.exports = {
                     var skillBonus = 0;
                     if(attackingPlayer.state.equipLeft == 1 && attackingPlayer.state.equipLeft == 1){
                         skillBonus = attackingPlayer.state.pugilism;
+                        staminaCost += 1;
                     }
                     else{
                         if(attackingPlayer.state.equipRight != 1){
                             switch(itemData[attackingPlayer.state.equipRight].itemType){
                                 case 'knife':{
                                     skillBonus = attackingPlayer.state.knifeplay;
+                                    staminaCost += 2;
                                     break;
                                 }
                                 default:{
@@ -173,9 +176,11 @@ module.exports = {
                                 case 'knife':{
                                     if(skillBonus == 0){
                                         skillBonus = attackingPlayer.state.knifeplay;
+                                        staminaCost += 2;
                                     }
                                     else{
                                         skillBonus = (skillBonus + attackingPlayer.state.knifeplay) / 2;
+                                        staminaCost = (staminaCost + 2) / 2;
                                     }
                                     break;
                                 }
@@ -190,6 +195,8 @@ module.exports = {
                 }
             }
         }
+
+        attackingPlayer.state.stamina = attackingPlayer.state.stamina == 0 ? 0 : attackingPlayer.state.stamina - staminaCost;
     },
 
     pickUpItem: function(state){
