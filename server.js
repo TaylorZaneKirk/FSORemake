@@ -896,6 +896,8 @@ class NPC{
                 else{
                     //else try to find a path to the target, or cast spell
                     willFollow = true;
+                    console.log(this.npcName);
+                    console.log(this.spells)
                     if(this.spells != {}){ //&& Math.floor(Math.random() * Math.floor(3)) <= 2
                         console.log('gonna cast a spell!');
                         var whichSpellIndex = Math.floor(Math.random() * Object.keys(this.spells).length);
