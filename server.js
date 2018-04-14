@@ -1182,7 +1182,7 @@ eurecaServer.exports.login = function (username, password){
 
     //make sure that player isn't logged on already
     for(var i in players){
-        if(players[i].state.username == username){
+        if(players[i].state && players[i].state.username == username){
             remote.errorAndDisconnect('Sorry, this player is already logged in.');
         }
     }
