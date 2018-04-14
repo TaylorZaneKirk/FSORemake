@@ -377,7 +377,7 @@ class PlayerState
             return
         }
         var chanceToDodge = Math.floor(Math.random() * Math.floor(100 - ((this.agility / 2) + (itemData[this.equipHead].physicalEvasion + itemData[this.equipTorso].physicalEvasion + itemData[this.equipLegs].physicalEvasion))));
-        if(chanceToDodge == 0){
+        if(chanceToDodge <= 5){
             //dodged it
             for (var c in worldMap[this.worldX + '-' + this.worldY].players){
                 var remote = players[c].remote;
@@ -820,8 +820,7 @@ class NPC{
             return;
         }
         else{
-            var randomTimeout = Math.floor(Math.random() * Math.floor(1000));
-            
+            this.stamina = this.stamina == this.maxStamina ? this.stamina : this.stamina + 1;
             var randomTimeout = Math.floor(Math.random() * Math.floor(1000));
             var willWander = false;
             var willAttack = false;
@@ -885,7 +884,8 @@ class NPC{
                     else if(this.pos.y > targetPos.y){
                         this.npcFacing = 'N'
                     }
-                    var damage = Math.floor(((this.strength / 10) * this.physicalAttack) + Math.floor(Math.random() * Math.floor(6)));
+                    var damage = Math.floor(((this.strength / 10) * this.physicalAttack) + ((this.agility / 3) * (this.stamina / this.maxStamina)) + Math.floor(Math.random() * Math.floor(6)));
+                    this.stamina = this.stamina == 0 ? 0 : this.stamina - (Math.floor(Math.random() * Math.floor(5)) + 1);
                     players[this.target].state.takeDamage(damage, this.npcId, 'npc');
                 }
                 else{
@@ -1037,7 +1037,7 @@ class NPC{
             return
         }
         var chanceToDodge = Math.floor(Math.random() * Math.floor(100 - ((this.agility / 2) + this.physicalEvasion)));
-        if(chanceToDodge == 0){
+        if(chanceToDodge <= 5){
             //dodged it
             for (var c in worldMap[this.worldX + '-' + this.worldY].players){
                 var remote = players[c].remote;
@@ -1455,9 +1455,6 @@ loadMapData = function(){
                     var npc = npcs[i];
                     if(mapName == (npc.worldX + "-" + npc.worldY)){
                         worldMap[mapName].npcs[npc.npcId] = npc;
-                        /* if (locationIdMaxIndex < item.locationId){
-                            locationIdMaxIndex = item.locationId; //Need the highest index so that we can properly create new worldItems for when players drop items
-                        } */
                     }
                 }
                 filesRead++;
