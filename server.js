@@ -801,7 +801,7 @@ class NPC{
         ];
 
         this.spells = {};
-
+        this.isPerformingAction = false;
         this.isActive = false; //Set to true when a player is on the same map
         
         for(var i = 0; i < 5; i++){
@@ -854,14 +854,16 @@ class NPC{
             console.log(this.npcName + " is now inactive");
             return;
         }
-        else{
+        else if(!this.isPerformingAction){
+            this.isPerformingAction = true;
             this.stamina = this.stamina == this.maxStamina ? this.stamina : this.stamina + 1;
-            var randomTimeout = Math.floor(Math.random() * Math.floor(1000));
+            var randomTimeout = Math.floor(Math.random() * Math.floor(1500));
             var willWander = false;
             var willAttack = false;
             var willFollow = false;
             var targetPos = {x: null, y: null};
             var nextPos = {x: null, y: null};
+            this.npcAction = 'idle';
             
             //If isPassive == false,
             if(!this.isPassive){
@@ -929,14 +931,35 @@ class NPC{
                     var damage = Math.floor(((this.strength / 10) * this.physicalAttack) + ((this.agility / 3) * (this.stamina / this.maxStamina)) + Math.floor(Math.random() * Math.floor(6)));
                     this.stamina = this.stamina == 0 ? 0 : this.stamina - (Math.floor(Math.random() * Math.floor(5)) + 1);
                     players[this.target].state.takeDamage(damage, this.npcId, 'npc');
+                    this.isPerformingAction = false;
                 }
                 else{
                     //else try to find a path to the target, or cast spell
                     willFollow = true;
-                    if(Object.keys(this.spells).length != 0 && Math.floor(Math.random() * Math.floor(3)) <= 1){ //&& Math.floor(Math.random() * Math.floor(3)) <= 2
+                    if(Object.keys(this.spells).length != 0 && Math.floor(Math.random() * Math.floor(5)) <= 1){ //&& Math.floor(Math.random() * Math.floor(3)) <= 2
                         var whichSpellIndex = Math.floor(Math.random() * Object.keys(this.spells).length);
                         var whichSpell = this.spells[Object.keys(this.spells)[whichSpellIndex]];
-                        whichSpell.cast(this.npcId, this.target, 'npc', 'player');
+                        if(whichSpell.spellType == 2){ //target
+                            whichSpell.cast(this.npcId, this.target, 'npc', 'player');
+                        }
+                        else if(whichSpell.spellType == 1){ //projectile
+                            if(this.pos.x < players[this.target].state.xAxis && this.pos.y == players[this.target].state.yAxis){
+                                this.npcFacing = 'E'
+                            }
+                            else if(this.pos.x > players[this.target].state.xAxis && this.pos.y == players[this.target].state.yAxis){
+                                this.npcFacing = 'W'
+                            }
+                            else if(this.pos.y < players[this.target].state.yAxis && this.pos.x == players[this.target].state.xAxis){
+                                this.npcFacing = 'S'
+                            }
+                            else if(this.pos.y > players[this.target].state.yAxis && this.pos.x == players[this.target].state.xAxis){
+                                this.npcFacing = 'N'
+                            }
+                            whichSpell.cast(this.npcId, this.target, 'npc', 'player');
+                        }
+                        this.npcAction = 'attack';
+                        this.isPerformingAction = false;
+                        willFollow = false;
                     }
                     else{
                         var path = aStar.run({xAxis: this.pos.x, yAxis: this.pos.y}, {xAxis: targetPos.x, yAxis: targetPos.y}, worldGrid[this.worldX + '-' + this.worldY]);
@@ -956,6 +979,7 @@ class NPC{
                             this.pos.x = path[1].xAxis;
                             this.pos.y = path[1].yAxis;
                             this.npcAction = 'idle';
+                            this.isPerformingAction = false;
                         }
                         else{
                             //if no path exists, set target to null and just wander
@@ -1068,9 +1092,12 @@ class NPC{
                             }
                         }  
                     }
+                    this.isPerformingAction = false;
                 }, randomTimeout);
             }
-            
+            else{
+                this.isPerformingAction = false;
+            }
         }
     }
 
