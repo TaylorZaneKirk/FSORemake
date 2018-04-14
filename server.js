@@ -894,7 +894,7 @@ class NPC{
                     if(this.spells != {} && Math.floor(Math.random() * Math.floor(3)) == 0){
                         console.log('gonna cast a spell!');
                         var whichSpellIndex = Math.floor(Math.random() * Object.keys(this.spells).length);
-                        console.log(whichSpellIndex);
+                        console.log(Object.keys(this.spells)[whichSpellIndex]);
                         var whichSpell = this.spells[Object.keys(this.spells)[whichSpellIndex]];
                         console.log(whichSpell);
                     }
