@@ -21,6 +21,9 @@ var mysql = require('mysql');
 
 var aStar = require('a-star-search');
 
+var PlayerState = require('./playerClass');
+var NPC = require('./npcClass');
+
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
