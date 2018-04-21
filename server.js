@@ -198,7 +198,7 @@ class PlayerState
         this.gender = data.gender;
         this.headType = data.headType;
         this.class = data.class;
-        this.level = data.level;
+        //this.level = data.level;
         this.gold = data.gold;
         this.maxHealth = data.maxHealth;
         this.health = data.health;
@@ -240,6 +240,11 @@ class PlayerState
         this.farming = data.farming;
         this.crafting = data.crafting;
         this.blacksmithing = data.blacksmithing;
+
+        //Level = average of all combat related skills
+        this.level = Math.floor((this.swordsmanship + this.mysticism + this.archery + this.knifeplay + this.blocking + this.pugilism + this.fireMagic + this.waterMagic
+                        + this.earthMagic + this.windMagic + this.whiteMagic + this.blackMagic + this.heavySwords + this.hammerWielding + this.bluntWeapons
+                        + this.staffFighting + this.axeFighting + this.fencing + this.shortBows + this.longBows + this.crossbows) / 21);
 
         this.swordsmanshipCurrent = data.swordsmanshipCurrent;
         this.mysticismCurrent = data.mysticismCurrent;
@@ -401,7 +406,84 @@ class PlayerState
         return false;
     }
 
-    takeDamage(damage, attackerId, npcOrPlayer){ //attackerId can be null if player is taking damage from not a player
+    takeMagicalDamage(damage, attackerId, npcOrPlayer, spellAffinity){
+        var damageMitigated = Math.floor((((this.arcane + this.blocking) / 10) * (itemData[this.equipHead].magicalDefense + itemData[this.equipTorso].magicalDefense + itemData[this.equipLegs].magicalDefense)) + Math.floor(Math.random() * Math.floor(3)));
+        if(damage - damageMitigated <= 0){
+            //0 damage
+            for (var c in worldMap[this.worldX + '-' + this.worldY].players){
+                var remote = players[c].remote;
+                remote.showStatus('BLOCK', 'player', this.playerId);
+            }
+            return
+        }
+        var chanceToDodge = Math.floor(Math.random() * Math.floor(100 - ((this.agility / 2) + (itemData[this.equipHead].magicalEvasion + itemData[this.equipTorso].magicalEvasion + itemData[this.equipLegs].magicalEvasion))));
+        if(chanceToDodge <= 5){
+            //dodged it
+            for (var c in worldMap[this.worldX + '-' + this.worldY].players){
+                var remote = players[c].remote;
+                remote.showStatus('MISS', 'player', this.playerId);
+            }
+            return
+        }
+        this.health -= (damage - damageMitigated);
+        if(this.health > 0){
+            if(this.equipTorso != 1 || this.equipHead != 1 || this.equipLegs != 1){
+                if(npcOrPlayer == 'player'){
+                    var attackingPlayer = players[attackerId].state;
+                    if(attackingPlayer.level - this.level >= 0){
+                        this.getExp(attackingPlayer.level - this.level, ['mediumArmor']);
+                    }
+                }
+            }
+            for (var c in worldMap[this.worldX + '-' + this.worldY].players){
+                var remote = players[c].remote;
+                remote.showDamage((damage - damageMitigated), 'player', this.playerId);
+            }
+            con.query("UPDATE users SET health='" + this.health + "' WHERE username = '" + this.username + "'", function (err, result, fields) {});
+        }
+        else{
+            delete worldMap[this.worldX + '-' + this.worldY].players[this.playerId];
+            for (var c in worldMap[this.worldX + '-' + this.worldY].players){
+                var remote = players[c].remote;
+    
+                //here we call kill() method defined in the client side
+                remote.kill(this.playerId);
+            }
+            this.health = 100;
+            this.worldX = 0;
+            this.worldY = 0;
+            this.pos = {x: 1, y: 1};
+            this.playerFacing = 'S';
+            this.playerAction = 'idle';
+            this.mapData = worldMap[this.worldX + '-' + this.worldY].mapData;
+            worldMap[this.worldX + '-' + this.worldY].players[this.playerId] = this;
+            con.query("UPDATE users SET health='" + this.health + 
+                "', worldX='" + this.worldX + 
+                "', worldY='" + this.worldY + 
+                "', localX='" + this.pos.x + 
+                "', localY='" + this.pos.y + 
+                "' WHERE username='" + this.username + "'", function (err, result, fields) {if (err) throw err; });
+            if(npcOrPlayer == 'player' && attackerId != undefined){
+                var winner = players[attackerId].state;
+                var exp = this.baseExp + (winner.level - this.level);
+                winner.getExp(exp, [spellAffinity]);
+                for(var i in players){
+                    var player = players[i];
+                    player.remote.recieveBroadcast(this.username + " was killed by " + winner.username, '#ffff00');
+                }
+                
+            }
+            else if(npcOrPlayer == 'npc' && attackerId != undefined){
+                var winner = npcs[attackerId];
+                for(var i in players){
+                    var player = players[i];
+                    player.remote.recieveBroadcast(this.username + " was killed by " + winner.npcName, '#ffff00');
+                }
+            }
+        }
+    }
+
+    takePhysicalDamage(damage, attackerId, npcOrPlayer){ //attackerId can be null if player is taking damage from not a player
         var damageMitigated = Math.floor((((this.endurance + this.blocking) / 10) * (itemData[this.equipHead].physicalDefense + itemData[this.equipTorso].physicalDefense + itemData[this.equipLegs].physicalDefense)) + Math.floor(Math.random() * Math.floor(3)));
         if(damage - damageMitigated <= 0){
             //0 damage
@@ -494,8 +576,13 @@ class PlayerState
                     this.knifeplayCurrent += expToGive;
                     if(this.knifeplayCurrent >= this.knifeplayNext){
                         this.knifeplay++;
-                        this.knifeplayNext = (this.knifeplay + this.knifeplayNext) * 1.1;
-                        players[this.playerId].remote.recieveBroadcast("[LEVEL UP]: " + this.username + "'s knifeplay is now level: " + this.knifeplay, '#ffffff');
+                        this.knifeplayNext = (this.level + this.knifeplay + this.knifeplayNext) * 1.1;
+
+                        this.level = Math.floor((this.swordsmanship + this.mysticism + this.archery + this.knifeplay + this.blocking + this.pugilism + this.fireMagic + this.waterMagic
+                            + this.earthMagic + this.windMagic + this.whiteMagic + this.blackMagic + this.heavySwords + this.hammerWielding + this.bluntWeapons
+                            + this.staffFighting + this.axeFighting + this.fencing + this.shortBows + this.longBows + this.crossbows) / 21);
+
+                        players[this.playerId].remote.recieveBroadcast("[LEVEL UP] " + this.username + "'s knifeplay is now level: " + this.knifeplay, '#ffffff');
                     }
                     else{
                         players[this.playerId].remote.recieveBroadcast('[EXP] You gained ' + expToGive + ' exp in knifeplay!', '#ffffff');
@@ -507,8 +594,13 @@ class PlayerState
                     this.pugilism += expToGive;
                     if(this.pugilismCurrent >= this.pugilismNext){
                         this.pugilism++;
-                        this.pugilismNext = (this.pugilism + this.pugilismNext) * 1.1;
-                        players[this.playerId].remote.recieveBroadcast("[LEVEL UP]: " + this.username + "'s pugilism is now level: " + this.pugilism, '#ffffff');
+                        this.pugilismNext = (this.level + this.pugilism + this.pugilismNext) * 1.1;
+
+                        this.level = Math.floor((this.swordsmanship + this.mysticism + this.archery + this.knifeplay + this.blocking + this.pugilism + this.fireMagic + this.waterMagic
+                            + this.earthMagic + this.windMagic + this.whiteMagic + this.blackMagic + this.heavySwords + this.hammerWielding + this.bluntWeapons
+                            + this.staffFighting + this.axeFighting + this.fencing + this.shortBows + this.longBows + this.crossbows) / 21);
+
+                        players[this.playerId].remote.recieveBroadcast("[LEVEL UP] " + this.username + "'s pugilism is now level: " + this.pugilism, '#ffffff');
                     }
                     else{
                         players[this.playerId].remote.recieveBroadcast('[EXP] You gained ' + expToGive + ' exp in pugilism!', '#ffffff');
@@ -520,8 +612,13 @@ class PlayerState
                     this.blockingCurrent += expToGive;
                     if(this.blockingCurrent >= this.blockingNext){
                         this.knifeplay++;
-                        this.blockingNext = (this.blocking + this.blockingNext) * 1.1;
-                        players[this.playerId].remote.recieveBroadcast("[LEVEL UP]: " + this.username + "'s blocking is now level: " + this.blocking, '#ffffff');
+                        this.blockingNext = (this.level + this.blocking + this.blockingNext) * 1.1;
+
+                        this.level = Math.floor((this.swordsmanship + this.mysticism + this.archery + this.knifeplay + this.blocking + this.pugilism + this.fireMagic + this.waterMagic
+                            + this.earthMagic + this.windMagic + this.whiteMagic + this.blackMagic + this.heavySwords + this.hammerWielding + this.bluntWeapons
+                            + this.staffFighting + this.axeFighting + this.fencing + this.shortBows + this.longBows + this.crossbows) / 21);
+
+                        players[this.playerId].remote.recieveBroadcast("[LEVEL UP] " + this.username + "'s blocking is now level: " + this.blocking, '#ffffff');
                     }
                     else{
                         players[this.playerId].remote.recieveBroadcast('[EXP] You gained ' + expToGive + ' exp in blocking!', '#ffffff');
@@ -930,7 +1027,7 @@ class NPC{
                     }
                     var damage = Math.floor(((this.strength / 10) * this.physicalAttack) + ((this.agility / 3) * (this.stamina / this.maxStamina)) + Math.floor(Math.random() * Math.floor(6)));
                     this.stamina = this.stamina == 0 ? 0 : this.stamina - (Math.floor(Math.random() * Math.floor(5)) + 1);
-                    players[this.target].state.takeDamage(damage, this.npcId, 'npc');
+                    players[this.target].state.takePhysicalDamage(damage, this.npcId, 'npc');
                     this.isPerformingAction = false;
                 }
                 else{
@@ -1101,7 +1198,7 @@ class NPC{
         }
     }
 
-    takeDamage(damage, attackerId){ //attackerId can be null if player is taking damage from not a player
+    takePhysicalDamage(damage, attackerId){ //attackerId can be null if player is taking damage from not a player
         var damageMitigated = Math.floor(((this.endurance / 10) * this.physicalDefense) + Math.floor(Math.random() * Math.floor(3)));
         if(damage - damageMitigated <= 0){
             //0 damage
@@ -1176,6 +1273,7 @@ var manageNPCInterval = null;
 var worldMap = {};
 var worldGrid = {};
 var worldItems = [];
+var worldSpells = [];
 var itemData = {};
 var spellData = {};
 var locationIdMaxIndex = 0;
