@@ -492,7 +492,7 @@ class PlayerState
         this.health = this.health + amount <= this.maxHealth ? this.health + amount : this.maxHealth;
         for (var c in worldMap[this.worldX + '-' + this.worldY].players){
             var remote = players[c].remote;
-            remote.showDamage(amount, 'player', this.playerId);
+            remote.showDamage(0 - amount, 'player', this.playerId);
         }
     }
 
@@ -1316,7 +1316,7 @@ class NPC{
         this.health = this.health + amount <= this.maxHealth ? this.health + amount : this.maxHealth;
         for (var c in worldMap[this.worldX + '-' + this.worldY].players){
             var remote = players[c].remote;
-            remote.showDamage(amount, 'npc', this.npcId);
+            remote.showDamage(0 - amount, 'npc', this.npcId);
         }
     }
 
