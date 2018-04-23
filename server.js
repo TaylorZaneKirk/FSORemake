@@ -1174,7 +1174,7 @@ class NPC{
                     }
                     else{
                         var path = aStar.run({xAxis: this.pos.x, yAxis: this.pos.y}, {xAxis: targetPos.x, yAxis: targetPos.y}, worldGrid[this.worldX + '-' + this.worldY]);
-                        if(path != undefined && path != null){
+                        if(path != undefined && path != null && path[1] != undefined && path[1] != null){
                             if(this.pos.x < path[1].xAxis){
                                 this.npcFacing = 'E'
                             }
