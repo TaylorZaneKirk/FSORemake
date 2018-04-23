@@ -199,7 +199,8 @@ var PlayerObject = function(idRef, gameRef){
     }
 
     function showDamageText(damage){
-        var myDamage = game.add.text(15, -15, damage, { font: "12px Ariel", fill: '#ffffff'});
+        var color = damage < 0 ? '#5ff442' : '#f44141'
+        var myDamage = game.add.text(15, -15, damage, { font: "12px Ariel", fill: color});
         myDamage.anchor.setTo(0.5);
         playerSprite.addChild(myDamage);
         game.add.tween(myDamage).to({y: -25}, 1000, null, true);
