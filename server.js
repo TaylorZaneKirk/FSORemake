@@ -1224,7 +1224,7 @@ class NPC{
                                 //this.npcAction = 'walk';
                                 this.npcFacing = 'E';
                                 visiblePlayers.forEach((player) => {
-                                    if(players[player.playerId].state.mapData != undefined){
+                                    if(players[player.playerId] != undefined && players[player.playerId].state.mapData != undefined){
                                         players[player.playerId].state.mapData.npcs[this.npcId] = this;
                                     }
                                 });
@@ -1248,7 +1248,7 @@ class NPC{
                                 //this.npcAction = 'walk';
                                 this.npcFacing = 'W';
                                 visiblePlayers.forEach((player) => {
-                                    if(players[player.playerId].state.mapData != undefined){
+                                    if(players[player.playerId] != undefined && players[player.playerId].state.mapData != undefined){
                                         players[player.playerId].state.mapData.npcs[this.npcId] = this;
                                     }
                                 });
@@ -1272,7 +1272,7 @@ class NPC{
                                 //this.npcAction = 'walk';
                                 this.npcFacing = 'N';
                                 visiblePlayers.forEach((player) => {
-                                    if(players[player.playerId].state.mapData != undefined){
+                                    if(players[player.playerId] != undefined && players[player.playerId].state.mapData != undefined){
                                         players[player.playerId].state.mapData.npcs[this.npcId] = this;
                                     }
                                 });
@@ -1296,7 +1296,7 @@ class NPC{
                                 //this.npcAction = 'walk';
                                 this.npcFacing = 'S';
                                 visiblePlayers.forEach((player) => {
-                                    if(players[player.playerId].state.mapData != undefined){
+                                    if(players[player.playerId] != undefined && players[player.playerId].state.mapData != undefined){
                                         players[player.playerId].state.mapData.npcs[this.npcId] = this;
                                     }
                                 });
